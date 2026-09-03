@@ -28,9 +28,18 @@ class Hole:
 
 
 @dataclass
+class Boss:
+    width: float
+    height: float
+    depth: float
+    centered: bool
+
+
+@dataclass
 class FeatureGraph:
     base_block: BaseBlock
     holes: list[Hole] = field(default_factory=list)
+    bosses: list[Boss] = field(default_factory=list)
     hypotheses: list[FeatureHypothesis] = field(default_factory=list)
     status: str = "PASS"
 

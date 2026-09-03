@@ -1,0 +1,39 @@
+{
+  "schema_version": "0.2",
+  "name": "case_002_step_block",
+  "projection": "third_angle",
+  "front": {
+    "horizontal_extent_mm": 100, "vertical_extent_mm": 60,
+    "circles": [{"x": 50, "y": 30, "diameter": 20}],
+    "visible_segments": [
+      {"x1": 0, "y1": 0, "x2": 100, "y2": 0}, {"x1": 100, "y1": 0, "x2": 100, "y2": 60},
+      {"x1": 100, "y1": 60, "x2": 0, "y2": 60}, {"x1": 0, "y1": 60, "x2": 0, "y2": 0},
+      {"x1": 20, "y1": 10, "x2": 80, "y2": 10}, {"x1": 80, "y1": 10, "x2": 80, "y2": 50},
+      {"x1": 80, "y1": 50, "x2": 20, "y2": 50}, {"x1": 20, "y1": 50, "x2": 20, "y2": 10}
+    ],
+    "centerlines": [{"x1": 35, "y1": 30, "x2": 65, "y2": 30}, {"x1": 50, "y1": 15, "x2": 50, "y2": 45}]
+  },
+  "top": {
+    "horizontal_extent_mm": 100, "vertical_extent_mm": 40,
+    "visible_segments": [
+      {"x1": 0, "y1": 0, "x2": 100, "y2": 0}, {"x1": 100, "y1": 0, "x2": 100, "y2": 20},
+      {"x1": 100, "y1": 20, "x2": 80, "y2": 20}, {"x1": 80, "y1": 20, "x2": 80, "y2": 40},
+      {"x1": 80, "y1": 40, "x2": 20, "y2": 40}, {"x1": 20, "y1": 40, "x2": 20, "y2": 20},
+      {"x1": 20, "y1": 20, "x2": 0, "y2": 20}, {"x1": 0, "y1": 20, "x2": 0, "y2": 0}
+    ],
+    "hidden_line_pairs": [{"axis": "x", "offset_1": 40, "offset_2": 60}],
+    "hidden_segments": [{"x1": 40, "y1": 0, "x2": 40, "y2": 40}, {"x1": 60, "y1": 0, "x2": 60, "y2": 40}]
+  },
+  "left": {
+    "horizontal_extent_mm": 40, "vertical_extent_mm": 60,
+    "visible_segments": [
+      {"x1": 0, "y1": 0, "x2": 20, "y2": 0}, {"x1": 20, "y1": 0, "x2": 20, "y2": 10},
+      {"x1": 20, "y1": 10, "x2": 40, "y2": 10}, {"x1": 40, "y1": 10, "x2": 40, "y2": 50},
+      {"x1": 40, "y1": 50, "x2": 20, "y2": 50}, {"x1": 20, "y1": 50, "x2": 20, "y2": 60},
+      {"x1": 20, "y1": 60, "x2": 0, "y2": 60}, {"x1": 0, "y1": 60, "x2": 0, "y2": 0}
+    ],
+    "hidden_line_pairs": [{"axis": "z", "offset_1": 20, "offset_2": 40}],
+    "hidden_segments": [{"x1": 0, "y1": 20, "x2": 40, "y2": 20}, {"x1": 0, "y1": 40, "x2": 40, "y2": 40}]
+  },
+  "feature_evidence": {"centred_step": {"base_depth_mm": 20, "width_mm": 60, "height_mm": 40, "depth_mm": 20, "centered": true, "evidence": ["visible_step_in_front", "reduced_width_in_top", "height_transition_in_left"]}}
+}

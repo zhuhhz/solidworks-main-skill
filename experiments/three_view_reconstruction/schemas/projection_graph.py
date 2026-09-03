@@ -11,6 +11,7 @@ class ProjectionGraph:
     top: ViewGeometry
     left: ViewGeometry
     coordinate_convention: dict
+    feature_evidence: dict | None = None
 
     def to_dict(self) -> dict:
         return asdict(self)

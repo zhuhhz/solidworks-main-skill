@@ -1,6 +1,6 @@
 {
-  "run_at": "2026-09-03T22:09:50",
-  "case": "case_001_block_hole",
+  "run_at": "2026-09-03T22:08:39",
+  "case": "case_002_step_block",
   "projection_graph": {
     "projection": "third_angle",
     "front": {
@@ -15,10 +15,72 @@
         }
       ],
       "hidden_line_pairs": [],
-      "visible_segments": [],
+      "visible_segments": [
+        {
+          "x1": 0,
+          "y1": 0,
+          "x2": 100,
+          "y2": 0
+        },
+        {
+          "x1": 100,
+          "y1": 0,
+          "x2": 100,
+          "y2": 60
+        },
+        {
+          "x1": 100,
+          "y1": 60,
+          "x2": 0,
+          "y2": 60
+        },
+        {
+          "x1": 0,
+          "y1": 60,
+          "x2": 0,
+          "y2": 0
+        },
+        {
+          "x1": 20,
+          "y1": 10,
+          "x2": 80,
+          "y2": 10
+        },
+        {
+          "x1": 80,
+          "y1": 10,
+          "x2": 80,
+          "y2": 50
+        },
+        {
+          "x1": 80,
+          "y1": 50,
+          "x2": 20,
+          "y2": 50
+        },
+        {
+          "x1": 20,
+          "y1": 50,
+          "x2": 20,
+          "y2": 10
+        }
+      ],
       "hidden_segments": [],
       "arcs": [],
-      "centerlines": []
+      "centerlines": [
+        {
+          "x1": 35,
+          "y1": 30,
+          "x2": 65,
+          "y2": 30
+        },
+        {
+          "x1": 50,
+          "y1": 15,
+          "x2": 50,
+          "y2": 45
+        }
+      ]
     },
     "top": {
       "name": "top",
@@ -28,12 +90,74 @@
       "hidden_line_pairs": [
         {
           "axis": "x",
-          "offset_1": 20,
-          "offset_2": 40
+          "offset_1": 40,
+          "offset_2": 60
         }
       ],
-      "visible_segments": [],
-      "hidden_segments": [],
+      "visible_segments": [
+        {
+          "x1": 0,
+          "y1": 0,
+          "x2": 100,
+          "y2": 0
+        },
+        {
+          "x1": 100,
+          "y1": 0,
+          "x2": 100,
+          "y2": 20
+        },
+        {
+          "x1": 100,
+          "y1": 20,
+          "x2": 80,
+          "y2": 20
+        },
+        {
+          "x1": 80,
+          "y1": 20,
+          "x2": 80,
+          "y2": 40
+        },
+        {
+          "x1": 80,
+          "y1": 40,
+          "x2": 20,
+          "y2": 40
+        },
+        {
+          "x1": 20,
+          "y1": 40,
+          "x2": 20,
+          "y2": 20
+        },
+        {
+          "x1": 20,
+          "y1": 20,
+          "x2": 0,
+          "y2": 20
+        },
+        {
+          "x1": 0,
+          "y1": 20,
+          "x2": 0,
+          "y2": 0
+        }
+      ],
+      "hidden_segments": [
+        {
+          "x1": 40,
+          "y1": 0,
+          "x2": 40,
+          "y2": 40
+        },
+        {
+          "x1": 60,
+          "y1": 0,
+          "x2": 60,
+          "y2": 40
+        }
+      ],
       "arcs": [],
       "centerlines": []
     },
@@ -49,8 +173,70 @@
           "offset_2": 40
         }
       ],
-      "visible_segments": [],
-      "hidden_segments": [],
+      "visible_segments": [
+        {
+          "x1": 0,
+          "y1": 0,
+          "x2": 20,
+          "y2": 0
+        },
+        {
+          "x1": 20,
+          "y1": 0,
+          "x2": 20,
+          "y2": 10
+        },
+        {
+          "x1": 20,
+          "y1": 10,
+          "x2": 40,
+          "y2": 10
+        },
+        {
+          "x1": 40,
+          "y1": 10,
+          "x2": 40,
+          "y2": 50
+        },
+        {
+          "x1": 40,
+          "y1": 50,
+          "x2": 20,
+          "y2": 50
+        },
+        {
+          "x1": 20,
+          "y1": 50,
+          "x2": 20,
+          "y2": 60
+        },
+        {
+          "x1": 20,
+          "y1": 60,
+          "x2": 0,
+          "y2": 60
+        },
+        {
+          "x1": 0,
+          "y1": 60,
+          "x2": 0,
+          "y2": 0
+        }
+      ],
+      "hidden_segments": [
+        {
+          "x1": 0,
+          "y1": 20,
+          "x2": 40,
+          "y2": 20
+        },
+        {
+          "x1": 0,
+          "y1": 40,
+          "x2": 40,
+          "y2": 40
+        }
+      ],
       "arcs": [],
       "centerlines": []
     },
@@ -61,7 +247,20 @@
       "left": "Z/Y",
       "internal": "mm; base-block centre origin; +Z is extrude direction"
     },
-    "feature_evidence": null
+    "feature_evidence": {
+      "centred_step": {
+        "base_depth_mm": 20,
+        "width_mm": 60,
+        "height_mm": 40,
+        "depth_mm": 20,
+        "centered": true,
+        "evidence": [
+          "visible_step_in_front",
+          "reduced_width_in_top",
+          "height_transition_in_left"
+        ]
+      }
+    }
   },
   "input_consistency": {
     "status": "PASS",
@@ -92,7 +291,7 @@
     "base_block": {
       "width": 100.0,
       "height": 60.0,
-      "depth": 40.0
+      "depth": 20.0
     },
     "holes": [
       {
@@ -103,7 +302,14 @@
         "through": true
       }
     ],
-    "bosses": [],
+    "bosses": [
+      {
+        "width": 60.0,
+        "height": 40.0,
+        "depth": 20.0,
+        "centered": true
+      }
+    ],
     "hypotheses": [
       {
         "feature_type": "through_hole",
@@ -114,9 +320,33 @@
           "hidden_lines_in_left_view"
         ],
         "status": "CONFIRMED"
+      },
+      {
+        "feature_type": "centred_boss",
+        "confidence": 0.88,
+        "evidence": [
+          "visible_step_in_front",
+          "reduced_width_in_top",
+          "height_transition_in_left"
+        ],
+        "status": "CONFIRMED"
       }
     ],
     "status": "PASS"
+  },
+  "negative_tests": {
+    "dimension_mismatch": {
+      "expected": "INPUT_INCONSISTENT",
+      "actual": "INPUT_INCONSISTENT"
+    },
+    "boss_or_recess": {
+      "expected": "AMBIGUOUS",
+      "actual": "AMBIGUOUS"
+    },
+    "missing_hole_hidden_lines": {
+      "expected": "AMBIGUOUS",
+      "actual": "AMBIGUOUS"
+    }
   },
   "modeling_plan": {
     "operations": [
@@ -128,12 +358,24 @@
           "width_mm": 100.0,
           "height_mm": 60.0
         },
-        "depth_mm": 40.0,
+        "depth_mm": 20.0,
+        "direction": null
+      },
+      {
+        "type": "boss_extrude",
+        "sketch_plane": "Plane_Base_Top",
+        "profile": {
+          "type": "rectangle",
+          "width_mm": 60.0,
+          "height_mm": 40.0,
+          "plane_offset_mm": 20.0
+        },
+        "depth_mm": 20.0,
         "direction": null
       },
       {
         "type": "cut_extrude_through_circle",
-        "sketch_plane": "Front Plane",
+        "sketch_plane": "Plane_Boss_Top",
         "profile": {
           "type": "circle",
           "diameter_mm": 20,
@@ -161,7 +403,7 @@
           "diameter_m": 0.02,
           "depth_m": null,
           "through": true,
-          "plane_name": "Front Plane",
+          "plane_name": "Plane_Boss_Top",
           "feature_names": [
             "ThroughHole_D20"
           ],
@@ -178,10 +420,10 @@
       }
     ],
     "model_summary": {
-      "title": "case_001_block_hole.SLDPRT",
-      "path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\case_001_block_hole.SLDPRT",
+      "title": "case_002_step_block.SLDPRT",
+      "path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\case_002_step_block.SLDPRT",
       "type": 1,
-      "feature_count": 21,
+      "feature_count": 25,
       "features": [
         {
           "name": "评论",
@@ -260,7 +502,23 @@
           "type": "Extrusion"
         },
         {
+          "name": "Plane_Base_Top",
+          "type": "RefPlane"
+        },
+        {
           "name": "草图2",
+          "type": "ProfileFeature"
+        },
+        {
+          "name": "TopBoss",
+          "type": "ICE"
+        },
+        {
+          "name": "Plane_Boss_Top",
+          "type": "RefPlane"
+        },
+        {
+          "name": "草图3",
           "type": "ProfileFeature"
         },
         {
@@ -284,7 +542,7 @@
           "position_mm": [
             0.0,
             0.0,
-            -40.0
+            -20.0
           ],
           "axis": [
             -0.0,
@@ -305,7 +563,7 @@
           "origin_mm": [
             0.0,
             0.0,
-            -40.0
+            -20.0
           ],
           "axis": [
             -0.0,
@@ -318,7 +576,7 @@
           "loop_count": 2,
           "edge_count": 2,
           "body_index": 0,
-          "face_index": 6
+          "face_index": 11
         }
       ],
       "errors": [],
@@ -328,7 +586,7 @@
           "position_mm": [
             0.0,
             0.0,
-            -40.0
+            -20.0
           ],
           "axis": [
             -0.0,
@@ -346,7 +604,7 @@
               "position_mm": [
                 0.0,
                 0.0,
-                -40.0
+                -20.0
               ],
               "axis": [
                 -0.0,
@@ -363,7 +621,7 @@
       ]
     },
     "review": {
-      "path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\review\\case_001_block_hole_review_report.json",
+      "path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\review\\case_002_step_block_review_report.json",
       "evaluation": {
         "status": "pass",
         "score": 100,
@@ -523,8 +781,8 @@
         }
       ]
     },
-    "part_path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\case_001_block_hole.sldprt",
-    "drawing_path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\case_001_block_hole.slddrw"
+    "part_path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\case_002_step_block.sldprt",
+    "drawing_path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\case_002_step_block.slddrw"
   },
   "reconstruction_qa": {
     "status": "PASS",
@@ -618,13 +876,13 @@
       "views": {
         "front": {
           "visible_lines": {
-            "expected": 0,
-            "actual": 4,
+            "expected": 8,
+            "actual": 8,
             "matched": 0,
-            "missing": 0,
-            "extra": 4,
+            "missing": 8,
+            "extra": 8,
             "precision": 0.0,
-            "recall": 1.0,
+            "recall": 0.0,
             "pairs": []
           },
           "hidden_lines": {
@@ -648,23 +906,23 @@
           },
           "centerlines": {
             "status": "NOT_EVALUABLE",
-            "expected": 0
+            "expected": 2
           }
         },
         "top": {
           "visible_lines": {
-            "expected": 0,
-            "actual": 4,
+            "expected": 8,
+            "actual": 7,
             "matched": 0,
-            "missing": 0,
-            "extra": 4,
+            "missing": 8,
+            "extra": 7,
             "precision": 0.0,
-            "recall": 1.0,
+            "recall": 0.0,
             "pairs": []
           },
           "hidden_lines": {
             "status": "NOT_EVALUABLE",
-            "expected": 0,
+            "expected": 2,
             "reason": "SW2024 API response did not expose visibility semantics"
           },
           "circles": {
@@ -688,18 +946,18 @@
         },
         "left": {
           "visible_lines": {
-            "expected": 0,
-            "actual": 4,
+            "expected": 8,
+            "actual": 7,
             "matched": 0,
-            "missing": 0,
-            "extra": 4,
+            "missing": 8,
+            "extra": 7,
             "precision": 0.0,
-            "recall": 1.0,
+            "recall": 0.0,
             "pairs": []
           },
           "hidden_lines": {
             "status": "NOT_EVALUABLE",
-            "expected": 0,
+            "expected": 2,
             "reason": "SW2024 API response did not expose visibility semantics"
           },
           "circles": {

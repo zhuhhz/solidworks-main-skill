@@ -7,7 +7,9 @@ from parser.projection_mapping import internal_to_front
 
 def validate(input_graph: ProjectionGraph, features: FeatureGraph, backend: dict, tolerance_mm: float = 0.01) -> dict:
     """v0.1 compares structured projection invariants; it does not yet extract drawing linework."""
-    base, generated = features.base_block, {"front": (features.base_block.width, features.base_block.height), "top": (features.base_block.width, features.base_block.depth), "left": (features.base_block.depth, features.base_block.height)}
+    base = features.base_block
+    total_depth = base.depth + sum(b.depth for b in features.bosses)
+    generated = {"front": (base.width, base.height), "top": (base.width, total_depth), "left": (total_depth, base.height)}
     expected = {"front": (input_graph.front.horizontal_extent, input_graph.front.vertical_extent), "top": (input_graph.top.horizontal_extent, input_graph.top.vertical_extent), "left": (input_graph.left.horizontal_extent, input_graph.left.vertical_extent)}
     checks = [{"view": view, "passed": all(abs(a-b) <= tolerance_mm for a, b in zip(generated[view], expected[view])), "expected_mm": expected[view], "generated_mm": generated[view]} for view in expected]
     hole_checks = []

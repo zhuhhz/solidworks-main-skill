@@ -1,17 +1,30 @@
 from __future__ import annotations
 
+import os
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[3]
-sys.path.insert(0, str(ROOT / "scripts"))
+# The CAD execution layer is an explicit third-party dependency, never this
+# experiment's source tree.  A missing value is an actionable integration gap.
+UPSTREAM_ROOT = Path(os.environ.get("SOLIDWORKS_AUTOMATION_BACKEND_PATH", ""))
+if not (UPSTREAM_ROOT / "scripts" / "sw_session.py").is_file():
+    raise RuntimeError("UPSTREAM_GAP: set SOLIDWORKS_AUTOMATION_BACKEND_PATH to the external solidworks-automation-skill clone")
+sys.path.insert(0, str(UPSTREAM_ROOT / "scripts"))
 
-from sw_connect import get_com_member, mm
+from sw_connect import create_empty_dispatch_variant, get_com_member, mm
 from sw_drawing import create_standard_views_with_projection, inspect_drawing_structure
 from sw_hole_features import create_through_hole
 from sw_part import extrude_boss, sketch, sketch_rectangle
 from sw_review import collect_geometry_measurements, collect_model_summary, run_review
 from sw_session import SolidWorksSession
+
+
+def _select_front_plane(model) -> bool:
+    """Locale-compatible counterpart of the upstream CNC helper."""
+    for name in ("Front Plane", "前视基准面"):
+        if model.Extension.SelectByID2(name, "PLANE", 0, 0, 0, False, 0, create_empty_dispatch_variant(), 0):
+            return True
+    return False
 
 
 def execute(plan, output_dir: Path, name: str) -> dict:
@@ -30,8 +43,35 @@ def execute(plan, output_dir: Path, name: str) -> dict:
                 feature = extrude_boss(part, sketch_name, mm(operation.depth_mm))
                 if feature is None: raise RuntimeError("SKILL_GAP: base_extrude returned None")
                 feature.Name = "BaseBlock"
+            elif operation.type == "boss_extrude":
+                # Minimal compatibility supplement: the external backend has
+                # plane/sketch/extrude helpers but no one-call stepped-boss API.
+                # InsertRefPlane follows its tested CNC subskill convention.
+                plane_name = operation.sketch_plane
+                if part.FeatureByName(plane_name) is None:
+                    selected = _select_front_plane(part)
+                    if not selected:
+                        raise RuntimeError("UPSTREAM_GAP: cannot select Front Plane for boss reference plane")
+                    plane = part.FeatureManager.InsertRefPlane(8, mm(operation.profile["plane_offset_mm"]), 0, 0, 0, 0)
+                    if plane is None:
+                        raise RuntimeError("UPSTREAM_GAP: InsertRefPlane failed for stepped boss")
+                    plane.Name = plane_name
+                with sketch(part, plane_name) as sketch_name:
+                    sketch_rectangle(part, 0, 0, mm(operation.profile["width_mm"]), mm(operation.profile["height_mm"]))
+                feature = extrude_boss(part, sketch_name, mm(operation.depth_mm))
+                if feature is None: raise RuntimeError("UPSTREAM_GAP: boss_extrude returned None")
+                feature.Name = "TopBoss"
             elif operation.type == "cut_extrude_through_circle":
-                evidence = create_through_hole(part, (mm(operation.profile["center_x_mm"]), mm(operation.profile["center_y_mm"])), mm(operation.profile["diameter_mm"]), name="ThroughHole_D20")
+                plane_name = operation.sketch_plane
+                if plane_name != "Front Plane" and part.FeatureByName(plane_name) is None:
+                    selected = _select_front_plane(part)
+                    if not selected:
+                        raise RuntimeError("UPSTREAM_GAP: cannot select Front Plane for through-hole reference plane")
+                    plane = part.FeatureManager.InsertRefPlane(8, mm(operation.profile["plane_offset_mm"]), 0, 0, 0, 0)
+                    if plane is None:
+                        raise RuntimeError("UPSTREAM_GAP: InsertRefPlane failed for through-hole plane")
+                    plane.Name = plane_name
+                evidence = create_through_hole(part, (mm(operation.profile["center_x_mm"]), mm(operation.profile["center_y_mm"])), mm(operation.profile["diameter_mm"]), plane_name=plane_name, name="ThroughHole_D20")
                 result["operations"].append({"operation": operation.type, "evidence": evidence})
             else:
                 raise RuntimeError(f"SKILL_GAP: unsupported plan operation {operation.type}")

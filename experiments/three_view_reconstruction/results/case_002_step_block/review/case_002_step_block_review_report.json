@@ -1,9 +1,9 @@
 {
   "model": {
-    "title": "case_001_block_hole.SLDPRT",
-    "path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\case_001_block_hole.SLDPRT",
+    "title": "case_002_step_block.SLDPRT",
+    "path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\case_002_step_block.SLDPRT",
     "type": 1,
-    "feature_count": 21,
+    "feature_count": 25,
     "features": [
       {
         "name": "评论",
@@ -82,7 +82,23 @@
         "type": "Extrusion"
       },
       {
+        "name": "Plane_Base_Top",
+        "type": "RefPlane"
+      },
+      {
         "name": "草图2",
+        "type": "ProfileFeature"
+      },
+      {
+        "name": "TopBoss",
+        "type": "ICE"
+      },
+      {
+        "name": "Plane_Boss_Top",
+        "type": "RefPlane"
+      },
+      {
+        "name": "草图3",
         "type": "ProfileFeature"
       },
       {
@@ -106,7 +122,7 @@
         "position_mm": [
           0.0,
           0.0,
-          -40.0
+          -20.0
         ],
         "axis": [
           -0.0,
@@ -127,7 +143,7 @@
         "origin_mm": [
           0.0,
           0.0,
-          -40.0
+          -20.0
         ],
         "axis": [
           -0.0,
@@ -140,7 +156,7 @@
         "loop_count": 2,
         "edge_count": 2,
         "body_index": 0,
-        "face_index": 6
+        "face_index": 11
       }
     ],
     "errors": [],
@@ -150,7 +166,7 @@
         "position_mm": [
           0.0,
           0.0,
-          -40.0
+          -20.0
         ],
         "axis": [
           -0.0,
@@ -168,7 +184,7 @@
             "position_mm": [
               0.0,
               0.0,
-              -40.0
+              -20.0
             ],
             "axis": [
               -0.0,
@@ -186,51 +202,51 @@
   },
   "previews": [
     {
-      "path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\review\\case_001_block_hole_isometric.bmp",
+      "path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\review\\case_002_step_block_isometric.bmp",
       "exists": true,
       "size_bytes": 4800054,
       "width": 1600,
       "height": 1000,
-      "unique_sample_values": 230,
-      "dark_pixel_ratio": 0.5356987847222222,
+      "unique_sample_values": 373,
+      "dark_pixel_ratio": 0.4890407986111111,
       "likely_blank": false
     },
     {
-      "path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\review\\case_001_block_hole_front.bmp",
+      "path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\review\\case_002_step_block_front.bmp",
       "exists": true,
       "size_bytes": 4800054,
       "width": 1600,
       "height": 1000,
-      "unique_sample_values": 153,
+      "unique_sample_values": 268,
       "dark_pixel_ratio": 0.6003689236111112,
       "likely_blank": false
     },
     {
-      "path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\review\\case_001_block_hole_top.bmp",
+      "path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\review\\case_002_step_block_top.bmp",
       "exists": true,
       "size_bytes": 4800054,
       "width": 1600,
       "height": 1000,
-      "unique_sample_values": 154,
-      "dark_pixel_ratio": 0.4965277777777778,
+      "unique_sample_values": 157,
+      "dark_pixel_ratio": 0.4596354166666667,
       "likely_blank": false
     },
     {
-      "path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\review\\case_001_block_hole_right.bmp",
+      "path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\review\\case_002_step_block_right.bmp",
       "exists": true,
       "size_bytes": 4800054,
       "width": 1600,
       "height": 1000,
-      "unique_sample_values": 160,
-      "dark_pixel_ratio": 0.5621744791666666,
+      "unique_sample_values": 157,
+      "dark_pixel_ratio": 0.4825303819444444,
       "likely_blank": false
     }
   ],
   "expected_outputs": [
     {
-      "path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\case_001_block_hole.SLDPRT",
+      "path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\case_002_step_block.SLDPRT",
       "exists": true,
-      "size_bytes": 64537
+      "size_bytes": 104360
     }
   ],
   "checks": {
@@ -255,5 +271,5 @@
     "manual_review_required": true,
     "manual_review_reason": "规则评分只能发现明显失败，最终几何是否符合用户意图仍需查看预览图或截图。"
   },
-  "summary_path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\review\\case_001_block_hole_review_summary.md"
+  "summary_path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\review\\case_002_step_block_review_summary.md"
 }

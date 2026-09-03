@@ -1,6 +1,6 @@
 # Three-view → SolidWorks 3D reconstruction report
 
-Date: 2026-09-03. Scope: deterministic Benchmark 001 only. No OCR, raster/image analysis, vision model, LLM, or new production `scripts/` module was used.
+Date: 2026-09-03. Scope: deterministic Benchmarks 001/002 only. No OCR, raster/image analysis, vision model, LLM, or production-module refactor was used.
 
 ## 1. System architecture
 
@@ -14,7 +14,7 @@ structured JSON views
   -> SolidWorks backend (existing Skill only)
   -> SLDPRT + B-Rep / Feature Tree evidence
   -> regenerated SLDDRW
-  -> structured round-trip validator
+  -> Level 1 invariant validator + Level 2 projected-primitive probe
 ```
 
 The experiment code is isolated under `experiments/three_view_reconstruction/`. The parser/inference layer contains no COM calls. `backend/solidworks_backend.py` is the only adapter allowed to call the existing Skill.
@@ -71,7 +71,13 @@ Input: 100 × 60 × 40 block with one centred Ø20 through-hole. Result: **PASS*
 
 ## 7. Benchmark 002
 
-Not implemented or run in this task. The requested stepped-block benchmark requires a second profile/feature inference rule and a second `base_extrude`/boss operation. It must not be claimed from Benchmark 001 evidence.
+Implemented and actually executed: [case_002_step_block.json](benchmarks/case_002_step_block.json) → [result](results/case_002_step_block/benchmark_results.json).
+
+- Base: 100 × 60 × 20 mm; centred boss: 60 × 40 × 20 mm; total height: 40 mm; centred Ø20 through-hole.
+- Multi-view boss rule requires `visible_step_in_front`, `reduced_width_in_top`, and `height_transition_in_left`; insufficient evidence returns `AMBIGUOUS` (`boss_or_recess`).
+- Actual Feature Tree: `BaseBlock`, `Plane_Base_Top`, `TopBoss`, `Plane_Boss_Top`, `ThroughHole_D20`.
+- Actual B-Rep: 100 × 60 × 40 mm envelope and one internal Ø20 cylinder of 40 mm axial length. Save/reopen, drawing creation, and Level 1 invariants passed.
+- The two reference planes are a minimal local compatibility supplement because the third-party backend does not expose a one-call stepped-boss operation. They are recorded as `UPSTREAM_GAP`, not claimed as an upstream capability.
 
 ## 8. Benchmark 003
 
@@ -112,9 +118,23 @@ The v0.1 round trip passed these structural checks:
 - Ø20 at input drawing coordinate (50,30);
 - regenerated drawing contains three actual SolidWorks views.
 
-This is **not** linework, hidden-line, dimension, or pixel equivalence. Existing project drawing inspection returns view boxes and annotations, not a complete normalized view-geometry graph. That is the next critical implementation gap.
+Level 1 remains PASS for both cases. Level 2 now calls real SW2024 `IView.GetPolyLinesAndCurves(0)` using an `IDrawingDoc`/`IView` typed wrapper generated from the locally installed SolidWorks type library. It obtains actual projected polylines (including the front-view circular edge tessellation) in view-centred metre coordinates; the extractor removes scale and canonical bounding-box translation into view-local millimetres.
 
-## 12. Currently supported features
+The actual response in this run does **not** expose a reliable hidden/visible line-style discriminator, nor centre-mark entities; centre marks are annotations rather than model-edge polylines. Therefore Level 2 is deliberately `PARTIAL`, never PASS: required hidden-line semantic matching cannot be truthfully evaluated. Primitive canonicalisation and tolerance matcher are present and report precision/recall/missing/extra, but benchmark input convention versus API orientation still needs calibrated mapping before visible-line scores are meaningful.
+
+## 12. Drawing Geometry Extraction and Level 2 limitation
+
+`drawing/drawing_geometry_extractor.py` is a temporary main-project adapter for the explicit `UPSTREAM_GAP` (no upstream projected-primitive extractor). It uses only real SolidWorks 2024 API output, not model B-Rep or raster data. The failed probes are preserved in code history: dynamic `IModelDoc2` did not expose `GetCurrentSheet`/`GetFirstView`; typed wrappers generated with `makepy` were required. `GetVisibleEntities*` was rejected for this task because it returns model topology, not drawing-space primitives.
+
+## 13. Negative tests
+
+Benchmark 002 executed all requested guards:
+
+- Front width 100 / Top width 95 → `INPUT_INCONSISTENT`.
+- Only a front step clue → `AMBIGUOUS` (`boss_or_recess`).
+- Removed Top hole hidden-line evidence → `AMBIGUOUS`.
+
+## 14. Currently supported features
 
 - Structured standard orthographic dimensions.
 - Rectangular base block.
@@ -122,16 +142,16 @@ This is **not** linework, hidden-line, dimension, or pixel equivalence. Existing
 - Base extrusion and through circular cut.
 - Input consistency blocking, model reopening, Feature Tree/B-Rep validation, and structural drawing regeneration.
 
-## 13. Currently unsupported features
+## 15. Currently unsupported features
 
 - SVG/DXF and PNG/JPG input parsing.
 - OCR, image segmentation, line type classification, scale recovery.
-- Blind holes, bosses, steps, slots, symmetry inference, revolve inference.
+- Blind holes, slots, symmetry inference, revolve inference; only the constrained centred boss rule is implemented.
 - Full first-angle positioning semantics in the round-trip comparator.
-- Extracting generated SLDDRW visible/hidden geometry for direct linework comparison.
+- Reliable hidden/centre-line semantic extraction and calibrated orientation mapping for direct linework comparison.
 - Pixel-level comparison, dimension placement, complete drawing quality gate.
 
-## 14. Ambiguity handling
+## 16. Ambiguity handling
 
 The system does not guess. A front circle alone is ambiguous between a hole and a cylindrical boss/recess. Missing orthogonal hidden-line evidence results in:
 
@@ -144,7 +164,7 @@ An inconsistent set of three extents results in `FAIL` / `INPUT_INCONSISTENT` be
 
 Both guards were executed: removing Top hidden-line evidence produced `AMBIGUOUS`; changing Top width from 100 to 99 mm produced `INPUT_INCONSISTENT`.
 
-## 15. Reusable solidworks-automation-skill capabilities
+## 17. Reusable third-party solidworks-automation-skill capabilities
 
 - Native document/session management and reopening.
 - Sketch rectangle/circle, base extrusion, through cut.
@@ -153,7 +173,7 @@ Both guards were executed: removing Top hidden-line evidence produced `AMBIGUOUS
 - Native standard three-view creation and drawing structure inspection.
 - Review previews and structured review reports.
 
-## 16. Capabilities that must be developed here
+## 18. Capabilities that must be developed in soildworks-main-skill
 
 - Vector/image source parsing into `ProjectionGraph`.
 - Projection correspondence matching beyond dimensions.
@@ -165,6 +185,4 @@ Both guards were executed: removing Top hidden-line evidence produced `AMBIGUOUS
 
 ## Final decision
 
-**A. Simple three-view reconstruction chain is feasible.** Benchmark 001 ran through the full structured-input → inferred-feature → SolidWorks → SLDPRT → regenerated-drawing path and passed B-Rep plus structural projection checks.
-
-This does not establish general drawing reconstruction. The next gate is Benchmark 002, then Benchmark 003, followed by generated-SLDDRW geometry extraction before claiming a true drawing-geometry closed loop.
+**B. Benchmark 002 reconstruction is feasible, but Drawing Geometry Extraction has a critical semantic gap.** Both Benchmarks reconstruct actual SLDPRT/SLDDRW and pass B-Rep plus Level 1 validation. The Level 2 API probe is real and reusable, but it cannot yet distinguish hidden lines or centre lines, and its orientation mapping is not calibrated. Consequently neither benchmark is reported as a vector-geometry closed-loop PASS.
