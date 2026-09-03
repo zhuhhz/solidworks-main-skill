@@ -1,0 +1,596 @@
+{
+  "run_at": "2026-09-03T21:31:25",
+  "case": "case_001_block_hole",
+  "projection_graph": {
+    "projection": "third_angle",
+    "front": {
+      "name": "front",
+      "horizontal_extent": 100.0,
+      "vertical_extent": 60.0,
+      "circles": [
+        {
+          "x": 50,
+          "y": 30,
+          "diameter": 20
+        }
+      ],
+      "hidden_line_pairs": []
+    },
+    "top": {
+      "name": "top",
+      "horizontal_extent": 100.0,
+      "vertical_extent": 40.0,
+      "circles": [],
+      "hidden_line_pairs": [
+        {
+          "axis": "x",
+          "offset_1": 20,
+          "offset_2": 40
+        }
+      ]
+    },
+    "left": {
+      "name": "left",
+      "horizontal_extent": 40.0,
+      "vertical_extent": 60.0,
+      "circles": [],
+      "hidden_line_pairs": [
+        {
+          "axis": "z",
+          "offset_1": 20,
+          "offset_2": 40
+        }
+      ]
+    },
+    "coordinate_convention": {
+      "input": "mm; drawing lower-left origin",
+      "front": "X/Y",
+      "top": "X/Z",
+      "left": "Z/Y",
+      "internal": "mm; base-block centre origin; +Z is extrude direction"
+    }
+  },
+  "input_consistency": {
+    "status": "PASS",
+    "tolerance_mm": 0.01,
+    "checks": [
+      {
+        "id": "front.width_equals_top.width",
+        "expected_mm": 100.0,
+        "actual_mm": 100.0,
+        "passed": true
+      },
+      {
+        "id": "front.height_equals_left.height",
+        "expected_mm": 60.0,
+        "actual_mm": 60.0,
+        "passed": true
+      },
+      {
+        "id": "top.depth_equals_left.depth",
+        "expected_mm": 40.0,
+        "actual_mm": 40.0,
+        "passed": true
+      }
+    ],
+    "error_code": null
+  },
+  "feature_graph": {
+    "base_block": {
+      "width": 100.0,
+      "height": 60.0,
+      "depth": 40.0
+    },
+    "holes": [
+      {
+        "diameter": 20,
+        "center_x": 0.0,
+        "center_y": 0.0,
+        "axis": "Z",
+        "through": true
+      }
+    ],
+    "hypotheses": [
+      {
+        "feature_type": "through_hole",
+        "confidence": 0.92,
+        "evidence": [
+          "circle_in_front_view",
+          "hidden_lines_in_top_view",
+          "hidden_lines_in_left_view"
+        ],
+        "status": "CONFIRMED"
+      }
+    ],
+    "status": "PASS"
+  },
+  "modeling_plan": {
+    "operations": [
+      {
+        "type": "base_extrude",
+        "sketch_plane": "Front Plane",
+        "profile": {
+          "type": "rectangle",
+          "width_mm": 100.0,
+          "height_mm": 60.0
+        },
+        "depth_mm": 40.0,
+        "direction": null
+      },
+      {
+        "type": "cut_extrude_through_circle",
+        "sketch_plane": "Front Plane",
+        "profile": {
+          "type": "circle",
+          "diameter_mm": 20,
+          "center_x_mm": 0.0,
+          "center_y_mm": 0.0
+        },
+        "depth_mm": null,
+        "direction": "through_all"
+      }
+    ]
+  },
+  "solidworks_backend": {
+    "status": "PASS",
+    "skill_gaps": [],
+    "operations": [
+      {
+        "operation": "cut_extrude_through_circle",
+        "evidence": {
+          "feature_kind": "through",
+          "center_m": [
+            0.0,
+            0.0
+          ],
+          "diameter_m": 0.02,
+          "depth_m": null,
+          "through": true,
+          "plane_name": "Front Plane",
+          "feature_names": [
+            "ThroughHole_D20"
+          ],
+          "counterbore_diameter_m": null,
+          "counterbore_depth_m": null,
+          "countersink_diameter_m": null,
+          "countersink_angle_deg": null,
+          "center_mm": [
+            0.0,
+            0.0
+          ],
+          "diameter_mm": 20.0
+        }
+      }
+    ],
+    "model_summary": {
+      "title": "case_001_block_hole.SLDPRT",
+      "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-automation-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\case_001_block_hole.SLDPRT",
+      "type": 1,
+      "feature_count": 21,
+      "features": [
+        {
+          "name": "评论",
+          "type": "CommentsFolder"
+        },
+        {
+          "name": "收藏",
+          "type": "FavoriteFolder"
+        },
+        {
+          "name": "历史记录",
+          "type": "HistoryFolder"
+        },
+        {
+          "name": "选择集",
+          "type": "SelectionSetFolder"
+        },
+        {
+          "name": "传感器",
+          "type": "SensorFolder"
+        },
+        {
+          "name": "设计活页夹",
+          "type": "DocsFolder"
+        },
+        {
+          "name": "注解",
+          "type": "DetailCabinet"
+        },
+        {
+          "name": "曲面实体",
+          "type": "SurfaceBodyFolder"
+        },
+        {
+          "name": "实体",
+          "type": "SolidBodyFolder"
+        },
+        {
+          "name": "光源与相机",
+          "type": "EnvFolder"
+        },
+        {
+          "name": "标注",
+          "type": "InkMarkupFolder"
+        },
+        {
+          "name": "方程式",
+          "type": "EqnFolder"
+        },
+        {
+          "name": "材质 <未指定>",
+          "type": "MaterialFolder"
+        },
+        {
+          "name": "前视基准面",
+          "type": "RefPlane"
+        },
+        {
+          "name": "上视基准面",
+          "type": "RefPlane"
+        },
+        {
+          "name": "右视基准面",
+          "type": "RefPlane"
+        },
+        {
+          "name": "原点",
+          "type": "OriginProfileFeature"
+        },
+        {
+          "name": "草图1",
+          "type": "ProfileFeature"
+        },
+        {
+          "name": "BaseBlock",
+          "type": "Extrusion"
+        },
+        {
+          "name": "草图2",
+          "type": "ProfileFeature"
+        },
+        {
+          "name": "ThroughHole_D20",
+          "type": "ICE"
+        }
+      ]
+    },
+    "geometry": {
+      "units": "mm",
+      "measurement_source": "SolidWorks API GetPartBox(True) + B-Rep cylindrical faces",
+      "envelope_mm": {
+        "length": 100.0,
+        "width": 60.0,
+        "height": 40.0,
+        "axis_order": "model_xyz"
+      },
+      "holes": [
+        {
+          "diameter_mm": 20.0,
+          "position_mm": [
+            0.0,
+            0.0,
+            -40.0
+          ],
+          "axis": [
+            -0.0,
+            -0.0,
+            1.0
+          ],
+          "axial_length_mm": 40.0,
+          "through_state": "unknown",
+          "through_evidence": "B-Rep cylinder boundaries cannot distinguish blind from through",
+          "measurement_source": "B-Rep internal cylindrical face"
+        }
+      ],
+      "compound_holes": [],
+      "slot_arc_candidates": [],
+      "cylindrical_faces": [
+        {
+          "diameter_mm": 20.0,
+          "origin_mm": [
+            0.0,
+            0.0,
+            -40.0
+          ],
+          "axis": [
+            -0.0,
+            -0.0,
+            1.0
+          ],
+          "area_mm2": 2513.274123,
+          "axial_length_mm": 40.0,
+          "internal": true,
+          "loop_count": 2,
+          "edge_count": 2,
+          "body_index": 0,
+          "face_index": 6
+        }
+      ],
+      "errors": [],
+      "hole_count": 1,
+      "hole_groups": [
+        {
+          "position_mm": [
+            0.0,
+            0.0,
+            -40.0
+          ],
+          "axis": [
+            -0.0,
+            -0.0,
+            1.0
+          ],
+          "segment_count": 1,
+          "diameters_mm": [
+            20.0
+          ],
+          "feature_kind": "simple",
+          "segments": [
+            {
+              "diameter_mm": 20.0,
+              "position_mm": [
+                0.0,
+                0.0,
+                -40.0
+              ],
+              "axis": [
+                -0.0,
+                -0.0,
+                1.0
+              ],
+              "axial_length_mm": 40.0,
+              "through_state": "unknown",
+              "through_evidence": "B-Rep cylinder boundaries cannot distinguish blind from through",
+              "measurement_source": "B-Rep internal cylindrical face"
+            }
+          ]
+        }
+      ]
+    },
+    "review": {
+      "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-automation-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\review\\case_001_block_hole_review_report.json",
+      "evaluation": {
+        "status": "pass",
+        "score": 100,
+        "issues": [],
+        "recommendations": [],
+        "manual_review_required": true,
+        "manual_review_reason": "规则评分只能发现明显失败，最终几何是否符合用户意图仍需查看预览图或截图。"
+      }
+    },
+    "drawing_create": {
+      "status": "pass",
+      "projection": "third_angle",
+      "method": "Create3rdAngleViews2",
+      "created": true,
+      "error_code": null,
+      "manual_review_required": true
+    },
+    "drawing_structure": {
+      "status": "pass",
+      "stage": "review",
+      "sheets": [
+        "图纸1"
+      ],
+      "views": [
+        {
+          "sheet": "图纸1",
+          "name": "工程图视图1",
+          "type": 7,
+          "orientation": "*前视",
+          "semantic_view": "front",
+          "scale": [
+            1.0,
+            2.0
+          ],
+          "box": {
+            "left": 0.033547,
+            "bottom": 0.06704199999999999,
+            "right": 0.092183,
+            "top": 0.105678
+          }
+        },
+        {
+          "sheet": "图纸1",
+          "name": "工程图视图2",
+          "type": 4,
+          "orientation": "",
+          "semantic_view": "top",
+          "scale": [
+            1.0,
+            2.0
+          ],
+          "box": {
+            "left": 0.033547,
+            "bottom": 0.15840199999999993,
+            "right": 0.092183,
+            "top": 0.18703800000000004
+          }
+        },
+        {
+          "sheet": "图纸1",
+          "name": "工程图视图3",
+          "type": 4,
+          "orientation": "",
+          "semantic_view": "right",
+          "scale": [
+            1.0,
+            2.0
+          ],
+          "box": {
+            "left": 0.1463369999999999,
+            "bottom": 0.06704199999999999,
+            "right": 0.17497300000000007,
+            "top": 0.105678
+          }
+        }
+      ],
+      "dimensions": [],
+      "notes": [],
+      "tables": [],
+      "professional_annotations": {
+        "center_marks": [
+          {
+            "kind": "center_mark",
+            "sheet": "图纸1",
+            "view": "工程图视图1",
+            "semantic_view": "front",
+            "text_parts": [],
+            "box": null,
+            "size_m": 0.0025,
+            "show_lines": true,
+            "style": 2
+          }
+        ],
+        "center_lines": [],
+        "hole_callouts": [],
+        "datum_tags": [],
+        "geometric_tolerances": [],
+        "surface_finish_symbols": [],
+        "weld_symbols": []
+      },
+      "template_path": "*.drt",
+      "paper_size": null,
+      "sheet_size": null,
+      "title_block": {
+        "candidate": true,
+        "gbt_candidate": false,
+        "content_verified": false,
+        "fields": {},
+        "box": null
+      },
+      "view_count": 3,
+      "dimension_count": 0,
+      "table_count": 0,
+      "view_outline_count": 3,
+      "dimension_box_count": 0,
+      "native_dimension_box_count": 0,
+      "estimated_dimension_box_count": 0,
+      "low_confidence_dimension_box_count": 0,
+      "manual_review_required": true,
+      "retryable": false,
+      "error_code": null,
+      "checks": [
+        {
+          "id": "drawing-views",
+          "status": "pass",
+          "message": "工程图包含视图"
+        },
+        {
+          "id": "drawing-template",
+          "status": "pass",
+          "message": "已读取图框模板"
+        },
+        {
+          "id": "drawing-a3-sheet",
+          "status": "warning",
+          "message": "当前图幅不是 A3 或无法识别"
+        },
+        {
+          "id": "drawing-gbt-template",
+          "status": "warning",
+          "message": "未发现 GB/T 图框候选证据"
+        },
+        {
+          "id": "drawing-dimensions",
+          "status": "warning",
+          "message": "未读取到尺寸实体"
+        },
+        {
+          "id": "drawing-view-outlines",
+          "status": "pass",
+          "message": "已读取全部视图边界"
+        },
+        {
+          "id": "drawing-dimension-boxes",
+          "status": "warning",
+          "message": "原生边界 0/0，保守估算 0/0；估算不等于原生证据"
+        }
+      ]
+    },
+    "part_path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-automation-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\case_001_block_hole.sldprt",
+    "drawing_path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-automation-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\case_001_block_hole.slddrw"
+  },
+  "reconstruction_qa": {
+    "status": "PASS",
+    "checks": [
+      {
+        "id": "bbox",
+        "passed": true
+      },
+      {
+        "id": "feature_tree_base",
+        "passed": true
+      },
+      {
+        "id": "feature_tree_hole",
+        "passed": true
+      },
+      {
+        "id": "hole_geometry",
+        "passed": true
+      }
+    ]
+  },
+  "roundtrip_qa": {
+    "status": "PASS",
+    "mode": "structured_projection_invariants_plus_generated_drawing_structure",
+    "limitations": [
+      "v0.1 does not yet extract linework/hidden lines from regenerated SLDDRW",
+      "therefore this is not pixel-level or drawing-entity-level equality"
+    ],
+    "view_checks": [
+      {
+        "view": "front",
+        "passed": true,
+        "expected_mm": [
+          100.0,
+          60.0
+        ],
+        "generated_mm": [
+          100.0,
+          60.0
+        ]
+      },
+      {
+        "view": "top",
+        "passed": true,
+        "expected_mm": [
+          100.0,
+          40.0
+        ],
+        "generated_mm": [
+          100.0,
+          40.0
+        ]
+      },
+      {
+        "view": "left",
+        "passed": true,
+        "expected_mm": [
+          40.0,
+          60.0
+        ],
+        "generated_mm": [
+          40.0,
+          60.0
+        ]
+      }
+    ],
+    "hole_checks": [
+      {
+        "diameter_mm": 20,
+        "position_mm": [
+          50.0,
+          30.0
+        ],
+        "passed": true
+      }
+    ],
+    "drawing_check": {
+      "id": "regenerated_drawing_has_three_views",
+      "passed": true
+    }
+  },
+  "status": "PASS"
+}

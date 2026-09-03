@@ -1,0 +1,8 @@
+{
+  "schema_version": "0.1",
+  "name": "case_001_block_hole",
+  "projection": "third_angle",
+  "front": {"horizontal_extent_mm": 100, "vertical_extent_mm": 60, "circles": [{"x": 50, "y": 30, "diameter": 20}]},
+  "top": {"horizontal_extent_mm": 100, "vertical_extent_mm": 40, "hidden_line_pairs": [{"axis": "x", "offset_1": 20, "offset_2": 40}]},
+  "left": {"horizontal_extent_mm": 40, "vertical_extent_mm": 60, "hidden_line_pairs": [{"axis": "z", "offset_1": 20, "offset_2": 40}]}
+}

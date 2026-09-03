@@ -1,0 +1,481 @@
+已连接到运行中的 SolidWorks 实例（ProgID: SldWorks.Application.32）
+当前文档: 零件6 (类型: 零件)
+已创建新零件文档
+{
+  "started": "2026-09-03T21:16:29",
+  "calls": [
+    {
+      "function": "SolidWorksSession.new_part",
+      "inputs": {
+        "args": [],
+        "kwargs": {}
+      },
+      "status": "pass",
+      "return": "<COMObject <unknown>>"
+    },
+    {
+      "function": "sw_part.auto_dimension_sketch",
+      "inputs": {
+        "args": [
+          "<COMObject <unknown>>"
+        ],
+        "kwargs": {
+          "sketch_segments": [
+            "<COMObject CreateCenterRectangle>",
+            "<COMObject CreateCenterRectangle>",
+            "<COMObject CreateCenterRectangle>",
+            "<COMObject CreateCenterRectangle>",
+            "<COMObject CreateCenterRectangle>",
+            "<COMObject CreateCenterRectangle>"
+          ]
+        }
+      },
+      "status": "pass",
+      "return": "{'status': 'pass', 'status_code': 0, 'error_code': None, 'selected': 2}"
+    },
+    {
+      "function": "sw_part.extrude_boss",
+      "inputs": {
+        "args": [
+          "<COMObject <unknown>>",
+          "草图1",
+          "0.02"
+        ],
+        "kwargs": {}
+      },
+      "status": "pass",
+      "return": "<COMObject <unknown>>"
+    },
+    {
+      "function": "sw_hole_features.create_through_hole",
+      "inputs": {
+        "args": [
+          "<COMObject <unknown>>",
+          "(0, 0)",
+          "0.02"
+        ],
+        "kwargs": {
+          "name": "ThroughHole_D20"
+        }
+      },
+      "status": "pass",
+      "return": "{'feature_kind': 'through', 'center_m': (0.0, 0.0), 'diameter_m': 0.02, 'depth_m': None, 'through': True, 'plane_name': 'Front Plane', 'feature_names': ('ThroughHole_D20',), 'counterbore_diameter_m': None, 'counterbore_depth_m': None, 'countersink_diameter_m': None, 'countersink_angle_deg': None, 'center_mm': [0.0, 0.0], 'diameter_mm': 20.0}"
+    },
+    {
+      "function": "sw_hole_features.create_hole_pattern",
+      "inputs": {
+        "args": [
+          "<COMObject <unknown>>",
+          "[(-0.04, -0.02), (-0.04, 0.02), (0.04, -0.02), (0.04, 0.02)]",
+          "<function create_through_hole at 0x0000020578827060>"
+        ],
+        "kwargs": {
+          "diameter": 0.008,
+          "name": "CornerHole_D8"
+        }
+      },
+      "status": "pass",
+      "return": "[{'feature_kind': 'through', 'center_m': (-0.04, -0.02), 'diameter_m': 0.008, 'depth_m': None, 'through': True, 'plane_name': 'Front Plane', 'feature_names': ('CornerHole_D8_1',), 'counterbore_diameter_m': None, 'counterbore_depth_m': None, 'countersink_diameter_m': None, 'countersink_angle_deg': None, 'center_mm': [-40.0, -20.0], 'diameter_mm': 8.0}, {'feature_kind': 'through', 'center_m': (-0.04, 0.02), 'diameter_m': 0.008, 'depth_m': None, 'through': True, 'plane_name': 'Front Plane', 'feature_names': ('CornerHole_D8_2',), 'counterbore_diameter_m': None, 'counterbore_depth_m': None, 'countersink_diameter_m': None, 'countersink_angle_deg': None, 'center_mm': [-40.0, 20.0], 'diameter_mm': 8.0}, {'feature_kind': 'through', 'center_m': (0.04, -0.02), 'diameter_m': 0.008, 'depth_m': None, 'through': True, 'plane_name': 'Front Plane', 'feature_names': ('CornerHole_D8_3',), 'counterbore_diameter_m': None, 'counterbore_depth_m': None, 'countersink_diameter_m': None, 'countersink_angle_deg': None, 'center_mm': [40.0, -20.0], 'diameter_mm': 8.0}, {'feature_kind': 'through', 'center_m': (0.04, 0.02), 'diameter_m': 0.008, 'depth_m': None, 'through': True, 'plane_name': 'Front Plane', 'feature_names': ('CornerHole_D8_4',), 'counterbore_diameter_m': None, 'counterbore_depth_m': None, 'countersink_diameter_m': None, 'countersink_angle_deg': None, 'center_mm': [40.0, 20.0], 'diameter_mm': 8.0}]"
+    }
+  ],
+  "failures": [],
+  "solidworks": "32.4.0",
+  "base_sketch_autodimension": {
+    "status": "pass",
+    "status_code": 0,
+    "error_code": null,
+    "selected": 2
+  },
+  "center_hole": {
+    "feature_kind": "through",
+    "center_m": [
+      0.0,
+      0.0
+    ],
+    "diameter_m": 0.02,
+    "depth_m": null,
+    "through": true,
+    "plane_name": "Front Plane",
+    "feature_names": [
+      "ThroughHole_D20"
+    ],
+    "counterbore_diameter_m": null,
+    "counterbore_depth_m": null,
+    "countersink_diameter_m": null,
+    "countersink_angle_deg": null,
+    "center_mm": [
+      0.0,
+      0.0
+    ],
+    "diameter_mm": 20.0
+  },
+  "corner_holes": [
+    {
+      "feature_kind": "through",
+      "center_m": [
+        -0.04,
+        -0.02
+      ],
+      "diameter_m": 0.008,
+      "depth_m": null,
+      "through": true,
+      "plane_name": "Front Plane",
+      "feature_names": [
+        "CornerHole_D8_1"
+      ],
+      "counterbore_diameter_m": null,
+      "counterbore_depth_m": null,
+      "countersink_diameter_m": null,
+      "countersink_angle_deg": null,
+      "center_mm": [
+        -40.0,
+        -20.0
+      ],
+      "diameter_mm": 8.0
+    },
+    {
+      "feature_kind": "through",
+      "center_m": [
+        -0.04,
+        0.02
+      ],
+      "diameter_m": 0.008,
+      "depth_m": null,
+      "through": true,
+      "plane_name": "Front Plane",
+      "feature_names": [
+        "CornerHole_D8_2"
+      ],
+      "counterbore_diameter_m": null,
+      "counterbore_depth_m": null,
+      "countersink_diameter_m": null,
+      "countersink_angle_deg": null,
+      "center_mm": [
+        -40.0,
+        20.0
+      ],
+      "diameter_mm": 8.0
+    },
+    {
+      "feature_kind": "through",
+      "center_m": [
+        0.04,
+        -0.02
+      ],
+      "diameter_m": 0.008,
+      "depth_m": null,
+      "through": true,
+      "plane_name": "Front Plane",
+      "feature_names": [
+        "CornerHole_D8_3"
+      ],
+      "counterbore_diameter_m": null,
+      "counterbore_depth_m": null,
+      "countersink_diameter_m": null,
+      "countersink_angle_deg": null,
+      "center_mm": [
+        40.0,
+        -20.0
+      ],
+      "diameter_mm": 8.0
+    },
+    {
+      "feature_kind": "through",
+      "center_m": [
+        0.04,
+        0.02
+      ],
+      "diameter_m": 0.008,
+      "depth_m": null,
+      "through": true,
+      "plane_name": "Front Plane",
+      "feature_names": [
+        "CornerHole_D8_4"
+      ],
+      "counterbore_diameter_m": null,
+      "counterbore_depth_m": null,
+      "countersink_diameter_m": null,
+      "countersink_angle_deg": null,
+      "center_mm": [
+        40.0,
+        20.0
+      ],
+      "diameter_mm": 8.0
+    }
+  ],
+  "pre_fillet_edge_signatures": [
+    {
+      "curve": "line",
+      "endpoints_mm": [
+        [
+          50.0,
+          -30.0,
+          -20.0
+        ],
+        [
+          50.0,
+          -30.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "curve": "line",
+      "endpoints_mm": [
+        [
+          -50.0,
+          -30.0,
+          -20.0
+        ],
+        [
+          -50.0,
+          -30.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "curve": "line",
+      "endpoints_mm": [
+        [
+          -50.0,
+          30.0,
+          -20.0
+        ],
+        [
+          -50.0,
+          30.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "curve": "line",
+      "endpoints_mm": [
+        [
+          50.0,
+          30.0,
+          -20.0
+        ],
+        [
+          50.0,
+          30.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "curve": "line",
+      "endpoints_mm": [
+        [
+          -50.0,
+          -30.0,
+          -20.0
+        ],
+        [
+          50.0,
+          -30.0,
+          -20.0
+        ]
+      ]
+    },
+    {
+      "curve": "line",
+      "endpoints_mm": [
+        [
+          -50.0,
+          30.0,
+          -20.0
+        ],
+        [
+          -50.0,
+          -30.0,
+          -20.0
+        ]
+      ]
+    },
+    {
+      "curve": "line",
+      "endpoints_mm": [
+        [
+          50.0,
+          30.0,
+          -20.0
+        ],
+        [
+          -50.0,
+          30.0,
+          -20.0
+        ]
+      ]
+    },
+    {
+      "curve": "line",
+      "endpoints_mm": [
+        [
+          50.0,
+          -30.0,
+          -20.0
+        ],
+        [
+          50.0,
+          30.0,
+          -20.0
+        ]
+      ]
+    },
+    {
+      "curve": "line",
+      "endpoints_mm": [
+        [
+          -50.0,
+          -30.0,
+          0.0
+        ],
+        [
+          50.0,
+          -30.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "curve": "line",
+      "endpoints_mm": [
+        [
+          -50.0,
+          30.0,
+          0.0
+        ],
+        [
+          -50.0,
+          -30.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "curve": "line",
+      "endpoints_mm": [
+        [
+          50.0,
+          30.0,
+          0.0
+        ],
+        [
+          -50.0,
+          30.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "curve": "line",
+      "endpoints_mm": [
+        [
+          50.0,
+          -30.0,
+          0.0
+        ],
+        [
+          50.0,
+          30.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "curve": "circle",
+      "center_mm": [
+        0.0,
+        0.0,
+        -20.0
+      ],
+      "radius_mm": 10.0
+    },
+    {
+      "curve": "circle",
+      "center_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "radius_mm": 10.0
+    },
+    {
+      "curve": "circle",
+      "center_mm": [
+        -40.0,
+        -20.0,
+        -20.0
+      ],
+      "radius_mm": 4.0
+    },
+    {
+      "curve": "circle",
+      "center_mm": [
+        -40.0,
+        -20.0,
+        0.0
+      ],
+      "radius_mm": 4.0
+    },
+    {
+      "curve": "circle",
+      "center_mm": [
+        -40.0,
+        20.0,
+        -20.0
+      ],
+      "radius_mm": 4.0
+    },
+    {
+      "curve": "circle",
+      "center_mm": [
+        -40.0,
+        20.0,
+        0.0
+      ],
+      "radius_mm": 4.0
+    },
+    {
+      "curve": "circle",
+      "center_mm": [
+        40.0,
+        -20.0,
+        -20.0
+      ],
+      "radius_mm": 4.0
+    },
+    {
+      "curve": "circle",
+      "center_mm": [
+        40.0,
+        -20.0,
+        0.0
+      ],
+      "radius_mm": 4.0
+    },
+    {
+      "curve": "circle",
+      "center_mm": [
+        40.0,
+        20.0,
+        -20.0
+      ],
+      "radius_mm": 4.0
+    },
+    {
+      "curve": "circle",
+      "center_mm": [
+        40.0,
+        20.0,
+        0.0
+      ],
+      "radius_mm": 4.0
+    }
+  ],
+  "fatal_exception": "RuntimeError('R5 外立角 语义选边数量不符: expected=4, actual=0, signatures=[]')",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\LocalFile\\DeskTop\\sw\\solidworks-automation-skill\\tests\\manual\\plate_20260903\\run_plate_capability_test.py\", line 100, in run\n    fillet_edges, fillet_signatures = select_exact_edges(part, vertical_corner_predicate(0, 20, 50, 30), \"R5 外立角\", 4)\n                                      ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\LocalFile\\DeskTop\\sw\\solidworks-automation-skill\\subskills\\solidworks-fillet-chamfer-cnc\\scripts\\create_cnc_mount_template.py\", line 264, in select_exact_edges\n    raise RuntimeError(\n    ...<2 lines>...\n    )\nRuntimeError: R5 外立角 语义选边数量不符: expected=4, actual=0, signatures=[]\n",
+  "finished": "2026-09-03T21:16:37"
+}

@@ -1,0 +1,185 @@
+{
+  "schema_version": "1.0",
+  "manifest_path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-automation-skill\\capabilities.yaml",
+  "capability_manifest_schema": "1.0",
+  "verified_versions": {
+    "solidworks": [
+      "2024",
+      "2026"
+    ],
+    "autocad": [
+      "2024"
+    ]
+  },
+  "language_backend_matrix": {
+    "schema_version": "1.0",
+    "backend_count": 10,
+    "route_count": 11,
+    "languages": [
+      "C#",
+      "C++",
+      "Python",
+      "Python + solver native executable",
+      "Python/C++ bindings",
+      "SWBasic/VBA"
+    ],
+    "backend_ids": [
+      "autocad-dotnet",
+      "external-solver-python",
+      "headless-occt-python",
+      "local-python",
+      "solidworks-com-comtypes",
+      "solidworks-com-pywin32",
+      "solidworks-csharp-addin",
+      "solidworks-csharp-pia",
+      "solidworks-native-cpp",
+      "solidworks-swbasic"
+    ],
+    "operation_ids": [
+      "autocad_native_database",
+      "drawing_exact_text_bounds",
+      "external_fea",
+      "fillet_hold_lines_exact",
+      "headless_open_geometry",
+      "solidworks_addin_ui_events",
+      "solidworks_configuration_family",
+      "solidworks_pointer_array_api",
+      "solidworks_routing_native_authoring",
+      "solidworks_standard_automation",
+      "solidworks_typed_safearray"
+    ]
+  },
+  "solidworks_detected": true,
+  "missing_com_dependencies": [],
+  "type_libraries": {
+    "solidworks_core": {
+      "present": true,
+      "path": "D:\\SW2024\\SolidWorks2024\\SOLIDWORKS\\sldworks.tlb",
+      "type_count": 1007
+    },
+    "motion_study": {
+      "present": true,
+      "path": "D:\\SW2024\\SolidWorks2024\\SOLIDWORKS\\swmotionstudy.tlb",
+      "type_count": 24
+    },
+    "routing": {
+      "present": true,
+      "path": "D:\\SW2024\\SolidWorks2024\\SOLIDWORKS\\SWRoutingLib.tlb",
+      "type_count": 54
+    },
+    "simulation_motion": {
+      "present": true,
+      "path": "D:\\SW2024\\SolidWorks2024\\SOLIDWORKS\\cmotionswapi.tlb",
+      "type_count": 109
+    }
+  },
+  "capabilities": {
+    "part_and_features": {
+      "interfaces_found": [
+        "IPartDoc",
+        "IFeatureManager",
+        "ISketchManager"
+      ],
+      "interface_coverage": 1.0,
+      "implementation_status": "verified",
+      "ready_for_unattended_use": true,
+      "manifest_capability_id": "part_and_features"
+    },
+    "assembly_and_mates": {
+      "interfaces_found": [
+        "IAssemblyDoc",
+        "IMateFeatureData"
+      ],
+      "interface_coverage": 1.0,
+      "implementation_status": "verified",
+      "ready_for_unattended_use": true,
+      "manifest_capability_id": "assembly_and_mates"
+    },
+    "configurations": {
+      "interfaces_found": [
+        "IConfigurationManager",
+        "IConfiguration"
+      ],
+      "interface_coverage": 1.0,
+      "implementation_status": "pilot",
+      "ready_for_unattended_use": false,
+      "manifest_capability_id": "configurations_and_design_tables"
+    },
+    "drawings": {
+      "interfaces_found": [
+        "IDrawingDoc",
+        "IView",
+        "ITableAnnotation"
+      ],
+      "interface_coverage": 1.0,
+      "implementation_status": "pilot",
+      "ready_for_unattended_use": false,
+      "manifest_capability_id": "drawings_and_bom"
+    },
+    "sheet_metal": {
+      "interfaces_found": [
+        "ISheetMetalFeatureData",
+        "IFlatPatternFeatureData"
+      ],
+      "interface_coverage": 1.0,
+      "implementation_status": "pilot",
+      "ready_for_unattended_use": false,
+      "manifest_capability_id": "sheet_metal"
+    },
+    "weldments": {
+      "interfaces_found": [
+        "IStructuralMemberFeatureData",
+        "IWeldmentCutListFeature"
+      ],
+      "interface_coverage": 1.0,
+      "implementation_status": "pilot",
+      "ready_for_unattended_use": false,
+      "manifest_capability_id": "weldments"
+    },
+    "surface_modeling": {
+      "interfaces_found": [
+        "ISurface"
+      ],
+      "interface_coverage": 0.5,
+      "implementation_status": "pilot",
+      "ready_for_unattended_use": false,
+      "manifest_capability_id": "surface_modeling"
+    },
+    "mold_tools": {
+      "interfaces_found": [
+        "ICavityFeatureData"
+      ],
+      "interface_coverage": 0.5,
+      "implementation_status": "pilot",
+      "ready_for_unattended_use": false,
+      "manifest_capability_id": "mold_tools"
+    },
+    "motion_study": {
+      "interfaces_found": [
+        "IMotionStudyManager",
+        "IMotionStudy",
+        "IMotionStudyResults"
+      ],
+      "interface_coverage": 1.0,
+      "implementation_status": "pilot",
+      "ready_for_unattended_use": false,
+      "manifest_capability_id": "motion_study"
+    },
+    "routing": {
+      "interfaces_found": [
+        "IRouteManager",
+        "IRouteProperty",
+        "IAutoRoute"
+      ],
+      "interface_coverage": 1.0,
+      "implementation_status": "pilot",
+      "ready_for_unattended_use": false,
+      "manifest_capability_id": "routing"
+    }
+  },
+  "notes": [
+    "type_library_present 只证明本机安装包含接口定义，不证明许可证、当前文档或自动化实现已验证。",
+    "implementation_status=reference_only/not_implemented 的能力禁止自动宣称完成。",
+    "language_backend_matrix 只定义适用边界；具体运行时仍须由 backend_router.py 按版本、依赖和接口语义选择。"
+  ]
+}
