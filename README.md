@@ -1,6 +1,6 @@
-# soildworks-main-skill
+# solidworks-main-skill
 
-`soildworks-main-skill` is an engineering-reasoning Skill for deterministic mechanical reconstruction and drawing delivery.
+`solidworks-main-skill` is an engineering-reasoning Skill for deterministic mechanical reconstruction and drawing delivery.
 
 It owns the engineering layer:
 
@@ -14,8 +14,8 @@ See [architecture](docs/architecture.md), [upstream integration](docs/upstream_i
 
 ## Status
 
-Benchmark 001 (100 x 60 x 40 block with Ø20 through-hole) has passed deterministic input consistency, feature inference, native SolidWorks creation, B-Rep/Feature Tree validation, and Level 1 structured projection round-trip validation. Vector-geometry round-trip validation remains future work.
+Benchmarks 001 and 002 have passed deterministic input consistency, feature inference, native SolidWorks creation, B-Rep/Feature Tree validation, and Level 1 structured projection round-trip validation. Level 2 projected-vector extraction is experimental and currently reports `PARTIAL` because hidden-line semantics are not yet reliably exposed.
 
 ## Transitional note
 
-This local repository was initially created from a full upstream working copy before the project boundary was established. Those copied upstream directories are a temporary migration artifact, not `soildworks-main-skill` source. No new core logic may be placed in them; the next cleanup must remove them from this repository after preserving only this project's own artifacts and documents.
+This local repository was initially created from a full upstream working copy before the project boundary was established. Those copied upstream directories are a temporary migration artifact, not `solidworks-main-skill` source. No new core logic may be placed in them; the next cleanup must remove them from this repository after preserving only this project's own artifacts and documents.

@@ -1,9 +1,9 @@
 ---
-name: soildworks-main-skill
+name: solidworks-main-skill
 description: Reconstruct simple mechanical parts from structured orthographic views and plan validated 3D-to-drawing workflows. Use for Projection Graphs, Feature Graphs, Modeling Plans, Drawing Plans, and round-trip validation; use an external SolidWorks automation backend only through this project's adapter boundary.
 ---
 
-# soildworks-main-skill
+# solidworks-main-skill
 
 ## Ownership boundary
 
