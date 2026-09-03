@@ -173,7 +173,7 @@ Both guards were executed: removing Top hidden-line evidence produced `AMBIGUOUS
 - Native standard three-view creation and drawing structure inspection.
 - Review previews and structured review reports.
 
-## 18. Capabilities that must be developed in solidworks-main-skill
+## 18. Capabilities that must be developed in soildworks-main-skill
 
 - Vector/image source parsing into `ProjectionGraph`.
 - Projection correspondence matching beyond dimensions.
