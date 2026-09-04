@@ -4,10 +4,16 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "solidworks-main-skill"
-version = "0.1.0"
+version = "0.3.0"
 description = "Engineering reasoning and validation layer for SolidWorks reconstruction and drawing workflows"
 requires-python = ">=3.10"
 dependencies = []
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = ["-m", "not upstream_compat"]
+markers = [
+  "upstream_compat: retained external-backend migration contract; excluded from the main-project release gate",
+]

@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-09-04T13:21:55",
+  "run_at": "2026-09-04T18:43:34",
   "case": "case_001_block_hole",
   "projection_graph": {
     "projection": "third_angle",
@@ -61,7 +61,12 @@
       "left": "Z/Y",
       "internal": "mm; base-block centre origin; +Z is extrude direction"
     },
-    "feature_evidence": null
+    "feature_evidence": null,
+    "center_requirements": [],
+    "reference_integrity": null
+  },
+  "reference_integrity": {
+    "status": "UNASSESSED"
   },
   "input_consistency": {
     "status": "PASS",
@@ -634,31 +639,128 @@
       "views": {
         "front": {
           "visible_lines": {
+            "status": "PASS",
+            "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
             "expected": 4,
             "actual": 4,
-            "matched": 4,
-            "missing": 0,
-            "extra": 0,
+            "expected_support_length_mm": 320.0,
+            "actual_support_length_mm": 320.0,
+            "intersection_length_mm": 320.0,
+            "union_length_mm": 320.0,
+            "support_iou": 1.0,
+            "missing_length_mm": 0.0,
+            "overflow_length_mm": 0.0,
+            "missing_ratio": 0.0,
+            "overflow_ratio": 0.0,
+            "max_gap_mm": 0.0,
+            "segmentation": "EQUIVALENT_OR_UNASSESSED",
+            "information": [
+              "GEOMETRY_EQUIVALENT"
+            ],
+            "thresholds": {
+              "support_iou_min": 0.98,
+              "max_gap_mm": 0.1,
+              "max_overflow_ratio": 0.02,
+              "angle_tolerance_deg": 0.1,
+              "line_distance_tolerance_mm": 0.1
+            },
+            "supports": [
+              {
+                "direction": [
+                  1.0,
+                  0.0
+                ],
+                "normal_offset_mm": 0.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    100.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    100.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 100.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  0.0,
+                  1.0
+                ],
+                "normal_offset_mm": -100.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    60.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    60.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 60.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  1.0,
+                  -0.0
+                ],
+                "normal_offset_mm": 60.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    100.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    100.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 100.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  -0.0,
+                  1.0
+                ],
+                "normal_offset_mm": -0.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    60.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    60.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 60.0,
+                "max_gap_mm": 0.0
+              }
+            ],
+            "invalid_segments": [],
             "precision": 1.0,
-            "recall": 1.0,
-            "pairs": [
-              [
-                0,
-                2
-              ],
-              [
-                1,
-                3
-              ],
-              [
-                2,
-                0
-              ],
-              [
-                3,
-                1
-              ]
-            ]
+            "recall": 1.0
           },
           "hidden_lines": {
             "status": "NOT_EVALUABLE",
@@ -666,6 +768,7 @@
             "reason": "SW2024 API response did not expose visibility semantics"
           },
           "circles": {
+            "status": "PASS",
             "expected": 1,
             "actual": 1,
             "matched": 1,
@@ -691,31 +794,128 @@
         },
         "top": {
           "visible_lines": {
+            "status": "PASS",
+            "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
             "expected": 4,
             "actual": 4,
-            "matched": 4,
-            "missing": 0,
-            "extra": 0,
+            "expected_support_length_mm": 280.0,
+            "actual_support_length_mm": 280.0,
+            "intersection_length_mm": 280.0,
+            "union_length_mm": 280.0,
+            "support_iou": 1.0,
+            "missing_length_mm": 0.0,
+            "overflow_length_mm": 0.0,
+            "missing_ratio": 0.0,
+            "overflow_ratio": 0.0,
+            "max_gap_mm": 0.0,
+            "segmentation": "EQUIVALENT_OR_UNASSESSED",
+            "information": [
+              "GEOMETRY_EQUIVALENT"
+            ],
+            "thresholds": {
+              "support_iou_min": 0.98,
+              "max_gap_mm": 0.1,
+              "max_overflow_ratio": 0.02,
+              "angle_tolerance_deg": 0.1,
+              "line_distance_tolerance_mm": 0.1
+            },
+            "supports": [
+              {
+                "direction": [
+                  1.0,
+                  0.0
+                ],
+                "normal_offset_mm": 40.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    100.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    100.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 100.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  -0.0,
+                  1.0
+                ],
+                "normal_offset_mm": -100.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    40.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    40.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 40.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  1.0,
+                  -0.0
+                ],
+                "normal_offset_mm": 0.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    100.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    100.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 100.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  0.0,
+                  1.0
+                ],
+                "normal_offset_mm": 0.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    40.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    40.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 40.0,
+                "max_gap_mm": 0.0
+              }
+            ],
+            "invalid_segments": [],
             "precision": 1.0,
-            "recall": 1.0,
-            "pairs": [
-              [
-                0,
-                0
-              ],
-              [
-                1,
-                3
-              ],
-              [
-                2,
-                2
-              ],
-              [
-                3,
-                1
-              ]
-            ]
+            "recall": 1.0
           },
           "hidden_lines": {
             "status": "NOT_EVALUABLE",
@@ -723,6 +923,7 @@
             "reason": "SW2024 API response did not expose visibility semantics"
           },
           "circles": {
+            "status": "PASS",
             "expected": 0,
             "actual": 0,
             "matched": 0,
@@ -743,31 +944,128 @@
         },
         "left": {
           "visible_lines": {
+            "status": "PASS",
+            "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
             "expected": 4,
             "actual": 4,
-            "matched": 4,
-            "missing": 0,
-            "extra": 0,
+            "expected_support_length_mm": 200.0,
+            "actual_support_length_mm": 200.0,
+            "intersection_length_mm": 200.0,
+            "union_length_mm": 200.0,
+            "support_iou": 1.0,
+            "missing_length_mm": 0.0,
+            "overflow_length_mm": 0.0,
+            "missing_ratio": 0.0,
+            "overflow_ratio": 0.0,
+            "max_gap_mm": 0.0,
+            "segmentation": "EQUIVALENT_OR_UNASSESSED",
+            "information": [
+              "GEOMETRY_EQUIVALENT"
+            ],
+            "thresholds": {
+              "support_iou_min": 0.98,
+              "max_gap_mm": 0.1,
+              "max_overflow_ratio": 0.02,
+              "angle_tolerance_deg": 0.1,
+              "line_distance_tolerance_mm": 0.1
+            },
+            "supports": [
+              {
+                "direction": [
+                  1.0,
+                  -0.0
+                ],
+                "normal_offset_mm": 0.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    40.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    40.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 40.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  0.0,
+                  1.0
+                ],
+                "normal_offset_mm": 0.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    60.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    60.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 60.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  1.0,
+                  0.0
+                ],
+                "normal_offset_mm": 60.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    40.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    40.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 40.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  -0.0,
+                  1.0
+                ],
+                "normal_offset_mm": -40.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    60.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    60.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 60.0,
+                "max_gap_mm": 0.0
+              }
+            ],
+            "invalid_segments": [],
             "precision": 1.0,
-            "recall": 1.0,
-            "pairs": [
-              [
-                0,
-                2
-              ],
-              [
-                1,
-                1
-              ],
-              [
-                2,
-                0
-              ],
-              [
-                3,
-                3
-              ]
-            ]
+            "recall": 1.0
           },
           "hidden_lines": {
             "status": "NOT_EVALUABLE",
@@ -775,6 +1073,7 @@
             "reason": "SW2024 API response did not expose visibility semantics"
           },
           "circles": {
+            "status": "PASS",
             "expected": 0,
             "actual": 0,
             "matched": 0,
@@ -796,237 +1095,381 @@
       }
     },
     "level_2b_drawing_semantics": {
-      "status": "PARTIAL",
+      "status": "PASS",
       "scope": "visible/hidden/centerline/centermark semantics",
+      "semantic_provenance": "HLV_MINUS_HLR",
+      "hidden_primitive_count": 4,
+      "unknown_primitive_count": 0,
       "known_center_marks": 1,
-      "reason": "No exact hidden/visible projected-primitive provenance has been demonstrated."
+      "expected_center_marks": 0,
+      "expected_center_lines": 0,
+      "actual_center_lines": 0,
+      "reasons": []
     },
     "drawing_primitive_graph": {
-      "status": "PARTIAL",
+      "status": "PASS",
       "views": [
         {
           "name": "工程图视图1",
           "semantic_view": "front",
           "orientation": {
-            "orientation": "FRONT",
-            "screen_u_world": "+X",
-            "screen_v_world": "+Y",
-            "view_normal_world": "+Z",
-            "handedness": "RIGHT_HANDED",
-            "mirrored": false,
-            "rotation_deg": 0,
-            "projection_standard": "THIRD_ANGLE",
-            "source_solidworks_orientation": "*前视"
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "up": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "right": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "projection_type": "THIRD_ANGLE",
+            "mirror_state": false,
+            "rotation_deg": 0.0,
+            "source_view_name": "*前视",
+            "canonical_role": "FRONT"
           },
-          "primitives": [
-            {
-              "geometry_type": "LINE",
-              "semantic": "UNKNOWN",
-              "source": "IView.GetPolyLinesAndCurves",
-              "confidence": 0.0,
-              "geometry": {
-                "x1": 100.0,
-                "y1": 60.0,
-                "x2": 0.0,
-                "y2": 60.0
+          "projected_geometry": {
+            "visible": [
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 100.0,
+                  "y1": 60.0,
+                  "x2": 0.0,
+                  "y2": 60.0
+                }
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 0.0,
+                  "y1": 60.0,
+                  "x2": 0.0,
+                  "y2": 0.0
+                }
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 0.0,
+                  "y1": 0.0,
+                  "x2": 100.0,
+                  "y2": 0.0
+                }
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 100.0,
+                  "y1": 0.0,
+                  "x2": 100.0,
+                  "y2": 60.0
+                }
+              },
+              {
+                "geometry_type": "CIRCLE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x": 50.00000000000001,
+                  "y": 30.000000000000004,
+                  "diameter": 19.99999999999998
+                }
               }
-            },
-            {
-              "geometry_type": "LINE",
-              "semantic": "UNKNOWN",
-              "source": "IView.GetPolyLinesAndCurves",
-              "confidence": 0.0,
-              "geometry": {
-                "x1": 0.0,
-                "y1": 60.0,
-                "x2": 0.0,
-                "y2": 0.0
+            ],
+            "hidden": [],
+            "unknown": []
+          },
+          "annotations": {
+            "center_marks": [
+              {
+                "geometry_type": "ANNOTATION",
+                "semantic": "CENTERMARK",
+                "source": "DrawingAnnotation",
+                "confidence": 1.0,
+                "view": "工程图视图1",
+                "semantic_view": "front",
+                "geometry": {
+                  "size_m": 0.0025,
+                  "show_lines": true
+                }
               }
-            },
-            {
-              "geometry_type": "LINE",
-              "semantic": "UNKNOWN",
-              "source": "IView.GetPolyLinesAndCurves",
-              "confidence": 0.0,
-              "geometry": {
-                "x1": 0.0,
-                "y1": 0.0,
-                "x2": 100.0,
-                "y2": 0.0
-              }
-            },
-            {
-              "geometry_type": "LINE",
-              "semantic": "UNKNOWN",
-              "source": "IView.GetPolyLinesAndCurves",
-              "confidence": 0.0,
-              "geometry": {
-                "x1": 100.0,
-                "y1": 0.0,
-                "x2": 100.0,
-                "y2": 60.0
-              }
-            },
-            {
-              "geometry_type": "CIRCLE",
-              "semantic": "UNKNOWN",
-              "source": "IView.GetPolyLinesAndCurves",
-              "confidence": 0.0,
-              "geometry": {
-                "x": 50.00000000000001,
-                "y": 30.000000000000004,
-                "diameter": 19.99999999999998
-              }
-            },
-            {
-              "geometry_type": "ANNOTATION",
-              "semantic": "CENTERMARK",
-              "source": "DrawingAnnotation",
-              "confidence": 1.0,
-              "geometry": {
-                "size_m": 0.0025,
-                "show_lines": true
-              }
-            }
-          ]
+            ],
+            "center_lines": [],
+            "dimensions": [],
+            "callouts": []
+          }
         },
         {
           "name": "工程图视图2",
           "semantic_view": "top",
           "orientation": {
-            "orientation": "TOP",
-            "screen_u_world": "+X",
-            "screen_v_world": "-Z",
-            "view_normal_world": "+Y",
-            "handedness": "RIGHT_HANDED",
-            "mirrored": false,
-            "rotation_deg": 0,
-            "projection_standard": "THIRD_ANGLE",
-            "source_solidworks_orientation": "top",
+            "normal": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "right": [
+              1.0,
+              -0.0,
+              0.0
+            ],
+            "projection_type": "THIRD_ANGLE",
+            "mirror_state": false,
+            "rotation_deg": 0.0,
+            "source_view_name": "top",
+            "canonical_role": "TOP",
             "source": "drawing_structure.semantic_view"
           },
-          "primitives": [
-            {
-              "geometry_type": "LINE",
-              "semantic": "UNKNOWN",
-              "source": "IView.GetPolyLinesAndCurves",
-              "confidence": 0.0,
-              "geometry": {
-                "x1": 100.0,
-                "y1": 0.0,
-                "x2": 0.0,
-                "y2": 0.0
+          "projected_geometry": {
+            "visible": [
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 100.0,
+                  "y1": 0.0,
+                  "x2": 0.0,
+                  "y2": 0.0
+                }
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 0.0,
+                  "y1": 40.0,
+                  "x2": 0.0,
+                  "y2": 0.0
+                }
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 100.0,
+                  "y1": 40.0,
+                  "x2": 0.0,
+                  "y2": 40.0
+                }
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 100.0,
+                  "y1": 40.0,
+                  "x2": 100.0,
+                  "y2": 0.0
+                }
               }
-            },
-            {
-              "geometry_type": "LINE",
-              "semantic": "UNKNOWN",
-              "source": "IView.GetPolyLinesAndCurves",
-              "confidence": 0.0,
-              "geometry": {
-                "x1": 0.0,
-                "y1": 40.0,
-                "x2": 0.0,
-                "y2": 0.0
+            ],
+            "hidden": [
+              {
+                "geometry_type": "LINE",
+                "semantic": "HIDDEN",
+                "source": "HLV_MINUS_HLR",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 60.0,
+                  "y1": 0.0,
+                  "x2": 60.0,
+                  "y2": 40.0
+                },
+                "support_length_mm": 40.0
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "HIDDEN",
+                "source": "HLV_MINUS_HLR",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 40.0,
+                  "y1": 0.0,
+                  "x2": 40.0,
+                  "y2": 40.0
+                },
+                "support_length_mm": 40.0
               }
-            },
-            {
-              "geometry_type": "LINE",
-              "semantic": "UNKNOWN",
-              "source": "IView.GetPolyLinesAndCurves",
-              "confidence": 0.0,
-              "geometry": {
-                "x1": 100.0,
-                "y1": 40.0,
-                "x2": 0.0,
-                "y2": 40.0
-              }
-            },
-            {
-              "geometry_type": "LINE",
-              "semantic": "UNKNOWN",
-              "source": "IView.GetPolyLinesAndCurves",
-              "confidence": 0.0,
-              "geometry": {
-                "x1": 100.0,
-                "y1": 40.0,
-                "x2": 100.0,
-                "y2": 0.0
-              }
-            }
-          ]
+            ],
+            "unknown": []
+          },
+          "annotations": {
+            "center_marks": [],
+            "center_lines": [],
+            "dimensions": [],
+            "callouts": []
+          }
         },
         {
           "name": "工程图视图3",
           "semantic_view": "right",
           "orientation": {
-            "orientation": "RIGHT",
-            "screen_u_world": "-Z",
-            "screen_v_world": "+Y",
-            "view_normal_world": "+X",
-            "handedness": "RIGHT_HANDED",
-            "mirrored": false,
-            "rotation_deg": 0,
-            "projection_standard": "THIRD_ANGLE",
-            "source_solidworks_orientation": "right",
+            "normal": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "right": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "projection_type": "THIRD_ANGLE",
+            "mirror_state": false,
+            "rotation_deg": 0.0,
+            "source_view_name": "right",
+            "canonical_role": "RIGHT",
             "source": "drawing_structure.semantic_view"
           },
-          "primitives": [
-            {
-              "geometry_type": "LINE",
-              "semantic": "UNKNOWN",
-              "source": "IView.GetPolyLinesAndCurves",
-              "confidence": 0.0,
-              "geometry": {
-                "x1": 40.0,
-                "y1": 60.0,
-                "x2": 0.0,
-                "y2": 60.0
+          "projected_geometry": {
+            "visible": [
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 40.0,
+                  "y1": 60.0,
+                  "x2": 0.0,
+                  "y2": 60.0
+                }
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 40.0,
+                  "y1": 0.0,
+                  "x2": 40.0,
+                  "y2": 60.0
+                }
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 40.0,
+                  "y1": 0.0,
+                  "x2": 0.0,
+                  "y2": 0.0
+                }
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 0.0,
+                  "y1": 0.0,
+                  "x2": 0.0,
+                  "y2": 60.0
+                }
               }
-            },
-            {
-              "geometry_type": "LINE",
-              "semantic": "UNKNOWN",
-              "source": "IView.GetPolyLinesAndCurves",
-              "confidence": 0.0,
-              "geometry": {
-                "x1": 40.0,
-                "y1": 0.0,
-                "x2": 40.0,
-                "y2": 60.0
+            ],
+            "hidden": [
+              {
+                "geometry_type": "LINE",
+                "semantic": "HIDDEN",
+                "source": "HLV_MINUS_HLR",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 0.0,
+                  "y1": 20.0,
+                  "x2": 40.0,
+                  "y2": 20.0
+                },
+                "support_length_mm": 40.0
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "HIDDEN",
+                "source": "HLV_MINUS_HLR",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 0.0,
+                  "y1": 40.0,
+                  "x2": 40.0,
+                  "y2": 40.0
+                },
+                "support_length_mm": 40.0
               }
-            },
-            {
-              "geometry_type": "LINE",
-              "semantic": "UNKNOWN",
-              "source": "IView.GetPolyLinesAndCurves",
-              "confidence": 0.0,
-              "geometry": {
-                "x1": 40.0,
-                "y1": 0.0,
-                "x2": 0.0,
-                "y2": 0.0
-              }
-            },
-            {
-              "geometry_type": "LINE",
-              "semantic": "UNKNOWN",
-              "source": "IView.GetPolyLinesAndCurves",
-              "confidence": 0.0,
-              "geometry": {
-                "x1": 0.0,
-                "y1": 0.0,
-                "x2": 0.0,
-                "y2": 60.0
-              }
-            }
-          ]
+            ],
+            "unknown": []
+          },
+          "annotations": {
+            "center_marks": [],
+            "center_lines": [],
+            "dimensions": [],
+            "callouts": []
+          }
         }
       ],
-      "limitations": [
-        "Projected primitive visibility is UNKNOWN until API/topology evidence is demonstrated.",
-        "Center marks are read independently as annotation evidence."
-      ]
+      "annotations": {
+        "center_marks": [
+          {
+            "geometry_type": "ANNOTATION",
+            "semantic": "CENTERMARK",
+            "source": "DrawingAnnotation",
+            "confidence": 1.0,
+            "view": "工程图视图1",
+            "semantic_view": "front",
+            "geometry": {
+              "size_m": 0.0025,
+              "show_lines": true
+            }
+          }
+        ],
+        "center_lines": [],
+        "dimensions": [],
+        "callouts": []
+      },
+      "semantic_provenance": "HLV_MINUS_HLR",
+      "unknown_projected_primitive_count": 0,
+      "limitations": []
     }
   },
   "roundtrip_qa": {
@@ -1089,5 +1532,5 @@
       "passed": true
     }
   },
-  "status": "PARTIAL"
+  "status": "PASS"
 }

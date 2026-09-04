@@ -191,8 +191,8 @@
       "size_bytes": 4800054,
       "width": 1600,
       "height": 1000,
-      "unique_sample_values": 230,
-      "dark_pixel_ratio": 0.5356987847222222,
+      "unique_sample_values": 213,
+      "dark_pixel_ratio": 0.4927300347222222,
       "likely_blank": false
     },
     {
@@ -201,8 +201,8 @@
       "size_bytes": 4800054,
       "width": 1600,
       "height": 1000,
-      "unique_sample_values": 153,
-      "dark_pixel_ratio": 0.6003689236111112,
+      "unique_sample_values": 162,
+      "dark_pixel_ratio": 0.5381944444444444,
       "likely_blank": false
     },
     {
@@ -211,8 +211,8 @@
       "size_bytes": 4800054,
       "width": 1600,
       "height": 1000,
-      "unique_sample_values": 154,
-      "dark_pixel_ratio": 0.4965277777777778,
+      "unique_sample_values": 147,
+      "dark_pixel_ratio": 0.4599609375,
       "likely_blank": false
     },
     {
@@ -221,8 +221,8 @@
       "size_bytes": 4800054,
       "width": 1600,
       "height": 1000,
-      "unique_sample_values": 160,
-      "dark_pixel_ratio": 0.5621744791666666,
+      "unique_sample_values": 158,
+      "dark_pixel_ratio": 0.5077039930555556,
       "likely_blank": false
     }
   ],
@@ -230,7 +230,7 @@
     {
       "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\case_001_block_hole.SLDPRT",
       "exists": true,
-      "size_bytes": 63949
+      "size_bytes": 61363
     }
   ],
   "checks": {

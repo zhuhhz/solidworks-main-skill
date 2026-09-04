@@ -1,45 +1,80 @@
-"""Canonical, name-independent drawing-view orientation metadata.
-
-The transform is intentionally explicit: a view label is evidence, not the
-coordinate transform itself.  This module is pure Python so its rules can be
-unit-tested without starting SolidWorks.
-"""
+"""Canonical, name-independent drawing-view frames."""
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
 from enum import Enum
+from typing import TypeAlias
+
+Vector3: TypeAlias = tuple[float, float, float]
 
 
 class CanonicalViewOrientation(str, Enum):
     FRONT = "FRONT"; BACK = "BACK"; LEFT = "LEFT"; RIGHT = "RIGHT"; TOP = "TOP"; BOTTOM = "BOTTOM"
 
 
+def cross(left: Vector3, right: Vector3) -> Vector3:
+    return (
+        left[1] * right[2] - left[2] * right[1],
+        left[2] * right[0] - left[0] * right[2],
+        left[0] * right[1] - left[1] * right[0],
+    )
+
+
 @dataclass(frozen=True)
-class ViewOrientationTransform:
-    orientation: CanonicalViewOrientation
-    screen_u_world: str
-    screen_v_world: str
-    view_normal_world: str
-    handedness: str = "RIGHT_HANDED"
-    mirrored: bool = False
-    rotation_deg: int = 0
-    projection_standard: str = "THIRD_ANGLE"
-    source_solidworks_orientation: str = ""
+class CanonicalViewFrame:
+    """World-space basis for a drawing view; ``right = up × normal``."""
 
-    def to_dict(self) -> dict: return asdict(self) | {"orientation": self.orientation.value}
+    normal: Vector3
+    up: Vector3
+    right: Vector3
+    projection_type: str
+    mirror_state: bool
+    rotation_deg: float
+    source_view_name: str
+    canonical_role: CanonicalViewOrientation
+
+    def __post_init__(self) -> None:
+        if cross(self.up, self.normal) != self.right:
+            raise ValueError("CanonicalViewFrame invariant violated: right != up × normal")
+
+    # Compatibility properties for persisted v0.2 evidence consumers.
+    @property
+    def orientation(self) -> CanonicalViewOrientation: return self.canonical_role
+    @property
+    def view_normal_world(self) -> Vector3: return self.normal
+    @property
+    def screen_v_world(self) -> Vector3: return self.up
+    @property
+    def screen_u_world(self) -> Vector3: return self.right
+    @property
+    def projection_standard(self) -> str: return self.projection_type
+    @property
+    def mirrored(self) -> bool: return self.mirror_state
+    @property
+    def source_solidworks_orientation(self) -> str: return self.source_view_name
+
+    def to_dict(self) -> dict:
+        data = asdict(self)
+        data["canonical_role"] = self.canonical_role.value
+        return data
 
 
-_FRAMES = {
-    CanonicalViewOrientation.FRONT: ("+X", "+Y", "+Z"),
-    CanonicalViewOrientation.BACK: ("-X", "+Y", "-Z"),
-    CanonicalViewOrientation.RIGHT: ("-Z", "+Y", "+X"),
-    CanonicalViewOrientation.LEFT: ("+Z", "+Y", "-X"),
-    CanonicalViewOrientation.TOP: ("+X", "-Z", "+Y"),
-    CanonicalViewOrientation.BOTTOM: ("+X", "+Z", "-Y"),
+# Backwards-compatible import name; new code should use CanonicalViewFrame.
+ViewOrientationTransform = CanonicalViewFrame
+
+
+_NORMAL_UP = {
+    CanonicalViewOrientation.FRONT: ((0.0, 0.0, 1.0), (0.0, 1.0, 0.0)),
+    CanonicalViewOrientation.BACK: ((0.0, 0.0, -1.0), (0.0, 1.0, 0.0)),
+    CanonicalViewOrientation.RIGHT: ((1.0, 0.0, 0.0), (0.0, 1.0, 0.0)),
+    CanonicalViewOrientation.LEFT: ((-1.0, 0.0, 0.0), (0.0, 1.0, 0.0)),
+    CanonicalViewOrientation.TOP: ((0.0, 1.0, 0.0), (0.0, 0.0, -1.0)),
+    CanonicalViewOrientation.BOTTOM: ((0.0, -1.0, 0.0), (0.0, 0.0, 1.0)),
 }
 
 
-def canonicalize(source: str, projection_standard: str = "THIRD_ANGLE") -> ViewOrientationTransform:
+def canonicalize(source: str, projection_standard: str = "THIRD_ANGLE", *,
+                 mirrored: bool = False, rotation_deg: float = 0.0) -> CanonicalViewFrame:
     # GetOrientationName() is localized (for example ``*前视`` in a Chinese
     # SolidWorks installation).  Normalize only documented standard-view
     # aliases; an unknown orientation must remain an error, not be guessed.
@@ -54,10 +89,25 @@ def canonicalize(source: str, projection_standard: str = "THIRD_ANGLE") -> ViewO
     }
     key = aliases.get(key, key)
     orientation = CanonicalViewOrientation(key)
-    u, v, normal = _FRAMES[orientation]
-    return ViewOrientationTransform(orientation, u, v, normal, projection_standard=projection_standard, source_solidworks_orientation=str(source))
+    normal, up = _NORMAL_UP[orientation]
+    return CanonicalViewFrame(
+        normal=normal,
+        up=up,
+        right=cross(up, normal),
+        projection_type=projection_standard.upper(),
+        mirror_state=mirrored,
+        rotation_deg=float(rotation_deg),
+        source_view_name=str(source),
+        canonical_role=orientation,
+    )
 
 
-def comparable(generated: ViewOrientationTransform, requested: ViewOrientationTransform) -> bool:
+def comparable(generated: CanonicalViewFrame, requested: CanonicalViewFrame) -> bool:
     """Views are directly comparable only when their screen frames agree."""
-    return (generated.screen_u_world, generated.screen_v_world, generated.view_normal_world) == (requested.screen_u_world, requested.screen_v_world, requested.view_normal_world)
+    return (
+        generated.normal, generated.up, generated.right,
+        generated.mirror_state, generated.rotation_deg,
+    ) == (
+        requested.normal, requested.up, requested.right,
+        requested.mirror_state, requested.rotation_deg,
+    )

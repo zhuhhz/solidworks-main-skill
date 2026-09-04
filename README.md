@@ -18,7 +18,7 @@ Use `python -m pytest` as the canonical test entrypoint on this Windows environm
 
 ## Status
 
-Benchmarks 001 and 002 have passed deterministic input consistency, feature inference, native SolidWorks creation, B-Rep/Feature Tree validation, and Level 1 structured projection round-trip validation. Level 2 projected-vector extraction is experimental and currently reports `PARTIAL` because hidden-line semantics are not yet reliably exposed.
+Benchmarks 001 and 002 pass deterministic input consistency, feature inference, native SolidWorks creation, B-Rep/Feature Tree validation, Level 1 structured projection, Level 2A vector geometry, and Level 2B drawing semantics on SolidWorks 2024 SP04. B002's former v0.2 reference was proven `REFERENCE_INVALID` through exact projected-edge topology, archived, and corrected without relaxing matcher thresholds. See the [progress report](docs/PROJECT_PROGRESS_REPORT.md) and [B002 reference audit](docs/B002_REFERENCE_AUDIT.md).
 
 ## Transitional note
 
