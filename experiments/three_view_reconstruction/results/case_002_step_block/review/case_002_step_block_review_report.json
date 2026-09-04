@@ -207,8 +207,8 @@
       "size_bytes": 4800054,
       "width": 1600,
       "height": 1000,
-      "unique_sample_values": 374,
-      "dark_pixel_ratio": 0.4927300347222222,
+      "unique_sample_values": 356,
+      "dark_pixel_ratio": 0.4583333333333333,
       "likely_blank": false
     },
     {
@@ -218,7 +218,7 @@
       "width": 1600,
       "height": 1000,
       "unique_sample_values": 249,
-      "dark_pixel_ratio": 0.6072048611111112,
+      "dark_pixel_ratio": 0.5381944444444444,
       "likely_blank": false
     },
     {
@@ -227,8 +227,8 @@
       "size_bytes": 4800054,
       "width": 1600,
       "height": 1000,
-      "unique_sample_values": 159,
-      "dark_pixel_ratio": 0.4705946180555556,
+      "unique_sample_values": 160,
+      "dark_pixel_ratio": 0.4382595486111111,
       "likely_blank": false
     },
     {
@@ -237,8 +237,8 @@
       "size_bytes": 4800054,
       "width": 1600,
       "height": 1000,
-      "unique_sample_values": 160,
-      "dark_pixel_ratio": 0.4896918402777778,
+      "unique_sample_values": 156,
+      "dark_pixel_ratio": 0.4725477430555556,
       "likely_blank": false
     }
   ],
@@ -246,7 +246,7 @@
     {
       "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\case_002_step_block.SLDPRT",
       "exists": true,
-      "size_bytes": 104994
+      "size_bytes": 95860
     }
   ],
   "checks": {

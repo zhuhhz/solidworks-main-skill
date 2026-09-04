@@ -127,6 +127,30 @@ def _differential(hlr: dict, hlv: dict) -> dict:
             "views": views}
 
 
+def run_case(source: Path, case_name: str, output: Path) -> dict:
+    """Run both display modes against one source drawing and persist evidence."""
+    output.mkdir(parents=True, exist_ok=True)
+    upstream = _upstream()
+    sys.path.insert(0, str(upstream / "scripts"))
+    from sw_session import SolidWorksSession
+    session = SolidWorksSession(version=2024, visible=True, wait_seconds=20)
+    try:
+        hlr = _mode_run(session, source, output / f"{case_name}_hlr.slddrw", SW_HLR)
+        hlv = _mode_run(session, source, output / f"{case_name}_hlv.slddrw", SW_HLV)
+    finally:
+        session.quit_owned_instance()
+    differential = _differential(hlr, hlv)
+    report = {"case": case_name, "source_drawing": str(source),
+              "run_at": datetime.now().isoformat(timespec="seconds"),
+              "solidworks_api": {"method": "IView.SetDisplayMode3", "hlv": SW_HLV, "hlr": SW_HLR},
+              "hlr": hlr, "hlv": hlv, "differential": differential,
+              "status": "PASS" if hlr["status"] == hlv["status"] == differential["status"] == "PASS" else "PARTIAL"}
+    (output / "hlr_geometry.json").write_text(json.dumps(hlr, ensure_ascii=False, indent=2), encoding="utf-8")
+    (output / "hlv_geometry.json").write_text(json.dumps(hlv, ensure_ascii=False, indent=2), encoding="utf-8")
+    (output / "semantic_diff.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    return report
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--case", required=True, choices=("case_001_block_hole", "case_002_step_block"))
@@ -135,24 +159,8 @@ def main() -> int:
     if not source.is_file():
         raise FileNotFoundError(source)
     output = Path(__file__).resolve().parent / "results" / args.case
-    output.mkdir(parents=True, exist_ok=True)
-    upstream = _upstream()
-    sys.path.insert(0, str(upstream / "scripts"))
-    from sw_session import SolidWorksSession
-    session = SolidWorksSession(version=2024, visible=True, wait_seconds=20)
-    try:
-        hlr = _mode_run(session, source, output / f"{args.case}_hlr.slddrw", SW_HLR)
-        hlv = _mode_run(session, source, output / f"{args.case}_hlv.slddrw", SW_HLV)
-    finally:
-        session.quit_owned_instance()
-    differential = _differential(hlr, hlv)
-    report = {"case": args.case, "run_at": datetime.now().isoformat(timespec="seconds"),
-              "solidworks_api": {"method": "IView.SetDisplayMode3", "hlv": SW_HLV, "hlr": SW_HLR},
-              "hlr": hlr, "hlv": hlv, "differential": differential,
-              "status": "PASS" if hlr["status"] == hlv["status"] == differential["status"] == "PASS" else "PARTIAL"}
-    (output / "hlr_geometry.json").write_text(json.dumps(hlr, ensure_ascii=False, indent=2), encoding="utf-8")
-    (output / "hlv_geometry.json").write_text(json.dumps(hlv, ensure_ascii=False, indent=2), encoding="utf-8")
-    (output / "semantic_diff.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    report = run_case(source, args.case, output)
+    hlr, hlv, differential = report["hlr"], report["hlv"], report["differential"]
     print(json.dumps({"case": args.case, "status": report["status"], "hlr": hlr["status"], "hlv": hlv["status"], "differential": differential["status"], "provenance": differential["semantic_provenance"], "hidden_counts": [len(v["hidden_supports"]) + len(v["hidden_circles"]) for v in differential["views"]]}, ensure_ascii=False, indent=2))
     return 0 if report["status"] == "PASS" else 1
 

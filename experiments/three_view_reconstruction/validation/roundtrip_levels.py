@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 
-def split(level_2: dict, semantic_graph: dict | None = None) -> dict:
+def split(level_2: dict, semantic_graph: dict | None = None, expected_graph=None) -> dict:
     views = level_2.get("views", {})
     geometry_complete = bool(views) and all(
         v.get("visible_lines", {}).get("status") == "PASS"
@@ -10,6 +10,21 @@ def split(level_2: dict, semantic_graph: dict | None = None) -> dict:
         for v in views.values()
     )
     level_2a = {"status": "PASS" if geometry_complete else "PARTIAL", "scope": "lines/circles/arcs only; semantics excluded", "views": views}
-    annotations = sum(1 for v in (semantic_graph or {}).get("views", []) for p in v.get("primitives", []) if p.get("semantic") == "CENTERMARK")
-    level_2b = {"status": "PARTIAL", "scope": "visible/hidden/centerline/centermark semantics", "known_center_marks": annotations, "reason": "No exact hidden/visible projected-primitive provenance has been demonstrated."}
+    semantic_graph = semantic_graph or {}
+    known_center_marks = len(semantic_graph.get("annotations", {}).get("center_marks", []))
+    actual_center_lines = len(semantic_graph.get("annotations", {}).get("center_lines", []))
+    expected_center_lines = sum(len(view.centerlines) for view in (expected_graph.front, expected_graph.top, expected_graph.left)) if expected_graph else 0
+    hidden_count = sum(len(v.get("projected_geometry", {}).get("hidden", [])) for v in semantic_graph.get("views", []))
+    unknown_count = semantic_graph.get("unknown_projected_primitive_count", 0)
+    provenance_ok = semantic_graph.get("status") == "PASS" and semantic_graph.get("semantic_provenance") == "HLV_MINUS_HLR" and unknown_count == 0
+    centerline_complete = actual_center_lines >= expected_center_lines
+    level_2b_status = "PASS" if provenance_ok and centerline_complete else "PARTIAL"
+    reasons = []
+    if not provenance_ok: reasons.append("SEMANTIC_PROVENANCE_UNAVAILABLE")
+    if not centerline_complete: reasons.append("EXPECTED_CENTERLINE_ANNOTATIONS_MISSING")
+    level_2b = {"status": level_2b_status, "scope": "visible/hidden/centerline/centermark semantics",
+                "semantic_provenance": semantic_graph.get("semantic_provenance"),
+                "hidden_primitive_count": hidden_count, "unknown_primitive_count": unknown_count,
+                "known_center_marks": known_center_marks, "expected_center_lines": expected_center_lines,
+                "actual_center_lines": actual_center_lines, "reasons": reasons}
     return {"level_2a_vector_geometry": level_2a, "level_2b_drawing_semantics": level_2b}

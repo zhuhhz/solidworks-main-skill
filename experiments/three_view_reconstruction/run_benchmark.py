@@ -6,6 +6,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
+PROJECT_ROOT = ROOT.parents[1]
+sys.path.insert(0, str(PROJECT_ROOT))
 from backend.solidworks_backend import execute
 from inference.feature_hypothesis import infer_feature_graph
 from parser.structured_input import load_structured_input
@@ -48,13 +50,18 @@ def main():
                 backend["drawing_path"], upstream_path=backend.get("external_backend_path"),
                 drawing_structure=backend.get("drawing_structure"),
             )
+            from experiments.hlv_hlr_semantics.run_experiment import run_case as run_semantic_experiment
+            semantic_evidence = run_semantic_experiment(
+                Path(backend["drawing_path"]), args.case,
+                PROJECT_ROOT / "experiments" / "hlv_hlr_semantics" / "results" / args.case,
+            )
             level_2 = validate_geometry_roundtrip(graph, projected)
-            semantic_graph = extract_drawing_semantics(projected, backend.get("drawing_structure"))
-            levels = split_roundtrip_levels(level_2, semantic_graph)
+            semantic_graph = extract_drawing_semantics(projected, backend.get("drawing_structure"), semantic_evidence)
+            levels = split_roundtrip_levels(level_2, semantic_graph, graph)
         except Exception as exc:
             level_2 = {"status": "FAIL", "reason": repr(exc)}
             semantic_graph = {"status": "FAIL", "reason": repr(exc)}
-            levels = split_roundtrip_levels(level_2, semantic_graph)
+            levels = split_roundtrip_levels(level_2, semantic_graph, graph)
         result["roundtrip"] = {"level_1_projection": level_1, **levels, "drawing_primitive_graph": semantic_graph}
         result["roundtrip_qa"] = level_1  # retained for Benchmark 001 consumers
         technical_pass = result["reconstruction_qa"]["status"] == "PASS" and level_1["status"] == "PASS"

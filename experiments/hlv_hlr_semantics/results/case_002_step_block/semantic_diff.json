@@ -1,6 +1,7 @@
 {
   "case": "case_002_step_block",
-  "run_at": "2026-09-04T13:45:37",
+  "source_drawing": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\case_002_step_block.slddrw",
+  "run_at": "2026-09-04T13:54:58",
   "solidworks_api": {
     "method": "IView.SetDisplayMode3",
     "hlv": 1,

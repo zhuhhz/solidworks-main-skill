@@ -118,7 +118,7 @@ The v0.1 round trip passed these structural checks:
 - Ø20 at input drawing coordinate (50,30);
 - regenerated drawing contains three actual SolidWorks views.
 
-Level 1 remains PASS for both cases. Level 2 now calls real SW2024 `IView.GetPolyLinesAndCurves(0)` using an `IDrawingDoc`/`IView` typed wrapper generated from the locally installed SolidWorks type library. It obtains actual projected polylines (including the front-view circular edge tessellation) in view-centred metre coordinates; the extractor removes scale and canonical bounding-box translation into view-local millimetres.
+Level 1 remains PASS for both cases. Level 2 calls real SW2024 `IView.GetPolyLinesAndCurves(0)` using an `IDrawingDoc`/`IView` typed wrapper generated from the locally installed SolidWorks type library. It obtains actual projected polylines (including front-view circular-edge tessellation) in model metres. The tested API output is already independent of the 1:2 sheet scale, so the extractor converts metres to millimetres and removes only canonical bounding-box translation; it does not apply the scale a second time.
 
 The actual response in this run does **not** expose a reliable hidden/visible line-style discriminator, nor centre-mark entities; centre marks are annotations rather than model-edge polylines. Therefore Level 2 is deliberately `PARTIAL`, never PASS: required hidden-line semantic matching cannot be truthfully evaluated. Primitive canonicalisation and tolerance matcher are present and report precision/recall/missing/extra, but benchmark input convention versus API orientation still needs calibrated mapping before visible-line scores are meaningful.
 
