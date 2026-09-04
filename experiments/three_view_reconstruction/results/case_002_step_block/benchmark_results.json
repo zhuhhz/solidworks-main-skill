@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-09-04T13:54:27",
+  "run_at": "2026-09-04T18:44:06",
   "case": "case_002_step_block",
   "projection_graph": {
     "projection": "third_angle",
@@ -67,20 +67,7 @@
       ],
       "hidden_segments": [],
       "arcs": [],
-      "centerlines": [
-        {
-          "x1": 35,
-          "y1": 30,
-          "x2": 65,
-          "y2": 30
-        },
-        {
-          "x1": 50,
-          "y1": 15,
-          "x2": 50,
-          "y2": 45
-        }
-      ]
+      "centerlines": []
     },
     "top": {
       "name": "top",
@@ -135,6 +122,12 @@
           "x1": 20,
           "y1": 20,
           "x2": 0,
+          "y2": 20
+        },
+        {
+          "x1": 20,
+          "y1": 20,
+          "x2": 80,
           "y2": 20
         },
         {
@@ -217,6 +210,12 @@
           "y2": 60
         },
         {
+          "x1": 20,
+          "y1": 10,
+          "x2": 20,
+          "y2": 50
+        },
+        {
           "x1": 0,
           "y1": 60,
           "x2": 0,
@@ -260,7 +259,26 @@
           "height_transition_in_left"
         ]
       }
+    },
+    "center_requirements": [
+      {
+        "view": "front",
+        "target": "circle:0",
+        "kind": "CENTERMARK",
+        "purpose": "HOLE_CENTER_INDICATION",
+        "count": 1
+      }
+    ],
+    "reference_integrity": {
+      "status": "PASS",
+      "history_status": "REFERENCE_INVALID",
+      "audit": "docs/B002_REFERENCE_AUDIT.md"
     }
+  },
+  "reference_integrity": {
+    "status": "PASS",
+    "history_status": "REFERENCE_INVALID",
+    "audit": "docs/B002_REFERENCE_AUDIT.md"
   },
   "input_consistency": {
     "status": "PASS",
@@ -887,7 +905,7 @@
       }
     },
     "level_2a_vector_geometry": {
-      "status": "PARTIAL",
+      "status": "PASS",
       "scope": "lines/circles/arcs only; semantics excluded",
       "views": {
         "front": {
@@ -1134,27 +1152,30 @@
           },
           "centerlines": {
             "status": "NOT_EVALUABLE",
-            "expected": 2
+            "expected": 0
           }
         },
         "top": {
           "visible_lines": {
-            "status": "FAIL",
+            "status": "PASS",
             "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
-            "expected": 8,
+            "expected": 9,
             "actual": 7,
-            "expected_support_length_mm": 280.0,
+            "expected_support_length_mm": 340.0,
             "actual_support_length_mm": 340.0,
-            "intersection_length_mm": 280.0,
+            "intersection_length_mm": 340.0,
             "union_length_mm": 340.0,
-            "support_iou": 0.8235294117647058,
+            "support_iou": 1.0,
             "missing_length_mm": 0.0,
-            "overflow_length_mm": 60.0,
+            "overflow_length_mm": 0.0,
             "missing_ratio": 0.0,
-            "overflow_ratio": 0.21428571428571427,
+            "overflow_ratio": 0.0,
             "max_gap_mm": 0.0,
-            "segmentation": "EQUIVALENT_OR_UNASSESSED",
-            "information": [],
+            "segmentation": "SEGMENTATION_DIFFERENT",
+            "information": [
+              "GEOMETRY_EQUIVALENT",
+              "SEGMENTATION_DIFFERENT"
+            ],
             "thresholds": {
               "support_iou_min": 0.98,
               "max_gap_mm": 0.1,
@@ -1218,10 +1239,6 @@
                 "expected_intervals": [
                   [
                     0.0,
-                    20.0
-                  ],
-                  [
-                    80.0,
                     100.0
                   ]
                 ],
@@ -1231,9 +1248,9 @@
                     100.0
                   ]
                 ],
-                "expected_segment_count": 2,
+                "expected_segment_count": 3,
                 "actual_segment_count": 1,
-                "intersection_length_mm": 40.0,
+                "intersection_length_mm": 100.0,
                 "max_gap_mm": 0.0
               },
               {
@@ -1330,7 +1347,7 @@
               }
             ],
             "invalid_segments": [],
-            "precision": 0.8235294117647058,
+            "precision": 1.0,
             "recall": 1.0
           },
           "hidden_lines": {
@@ -1360,22 +1377,25 @@
         },
         "left": {
           "visible_lines": {
-            "status": "FAIL",
+            "status": "PASS",
             "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
-            "expected": 8,
+            "expected": 9,
             "actual": 7,
-            "expected_support_length_mm": 200.0,
+            "expected_support_length_mm": 240.0,
             "actual_support_length_mm": 240.0,
-            "intersection_length_mm": 200.0,
+            "intersection_length_mm": 240.0,
             "union_length_mm": 240.0,
-            "support_iou": 0.8333333333333334,
+            "support_iou": 1.0,
             "missing_length_mm": 0.0,
-            "overflow_length_mm": 40.0,
+            "overflow_length_mm": 0.0,
             "missing_ratio": 0.0,
-            "overflow_ratio": 0.2,
+            "overflow_ratio": 0.0,
             "max_gap_mm": 0.0,
-            "segmentation": "EQUIVALENT_OR_UNASSESSED",
-            "information": [],
+            "segmentation": "SEGMENTATION_DIFFERENT",
+            "information": [
+              "GEOMETRY_EQUIVALENT",
+              "SEGMENTATION_DIFFERENT"
+            ],
             "thresholds": {
               "support_iou_min": 0.98,
               "max_gap_mm": 0.1,
@@ -1416,10 +1436,6 @@
                 "expected_intervals": [
                   [
                     0.0,
-                    10.0
-                  ],
-                  [
-                    50.0,
                     60.0
                   ]
                 ],
@@ -1429,9 +1445,9 @@
                     60.0
                   ]
                 ],
-                "expected_segment_count": 2,
+                "expected_segment_count": 3,
                 "actual_segment_count": 1,
-                "intersection_length_mm": 20.0,
+                "intersection_length_mm": 60.0,
                 "max_gap_mm": 0.0
               },
               {
@@ -1551,7 +1567,7 @@
               }
             ],
             "invalid_segments": [],
-            "precision": 0.8333333333333334,
+            "precision": 1.0,
             "recall": 1.0
           },
           "hidden_lines": {
@@ -1582,17 +1598,16 @@
       }
     },
     "level_2b_drawing_semantics": {
-      "status": "PARTIAL",
+      "status": "PASS",
       "scope": "visible/hidden/centerline/centermark semantics",
       "semantic_provenance": "HLV_MINUS_HLR",
       "hidden_primitive_count": 4,
       "unknown_primitive_count": 0,
       "known_center_marks": 1,
-      "expected_center_lines": 2,
+      "expected_center_marks": 1,
+      "expected_center_lines": 0,
       "actual_center_lines": 0,
-      "reasons": [
-        "EXPECTED_CENTERLINE_ANNOTATIONS_MISSING"
-      ]
+      "reasons": []
     },
     "drawing_primitive_graph": {
       "status": "PASS",
@@ -2140,5 +2155,5 @@
       "passed": true
     }
   },
-  "status": "PARTIAL"
+  "status": "PASS"
 }

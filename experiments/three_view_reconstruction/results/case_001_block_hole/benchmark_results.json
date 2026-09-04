@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-09-04T13:54:07",
+  "run_at": "2026-09-04T18:43:34",
   "case": "case_001_block_hole",
   "projection_graph": {
     "projection": "third_angle",
@@ -61,7 +61,12 @@
       "left": "Z/Y",
       "internal": "mm; base-block centre origin; +Z is extrude direction"
     },
-    "feature_evidence": null
+    "feature_evidence": null,
+    "center_requirements": [],
+    "reference_integrity": null
+  },
+  "reference_integrity": {
+    "status": "UNASSESSED"
   },
   "input_consistency": {
     "status": "PASS",
@@ -1096,6 +1101,7 @@
       "hidden_primitive_count": 4,
       "unknown_primitive_count": 0,
       "known_center_marks": 1,
+      "expected_center_marks": 0,
       "expected_center_lines": 0,
       "actual_center_lines": 0,
       "reasons": []

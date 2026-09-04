@@ -1,7 +1,7 @@
 {
   "case": "case_001_block_hole",
   "source_drawing": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\case_001_block_hole.slddrw",
-  "run_at": "2026-09-04T13:54:26",
+  "run_at": "2026-09-04T18:43:55",
   "solidworks_api": {
     "method": "IView.SetDisplayMode3",
     "hlv": 1,
