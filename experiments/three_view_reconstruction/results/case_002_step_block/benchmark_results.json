@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-09-04T18:44:06",
+  "run_at": "2026-09-04T19:17:16",
   "case": "case_002_step_block",
   "projection_graph": {
     "projection": "third_angle",
@@ -303,6 +303,9 @@
         "passed": true
       }
     ],
+    "slot_contract": {
+      "status": "NONE"
+    },
     "error_code": null
   },
   "feature_graph": {
@@ -328,6 +331,7 @@
         "centered": true
       }
     ],
+    "slots": [],
     "hypotheses": [
       {
         "feature_type": "through_hole",
@@ -637,7 +641,8 @@
             }
           ]
         }
-      ]
+      ],
+      "slot_planar_side_candidates": []
     },
     "review": {
       "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\review\\case_002_step_block_review_report.json",
@@ -649,6 +654,208 @@
         "manual_review_required": true,
         "manual_review_reason": "规则评分只能发现明显失败，最终几何是否符合用户意图仍需查看预览图或截图。"
       }
+    },
+    "reopened_model_summary": {
+      "title": "case_002_step_block.SLDPRT",
+      "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\case_002_step_block.SLDPRT",
+      "type": 1,
+      "feature_count": 25,
+      "features": [
+        {
+          "name": "评论",
+          "type": "CommentsFolder"
+        },
+        {
+          "name": "收藏",
+          "type": "FavoriteFolder"
+        },
+        {
+          "name": "历史记录",
+          "type": "HistoryFolder"
+        },
+        {
+          "name": "选择集",
+          "type": "SelectionSetFolder"
+        },
+        {
+          "name": "传感器",
+          "type": "SensorFolder"
+        },
+        {
+          "name": "设计活页夹",
+          "type": "DocsFolder"
+        },
+        {
+          "name": "注解",
+          "type": "DetailCabinet"
+        },
+        {
+          "name": "曲面实体",
+          "type": "SurfaceBodyFolder"
+        },
+        {
+          "name": "实体",
+          "type": "SolidBodyFolder"
+        },
+        {
+          "name": "光源与相机",
+          "type": "EnvFolder"
+        },
+        {
+          "name": "标注",
+          "type": "InkMarkupFolder"
+        },
+        {
+          "name": "方程式",
+          "type": "EqnFolder"
+        },
+        {
+          "name": "材质 <未指定>",
+          "type": "MaterialFolder"
+        },
+        {
+          "name": "前视基准面",
+          "type": "RefPlane"
+        },
+        {
+          "name": "上视基准面",
+          "type": "RefPlane"
+        },
+        {
+          "name": "右视基准面",
+          "type": "RefPlane"
+        },
+        {
+          "name": "原点",
+          "type": "OriginProfileFeature"
+        },
+        {
+          "name": "草图1",
+          "type": "ProfileFeature"
+        },
+        {
+          "name": "BaseBlock",
+          "type": "Extrusion"
+        },
+        {
+          "name": "Plane_Base_Top",
+          "type": "RefPlane"
+        },
+        {
+          "name": "草图2",
+          "type": "ProfileFeature"
+        },
+        {
+          "name": "TopBoss",
+          "type": "ICE"
+        },
+        {
+          "name": "Plane_Boss_Top",
+          "type": "RefPlane"
+        },
+        {
+          "name": "草图3",
+          "type": "ProfileFeature"
+        },
+        {
+          "name": "ThroughHole_D20",
+          "type": "ICE"
+        }
+      ]
+    },
+    "reopened_geometry": {
+      "units": "mm",
+      "measurement_source": "SolidWorks API GetPartBox(True) + B-Rep cylindrical faces",
+      "envelope_mm": {
+        "length": 100.0,
+        "width": 60.0,
+        "height": 40.0,
+        "axis_order": "model_xyz"
+      },
+      "holes": [
+        {
+          "diameter_mm": 20.0,
+          "position_mm": [
+            0.0,
+            0.0,
+            -20.0
+          ],
+          "axis": [
+            -0.0,
+            -0.0,
+            1.0
+          ],
+          "axial_length_mm": 40.0,
+          "through_state": "unknown",
+          "through_evidence": "B-Rep cylinder boundaries cannot distinguish blind from through",
+          "measurement_source": "B-Rep internal cylindrical face"
+        }
+      ],
+      "compound_holes": [],
+      "slot_arc_candidates": [],
+      "cylindrical_faces": [
+        {
+          "diameter_mm": 20.0,
+          "origin_mm": [
+            0.0,
+            0.0,
+            -20.0
+          ],
+          "axis": [
+            -0.0,
+            -0.0,
+            1.0
+          ],
+          "area_mm2": 2513.274123,
+          "axial_length_mm": 40.0,
+          "internal": true,
+          "loop_count": 2,
+          "edge_count": 2,
+          "body_index": 0,
+          "face_index": 11
+        }
+      ],
+      "errors": [],
+      "hole_count": 1,
+      "hole_groups": [
+        {
+          "position_mm": [
+            0.0,
+            0.0,
+            -20.0
+          ],
+          "axis": [
+            -0.0,
+            -0.0,
+            1.0
+          ],
+          "segment_count": 1,
+          "diameters_mm": [
+            20.0
+          ],
+          "feature_kind": "simple",
+          "segments": [
+            {
+              "diameter_mm": 20.0,
+              "position_mm": [
+                0.0,
+                0.0,
+                -20.0
+              ],
+              "axis": [
+                -0.0,
+                -0.0,
+                1.0
+              ],
+              "axial_length_mm": 40.0,
+              "through_state": "unknown",
+              "through_evidence": "B-Rep cylinder boundaries cannot distinguish blind from through",
+              "measurement_source": "B-Rep internal cylindrical face"
+            }
+          ]
+        }
+      ],
+      "slot_planar_side_candidates": []
     },
     "drawing_create": {
       "status": "pass",
@@ -848,8 +1055,7 @@
       "status": "PASS",
       "mode": "structured_projection_invariants_plus_generated_drawing_structure",
       "limitations": [
-        "v0.1 does not yet extract linework/hidden lines from regenerated SLDDRW",
-        "therefore this is not pixel-level or drawing-entity-level equality"
+        "Level 1 is structured; Level 2 performs drawing primitive comparison"
       ],
       "view_checks": [
         {
@@ -899,6 +1105,7 @@
           "passed": true
         }
       ],
+      "slot_checks": [],
       "drawing_check": {
         "id": "regenerated_drawing_has_three_views",
         "passed": true
@@ -1147,8 +1354,30 @@
             ]
           },
           "arcs": {
-            "status": "NOT_EVALUABLE",
-            "expected": 0
+            "status": "PASS",
+            "mode": "CIRCLE_SUPPORT_ANGULAR_INTERVAL_COVERAGE",
+            "expected": 0,
+            "actual": 0,
+            "angular_iou": 1.0,
+            "missing_angular_span_deg": 0.0,
+            "overflow_angular_span_deg": 0.0,
+            "max_endpoint_error_mm": 0.0,
+            "missing_ratio": 0.0,
+            "overflow_ratio": 0.0,
+            "max_gap_deg": 0.0,
+            "segmentation": "EQUIVALENT_OR_UNASSESSED",
+            "information": [
+              "GEOMETRY_EQUIVALENT"
+            ],
+            "thresholds": {
+              "arc_center_tolerance_mm": 0.1,
+              "arc_radius_tolerance_mm": 0.05,
+              "arc_angle_tolerance_deg": 0.25,
+              "arc_endpoint_tolerance_mm": 0.1,
+              "arc_max_gap_deg": 0.25,
+              "arc_max_overflow_ratio": 0.02
+            },
+            "supports": []
           },
           "centerlines": {
             "status": "NOT_EVALUABLE",
@@ -1367,8 +1596,30 @@
             "pairs": []
           },
           "arcs": {
-            "status": "NOT_EVALUABLE",
-            "expected": 0
+            "status": "PASS",
+            "mode": "CIRCLE_SUPPORT_ANGULAR_INTERVAL_COVERAGE",
+            "expected": 0,
+            "actual": 0,
+            "angular_iou": 1.0,
+            "missing_angular_span_deg": 0.0,
+            "overflow_angular_span_deg": 0.0,
+            "max_endpoint_error_mm": 0.0,
+            "missing_ratio": 0.0,
+            "overflow_ratio": 0.0,
+            "max_gap_deg": 0.0,
+            "segmentation": "EQUIVALENT_OR_UNASSESSED",
+            "information": [
+              "GEOMETRY_EQUIVALENT"
+            ],
+            "thresholds": {
+              "arc_center_tolerance_mm": 0.1,
+              "arc_radius_tolerance_mm": 0.05,
+              "arc_angle_tolerance_deg": 0.25,
+              "arc_endpoint_tolerance_mm": 0.1,
+              "arc_max_gap_deg": 0.25,
+              "arc_max_overflow_ratio": 0.02
+            },
+            "supports": []
           },
           "centerlines": {
             "status": "NOT_EVALUABLE",
@@ -1587,8 +1838,30 @@
             "pairs": []
           },
           "arcs": {
-            "status": "NOT_EVALUABLE",
-            "expected": 0
+            "status": "PASS",
+            "mode": "CIRCLE_SUPPORT_ANGULAR_INTERVAL_COVERAGE",
+            "expected": 0,
+            "actual": 0,
+            "angular_iou": 1.0,
+            "missing_angular_span_deg": 0.0,
+            "overflow_angular_span_deg": 0.0,
+            "max_endpoint_error_mm": 0.0,
+            "missing_ratio": 0.0,
+            "overflow_ratio": 0.0,
+            "max_gap_deg": 0.0,
+            "segmentation": "EQUIVALENT_OR_UNASSESSED",
+            "information": [
+              "GEOMETRY_EQUIVALENT"
+            ],
+            "thresholds": {
+              "arc_center_tolerance_mm": 0.1,
+              "arc_radius_tolerance_mm": 0.05,
+              "arc_angle_tolerance_deg": 0.25,
+              "arc_endpoint_tolerance_mm": 0.1,
+              "arc_max_gap_deg": 0.25,
+              "arc_max_overflow_ratio": 0.02
+            },
+            "supports": []
           },
           "centerlines": {
             "status": "NOT_EVALUABLE",
@@ -1603,6 +1876,164 @@
       "semantic_provenance": "HLV_MINUS_HLR",
       "hidden_primitive_count": 4,
       "unknown_primitive_count": 0,
+      "hidden_geometry_matches": {
+        "top": {
+          "status": "PASS",
+          "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
+          "expected": 2,
+          "actual": 2,
+          "expected_support_length_mm": 80.0,
+          "actual_support_length_mm": 80.0,
+          "intersection_length_mm": 80.0,
+          "union_length_mm": 80.0,
+          "support_iou": 1.0,
+          "missing_length_mm": 0.0,
+          "overflow_length_mm": 0.0,
+          "missing_ratio": 0.0,
+          "overflow_ratio": 0.0,
+          "max_gap_mm": 3.552713678800501e-15,
+          "segmentation": "EQUIVALENT_OR_UNASSESSED",
+          "information": [
+            "GEOMETRY_EQUIVALENT"
+          ],
+          "thresholds": {
+            "support_iou_min": 0.98,
+            "max_gap_mm": 0.1,
+            "max_overflow_ratio": 0.02,
+            "angle_tolerance_deg": 0.1,
+            "line_distance_tolerance_mm": 0.1
+          },
+          "supports": [
+            {
+              "direction": [
+                -0.0,
+                1.0
+              ],
+              "normal_offset_mm": -40.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  40.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  3.552713678800501e-15,
+                  40.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 40.0,
+              "max_gap_mm": 3.552713678800501e-15
+            },
+            {
+              "direction": [
+                -0.0,
+                1.0
+              ],
+              "normal_offset_mm": -60.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  40.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  3.552713678800501e-15,
+                  40.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 40.0,
+              "max_gap_mm": 3.552713678800501e-15
+            }
+          ],
+          "invalid_segments": [],
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "left": {
+          "status": "PASS",
+          "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
+          "expected": 2,
+          "actual": 2,
+          "expected_support_length_mm": 80.0,
+          "actual_support_length_mm": 80.0,
+          "intersection_length_mm": 80.0,
+          "union_length_mm": 80.0,
+          "support_iou": 1.0,
+          "missing_length_mm": 0.0,
+          "overflow_length_mm": 0.0,
+          "missing_ratio": 0.0,
+          "overflow_ratio": 0.0,
+          "max_gap_mm": 3.552713678800501e-15,
+          "segmentation": "EQUIVALENT_OR_UNASSESSED",
+          "information": [
+            "GEOMETRY_EQUIVALENT"
+          ],
+          "thresholds": {
+            "support_iou_min": 0.98,
+            "max_gap_mm": 0.1,
+            "max_overflow_ratio": 0.02,
+            "angle_tolerance_deg": 0.1,
+            "line_distance_tolerance_mm": 0.1
+          },
+          "supports": [
+            {
+              "direction": [
+                1.0,
+                -0.0
+              ],
+              "normal_offset_mm": 20.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  40.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  3.552713678800501e-15,
+                  40.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 40.0,
+              "max_gap_mm": 3.552713678800501e-15
+            },
+            {
+              "direction": [
+                1.0,
+                -0.0
+              ],
+              "normal_offset_mm": 40.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  40.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  3.552713678800501e-15,
+                  40.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 40.0,
+              "max_gap_mm": 3.552713678800501e-15
+            }
+          ],
+          "invalid_segments": [],
+          "precision": 1.0,
+          "recall": 1.0
+        }
+      },
       "known_center_marks": 1,
       "expected_center_marks": 1,
       "expected_center_lines": 0,
@@ -1741,8 +2172,8 @@
                 "source": "HLR_CAPTURE",
                 "confidence": 1.0,
                 "geometry": {
-                  "x": 49.99999999999999,
-                  "y": 30.000000000000004,
+                  "x": 50.0,
+                  "y": 30.0,
                   "diameter": 19.99999999999998
                 }
               }
@@ -2099,8 +2530,7 @@
     "status": "PASS",
     "mode": "structured_projection_invariants_plus_generated_drawing_structure",
     "limitations": [
-      "v0.1 does not yet extract linework/hidden lines from regenerated SLDDRW",
-      "therefore this is not pixel-level or drawing-entity-level equality"
+      "Level 1 is structured; Level 2 performs drawing primitive comparison"
     ],
     "view_checks": [
       {
@@ -2150,6 +2580,7 @@
         "passed": true
       }
     ],
+    "slot_checks": [],
     "drawing_check": {
       "id": "regenerated_drawing_has_three_views",
       "passed": true

@@ -1,188 +1,91 @@
-# Three-view → SolidWorks 3D reconstruction report
+# Three-view → SolidWorks 3D Reconstruction Report
 
-Date: 2026-09-03. Scope: deterministic Benchmarks 001/002 only. No OCR, raster/image analysis, vision model, LLM, or production-module refactor was used.
+Date: 2026-09-04. Branch: `feat/benchmark-003-slot`. Scope: deterministic structured-input Benchmarks 001–003. No OCR, vision model, LLM, B004, or production-module refactor was used.
 
-## 1. System architecture
+## 1. Baseline pytest result
 
-```text
-structured JSON views
-  -> ProjectionGraph
-  -> ProjectionConsistencyValidator
-  -> FeatureHypothesis rules
-  -> FeatureGraph
-  -> ModelingPlan
-  -> SolidWorks backend (existing Skill only)
-  -> SLDPRT + B-Rep / Feature Tree evidence
-  -> regenerated SLDDRW
-  -> Level 1 invariant validator + Level 2 projected-primitive probe
-```
+Before B003 implementation, `python -m pytest -v` completed with **500 passed, 15 skipped, 2 deselected, 0 failed**.
 
-The experiment code is isolated under `experiments/three_view_reconstruction/`. The parser/inference layer contains no COM calls. `backend/solidworks_backend.py` is the only adapter allowed to call the existing Skill.
+## 2. B003 reference
 
-## 2. Input format
+The corrected [case_003_straight_slot.json](benchmarks/case_003_straight_slot.json) defines a 100 × 60 × 20 mm block and a centred X-major straight through slot: end-to-end length 40 mm, width 20 mm, R10 ends, centre-to-centre length 20 mm. The original top-view reference omitted two tangent hidden supports and is retained under `benchmarks/archive/`; see [B003 reference audit](../../docs/B003_REFERENCE_AUDIT.md).
 
-The v0.1 input is structured JSON, not an image. See [case_001_block_hole.json](benchmarks/case_001_block_hole.json).
+## 3. ARC schema
 
-- Input units: mm.
-- Drawing coordinates: lower-left origin.
-- Front view: X/Y; Top view: X/Z; Left view: Z/Y.
-- The sample uses third-angle projection.
-- Hidden-line pairs in Top and Left are required evidence before a Front-view circle becomes a confirmed through-hole.
+`Arc` contains centre, radius, start/end angles and explicit `CW`/`CCW`. Units are degrees, zero is +X, angles normalize to `[0,360)`, radius must be positive, and zero/full-circle sweeps are rejected because a full circle has its own schema.
 
-## 3. Projection Graph
+## 4. Slot FeatureHypothesis
 
-`schemas/projection_graph.py` contains Front/Top/Left view geometry. `parser/projection_mapping.py` is the independent source of truth for:
+Confirmation requires two parallel lines, two equal-radius semicircular arcs, endpoint continuity, closure, tangency, width/centre consistency, orthogonal depth evidence and explicit through evidence. B003 produced `STRAIGHT_SLOT`, confidence `1.0` from complete 9/9 evidence with no contradictions. Missing depth or through-state evidence produces `UNKNOWN_SLOT_LIKE_CONTOUR / AMBIGUOUS`.
 
-- `front.x == top.x`
-- `front.y == left.y`
-- `top.z == left.z`
+## 5. FeatureGraph
 
-It also converts the external drawing origin to the model-centred coordinate system. A mismatch produces `INPUT_INCONSISTENT` and blocks the backend.
+The graph preserves one engineering-semantic `STRAIGHT_SLOT`; it is not represented as a rectangle plus two holes. Values are `overall_length_mm=40`, `width_mm=20`, `radius_mm=10`, internal centre `(0,0)`, major axis X, through true.
 
-## 4. Feature Graph
+## 6. ModelingPlan
 
-`FeatureGraph` stores `BaseBlock`, `Hole`, and auditable `FeatureHypothesis` objects. The Benchmark 001 hypothesis was:
+The serializable plan contains `base_extrude` followed by `cut_extrude_through_slot`. The slot profile retains end-to-end length semantics and `direction=through_all`.
 
-```json
-{"feature_type":"through_hole","confidence":0.92,
- "evidence":["circle_in_front_view","hidden_lines_in_top_view","hidden_lines_in_left_view"]}
-```
+## 7. SolidWorks execution evidence
 
-If either supporting hidden-line pair is absent, inference returns `AMBIGUOUS` with `hole_or_cylindrical_boss`; it does not call SolidWorks.
+Real SolidWorks 2024 SP04 execution passed. The adapter created, rebuilt, saved and reopened the SLDPRT, then created and saved a three-view SLDDRW. The slot sketch contains five entities: four non-construction profile entities (two lines/two arcs) plus one construction centreline. API evidence records the requested width, R10-derived centre spacing, Through All state and feature name.
 
-## 5. Modeling Plan
+One evidence-backed `UPSTREAM_GAP` remains: third-party `create_semicircular_slot(width=20)` produced an actual 10 mm-wide/R5 slot on SW2024 because its wrapper halves the value before `CreateSketchSlot`. The main project adapter uses the third-party `sketch_slot` and `extrude_cut` primitives with corrected width semantics; no third-party source was modified or copied.
 
-The actual plan contained two operations:
+## 8. Feature Tree
 
-1. `base_extrude`: centred 100 × 60 mm rectangle on `Front Plane`, 40 mm depth.
-2. `cut_extrude_through_circle`: Ø20 circle at internal (0,0), through all.
+Save/reopen inspection contains `BaseBlock` (`Extrusion`) and `ThroughSlot_L40_W20` (`ICE`) plus their sketches. Both named features persist after reopening.
 
-This plan is serializable and backend-neutral. It can later receive a FreeCAD/Fusion/Inventor backend without changing parsing or inference.
+## 9. B-Rep result
 
-## 6. Benchmark 001
+PASS: envelope 100 × 60 × 20 mm; two internal semicylindrical end walls at R10; centre spacing 20 mm; overall slot extent 40 mm; axes parallel to cut Z; two internal planar side walls at Y=−10/+10 mm with 20 mm spacing and about 400 mm² each. Through state passes only from combined creation evidence, persisted Feature Tree and full-depth topology—not axial length alone.
 
-Input: 100 × 60 × 40 block with one centred Ø20 through-hole. Result: **PASS**.
+## 10. Level 1
 
-- Input consistency: all three projection dimension correspondences passed at 0.01 mm tolerance.
-- Feature inference: BaseBlock 100/60/40 and one confirmed `through_hole`.
-- SolidWorks model: [case_001_block_hole.sldprt](results/case_001_block_hole/case_001_block_hole.sldprt).
-- Feature Tree: `BaseBlock` (`Extrusion`) and `ThroughHole_D20` (`ICE`).
-- B-Rep: 100.0 × 60.0 × 40.0 mm, one internal Ø20.0 cylindrical face, axial length 40.0 mm.
+PASS: Front 100×60, Top 100×20, side 20×60; slot length/width/centre invariants and three generated drawing views all match.
 
-## 7. Benchmark 002
+## 11. Level 2A
 
-Implemented and actually executed: [case_002_step_block.json](benchmarks/case_002_step_block.json) → [result](results/case_002_step_block/benchmark_results.json).
+PASS. Actual front drawing extraction contains six lines and two R10 semicircular arcs. Line support IoU and arc angular IoU are 1.0 with zero missing span, overflow, gap or endpoint error. The ARC matcher groups by circle support and compares unioned angular intervals, so one 180° arc equals two contiguous 90° arcs while retaining `SEGMENTATION_DIFFERENT`.
 
-- Base: 100 × 60 × 20 mm; centred boss: 60 × 40 × 20 mm; total height: 40 mm; centred Ø20 through-hole.
-- Multi-view boss rule requires `visible_step_in_front`, `reduced_width_in_top`, and `height_transition_in_left`; insufficient evidence returns `AMBIGUOUS` (`boss_or_recess`).
-- Actual Feature Tree: `BaseBlock`, `Plane_Base_Top`, `TopBoss`, `Plane_Boss_Top`, `ThroughHole_D20`.
-- Actual B-Rep: 100 × 60 × 40 mm envelope and one internal Ø20 cylinder of 40 mm axial length. Save/reopen, drawing creation, and Level 1 invariants passed.
-- The two reference planes are a minimal local compatibility supplement because the third-party backend does not expose a one-call stepped-boss operation. They are recorded as `UPSTREAM_GAP`, not claimed as an upstream capability.
+## 12. Level 2B
 
-## 8. Benchmark 003
+PASS using only real `HLR_CAPTURE` and `HLV_MINUS_HLR` provenance. Expected-vs-actual hidden line supports pass at IoU 1.0: Front 0/0, Top 4/4, side 2/2.
 
-Not implemented or run in this task. `inference/slot_inference.py` is intentionally a no-op placeholder; a slot has not been inferred or modeled.
+## 13. UNKNOWN count
 
-## 9. SolidWorks execution result
+`unknown_projected_primitive_count = 0`. Slot geometry does not create a centre mark or centreline annotation, and none was required.
 
-The backend reused only existing project interfaces:
+## 14. Negative tests
 
-- `SolidWorksSession.new_part/save/open/new_drawing`
-- `sw_part.sketch/sketch_rectangle/extrude_boss`
-- `sw_hole_features.create_through_hole`
-- `sw_review.collect_model_summary/collect_geometry_measurements/run_review`
-- `sw_drawing.create_standard_views_with_projection/inspect_drawing_structure`
+All ten required guards pass: missing orthogonal depth → AMBIGUOUS; 20/18 width conflict → INPUT_INCONSISTENT; R10/R9 → INPUT_INCONSISTENT; non-tangent junction → INPUT_INCONSISTENT; open contour → INPUT_INCONSISTENT; unresolved blind/through → AMBIGUOUS; split arc support → equivalent; true angular gap → FAIL; true overflow → FAIL; wrong centre → INPUT_INCONSISTENT.
 
-It did not add a new COM connection, drawing, or B-Rep wrapper. The regenerated drawing is [case_001_block_hole.slddrw](results/case_001_block_hole/case_001_block_hole.slddrw).
+## 15. B001 regression
 
-## 10. B-Rep / Bounding Box validation
+Real SW2024 rerun: Backend PASS, B-Rep PASS, Level 1 PASS, Level 2A PASS, Level 2B PASS, UNKNOWN 0.
 
-`ReconstructionValidator` passed all checks:
+## 16. B002 regression
 
-- bounding box matches 100 × 60 × 40 mm;
-- Feature Tree contains base extrusion;
-- Feature Tree contains named hole cut;
-- B-Rep contains the expected Ø20 internal cylinder.
+Real SW2024 rerun: Backend PASS, B-Rep PASS, Level 1 PASS, Level 2A PASS, Level 2B PASS, UNKNOWN 0.
 
-The project B-Rep reader reports through state as `unknown` by design; through status is established by `create_through_hole` creation evidence plus the 40 mm cylindrical length.
+## 17. Full pytest result
 
-## 11. 2D → 3D → 2D round-trip validation
+Final `python -m pytest -v`: **517 passed, 15 skipped, 2 deselected, 0 failed** in 33.65 s. The project-standard command remains `python -m pytest`.
 
-The backend regenerated a third-angle SLDDRW with Front, Top, and Right views (the current drawing API labels the side view as `right`; the structured input calls the corresponding depth/height view `left`). The drawing structure reports three views and 1:2 scale.
+## 18. Modified areas
 
-The v0.1 round trip passed these structural checks:
+Changes are isolated to the reconstruction experiment, HLV/HLR experiment, B003 benchmark/audit, tests and generated evidence. External `wzyn20051216/solidworks-automation-skill` remains an execution dependency only.
 
-- Front 100 × 60;
-- Top 100 × 40;
-- side 40 × 60;
-- Ø20 at input drawing coordinate (50,30);
-- regenerated drawing contains three actual SolidWorks views.
+## 19. Commits
 
-Level 1 remains PASS for both cases. Level 2 calls real SW2024 `IView.GetPolyLinesAndCurves(0)` using an `IDrawingDoc`/`IView` typed wrapper generated from the locally installed SolidWorks type library. It obtains actual projected polylines (including front-view circular-edge tessellation) in model metres. The tested API output is already independent of the 1:2 sheet scale, so the extractor converts metres to millimetres and removes only canonical bounding-box translation; it does not apply the scale a second time.
+Small commits on `feat/benchmark-003-slot` record contract/schema/inference, adapter/B-Rep, ARC/semantic roundtrip, and report/evidence. No merge or tag is performed in this task.
 
-The actual response in this run does **not** expose a reliable hidden/visible line-style discriminator, nor centre-mark entities; centre marks are annotations rather than model-edge polylines. Therefore Level 2 is deliberately `PARTIAL`, never PASS: required hidden-line semantic matching cannot be truthfully evaluated. Primitive canonicalisation and tolerance matcher are present and report precision/recall/missing/extra, but benchmark input convention versus API orientation still needs calibrated mapping before visible-line scores are meaningful.
+## 20. Limitations
 
-## 12. Drawing Geometry Extraction and Level 2 limitation
+Only structured input and one centred X-major straight through slot are verified. Blind slots, arbitrary slot orientation, multiple slots, slot dimensions/annotations, OCR/image parsing and generalized sketch inference remain unsupported. The upstream slot helper’s SW2024 width semantics remain a documented gap. The B-Rep half-cylinder axial metric requires semicircle-aware interpretation.
 
-`drawing/drawing_geometry_extractor.py` is a temporary main-project adapter for the explicit `UPSTREAM_GAP` (no upstream projected-primitive extractor). It uses only real SolidWorks 2024 API output, not model B-Rep or raster data. The failed probes are preserved in code history: dynamic `IModelDoc2` did not expose `GetCurrentSheet`/`GetFirstView`; typed wrappers generated with `makepy` were required. `GetVisibleEntities*` was rejected for this task because it returns model topology, not drawing-space primitives.
+## 21. Final decision
 
-## 13. Negative tests
+**B — the original B003 projection reference was invalid, an evidence-backed correction was archived/audited, and the corrected benchmark now passes the complete quality gate.**
 
-Benchmark 002 executed all requested guards:
-
-- Front width 100 / Top width 95 → `INPUT_INCONSISTENT`.
-- Only a front step clue → `AMBIGUOUS` (`boss_or_recess`).
-- Removed Top hole hidden-line evidence → `AMBIGUOUS`.
-
-## 14. Currently supported features
-
-- Structured standard orthographic dimensions.
-- Rectangular base block.
-- One or more Front-view circles only when two orthogonal hidden-line evidence sets confirm a Z-axis through-hole.
-- Base extrusion and through circular cut.
-- Input consistency blocking, model reopening, Feature Tree/B-Rep validation, and structural drawing regeneration.
-
-## 15. Currently unsupported features
-
-- SVG/DXF and PNG/JPG input parsing.
-- OCR, image segmentation, line type classification, scale recovery.
-- Blind holes, slots, symmetry inference, revolve inference; only the constrained centred boss rule is implemented.
-- Full first-angle positioning semantics in the round-trip comparator.
-- Reliable hidden/centre-line semantic extraction and calibrated orientation mapping for direct linework comparison.
-- Pixel-level comparison, dimension placement, complete drawing quality gate.
-
-## 16. Ambiguity handling
-
-The system does not guess. A front circle alone is ambiguous between a hole and a cylindrical boss/recess. Missing orthogonal hidden-line evidence results in:
-
-```json
-{"status":"AMBIGUOUS","candidates":["hole_or_cylindrical_boss"],
- "reason":"insufficient evidence from top and left views"}
-```
-
-An inconsistent set of three extents results in `FAIL` / `INPUT_INCONSISTENT` before any SolidWorks document is created.
-
-Both guards were executed: removing Top hidden-line evidence produced `AMBIGUOUS`; changing Top width from 100 to 99 mm produced `INPUT_INCONSISTENT`.
-
-## 17. Reusable third-party solidworks-automation-skill capabilities
-
-- Native document/session management and reopening.
-- Sketch rectangle/circle, base extrusion, through cut.
-- SLDPRT save and Feature Tree enumeration.
-- B-Rep envelope/internal cylinder measurement.
-- Native standard three-view creation and drawing structure inspection.
-- Review previews and structured review reports.
-
-## 18. Capabilities that must be developed in solidworks-main-skill
-
-- Vector/image source parsing into `ProjectionGraph`.
-- Projection correspondence matching beyond dimensions.
-- Feature candidate ranking for holes/bosses/blind holes/steps/slots.
-- FeatureGraph-to-plan rules for additional feature types.
-- Generated drawing view line/arc/hidden-line extraction.
-- Actual input-vs-generated geometric correspondence and visual/dimension comparison.
-- Layout-aware drawing regeneration, because the existing drawing subsystem remains `pilot`.
-
-## Final decision
-
-**B. Benchmark 002 reconstruction is feasible, but Drawing Geometry Extraction has a critical semantic gap.** Both Benchmarks reconstruct actual SLDPRT/SLDDRW and pass B-Rep plus Level 1 validation. The Level 2 API probe is real and reusable, but it cannot yet distinguish hidden lines or centre lines, and its orientation mapping is not calibrated. Consequently neither benchmark is reported as a vector-geometry closed-loop PASS.
+B001, B002 and corrected B003 each pass real SolidWorks Backend, save/reopen, Feature Tree/B-Rep, Level 1, Level 2A and Level 2B with UNKNOWN=0.

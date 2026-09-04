@@ -56,46 +56,34 @@
       ],
       "lines": [
         {
-          "x1": 80.0,
-          "y1": 50.0,
-          "x2": 20.0,
-          "y2": 50.0
+          "x1": 60.0,
+          "y1": 40.0,
+          "x2": 40.0,
+          "y2": 40.0
         },
         {
-          "x1": 20.0,
-          "y1": 50.0,
-          "x2": 20.0,
-          "y2": 10.0
-        },
-        {
-          "x1": 20.0,
-          "y1": 10.0,
-          "x2": 80.0,
-          "y2": 10.0
-        },
-        {
-          "x1": 80.0,
-          "y1": 10.0,
-          "x2": 80.0,
-          "y2": 50.0
-        },
-        {
-          "x1": 0.0,
-          "y1": 0.0,
-          "x2": 100.0,
-          "y2": 0.0
-        },
-        {
-          "x1": 0.0,
-          "y1": 60.0,
-          "x2": 0.0,
-          "y2": 0.0
+          "x1": 40.0,
+          "y1": 20.0,
+          "x2": 60.0,
+          "y2": 20.0
         },
         {
           "x1": 100.0,
           "y1": 60.0,
           "x2": 0.0,
           "y2": 60.0
+        },
+        {
+          "x1": 0.0,
+          "y1": 60.0,
+          "x2": 0.0,
+          "y2": 0.0
+        },
+        {
+          "x1": 0.0,
+          "y1": 0.0,
+          "x2": 100.0,
+          "y2": 0.0
         },
         {
           "x1": 100.0,
@@ -104,14 +92,25 @@
           "y2": 60.0
         }
       ],
-      "circles": [
+      "circles": [],
+      "arcs": [
         {
-          "x": 50.0,
+          "x": 60.0,
           "y": 30.0,
-          "diameter": 19.99999999999998
+          "radius": 9.999999999999993,
+          "start_angle_deg": 270.0,
+          "end_angle_deg": 90.0,
+          "sweep_direction": "CCW"
+        },
+        {
+          "x": 40.0,
+          "y": 30.0,
+          "radius": 9.999999999999993,
+          "start_angle_deg": 90.0,
+          "end_angle_deg": 270.0,
+          "sweep_direction": "CCW"
         }
       ],
-      "arcs": [],
       "unclassified_polylines": [],
       "transform": {
         "source_units": "SolidWorks projected model metres",
@@ -136,64 +135,70 @@
       ],
       "outline_m": [
         0.033547,
-        0.15840199999999993,
+        0.16340199999999994,
         0.092183,
-        0.18703800000000004
+        0.18203800000000003
       ],
       "lines": [
         {
-          "x1": 100.0,
-          "y1": 20.0,
-          "x2": 0.0,
-          "y2": 20.0
-        },
-        {
-          "x1": 100.0,
-          "y1": 40.0,
-          "x2": 0.0,
-          "y2": 40.0
-        },
-        {
-          "x1": 100.0,
-          "y1": 40.0,
-          "x2": 100.0,
-          "y2": 20.0
-        },
-        {
           "x1": 0.0,
-          "y1": 40.0,
+          "y1": 20.0,
+          "x2": 0.0,
+          "y2": 0.0
+        },
+        {
+          "x1": 100.0,
+          "y1": 20.0,
           "x2": 0.0,
           "y2": 20.0
         },
         {
-          "x1": 80.0,
+          "x1": 100.0,
           "y1": 0.0,
-          "x2": 20.0,
+          "x2": 0.0,
           "y2": 0.0
         },
         {
-          "x1": 80.0,
+          "x1": 100.0,
           "y1": 20.0,
-          "x2": 80.0,
+          "x2": 100.0,
           "y2": 0.0
         },
         {
-          "x1": 20.0,
+          "x1": 40.0,
           "y1": 20.0,
-          "x2": 20.0,
+          "x2": 40.0,
+          "y2": 0.0
+        },
+        {
+          "x1": 40.0,
+          "y1": 20.0,
+          "x2": 40.0,
           "y2": 0.0
         },
         {
           "x1": 60.0,
-          "y1": 3.552713678800501e-15,
+          "y1": 20.0,
           "x2": 60.0,
-          "y2": 40.0
+          "y2": 0.0
         },
         {
-          "x1": 40.0,
-          "y1": 40.0,
-          "x2": 40.0,
-          "y2": 3.552713678800501e-15
+          "x1": 60.0,
+          "y1": 20.0,
+          "x2": 60.0,
+          "y2": 0.0
+        },
+        {
+          "x1": 30.0,
+          "y1": 20.0,
+          "x2": 30.0,
+          "y2": 0.0
+        },
+        {
+          "x1": 70.0,
+          "y1": 0.0,
+          "x2": 70.0,
+          "y2": 20.0
         }
       ],
       "circles": [],
@@ -208,7 +213,7 @@
         "axis_flip": false,
         "bounding_box_origin_removed_mm": [
           -50.0,
-          -20.0
+          -10.0
         ]
       }
     },
@@ -221,64 +226,46 @@
         0.08635999999999999
       ],
       "outline_m": [
-        0.1463369999999999,
+        0.15133699999999992,
         0.06704199999999999,
-        0.17497300000000007,
+        0.16997300000000007,
         0.105678
       ],
       "lines": [
         {
-          "x1": 40.0,
+          "x1": 20.0,
           "y1": 60.0,
+          "x2": 0.0,
+          "y2": 60.0
+        },
+        {
+          "x1": 20.0,
+          "y1": 0.0,
           "x2": 20.0,
           "y2": 60.0
         },
         {
-          "x1": 40.0,
+          "x1": 20.0,
           "y1": 0.0,
-          "x2": 40.0,
-          "y2": 60.0
-        },
-        {
-          "x1": 40.0,
-          "y1": 0.0,
-          "x2": 20.0,
+          "x2": 0.0,
           "y2": 0.0
         },
         {
-          "x1": 20.0,
+          "x1": 0.0,
           "y1": 0.0,
-          "x2": 20.0,
+          "x2": 0.0,
           "y2": 60.0
         },
         {
           "x1": 20.0,
-          "y1": 10.0,
-          "x2": 0.0,
-          "y2": 10.0
-        },
-        {
-          "x1": 0.0,
-          "y1": 10.0,
-          "x2": 0.0,
-          "y2": 50.0
-        },
-        {
-          "x1": 20.0,
-          "y1": 50.0,
-          "x2": 0.0,
-          "y2": 50.0
-        },
-        {
-          "x1": 3.552713678800501e-15,
           "y1": 20.0,
-          "x2": 40.0,
+          "x2": 0.0,
           "y2": 20.0
         },
         {
-          "x1": 40.0,
+          "x1": 20.0,
           "y1": 40.0,
-          "x2": 3.552713678800501e-15,
+          "x2": 0.0,
           "y2": 40.0
         }
       ],
@@ -293,7 +280,7 @@
         "scale_removed": false,
         "axis_flip": false,
         "bounding_box_origin_removed_mm": [
-          -20.0,
+          -10.0,
           -30.0
         ]
       }
@@ -316,46 +303,34 @@
       ],
       "lines": [
         {
-          "x1": 80.0,
-          "y1": 50.0,
-          "x2": 20.0,
-          "y2": 50.0
+          "x1": 60.0,
+          "y1": 40.0,
+          "x2": 40.0,
+          "y2": 40.0
         },
         {
-          "x1": 20.0,
-          "y1": 50.0,
-          "x2": 20.0,
-          "y2": 10.0
-        },
-        {
-          "x1": 20.0,
-          "y1": 10.0,
-          "x2": 80.0,
-          "y2": 10.0
-        },
-        {
-          "x1": 80.0,
-          "y1": 10.0,
-          "x2": 80.0,
-          "y2": 50.0
-        },
-        {
-          "x1": 0.0,
-          "y1": 0.0,
-          "x2": 100.0,
-          "y2": 0.0
-        },
-        {
-          "x1": 0.0,
-          "y1": 60.0,
-          "x2": 0.0,
-          "y2": 0.0
+          "x1": 40.0,
+          "y1": 20.0,
+          "x2": 60.0,
+          "y2": 20.0
         },
         {
           "x1": 100.0,
           "y1": 60.0,
           "x2": 0.0,
           "y2": 60.0
+        },
+        {
+          "x1": 0.0,
+          "y1": 60.0,
+          "x2": 0.0,
+          "y2": 0.0
+        },
+        {
+          "x1": 0.0,
+          "y1": 0.0,
+          "x2": 100.0,
+          "y2": 0.0
         },
         {
           "x1": 100.0,
@@ -364,14 +339,25 @@
           "y2": 60.0
         }
       ],
-      "circles": [
+      "circles": [],
+      "arcs": [
         {
-          "x": 50.0,
+          "x": 60.0,
           "y": 30.0,
-          "diameter": 19.99999999999998
+          "radius": 9.999999999999993,
+          "start_angle_deg": 270.0,
+          "end_angle_deg": 90.0,
+          "sweep_direction": "CCW"
+        },
+        {
+          "x": 40.0,
+          "y": 30.0,
+          "radius": 9.999999999999993,
+          "start_angle_deg": 90.0,
+          "end_angle_deg": 270.0,
+          "sweep_direction": "CCW"
         }
       ],
-      "arcs": [],
       "unclassified_polylines": [],
       "transform": {
         "source_units": "SolidWorks projected model metres",
@@ -396,64 +382,70 @@
       ],
       "outline_m": [
         0.033547,
-        0.15840199999999993,
+        0.16340199999999994,
         0.092183,
-        0.18703800000000004
+        0.18203800000000003
       ],
       "lines": [
         {
-          "x1": 100.0,
-          "y1": 20.0,
-          "x2": 0.0,
-          "y2": 20.0
-        },
-        {
-          "x1": 100.0,
-          "y1": 40.0,
-          "x2": 0.0,
-          "y2": 40.0
-        },
-        {
-          "x1": 100.0,
-          "y1": 40.0,
-          "x2": 100.0,
-          "y2": 20.0
-        },
-        {
           "x1": 0.0,
-          "y1": 40.0,
+          "y1": 20.0,
+          "x2": 0.0,
+          "y2": 0.0
+        },
+        {
+          "x1": 100.0,
+          "y1": 20.0,
           "x2": 0.0,
           "y2": 20.0
         },
         {
-          "x1": 80.0,
+          "x1": 100.0,
           "y1": 0.0,
-          "x2": 20.0,
+          "x2": 0.0,
           "y2": 0.0
         },
         {
-          "x1": 80.0,
+          "x1": 100.0,
           "y1": 20.0,
-          "x2": 80.0,
+          "x2": 100.0,
           "y2": 0.0
         },
         {
-          "x1": 20.0,
+          "x1": 40.0,
           "y1": 20.0,
-          "x2": 20.0,
+          "x2": 40.0,
+          "y2": 0.0
+        },
+        {
+          "x1": 40.0,
+          "y1": 20.0,
+          "x2": 40.0,
           "y2": 0.0
         },
         {
           "x1": 60.0,
-          "y1": 3.552713678800501e-15,
+          "y1": 20.0,
           "x2": 60.0,
-          "y2": 40.0
+          "y2": 0.0
         },
         {
-          "x1": 40.0,
-          "y1": 40.0,
-          "x2": 40.0,
-          "y2": 3.552713678800501e-15
+          "x1": 60.0,
+          "y1": 20.0,
+          "x2": 60.0,
+          "y2": 0.0
+        },
+        {
+          "x1": 30.0,
+          "y1": 20.0,
+          "x2": 30.0,
+          "y2": 0.0
+        },
+        {
+          "x1": 70.0,
+          "y1": 0.0,
+          "x2": 70.0,
+          "y2": 20.0
         }
       ],
       "circles": [],
@@ -468,7 +460,7 @@
         "axis_flip": false,
         "bounding_box_origin_removed_mm": [
           -50.0,
-          -20.0
+          -10.0
         ]
       }
     },
@@ -481,64 +473,46 @@
         0.08635999999999999
       ],
       "outline_m": [
-        0.1463369999999999,
+        0.15133699999999992,
         0.06704199999999999,
-        0.17497300000000007,
+        0.16997300000000007,
         0.105678
       ],
       "lines": [
         {
-          "x1": 40.0,
+          "x1": 20.0,
           "y1": 60.0,
+          "x2": 0.0,
+          "y2": 60.0
+        },
+        {
+          "x1": 20.0,
+          "y1": 0.0,
           "x2": 20.0,
           "y2": 60.0
         },
         {
-          "x1": 40.0,
+          "x1": 20.0,
           "y1": 0.0,
-          "x2": 40.0,
-          "y2": 60.0
-        },
-        {
-          "x1": 40.0,
-          "y1": 0.0,
-          "x2": 20.0,
+          "x2": 0.0,
           "y2": 0.0
         },
         {
-          "x1": 20.0,
+          "x1": 0.0,
           "y1": 0.0,
-          "x2": 20.0,
+          "x2": 0.0,
           "y2": 60.0
         },
         {
           "x1": 20.0,
-          "y1": 10.0,
-          "x2": 0.0,
-          "y2": 10.0
-        },
-        {
-          "x1": 0.0,
-          "y1": 10.0,
-          "x2": 0.0,
-          "y2": 50.0
-        },
-        {
-          "x1": 20.0,
-          "y1": 50.0,
-          "x2": 0.0,
-          "y2": 50.0
-        },
-        {
-          "x1": 3.552713678800501e-15,
           "y1": 20.0,
-          "x2": 40.0,
+          "x2": 0.0,
           "y2": 20.0
         },
         {
-          "x1": 40.0,
+          "x1": 20.0,
           "y1": 40.0,
-          "x2": 3.552713678800501e-15,
+          "x2": 0.0,
           "y2": 40.0
         }
       ],
@@ -553,7 +527,7 @@
         "scale_removed": false,
         "axis_flip": false,
         "bounding_box_origin_removed_mm": [
-          -20.0,
+          -10.0,
           -30.0
         ]
       }
@@ -565,12 +539,12 @@
       "lines": {
         "status": "PASS",
         "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
-        "expected": 8,
-        "actual": 8,
-        "expected_support_length_mm": 520.0,
-        "actual_support_length_mm": 520.0,
-        "intersection_length_mm": 520.0,
-        "union_length_mm": 520.0,
+        "expected": 6,
+        "actual": 6,
+        "expected_support_length_mm": 360.0,
+        "actual_support_length_mm": 360.0,
+        "intersection_length_mm": 360.0,
+        "union_length_mm": 360.0,
         "support_iou": 1.0,
         "missing_length_mm": 0.0,
         "overflow_length_mm": 0.0,
@@ -594,45 +568,22 @@
               1.0,
               -0.0
             ],
-            "normal_offset_mm": 50.0,
+            "normal_offset_mm": 40.0,
             "expected_intervals": [
               [
-                20.0,
-                80.0
+                40.0,
+                60.0
               ]
             ],
             "actual_intervals": [
               [
-                20.0,
-                80.0
+                40.0,
+                60.0
               ]
             ],
             "expected_segment_count": 1,
             "actual_segment_count": 1,
-            "intersection_length_mm": 60.0,
-            "max_gap_mm": 0.0
-          },
-          {
-            "direction": [
-              -0.0,
-              1.0
-            ],
-            "normal_offset_mm": -20.0,
-            "expected_intervals": [
-              [
-                10.0,
-                50.0
-              ]
-            ],
-            "actual_intervals": [
-              [
-                10.0,
-                50.0
-              ]
-            ],
-            "expected_segment_count": 1,
-            "actual_segment_count": 1,
-            "intersection_length_mm": 40.0,
+            "intersection_length_mm": 20.0,
             "max_gap_mm": 0.0
           },
           {
@@ -640,53 +591,30 @@
               1.0,
               0.0
             ],
-            "normal_offset_mm": 10.0,
+            "normal_offset_mm": 20.0,
             "expected_intervals": [
               [
-                20.0,
-                80.0
+                40.0,
+                60.0
               ]
             ],
             "actual_intervals": [
               [
-                20.0,
-                80.0
+                40.0,
+                60.0
               ]
             ],
             "expected_segment_count": 1,
             "actual_segment_count": 1,
-            "intersection_length_mm": 60.0,
-            "max_gap_mm": 0.0
-          },
-          {
-            "direction": [
-              0.0,
-              1.0
-            ],
-            "normal_offset_mm": -80.0,
-            "expected_intervals": [
-              [
-                10.0,
-                50.0
-              ]
-            ],
-            "actual_intervals": [
-              [
-                10.0,
-                50.0
-              ]
-            ],
-            "expected_segment_count": 1,
-            "actual_segment_count": 1,
-            "intersection_length_mm": 40.0,
+            "intersection_length_mm": 20.0,
             "max_gap_mm": 0.0
           },
           {
             "direction": [
               1.0,
-              0.0
+              -0.0
             ],
-            "normal_offset_mm": 0.0,
+            "normal_offset_mm": 60.0,
             "expected_intervals": [
               [
                 0.0,
@@ -730,9 +658,9 @@
           {
             "direction": [
               1.0,
-              -0.0
+              0.0
             ],
-            "normal_offset_mm": 60.0,
+            "normal_offset_mm": 0.0,
             "expected_intervals": [
               [
                 0.0,
@@ -780,25 +708,20 @@
       },
       "circles": {
         "status": "PASS",
-        "expected": 1,
-        "actual": 1,
-        "matched": 1,
+        "expected": 0,
+        "actual": 0,
+        "matched": 0,
         "missing": 0,
         "extra": 0,
         "precision": 1.0,
         "recall": 1.0,
-        "pairs": [
-          [
-            0,
-            0
-          ]
-        ]
+        "pairs": []
       },
       "arcs": {
         "status": "PASS",
         "mode": "CIRCLE_SUPPORT_ANGULAR_INTERVAL_COVERAGE",
-        "expected": 0,
-        "actual": 0,
+        "expected": 2,
+        "actual": 2,
         "angular_iou": 1.0,
         "missing_angular_span_deg": 0.0,
         "overflow_angular_span_deg": 0.0,
@@ -818,7 +741,62 @@
           "arc_max_gap_deg": 0.25,
           "arc_max_overflow_ratio": 0.02
         },
-        "supports": []
+        "supports": [
+          {
+            "center_mm": [
+              60.0,
+              30.0
+            ],
+            "radius_mm": 9.999999999999993,
+            "expected_intervals_deg": [
+              [
+                0.0,
+                90.0
+              ],
+              [
+                270.0,
+                360.0
+              ]
+            ],
+            "actual_intervals_deg": [
+              [
+                0.0,
+                90.0
+              ],
+              [
+                270.0,
+                360.0
+              ]
+            ],
+            "expected_segment_count": 1,
+            "actual_segment_count": 1,
+            "intersection_deg": 180.0,
+            "max_gap_deg": 0.0
+          },
+          {
+            "center_mm": [
+              40.0,
+              30.0
+            ],
+            "radius_mm": 9.999999999999993,
+            "expected_intervals_deg": [
+              [
+                90.0,
+                270.0
+              ]
+            ],
+            "actual_intervals_deg": [
+              [
+                90.0,
+                270.0
+              ]
+            ],
+            "expected_segment_count": 1,
+            "actual_segment_count": 1,
+            "intersection_deg": 180.0,
+            "max_gap_deg": 0.0
+          }
+        ]
       },
       "position_stable": true,
       "scale_stable": true
@@ -828,12 +806,12 @@
       "lines": {
         "status": "PASS",
         "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
-        "expected": 9,
-        "actual": 9,
-        "expected_support_length_mm": 420.0,
-        "actual_support_length_mm": 420.0,
-        "intersection_length_mm": 420.0,
-        "union_length_mm": 420.0,
+        "expected": 10,
+        "actual": 10,
+        "expected_support_length_mm": 320.0,
+        "actual_support_length_mm": 320.0,
+        "intersection_length_mm": 320.0,
+        "union_length_mm": 320.0,
         "support_iou": 1.0,
         "missing_length_mm": 0.0,
         "overflow_length_mm": 0.0,
@@ -852,6 +830,29 @@
           "line_distance_tolerance_mm": 0.1
         },
         "supports": [
+          {
+            "direction": [
+              -0.0,
+              1.0
+            ],
+            "normal_offset_mm": -0.0,
+            "expected_intervals": [
+              [
+                0.0,
+                20.0
+              ]
+            ],
+            "actual_intervals": [
+              [
+                0.0,
+                20.0
+              ]
+            ],
+            "expected_segment_count": 1,
+            "actual_segment_count": 1,
+            "intersection_length_mm": 20.0,
+            "max_gap_mm": 0.0
+          },
           {
             "direction": [
               1.0,
@@ -880,7 +881,7 @@
               1.0,
               -0.0
             ],
-            "normal_offset_mm": 40.0,
+            "normal_offset_mm": 0.0,
             "expected_intervals": [
               [
                 0.0,
@@ -906,75 +907,6 @@
             "normal_offset_mm": -100.0,
             "expected_intervals": [
               [
-                20.0,
-                40.0
-              ]
-            ],
-            "actual_intervals": [
-              [
-                20.0,
-                40.0
-              ]
-            ],
-            "expected_segment_count": 1,
-            "actual_segment_count": 1,
-            "intersection_length_mm": 20.0,
-            "max_gap_mm": 0.0
-          },
-          {
-            "direction": [
-              -0.0,
-              1.0
-            ],
-            "normal_offset_mm": -0.0,
-            "expected_intervals": [
-              [
-                20.0,
-                40.0
-              ]
-            ],
-            "actual_intervals": [
-              [
-                20.0,
-                40.0
-              ]
-            ],
-            "expected_segment_count": 1,
-            "actual_segment_count": 1,
-            "intersection_length_mm": 20.0,
-            "max_gap_mm": 0.0
-          },
-          {
-            "direction": [
-              1.0,
-              -0.0
-            ],
-            "normal_offset_mm": 0.0,
-            "expected_intervals": [
-              [
-                20.0,
-                80.0
-              ]
-            ],
-            "actual_intervals": [
-              [
-                20.0,
-                80.0
-              ]
-            ],
-            "expected_segment_count": 1,
-            "actual_segment_count": 1,
-            "intersection_length_mm": 60.0,
-            "max_gap_mm": 0.0
-          },
-          {
-            "direction": [
-              -0.0,
-              1.0
-            ],
-            "normal_offset_mm": -80.0,
-            "expected_intervals": [
-              [
                 0.0,
                 20.0
               ]
@@ -995,7 +927,53 @@
               -0.0,
               1.0
             ],
-            "normal_offset_mm": -20.0,
+            "normal_offset_mm": -40.0,
+            "expected_intervals": [
+              [
+                0.0,
+                20.0
+              ]
+            ],
+            "actual_intervals": [
+              [
+                0.0,
+                20.0
+              ]
+            ],
+            "expected_segment_count": 2,
+            "actual_segment_count": 2,
+            "intersection_length_mm": 20.0,
+            "max_gap_mm": 0.0
+          },
+          {
+            "direction": [
+              -0.0,
+              1.0
+            ],
+            "normal_offset_mm": -60.0,
+            "expected_intervals": [
+              [
+                0.0,
+                20.0
+              ]
+            ],
+            "actual_intervals": [
+              [
+                0.0,
+                20.0
+              ]
+            ],
+            "expected_segment_count": 2,
+            "actual_segment_count": 2,
+            "intersection_length_mm": 20.0,
+            "max_gap_mm": 0.0
+          },
+          {
+            "direction": [
+              -0.0,
+              1.0
+            ],
+            "normal_offset_mm": -30.0,
             "expected_intervals": [
               [
                 0.0,
@@ -1018,45 +996,22 @@
               0.0,
               1.0
             ],
-            "normal_offset_mm": -60.0,
+            "normal_offset_mm": -70.0,
             "expected_intervals": [
               [
-                3.552713678800501e-15,
-                40.0
+                0.0,
+                20.0
               ]
             ],
             "actual_intervals": [
               [
-                3.552713678800501e-15,
-                40.0
+                0.0,
+                20.0
               ]
             ],
             "expected_segment_count": 1,
             "actual_segment_count": 1,
-            "intersection_length_mm": 40.0,
-            "max_gap_mm": 0.0
-          },
-          {
-            "direction": [
-              -0.0,
-              1.0
-            ],
-            "normal_offset_mm": -40.0,
-            "expected_intervals": [
-              [
-                3.552713678800501e-15,
-                40.0
-              ]
-            ],
-            "actual_intervals": [
-              [
-                3.552713678800501e-15,
-                40.0
-              ]
-            ],
-            "expected_segment_count": 1,
-            "actual_segment_count": 1,
-            "intersection_length_mm": 40.0,
+            "intersection_length_mm": 20.0,
             "max_gap_mm": 0.0
           }
         ],
@@ -1109,12 +1064,12 @@
       "lines": {
         "status": "PASS",
         "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
-        "expected": 9,
-        "actual": 9,
-        "expected_support_length_mm": 320.0,
-        "actual_support_length_mm": 320.0,
-        "intersection_length_mm": 320.0,
-        "union_length_mm": 320.0,
+        "expected": 6,
+        "actual": 6,
+        "expected_support_length_mm": 200.0,
+        "actual_support_length_mm": 200.0,
+        "intersection_length_mm": 200.0,
+        "union_length_mm": 200.0,
         "support_iou": 1.0,
         "missing_length_mm": 0.0,
         "overflow_length_mm": 0.0,
@@ -1141,60 +1096,14 @@
             "normal_offset_mm": 60.0,
             "expected_intervals": [
               [
-                20.0,
-                40.0
-              ]
-            ],
-            "actual_intervals": [
-              [
-                20.0,
-                40.0
-              ]
-            ],
-            "expected_segment_count": 1,
-            "actual_segment_count": 1,
-            "intersection_length_mm": 20.0,
-            "max_gap_mm": 0.0
-          },
-          {
-            "direction": [
-              0.0,
-              1.0
-            ],
-            "normal_offset_mm": -40.0,
-            "expected_intervals": [
-              [
                 0.0,
-                60.0
+                20.0
               ]
             ],
             "actual_intervals": [
               [
                 0.0,
-                60.0
-              ]
-            ],
-            "expected_segment_count": 1,
-            "actual_segment_count": 1,
-            "intersection_length_mm": 60.0,
-            "max_gap_mm": 0.0
-          },
-          {
-            "direction": [
-              1.0,
-              -0.0
-            ],
-            "normal_offset_mm": 0.0,
-            "expected_intervals": [
-              [
-                20.0,
-                40.0
-              ]
-            ],
-            "actual_intervals": [
-              [
-                20.0,
-                40.0
+                20.0
               ]
             ],
             "expected_segment_count": 1,
@@ -1230,7 +1139,7 @@
               1.0,
               -0.0
             ],
-            "normal_offset_mm": 10.0,
+            "normal_offset_mm": 0.0,
             "expected_intervals": [
               [
                 0.0,
@@ -1256,19 +1165,19 @@
             "normal_offset_mm": 0.0,
             "expected_intervals": [
               [
-                10.0,
-                50.0
+                0.0,
+                60.0
               ]
             ],
             "actual_intervals": [
               [
-                10.0,
-                50.0
+                0.0,
+                60.0
               ]
             ],
             "expected_segment_count": 1,
             "actual_segment_count": 1,
-            "intersection_length_mm": 40.0,
+            "intersection_length_mm": 60.0,
             "max_gap_mm": 0.0
           },
           {
@@ -1276,7 +1185,7 @@
               1.0,
               -0.0
             ],
-            "normal_offset_mm": 50.0,
+            "normal_offset_mm": 20.0,
             "expected_intervals": [
               [
                 0.0,
@@ -1297,47 +1206,24 @@
           {
             "direction": [
               1.0,
-              0.0
-            ],
-            "normal_offset_mm": 20.0,
-            "expected_intervals": [
-              [
-                3.552713678800501e-15,
-                40.0
-              ]
-            ],
-            "actual_intervals": [
-              [
-                3.552713678800501e-15,
-                40.0
-              ]
-            ],
-            "expected_segment_count": 1,
-            "actual_segment_count": 1,
-            "intersection_length_mm": 40.0,
-            "max_gap_mm": 0.0
-          },
-          {
-            "direction": [
-              1.0,
               -0.0
             ],
             "normal_offset_mm": 40.0,
             "expected_intervals": [
               [
-                3.552713678800501e-15,
-                40.0
+                0.0,
+                20.0
               ]
             ],
             "actual_intervals": [
               [
-                3.552713678800501e-15,
-                40.0
+                0.0,
+                20.0
               ]
             ],
             "expected_segment_count": 1,
             "actual_segment_count": 1,
-            "intersection_length_mm": 40.0,
+            "intersection_length_mm": 20.0,
             "max_gap_mm": 0.0
           }
         ],

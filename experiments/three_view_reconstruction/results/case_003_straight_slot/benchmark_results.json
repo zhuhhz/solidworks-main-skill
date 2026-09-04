@@ -1,56 +1,192 @@
 {
-  "run_at": "2026-09-04T19:16:57",
-  "case": "case_001_block_hole",
+  "run_at": "2026-09-04T19:21:21",
+  "case": "case_003_straight_slot",
   "projection_graph": {
     "projection": "third_angle",
     "front": {
       "name": "front",
       "horizontal_extent": 100.0,
       "vertical_extent": 60.0,
-      "circles": [
+      "circles": [],
+      "hidden_line_pairs": [],
+      "visible_segments": [
         {
-          "x": 50,
-          "y": 30,
-          "diameter": 20
+          "x1": 0,
+          "y1": 0,
+          "x2": 100,
+          "y2": 0
+        },
+        {
+          "x1": 100,
+          "y1": 0,
+          "x2": 100,
+          "y2": 60
+        },
+        {
+          "x1": 100,
+          "y1": 60,
+          "x2": 0,
+          "y2": 60
+        },
+        {
+          "x1": 0,
+          "y1": 60,
+          "x2": 0,
+          "y2": 0
+        },
+        {
+          "x1": 40,
+          "y1": 20,
+          "x2": 60,
+          "y2": 20
+        },
+        {
+          "x1": 60,
+          "y1": 40,
+          "x2": 40,
+          "y2": 40
         }
       ],
-      "hidden_line_pairs": [],
-      "visible_segments": [],
       "hidden_segments": [],
-      "arcs": [],
+      "arcs": [
+        {
+          "x": 40,
+          "y": 30,
+          "radius": 10,
+          "start_angle_deg": 90.0,
+          "end_angle_deg": 270.0,
+          "sweep_direction": "CCW"
+        },
+        {
+          "x": 60,
+          "y": 30,
+          "radius": 10,
+          "start_angle_deg": 270.0,
+          "end_angle_deg": 90.0,
+          "sweep_direction": "CCW"
+        }
+      ],
       "centerlines": []
     },
     "top": {
       "name": "top",
       "horizontal_extent": 100.0,
-      "vertical_extent": 40.0,
+      "vertical_extent": 20.0,
       "circles": [],
       "hidden_line_pairs": [
         {
           "axis": "x",
-          "offset_1": 20,
-          "offset_2": 40
+          "offset_1": 30,
+          "offset_2": 70
         }
       ],
-      "visible_segments": [],
-      "hidden_segments": [],
+      "visible_segments": [
+        {
+          "x1": 0,
+          "y1": 0,
+          "x2": 100,
+          "y2": 0
+        },
+        {
+          "x1": 100,
+          "y1": 0,
+          "x2": 100,
+          "y2": 20
+        },
+        {
+          "x1": 100,
+          "y1": 20,
+          "x2": 0,
+          "y2": 20
+        },
+        {
+          "x1": 0,
+          "y1": 20,
+          "x2": 0,
+          "y2": 0
+        }
+      ],
+      "hidden_segments": [
+        {
+          "x1": 30,
+          "y1": 0,
+          "x2": 30,
+          "y2": 20
+        },
+        {
+          "x1": 40,
+          "y1": 0,
+          "x2": 40,
+          "y2": 20
+        },
+        {
+          "x1": 60,
+          "y1": 0,
+          "x2": 60,
+          "y2": 20
+        },
+        {
+          "x1": 70,
+          "y1": 0,
+          "x2": 70,
+          "y2": 20
+        }
+      ],
       "arcs": [],
       "centerlines": []
     },
     "left": {
       "name": "left",
-      "horizontal_extent": 40.0,
+      "horizontal_extent": 20.0,
       "vertical_extent": 60.0,
       "circles": [],
       "hidden_line_pairs": [
         {
-          "axis": "z",
+          "axis": "y",
           "offset_1": 20,
           "offset_2": 40
         }
       ],
-      "visible_segments": [],
-      "hidden_segments": [],
+      "visible_segments": [
+        {
+          "x1": 0,
+          "y1": 0,
+          "x2": 20,
+          "y2": 0
+        },
+        {
+          "x1": 20,
+          "y1": 0,
+          "x2": 20,
+          "y2": 60
+        },
+        {
+          "x1": 20,
+          "y1": 60,
+          "x2": 0,
+          "y2": 60
+        },
+        {
+          "x1": 0,
+          "y1": 60,
+          "x2": 0,
+          "y2": 0
+        }
+      ],
+      "hidden_segments": [
+        {
+          "x1": 0,
+          "y1": 20,
+          "x2": 20,
+          "y2": 20
+        },
+        {
+          "x1": 0,
+          "y1": 40,
+          "x2": 20,
+          "y2": 40
+        }
+      ],
       "arcs": [],
       "centerlines": []
     },
@@ -61,12 +197,32 @@
       "left": "Z/Y",
       "internal": "mm; base-block centre origin; +Z is extrude direction"
     },
-    "feature_evidence": null,
+    "feature_evidence": {
+      "straight_slot": {
+        "through_state": "THROUGH",
+        "expected": {
+          "overall_length_mm": 40,
+          "width_mm": 20,
+          "center_mm": [
+            50,
+            30
+          ]
+        }
+      }
+    },
     "center_requirements": [],
-    "reference_integrity": null
+    "reference_integrity": {
+      "status": "PASS",
+      "history_status": "REFERENCE_INVALID",
+      "audit": "docs/B003_REFERENCE_AUDIT.md",
+      "correction": "top HLV reference now includes tangent and end-extreme supports"
+    }
   },
   "reference_integrity": {
-    "status": "UNASSESSED"
+    "status": "PASS",
+    "history_status": "REFERENCE_INVALID",
+    "audit": "docs/B003_REFERENCE_AUDIT.md",
+    "correction": "top HLV reference now includes tangent and end-extreme supports"
   },
   "input_consistency": {
     "status": "PASS",
@@ -86,13 +242,25 @@
       },
       {
         "id": "top.depth_equals_left.depth",
-        "expected_mm": 40.0,
-        "actual_mm": 40.0,
+        "expected_mm": 20.0,
+        "actual_mm": 20.0,
         "passed": true
       }
     ],
     "slot_contract": {
-      "status": "NONE"
+      "status": "PASS",
+      "evidence": [
+        "two_parallel_lines",
+        "two_equal_radius_arcs",
+        "endpoint_continuity",
+        "closed_contour",
+        "tangent_junctions",
+        "width_consistent",
+        "center_consistent",
+        "orthogonal_depth_evidence",
+        "through_state_evidence"
+      ],
+      "confidence": 1.0
     },
     "error_code": null
   },
@@ -100,32 +268,83 @@
     "base_block": {
       "width": 100.0,
       "height": 60.0,
-      "depth": 40.0
+      "depth": 20.0
     },
-    "holes": [
+    "holes": [],
+    "bosses": [],
+    "slots": [
       {
-        "diameter": 20,
-        "center_x": 0.0,
-        "center_y": 0.0,
-        "axis": "Z",
-        "through": true
+        "overall_length_mm": 40.0,
+        "width_mm": 20.0,
+        "radius_mm": 10.0,
+        "center_x_mm": 0.0,
+        "center_y_mm": 0.0,
+        "major_axis": "X",
+        "through": true,
+        "type": "STRAIGHT_SLOT"
       }
     ],
-    "bosses": [],
-    "slots": [],
     "hypotheses": [
       {
-        "feature_type": "through_hole",
-        "confidence": 0.92,
+        "feature_type": "STRAIGHT_SLOT",
+        "confidence": 1.0,
         "evidence": [
-          "circle_in_front_view",
-          "hidden_lines_in_top_view",
-          "hidden_lines_in_left_view"
+          "two_parallel_lines",
+          "two_equal_radius_arcs",
+          "endpoint_continuity",
+          "closed_contour",
+          "tangent_junctions",
+          "width_consistent",
+          "center_consistent",
+          "orthogonal_depth_evidence",
+          "through_state_evidence"
         ],
         "status": "CONFIRMED"
       }
     ],
     "status": "PASS"
+  },
+  "negative_tests": {
+    "single_view_missing_depth": {
+      "expected": "AMBIGUOUS",
+      "actual": "AMBIGUOUS"
+    },
+    "cross_view_width_conflict": {
+      "expected": "INPUT_INCONSISTENT",
+      "actual": "INPUT_INCONSISTENT"
+    },
+    "end_arc_radius_mismatch": {
+      "expected": "INPUT_INCONSISTENT",
+      "actual": "INPUT_INCONSISTENT"
+    },
+    "line_arc_not_tangent": {
+      "expected": "INPUT_INCONSISTENT",
+      "actual": "INPUT_INCONSISTENT"
+    },
+    "open_contour": {
+      "expected": "INPUT_INCONSISTENT",
+      "actual": "INPUT_INCONSISTENT"
+    },
+    "blind_vs_through": {
+      "expected": "AMBIGUOUS",
+      "actual": "AMBIGUOUS"
+    },
+    "arc_split_equivalence": {
+      "expected": "PASS",
+      "actual": "PASS"
+    },
+    "angular_gap": {
+      "expected": "FAIL",
+      "actual": "FAIL"
+    },
+    "arc_overflow": {
+      "expected": "FAIL",
+      "actual": "FAIL"
+    },
+    "wrong_slot_center": {
+      "expected": "INPUT_INCONSISTENT",
+      "actual": "INPUT_INCONSISTENT"
+    }
   },
   "modeling_plan": {
     "operations": [
@@ -137,18 +356,20 @@
           "width_mm": 100.0,
           "height_mm": 60.0
         },
-        "depth_mm": 40.0,
+        "depth_mm": 20.0,
         "direction": null
       },
       {
-        "type": "cut_extrude_through_circle",
+        "type": "cut_extrude_through_slot",
         "sketch_plane": "Front Plane",
         "profile": {
-          "type": "circle",
-          "diameter_mm": 20,
+          "type": "straight_slot",
+          "overall_length_mm": 40.0,
+          "width_mm": 20.0,
+          "radius_mm": 10.0,
           "center_x_mm": 0.0,
           "center_y_mm": 0.0,
-          "plane_offset_mm": 40.0
+          "major_axis": "X"
         },
         "depth_mm": null,
         "direction": "through_all"
@@ -157,39 +378,65 @@
   },
   "solidworks_backend": {
     "status": "PASS",
-    "skill_gaps": [],
+    "skill_gaps": [
+      "UPSTREAM_GAP: corrected create_semicircular_slot width semantics in adapter"
+    ],
     "operations": [
       {
-        "operation": "cut_extrude_through_circle",
+        "operation": "cut_extrude_through_slot",
         "evidence": {
-          "feature_kind": "through",
-          "center_m": [
-            0.0,
+          "feature_kind": "semicircular_slot",
+          "start_mm": [
+            -10.0,
             0.0
           ],
-          "diameter_m": 0.02,
-          "depth_m": null,
+          "end_mm": [
+            10.0,
+            0.0
+          ],
+          "width_mm": 20.0,
+          "depth_mm": null,
           "through": true,
           "plane_name": "Front Plane",
           "feature_names": [
-            "ThroughHole_D20"
+            "ThroughSlot_L40_W20"
           ],
-          "counterbore_diameter_m": null,
-          "counterbore_depth_m": null,
-          "countersink_diameter_m": null,
-          "countersink_angle_deg": null,
-          "center_mm": [
-            0.0,
-            0.0
+          "overall_length_mm": 40.0,
+          "center_to_center_length_mm": 20.0,
+          "sketch_entity_count": 5,
+          "profile_entity_count": 4,
+          "sketch_entities": [
+            {
+              "type": 1,
+              "construction": false
+            },
+            {
+              "type": 1,
+              "construction": false
+            },
+            {
+              "type": 0,
+              "construction": true
+            },
+            {
+              "type": 0,
+              "construction": false
+            },
+            {
+              "type": 0,
+              "construction": false
+            }
           ],
-          "diameter_mm": 20.0
+          "profile_entity_contract": 4,
+          "api_success": true,
+          "upstream_gap": "create_semicircular_slot width semantics produce half requested width on SW2024"
         }
       }
     ],
     "external_backend_path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-automation-skill",
     "model_summary": {
-      "title": "case_001_block_hole.SLDPRT",
-      "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\case_001_block_hole.SLDPRT",
+      "title": "case_003_straight_slot.SLDPRT",
+      "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_003_straight_slot\\case_003_straight_slot.SLDPRT",
       "type": 1,
       "feature_count": 21,
       "features": [
@@ -274,7 +521,7 @@
           "type": "ProfileFeature"
         },
         {
-          "name": "ThroughHole_D20",
+          "name": "ThroughSlot_L40_W20",
           "type": "ICE"
         }
       ]
@@ -285,96 +532,131 @@
       "envelope_mm": {
         "length": 100.0,
         "width": 60.0,
-        "height": 40.0,
+        "height": 20.0,
         "axis_order": "model_xyz"
       },
-      "holes": [
+      "holes": [],
+      "compound_holes": [],
+      "slot_arc_candidates": [
         {
           "diameter_mm": 20.0,
           "position_mm": [
+            -10.0,
             0.0,
-            0.0,
-            -40.0
+            -20.0
           ],
           "axis": [
             -0.0,
             -0.0,
             1.0
           ],
-          "axial_length_mm": 40.0,
+          "axial_length_mm": 10.0,
           "through_state": "unknown",
           "through_evidence": "B-Rep cylinder boundaries cannot distinguish blind from through",
-          "measurement_source": "B-Rep internal cylindrical face"
+          "measurement_source": "B-Rep internal cylindrical face",
+          "classification_reason": "internal cylinder has more than two boundary edges"
+        },
+        {
+          "diameter_mm": 20.0,
+          "position_mm": [
+            10.0,
+            0.0,
+            -20.0
+          ],
+          "axis": [
+            -0.0,
+            -0.0,
+            1.0
+          ],
+          "axial_length_mm": 10.0,
+          "through_state": "unknown",
+          "through_evidence": "B-Rep cylinder boundaries cannot distinguish blind from through",
+          "measurement_source": "B-Rep internal cylindrical face",
+          "classification_reason": "internal cylinder has more than two boundary edges"
         }
       ],
-      "compound_holes": [],
-      "slot_arc_candidates": [],
       "cylindrical_faces": [
         {
           "diameter_mm": 20.0,
           "origin_mm": [
+            -10.0,
             0.0,
-            0.0,
-            -40.0
+            -20.0
           ],
           "axis": [
             -0.0,
             -0.0,
             1.0
           ],
-          "area_mm2": 2513.274123,
-          "axial_length_mm": 40.0,
+          "area_mm2": 628.318531,
+          "axial_length_mm": 10.0,
           "internal": true,
-          "loop_count": 2,
-          "edge_count": 2,
+          "loop_count": 1,
+          "edge_count": 4,
           "body_index": 0,
           "face_index": 6
+        },
+        {
+          "diameter_mm": 20.0,
+          "origin_mm": [
+            10.0,
+            0.0,
+            -20.0
+          ],
+          "axis": [
+            -0.0,
+            -0.0,
+            1.0
+          ],
+          "area_mm2": 628.318531,
+          "axial_length_mm": 10.0,
+          "internal": true,
+          "loop_count": 1,
+          "edge_count": 4,
+          "body_index": 0,
+          "face_index": 8
         }
       ],
       "errors": [],
-      "hole_count": 1,
-      "hole_groups": [
+      "hole_count": 0,
+      "hole_groups": [],
+      "slot_planar_side_candidates": [
         {
-          "position_mm": [
-            0.0,
-            0.0,
-            -40.0
+          "origin_mm": [
+            -10.0,
+            10.0,
+            -20.0
           ],
-          "axis": [
+          "normal": [
             -0.0,
-            -0.0,
-            1.0
+            1.0,
+            0.0
           ],
-          "segment_count": 1,
-          "diameters_mm": [
-            20.0
+          "area_mm2": 400.0,
+          "internal": true,
+          "body_index": 0,
+          "face_index": 7
+        },
+        {
+          "origin_mm": [
+            -10.0,
+            -10.0,
+            -20.0
           ],
-          "feature_kind": "simple",
-          "segments": [
-            {
-              "diameter_mm": 20.0,
-              "position_mm": [
-                0.0,
-                0.0,
-                -40.0
-              ],
-              "axis": [
-                -0.0,
-                -0.0,
-                1.0
-              ],
-              "axial_length_mm": 40.0,
-              "through_state": "unknown",
-              "through_evidence": "B-Rep cylinder boundaries cannot distinguish blind from through",
-              "measurement_source": "B-Rep internal cylindrical face"
-            }
-          ]
+          "normal": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "area_mm2": 399.99999999999994,
+          "internal": true,
+          "body_index": 0,
+          "face_index": 9
         }
-      ],
-      "slot_planar_side_candidates": []
+      ]
     },
     "review": {
-      "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\review\\case_001_block_hole_review_report.json",
+      "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_003_straight_slot\\review\\case_003_straight_slot_review_report.json",
       "evaluation": {
         "status": "pass",
         "score": 100,
@@ -385,8 +667,8 @@
       }
     },
     "reopened_model_summary": {
-      "title": "case_001_block_hole.SLDPRT",
-      "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\case_001_block_hole.SLDPRT",
+      "title": "case_003_straight_slot.SLDPRT",
+      "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_003_straight_slot\\case_003_straight_slot.SLDPRT",
       "type": 1,
       "feature_count": 21,
       "features": [
@@ -471,7 +753,7 @@
           "type": "ProfileFeature"
         },
         {
-          "name": "ThroughHole_D20",
+          "name": "ThroughSlot_L40_W20",
           "type": "ICE"
         }
       ]
@@ -482,93 +764,128 @@
       "envelope_mm": {
         "length": 100.0,
         "width": 60.0,
-        "height": 40.0,
+        "height": 20.0,
         "axis_order": "model_xyz"
       },
-      "holes": [
+      "holes": [],
+      "compound_holes": [],
+      "slot_arc_candidates": [
         {
           "diameter_mm": 20.0,
           "position_mm": [
+            -10.0,
             0.0,
-            0.0,
-            -40.0
+            -20.0
           ],
           "axis": [
             -0.0,
             -0.0,
             1.0
           ],
-          "axial_length_mm": 40.0,
+          "axial_length_mm": 10.0,
           "through_state": "unknown",
           "through_evidence": "B-Rep cylinder boundaries cannot distinguish blind from through",
-          "measurement_source": "B-Rep internal cylindrical face"
+          "measurement_source": "B-Rep internal cylindrical face",
+          "classification_reason": "internal cylinder has more than two boundary edges"
+        },
+        {
+          "diameter_mm": 20.0,
+          "position_mm": [
+            10.0,
+            0.0,
+            -20.0
+          ],
+          "axis": [
+            -0.0,
+            -0.0,
+            1.0
+          ],
+          "axial_length_mm": 10.0,
+          "through_state": "unknown",
+          "through_evidence": "B-Rep cylinder boundaries cannot distinguish blind from through",
+          "measurement_source": "B-Rep internal cylindrical face",
+          "classification_reason": "internal cylinder has more than two boundary edges"
         }
       ],
-      "compound_holes": [],
-      "slot_arc_candidates": [],
       "cylindrical_faces": [
         {
           "diameter_mm": 20.0,
           "origin_mm": [
+            -10.0,
             0.0,
-            0.0,
-            -40.0
+            -20.0
           ],
           "axis": [
             -0.0,
             -0.0,
             1.0
           ],
-          "area_mm2": 2513.274123,
-          "axial_length_mm": 40.0,
+          "area_mm2": 628.318531,
+          "axial_length_mm": 10.0,
           "internal": true,
-          "loop_count": 2,
-          "edge_count": 2,
+          "loop_count": 1,
+          "edge_count": 4,
           "body_index": 0,
           "face_index": 6
+        },
+        {
+          "diameter_mm": 20.0,
+          "origin_mm": [
+            10.0,
+            0.0,
+            -20.0
+          ],
+          "axis": [
+            -0.0,
+            -0.0,
+            1.0
+          ],
+          "area_mm2": 628.318531,
+          "axial_length_mm": 10.0,
+          "internal": true,
+          "loop_count": 1,
+          "edge_count": 4,
+          "body_index": 0,
+          "face_index": 8
         }
       ],
       "errors": [],
-      "hole_count": 1,
-      "hole_groups": [
+      "hole_count": 0,
+      "hole_groups": [],
+      "slot_planar_side_candidates": [
         {
-          "position_mm": [
-            0.0,
-            0.0,
-            -40.0
+          "origin_mm": [
+            -10.0,
+            10.0,
+            -20.0
           ],
-          "axis": [
+          "normal": [
             -0.0,
-            -0.0,
-            1.0
+            1.0,
+            0.0
           ],
-          "segment_count": 1,
-          "diameters_mm": [
-            20.0
+          "area_mm2": 400.0,
+          "internal": true,
+          "body_index": 0,
+          "face_index": 7
+        },
+        {
+          "origin_mm": [
+            -10.0,
+            -10.0,
+            -20.0
           ],
-          "feature_kind": "simple",
-          "segments": [
-            {
-              "diameter_mm": 20.0,
-              "position_mm": [
-                0.0,
-                0.0,
-                -40.0
-              ],
-              "axis": [
-                -0.0,
-                -0.0,
-                1.0
-              ],
-              "axial_length_mm": 40.0,
-              "through_state": "unknown",
-              "through_evidence": "B-Rep cylinder boundaries cannot distinguish blind from through",
-              "measurement_source": "B-Rep internal cylindrical face"
-            }
-          ]
+          "normal": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "area_mm2": 399.99999999999994,
+          "internal": true,
+          "body_index": 0,
+          "face_index": 9
         }
-      ],
-      "slot_planar_side_candidates": []
+      ]
     },
     "drawing_create": {
       "status": "pass",
@@ -614,9 +931,9 @@
           ],
           "box": {
             "left": 0.033547,
-            "bottom": 0.15840199999999993,
+            "bottom": 0.16340199999999994,
             "right": 0.092183,
-            "top": 0.18703800000000004
+            "top": 0.18203800000000003
           }
         },
         {
@@ -630,9 +947,9 @@
             2.0
           ],
           "box": {
-            "left": 0.1463369999999999,
+            "left": 0.15133699999999992,
             "bottom": 0.06704199999999999,
-            "right": 0.17497300000000007,
+            "right": 0.16997300000000007,
             "top": 0.105678
           }
         }
@@ -641,19 +958,7 @@
       "notes": [],
       "tables": [],
       "professional_annotations": {
-        "center_marks": [
-          {
-            "kind": "center_mark",
-            "sheet": "图纸1",
-            "view": "工程图视图1",
-            "semantic_view": "front",
-            "text_parts": [],
-            "box": null,
-            "size_m": 0.0025,
-            "show_lines": true,
-            "style": 2
-          }
-        ],
+        "center_marks": [],
         "center_lines": [],
         "hole_callouts": [],
         "datum_tags": [],
@@ -720,8 +1025,8 @@
         }
       ]
     },
-    "part_path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\case_001_block_hole.sldprt",
-    "drawing_path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\case_001_block_hole.slddrw"
+    "part_path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_003_straight_slot\\case_003_straight_slot.sldprt",
+    "drawing_path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_003_straight_slot\\case_003_straight_slot.slddrw"
   },
   "reconstruction_qa": {
     "status": "PASS",
@@ -745,6 +1050,51 @@
       {
         "id": "hole_geometry",
         "passed": true
+      },
+      {
+        "id": "slot_two_cylindrical_end_walls",
+        "passed": true,
+        "actual": 2
+      },
+      {
+        "id": "slot_equal_radius_R10",
+        "passed": true
+      },
+      {
+        "id": "slot_end_center_spacing",
+        "passed": true,
+        "actual_mm": 20.0
+      },
+      {
+        "id": "slot_overall_extent",
+        "passed": true,
+        "actual_mm": 40.0
+      },
+      {
+        "id": "slot_internal_geometry",
+        "passed": true
+      },
+      {
+        "id": "slot_axis_and_axial_extent",
+        "passed": true
+      },
+      {
+        "id": "slot_two_planar_side_walls",
+        "passed": true,
+        "actual_positions_mm": [
+          -10.0,
+          10.0
+        ],
+        "spacing_mm": 20.0
+      },
+      {
+        "id": "slot_through_multi_evidence",
+        "passed": true,
+        "evidence": {
+          "creation_through": true,
+          "feature_tree": true,
+          "brep_axial_extent": true
+        }
       }
     ]
   },
@@ -788,29 +1138,32 @@
           "passed": true,
           "expected_mm": [
             100.0,
-            40.0
+            20.0
           ],
           "generated_mm": [
             100.0,
-            40.0
+            20.0
           ]
         },
         {
           "view": "left",
           "passed": true,
           "expected_mm": [
-            40.0,
+            20.0,
             60.0
           ],
           "generated_mm": [
-            40.0,
+            20.0,
             60.0
           ]
         }
       ],
-      "hole_checks": [
+      "hole_checks": [],
+      "slot_checks": [
         {
-          "diameter_mm": 20,
+          "type": "STRAIGHT_SLOT",
+          "overall_length_mm": 40.0,
+          "width_mm": 20.0,
           "position_mm": [
             50.0,
             30.0
@@ -818,7 +1171,6 @@
           "passed": true
         }
       ],
-      "slot_checks": [],
       "drawing_check": {
         "id": "regenerated_drawing_has_three_views",
         "passed": true
@@ -832,12 +1184,12 @@
           "visible_lines": {
             "status": "PASS",
             "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
-            "expected": 4,
-            "actual": 4,
-            "expected_support_length_mm": 320.0,
-            "actual_support_length_mm": 320.0,
-            "intersection_length_mm": 320.0,
-            "union_length_mm": 320.0,
+            "expected": 6,
+            "actual": 6,
+            "expected_support_length_mm": 360.0,
+            "actual_support_length_mm": 360.0,
+            "intersection_length_mm": 360.0,
+            "union_length_mm": 360.0,
             "support_iou": 1.0,
             "missing_length_mm": 0.0,
             "overflow_length_mm": 0.0,
@@ -947,6 +1299,52 @@
                 "actual_segment_count": 1,
                 "intersection_length_mm": 60.0,
                 "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  1.0,
+                  0.0
+                ],
+                "normal_offset_mm": 20.0,
+                "expected_intervals": [
+                  [
+                    40.0,
+                    60.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    40.0,
+                    60.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 20.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  1.0,
+                  -0.0
+                ],
+                "normal_offset_mm": 40.0,
+                "expected_intervals": [
+                  [
+                    40.0,
+                    60.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    40.0,
+                    60.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 20.0,
+                "max_gap_mm": 0.0
               }
             ],
             "invalid_segments": [],
@@ -960,25 +1358,20 @@
           },
           "circles": {
             "status": "PASS",
-            "expected": 1,
-            "actual": 1,
-            "matched": 1,
+            "expected": 0,
+            "actual": 0,
+            "matched": 0,
             "missing": 0,
             "extra": 0,
             "precision": 1.0,
             "recall": 1.0,
-            "pairs": [
-              [
-                0,
-                0
-              ]
-            ]
+            "pairs": []
           },
           "arcs": {
             "status": "PASS",
             "mode": "CIRCLE_SUPPORT_ANGULAR_INTERVAL_COVERAGE",
-            "expected": 0,
-            "actual": 0,
+            "expected": 2,
+            "actual": 2,
             "angular_iou": 1.0,
             "missing_angular_span_deg": 0.0,
             "overflow_angular_span_deg": 0.0,
@@ -998,7 +1391,62 @@
               "arc_max_gap_deg": 0.25,
               "arc_max_overflow_ratio": 0.02
             },
-            "supports": []
+            "supports": [
+              {
+                "center_mm": [
+                  40.0,
+                  30.0
+                ],
+                "radius_mm": 10,
+                "expected_intervals_deg": [
+                  [
+                    90.0,
+                    270.0
+                  ]
+                ],
+                "actual_intervals_deg": [
+                  [
+                    90.0,
+                    270.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_deg": 180.0,
+                "max_gap_deg": 0.0
+              },
+              {
+                "center_mm": [
+                  60.0,
+                  30.0
+                ],
+                "radius_mm": 10,
+                "expected_intervals_deg": [
+                  [
+                    0.0,
+                    90.0
+                  ],
+                  [
+                    270.0,
+                    360.0
+                  ]
+                ],
+                "actual_intervals_deg": [
+                  [
+                    0.0,
+                    90.0
+                  ],
+                  [
+                    270.0,
+                    360.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_deg": 180.0,
+                "max_gap_deg": 0.0
+              }
+            ]
           },
           "centerlines": {
             "status": "NOT_EVALUABLE",
@@ -1011,10 +1459,10 @@
             "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
             "expected": 4,
             "actual": 4,
-            "expected_support_length_mm": 280.0,
-            "actual_support_length_mm": 280.0,
-            "intersection_length_mm": 280.0,
-            "union_length_mm": 280.0,
+            "expected_support_length_mm": 240.0,
+            "actual_support_length_mm": 240.0,
+            "intersection_length_mm": 240.0,
+            "union_length_mm": 240.0,
             "support_iou": 1.0,
             "missing_length_mm": 0.0,
             "overflow_length_mm": 0.0,
@@ -1038,7 +1486,7 @@
                   1.0,
                   0.0
                 ],
-                "normal_offset_mm": 40.0,
+                "normal_offset_mm": 20.0,
                 "expected_intervals": [
                   [
                     0.0,
@@ -1065,18 +1513,18 @@
                 "expected_intervals": [
                   [
                     0.0,
-                    40.0
+                    20.0
                   ]
                 ],
                 "actual_intervals": [
                   [
                     0.0,
-                    40.0
+                    20.0
                   ]
                 ],
                 "expected_segment_count": 1,
                 "actual_segment_count": 1,
-                "intersection_length_mm": 40.0,
+                "intersection_length_mm": 20.0,
                 "max_gap_mm": 0.0
               },
               {
@@ -1111,18 +1559,18 @@
                 "expected_intervals": [
                   [
                     0.0,
-                    40.0
+                    20.0
                   ]
                 ],
                 "actual_intervals": [
                   [
                     0.0,
-                    40.0
+                    20.0
                   ]
                 ],
                 "expected_segment_count": 1,
                 "actual_segment_count": 1,
-                "intersection_length_mm": 40.0,
+                "intersection_length_mm": 20.0,
                 "max_gap_mm": 0.0
               }
             ],
@@ -1132,7 +1580,7 @@
           },
           "hidden_lines": {
             "status": "NOT_EVALUABLE",
-            "expected": 0,
+            "expected": 4,
             "reason": "SW2024 API response did not expose visibility semantics"
           },
           "circles": {
@@ -1183,10 +1631,10 @@
             "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
             "expected": 4,
             "actual": 4,
-            "expected_support_length_mm": 200.0,
-            "actual_support_length_mm": 200.0,
-            "intersection_length_mm": 200.0,
-            "union_length_mm": 200.0,
+            "expected_support_length_mm": 160.0,
+            "actual_support_length_mm": 160.0,
+            "intersection_length_mm": 160.0,
+            "union_length_mm": 160.0,
             "support_iou": 1.0,
             "missing_length_mm": 0.0,
             "overflow_length_mm": 0.0,
@@ -1214,18 +1662,18 @@
                 "expected_intervals": [
                   [
                     0.0,
-                    40.0
+                    20.0
                   ]
                 ],
                 "actual_intervals": [
                   [
                     0.0,
-                    40.0
+                    20.0
                   ]
                 ],
                 "expected_segment_count": 1,
                 "actual_segment_count": 1,
-                "intersection_length_mm": 40.0,
+                "intersection_length_mm": 20.0,
                 "max_gap_mm": 0.0
               },
               {
@@ -1260,18 +1708,18 @@
                 "expected_intervals": [
                   [
                     0.0,
-                    40.0
+                    20.0
                   ]
                 ],
                 "actual_intervals": [
                   [
                     0.0,
-                    40.0
+                    20.0
                   ]
                 ],
                 "expected_segment_count": 1,
                 "actual_segment_count": 1,
-                "intersection_length_mm": 40.0,
+                "intersection_length_mm": 20.0,
                 "max_gap_mm": 0.0
               },
               {
@@ -1279,7 +1727,7 @@
                   -0.0,
                   1.0
                 ],
-                "normal_offset_mm": -40.0,
+                "normal_offset_mm": -20.0,
                 "expected_intervals": [
                   [
                     0.0,
@@ -1304,7 +1752,7 @@
           },
           "hidden_lines": {
             "status": "NOT_EVALUABLE",
-            "expected": 0,
+            "expected": 2,
             "reason": "SW2024 API response did not expose visibility semantics"
           },
           "circles": {
@@ -1355,10 +1803,213 @@
       "status": "PASS",
       "scope": "visible/hidden/centerline/centermark semantics",
       "semantic_provenance": "HLV_MINUS_HLR",
-      "hidden_primitive_count": 4,
+      "hidden_primitive_count": 6,
       "unknown_primitive_count": 0,
-      "hidden_geometry_matches": {},
-      "known_center_marks": 1,
+      "hidden_geometry_matches": {
+        "top": {
+          "status": "PASS",
+          "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
+          "expected": 4,
+          "actual": 4,
+          "expected_support_length_mm": 80.0,
+          "actual_support_length_mm": 80.0,
+          "intersection_length_mm": 80.0,
+          "union_length_mm": 80.0,
+          "support_iou": 1.0,
+          "missing_length_mm": 0.0,
+          "overflow_length_mm": 0.0,
+          "missing_ratio": 0.0,
+          "overflow_ratio": 0.0,
+          "max_gap_mm": 0.0,
+          "segmentation": "EQUIVALENT_OR_UNASSESSED",
+          "information": [
+            "GEOMETRY_EQUIVALENT"
+          ],
+          "thresholds": {
+            "support_iou_min": 0.98,
+            "max_gap_mm": 0.1,
+            "max_overflow_ratio": 0.02,
+            "angle_tolerance_deg": 0.1,
+            "line_distance_tolerance_mm": 0.1
+          },
+          "supports": [
+            {
+              "direction": [
+                -0.0,
+                1.0
+              ],
+              "normal_offset_mm": -30.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 20.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                -0.0,
+                1.0
+              ],
+              "normal_offset_mm": -40.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 20.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                -0.0,
+                1.0
+              ],
+              "normal_offset_mm": -60.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 20.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                -0.0,
+                1.0
+              ],
+              "normal_offset_mm": -70.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 20.0,
+              "max_gap_mm": 0.0
+            }
+          ],
+          "invalid_segments": [],
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "left": {
+          "status": "PASS",
+          "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
+          "expected": 2,
+          "actual": 2,
+          "expected_support_length_mm": 40.0,
+          "actual_support_length_mm": 40.0,
+          "intersection_length_mm": 40.0,
+          "union_length_mm": 40.0,
+          "support_iou": 1.0,
+          "missing_length_mm": 0.0,
+          "overflow_length_mm": 0.0,
+          "missing_ratio": 0.0,
+          "overflow_ratio": 0.0,
+          "max_gap_mm": 0.0,
+          "segmentation": "EQUIVALENT_OR_UNASSESSED",
+          "information": [
+            "GEOMETRY_EQUIVALENT"
+          ],
+          "thresholds": {
+            "support_iou_min": 0.98,
+            "max_gap_mm": 0.1,
+            "max_overflow_ratio": 0.02,
+            "angle_tolerance_deg": 0.1,
+            "line_distance_tolerance_mm": 0.1
+          },
+          "supports": [
+            {
+              "direction": [
+                1.0,
+                -0.0
+              ],
+              "normal_offset_mm": 20.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 20.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                1.0,
+                -0.0
+              ],
+              "normal_offset_mm": 40.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 20.0,
+              "max_gap_mm": 0.0
+            }
+          ],
+          "invalid_segments": [],
+          "precision": 1.0,
+          "recall": 1.0
+        }
+      },
+      "known_center_marks": 0,
       "expected_center_marks": 0,
       "expected_center_lines": 0,
       "actual_center_lines": 0,
@@ -1400,6 +2051,30 @@
                 "source": "HLR_CAPTURE",
                 "confidence": 1.0,
                 "geometry": {
+                  "x1": 60.0,
+                  "y1": 40.0,
+                  "x2": 40.0,
+                  "y2": 40.0
+                }
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 40.0,
+                  "y1": 20.0,
+                  "x2": 60.0,
+                  "y2": 20.0
+                }
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
                   "x1": 100.0,
                   "y1": 60.0,
                   "x2": 0.0,
@@ -1443,14 +2118,31 @@
                 }
               },
               {
-                "geometry_type": "CIRCLE",
+                "geometry_type": "ARC",
                 "semantic": "VISIBLE",
                 "source": "HLR_CAPTURE",
                 "confidence": 1.0,
                 "geometry": {
-                  "x": 50.0,
+                  "x": 60.0,
                   "y": 30.0,
-                  "diameter": 19.99999999999998
+                  "radius": 9.999999999999993,
+                  "start_angle_deg": 270.0,
+                  "end_angle_deg": 90.0,
+                  "sweep_direction": "CCW"
+                }
+              },
+              {
+                "geometry_type": "ARC",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x": 40.0,
+                  "y": 30.0,
+                  "radius": 9.999999999999993,
+                  "start_angle_deg": 90.0,
+                  "end_angle_deg": 270.0,
+                  "sweep_direction": "CCW"
                 }
               }
             ],
@@ -1458,20 +2150,7 @@
             "unknown": []
           },
           "annotations": {
-            "center_marks": [
-              {
-                "geometry_type": "ANNOTATION",
-                "semantic": "CENTERMARK",
-                "source": "DrawingAnnotation",
-                "confidence": 1.0,
-                "view": "工程图视图1",
-                "semantic_view": "front",
-                "geometry": {
-                  "size_m": 0.0025,
-                  "show_lines": true
-                }
-              }
-            ],
+            "center_marks": [],
             "center_lines": [],
             "dimensions": [],
             "callouts": []
@@ -1511,6 +2190,30 @@
                 "source": "HLR_CAPTURE",
                 "confidence": 1.0,
                 "geometry": {
+                  "x1": 0.0,
+                  "y1": 20.0,
+                  "x2": 0.0,
+                  "y2": 0.0
+                }
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 100.0,
+                  "y1": 20.0,
+                  "x2": 0.0,
+                  "y2": 20.0
+                }
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
                   "x1": 100.0,
                   "y1": 0.0,
                   "x2": 0.0,
@@ -1523,32 +2226,8 @@
                 "source": "HLR_CAPTURE",
                 "confidence": 1.0,
                 "geometry": {
-                  "x1": 0.0,
-                  "y1": 40.0,
-                  "x2": 0.0,
-                  "y2": 0.0
-                }
-              },
-              {
-                "geometry_type": "LINE",
-                "semantic": "VISIBLE",
-                "source": "HLR_CAPTURE",
-                "confidence": 1.0,
-                "geometry": {
                   "x1": 100.0,
-                  "y1": 40.0,
-                  "x2": 0.0,
-                  "y2": 40.0
-                }
-              },
-              {
-                "geometry_type": "LINE",
-                "semantic": "VISIBLE",
-                "source": "HLR_CAPTURE",
-                "confidence": 1.0,
-                "geometry": {
-                  "x1": 100.0,
-                  "y1": 40.0,
+                  "y1": 20.0,
                   "x2": 100.0,
                   "y2": 0.0
                 }
@@ -1561,12 +2240,12 @@
                 "source": "HLV_MINUS_HLR",
                 "confidence": 1.0,
                 "geometry": {
-                  "x1": 60.0,
+                  "x1": 40.0,
                   "y1": 0.0,
-                  "x2": 60.0,
-                  "y2": 40.0
+                  "x2": 40.0,
+                  "y2": 20.0
                 },
-                "support_length_mm": 40.0
+                "support_length_mm": 20.0
               },
               {
                 "geometry_type": "LINE",
@@ -1574,12 +2253,38 @@
                 "source": "HLV_MINUS_HLR",
                 "confidence": 1.0,
                 "geometry": {
-                  "x1": 40.0,
+                  "x1": 60.0,
                   "y1": 0.0,
-                  "x2": 40.0,
-                  "y2": 40.0
+                  "x2": 60.0,
+                  "y2": 20.0
                 },
-                "support_length_mm": 40.0
+                "support_length_mm": 20.0
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "HIDDEN",
+                "source": "HLV_MINUS_HLR",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 30.0,
+                  "y1": 0.0,
+                  "x2": 30.0,
+                  "y2": 20.0
+                },
+                "support_length_mm": 20.0
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "HIDDEN",
+                "source": "HLV_MINUS_HLR",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 70.0,
+                  "y1": 0.0,
+                  "x2": 70.0,
+                  "y2": 20.0
+                },
+                "support_length_mm": 20.0
               }
             ],
             "unknown": []
@@ -1625,7 +2330,7 @@
                 "source": "HLR_CAPTURE",
                 "confidence": 1.0,
                 "geometry": {
-                  "x1": 40.0,
+                  "x1": 20.0,
                   "y1": 60.0,
                   "x2": 0.0,
                   "y2": 60.0
@@ -1637,9 +2342,9 @@
                 "source": "HLR_CAPTURE",
                 "confidence": 1.0,
                 "geometry": {
-                  "x1": 40.0,
+                  "x1": 20.0,
                   "y1": 0.0,
-                  "x2": 40.0,
+                  "x2": 20.0,
                   "y2": 60.0
                 }
               },
@@ -1649,7 +2354,7 @@
                 "source": "HLR_CAPTURE",
                 "confidence": 1.0,
                 "geometry": {
-                  "x1": 40.0,
+                  "x1": 20.0,
                   "y1": 0.0,
                   "x2": 0.0,
                   "y2": 0.0
@@ -1677,10 +2382,10 @@
                 "geometry": {
                   "x1": 0.0,
                   "y1": 20.0,
-                  "x2": 40.0,
+                  "x2": 20.0,
                   "y2": 20.0
                 },
-                "support_length_mm": 40.0
+                "support_length_mm": 20.0
               },
               {
                 "geometry_type": "LINE",
@@ -1690,10 +2395,10 @@
                 "geometry": {
                   "x1": 0.0,
                   "y1": 40.0,
-                  "x2": 40.0,
+                  "x2": 20.0,
                   "y2": 40.0
                 },
-                "support_length_mm": 40.0
+                "support_length_mm": 20.0
               }
             ],
             "unknown": []
@@ -1707,20 +2412,7 @@
         }
       ],
       "annotations": {
-        "center_marks": [
-          {
-            "geometry_type": "ANNOTATION",
-            "semantic": "CENTERMARK",
-            "source": "DrawingAnnotation",
-            "confidence": 1.0,
-            "view": "工程图视图1",
-            "semantic_view": "front",
-            "geometry": {
-              "size_m": 0.0025,
-              "show_lines": true
-            }
-          }
-        ],
+        "center_marks": [],
         "center_lines": [],
         "dimensions": [],
         "callouts": []
@@ -1754,29 +2446,32 @@
         "passed": true,
         "expected_mm": [
           100.0,
-          40.0
+          20.0
         ],
         "generated_mm": [
           100.0,
-          40.0
+          20.0
         ]
       },
       {
         "view": "left",
         "passed": true,
         "expected_mm": [
-          40.0,
+          20.0,
           60.0
         ],
         "generated_mm": [
-          40.0,
+          20.0,
           60.0
         ]
       }
     ],
-    "hole_checks": [
+    "hole_checks": [],
+    "slot_checks": [
       {
-        "diameter_mm": 20,
+        "type": "STRAIGHT_SLOT",
+        "overall_length_mm": 40.0,
+        "width_mm": 20.0,
         "position_mm": [
           50.0,
           30.0
@@ -1784,7 +2479,6 @@
         "passed": true
       }
     ],
-    "slot_checks": [],
     "drawing_check": {
       "id": "regenerated_drawing_has_three_views",
       "passed": true
