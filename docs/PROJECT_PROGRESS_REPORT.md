@@ -175,6 +175,7 @@ weakening any matcher threshold.**
 
 ## Git branch
 
-Development is isolated on `feat/semantic-roundtrip`. The branch uses the
+Development was isolated on `feat/semantic-roundtrip` through the complete
+pre-merge quality gate. The branch uses the
 repository-specific SSH-over-443 remote because GitHub HTTPS is unavailable on
 this host.
