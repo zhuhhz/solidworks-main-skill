@@ -1,0 +1,30 @@
+{
+  "schema_version": "0.4",
+  "name": "case_003_straight_slot",
+  "projection": "third_angle",
+  "reference_integrity": {"status": "PASS", "history_status": "REFERENCE_INVALID", "audit": "docs/B003_REFERENCE_AUDIT.md", "correction": "top HLV reference now includes tangent and end-extreme supports"},
+  "front": {
+    "horizontal_extent_mm": 100, "vertical_extent_mm": 60,
+    "visible_segments": [
+      {"x1":0,"y1":0,"x2":100,"y2":0},{"x1":100,"y1":0,"x2":100,"y2":60},{"x1":100,"y1":60,"x2":0,"y2":60},{"x1":0,"y1":60,"x2":0,"y2":0},
+      {"x1":40,"y1":20,"x2":60,"y2":20},{"x1":60,"y1":40,"x2":40,"y2":40}
+    ],
+    "arcs": [
+      {"x":40,"y":30,"radius":10,"start_angle_deg":90,"end_angle_deg":270,"sweep_direction":"CCW"},
+      {"x":60,"y":30,"radius":10,"start_angle_deg":270,"end_angle_deg":90,"sweep_direction":"CCW"}
+    ]
+  },
+  "top": {
+    "horizontal_extent_mm":100,"vertical_extent_mm":20,
+    "visible_segments":[{"x1":0,"y1":0,"x2":100,"y2":0},{"x1":100,"y1":0,"x2":100,"y2":20},{"x1":100,"y1":20,"x2":0,"y2":20},{"x1":0,"y1":20,"x2":0,"y2":0}],
+    "hidden_line_pairs":[{"axis":"x","offset_1":30,"offset_2":70}],
+    "hidden_segments":[{"x1":30,"y1":0,"x2":30,"y2":20},{"x1":40,"y1":0,"x2":40,"y2":20},{"x1":60,"y1":0,"x2":60,"y2":20},{"x1":70,"y1":0,"x2":70,"y2":20}]
+  },
+  "left": {
+    "horizontal_extent_mm":20,"vertical_extent_mm":60,
+    "visible_segments":[{"x1":0,"y1":0,"x2":20,"y2":0},{"x1":20,"y1":0,"x2":20,"y2":60},{"x1":20,"y1":60,"x2":0,"y2":60},{"x1":0,"y1":60,"x2":0,"y2":0}],
+    "hidden_line_pairs":[{"axis":"y","offset_1":20,"offset_2":40}],
+    "hidden_segments":[{"x1":0,"y1":20,"x2":20,"y2":20},{"x1":0,"y1":40,"x2":20,"y2":40}]
+  },
+  "feature_evidence":{"straight_slot":{"through_state":"THROUGH","expected":{"overall_length_mm":40,"width_mm":20,"center_mm":[50,30]}}}
+}

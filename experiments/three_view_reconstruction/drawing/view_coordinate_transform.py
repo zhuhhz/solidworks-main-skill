@@ -34,3 +34,23 @@ def normalize_primitives(lines: list[dict], circles: list[dict]) -> tuple[list[d
     for circle in normalized_circles:
         circle["x"] -= dx; circle["y"] -= dy
     return normalized_lines, normalized_circles, (dx, dy)
+
+
+def normalize_geometry(lines: list[dict], circles: list[dict], arcs: list[dict]):
+    """Translate line, circle and arc primitives by one shared view-local origin."""
+    normalized_lines, normalized_circles = deepcopy(lines), deepcopy(circles)
+    normalized_arcs = deepcopy(arcs)
+    xs = [p[k] for p in normalized_lines for k in ("x1", "x2")]
+    ys = [p[k] for p in normalized_lines for k in ("y1", "y2")]
+    xs += [c["x"] - c["diameter"] / 2 for c in normalized_circles]
+    ys += [c["y"] - c["diameter"] / 2 for c in normalized_circles]
+    xs += [a["x"] - a["radius"] for a in normalized_arcs]
+    ys += [a["y"] - a["radius"] for a in normalized_arcs]
+    dx, dy = (min(xs), min(ys)) if xs and ys else (0.0, 0.0)
+    for line in normalized_lines:
+        line["x1"] -= dx; line["x2"] -= dx; line["y1"] -= dy; line["y2"] -= dy
+    for circle in normalized_circles:
+        circle["x"] -= dx; circle["y"] -= dy
+    for arc in normalized_arcs:
+        arc["x"] -= dx; arc["y"] -= dy
+    return normalized_lines, normalized_circles, normalized_arcs, (dx, dy)

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from drawing.view_orientation import CanonicalViewFrame
+import math
 
 
 def validate_projection_name(projection: str) -> str:
@@ -65,4 +66,24 @@ def map_circles_to_frame(role: str, circles: list[dict], width: float, height: f
     for circle in circles:
         center = map_point_to_frame(role, circle["x"], circle["y"], width, height, target)
         mapped.append({"x": center[0], "y": center[1], "diameter": circle["diameter"]})
+    return mapped
+
+
+def map_arcs_to_frame(role: str, arcs: list[dict], width: float, height: float,
+                      target: CanonicalViewFrame) -> list[dict]:
+    mapped = []
+    source_x, source_y = _INPUT_AXES[role]
+    determinant = (_dot(source_x, target.right) * _dot(source_y, target.up)
+                   - _dot(source_x, target.up) * _dot(source_y, target.right))
+    for arc in arcs:
+        center = map_point_to_frame(role, arc["x"], arc["y"], width, height, target)
+        def transformed_angle(angle):
+            radians = math.radians(angle)
+            point = map_point_to_frame(role, arc["x"] + arc["radius"]*math.cos(radians),
+                                       arc["y"] + arc["radius"]*math.sin(radians), width, height, target)
+            return math.degrees(math.atan2(point[1]-center[1], point[0]-center[0])) % 360
+        mapped.append({"x": center[0], "y": center[1], "radius": arc["radius"],
+                       "start_angle_deg": transformed_angle(arc["start_angle_deg"]),
+                       "end_angle_deg": transformed_angle(arc["end_angle_deg"]),
+                       "sweep_direction": arc.get("sweep_direction", "CCW") if determinant >= 0 else ("CW" if arc.get("sweep_direction", "CCW") == "CCW" else "CCW")})
     return mapped

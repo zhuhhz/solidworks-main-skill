@@ -11,6 +11,12 @@ MAX_GAP_MM = 0.10
 MAX_OVERFLOW_RATIO = 0.02
 ANGLE_TOLERANCE_DEG = 0.10
 LINE_DISTANCE_TOLERANCE_MM = 0.10
+ARC_CENTER_TOLERANCE_MM = 0.10
+ARC_RADIUS_TOLERANCE_MM = 0.05
+ARC_ANGLE_TOLERANCE_DEG = 0.25
+ARC_ENDPOINT_TOLERANCE_MM = 0.10
+ARC_MAX_GAP_DEG = 0.25
+ARC_MAX_OVERFLOW_RATIO = 0.02
 _EPS = 1e-9
 
 
@@ -213,9 +219,76 @@ def _circle_match(a: dict, b: dict) -> bool:
     return math.dist((a["x"], a["y"]), (b["x"], b["y"])) <= POSITION_TOLERANCE_MM and abs(a["diameter"] - b["diameter"]) / 2 <= RADIUS_TOLERANCE_MM
 
 
+def _arc_intervals(arc: dict) -> list[tuple[float, float]]:
+    start, end = float(arc["start_angle_deg"]) % 360, float(arc["end_angle_deg"]) % 360
+    if str(arc.get("sweep_direction", "CCW")).upper() == "CW":
+        start, end = end, start
+    return [(start, end)] if end > start else [(start, 360.0), (0.0, end)]
+
+
+def _arc_support_match(a: dict, b: dict) -> bool:
+    return (math.dist((a["x"], a["y"]), (b["x"], b["y"])) <= ARC_CENTER_TOLERANCE_MM
+            and abs(float(a["radius"])-float(b["radius"])) <= ARC_RADIUS_TOLERANCE_MM)
+
+
+def match_arc_supports(expected: list[dict], actual: list[dict]) -> dict:
+    groups: list[dict] = []
+    for side, arcs in (("expected", expected), ("actual", actual)):
+        for arc in arcs:
+            group = next((row for row in groups if _arc_support_match(row["key"], arc)), None)
+            if group is None:
+                group = {"key": arc, "expected": [], "actual": [], "expected_count": 0, "actual_count": 0}
+                groups.append(group)
+            group[side] += _arc_intervals(arc)
+            group[f"{side}_count"] += 1
+    exp_total = act_total = common_total = 0.0
+    max_gap = 0.0
+    max_endpoint_error_mm = 0.0
+    segmentation_different = False
+    rows = []
+    for group in groups:
+        exp, act = _union(group["expected"]), _union(group["actual"])
+        exp_len, act_len, common = _length(exp), _length(act), _intersection_length(exp, act)
+        gaps = _missing_intervals(exp, act)
+        excess = _missing_intervals(act, exp)
+        gap = max((_length([item]) for item in gaps), default=0.0)
+        support_endpoint_error = float(group["key"]["radius"]) * math.radians(max(
+            gap, max((_length([item]) for item in excess), default=0.0)))
+        equivalent = abs(exp_len-common) <= ARC_ANGLE_TOLERANCE_DEG and abs(act_len-common) <= ARC_ANGLE_TOLERANCE_DEG
+        if equivalent and group["expected_count"] != group["actual_count"]:
+            segmentation_different = True
+        exp_total += exp_len; act_total += act_len; common_total += common; max_gap = max(max_gap, gap)
+        max_endpoint_error_mm = max(max_endpoint_error_mm, support_endpoint_error)
+        rows.append({"center_mm": [group["key"]["x"], group["key"]["y"]], "radius_mm": group["key"]["radius"],
+                     "expected_intervals_deg": exp, "actual_intervals_deg": act,
+                     "expected_segment_count": group["expected_count"], "actual_segment_count": group["actual_count"],
+                     "intersection_deg": common, "max_gap_deg": gap})
+    union = exp_total + act_total-common_total
+    iou = common_total/union if union > _EPS else 1.0
+    missing = max(0.0, exp_total-common_total); overflow = max(0.0, act_total-common_total)
+    missing_ratio = missing/exp_total if exp_total > _EPS else (0.0 if act_total <= _EPS else 1.0)
+    overflow_ratio = overflow/exp_total if exp_total > _EPS else (0.0 if act_total <= _EPS else 1.0)
+    passed = (max_gap <= ARC_MAX_GAP_DEG and overflow_ratio <= ARC_MAX_OVERFLOW_RATIO
+              and max_endpoint_error_mm <= ARC_ENDPOINT_TOLERANCE_MM
+              and missing <= ARC_ANGLE_TOLERANCE_DEG and not (not expected and actual) and not (expected and not actual))
+    return {"status": "PASS" if passed else "FAIL", "mode": "CIRCLE_SUPPORT_ANGULAR_INTERVAL_COVERAGE",
+            "expected": len(expected), "actual": len(actual), "angular_iou": iou,
+            "missing_angular_span_deg": missing, "overflow_angular_span_deg": overflow,
+            "max_endpoint_error_mm": max_endpoint_error_mm,
+            "missing_ratio": missing_ratio, "overflow_ratio": overflow_ratio, "max_gap_deg": max_gap,
+            "segmentation": "SEGMENTATION_DIFFERENT" if segmentation_different else "EQUIVALENT_OR_UNASSESSED",
+            "information": (["GEOMETRY_EQUIVALENT", "SEGMENTATION_DIFFERENT"] if passed and segmentation_different else ["GEOMETRY_EQUIVALENT"] if passed else []),
+            "thresholds": {"arc_center_tolerance_mm": ARC_CENTER_TOLERANCE_MM, "arc_radius_tolerance_mm": ARC_RADIUS_TOLERANCE_MM,
+                           "arc_angle_tolerance_deg": ARC_ANGLE_TOLERANCE_DEG, "arc_endpoint_tolerance_mm": ARC_ENDPOINT_TOLERANCE_MM,
+                           "arc_max_gap_deg": ARC_MAX_GAP_DEG, "arc_max_overflow_ratio": ARC_MAX_OVERFLOW_RATIO},
+            "supports": rows}
+
+
 def match(expected: list[dict], actual: list[dict], kind: str) -> dict:
     if kind == "line":
         return match_line_supports(expected, actual)
+    if kind == "arc":
+        return match_arc_supports(expected, actual)
     if kind != "circle":
         raise ValueError(f"unsupported primitive kind: {kind}")
     used, pairs = set(), []

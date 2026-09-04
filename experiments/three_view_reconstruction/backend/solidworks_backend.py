@@ -18,7 +18,7 @@ sys.path.insert(0, str(UPSTREAM_ROOT / "scripts"))
 from sw_connect import create_empty_dispatch_variant, get_com_member, mm
 from sw_drawing import create_standard_views_with_projection, inspect_drawing_structure
 from sw_hole_features import create_through_hole
-from sw_part import extrude_boss, sketch, sketch_rectangle
+from sw_part import extrude_boss, extrude_cut, sketch, sketch_rectangle, sketch_slot
 from sw_review import collect_geometry_measurements, collect_model_summary, run_review
 from sw_session import SolidWorksSession
 
@@ -51,6 +51,38 @@ def _close_existing_target_documents(session, targets: tuple[Path, ...]) -> None
     except Exception:
         # A failed clean-up must not hide the actual modelling diagnostic.
         return
+
+
+def _collect_slot_planar_sidewalls(model, plan) -> list[dict]:
+    """Minimal adapter evidence absent from the external backend collector."""
+    profiles = [op.profile for op in plan.operations if op.type == "cut_extrude_through_slot"]
+    if not profiles:
+        return []
+    rows = []
+    for body_index, body in enumerate(get_com_member(model, "GetBodies2", 0, False) or []):
+        for face_index, face in enumerate(get_com_member(body, "GetFaces") or []):
+            try:
+                surface = get_com_member(face, "GetSurface")
+                if not surface or not get_com_member(surface, "IsPlane"):
+                    continue
+                params = list(get_com_member(surface, "PlaneParams") or [])
+                if len(params) < 6:
+                    continue
+                normal = [float(v) for v in params[:3]]
+                origin = [float(v)*1000 for v in params[3:6]]
+                for profile in profiles:
+                    transverse = 1 if profile["major_axis"] == "X" else 0
+                    coordinate = origin[transverse]
+                    expected = profile["center_y_mm"] if transverse == 1 else profile["center_x_mm"]
+                    if abs(abs(coordinate-expected)-profile["width_mm"]/2) <= .05 and abs(normal[transverse]) >= .99:
+                        rows.append({"origin_mm": origin, "normal": normal,
+                                     "area_mm2": float(get_com_member(face, "GetArea") or 0)*1_000_000,
+                                     "internal": bool(get_com_member(face, "FaceInSurfaceSense")),
+                                     "body_index": body_index, "face_index": face_index})
+                        break
+            except Exception:
+                continue
+    return rows
 
 
 def execute(plan, output_dir: Path, name: str) -> dict:
@@ -101,16 +133,72 @@ def execute(plan, output_dir: Path, name: str) -> dict:
                     plane.Name = plane_name
                 evidence = create_through_hole(part, (mm(operation.profile["center_x_mm"]), mm(operation.profile["center_y_mm"])), mm(operation.profile["diameter_mm"]), plane_name=plane_name, name="ThroughHole_D20")
                 result["operations"].append({"operation": operation.type, "evidence": evidence})
+            elif operation.type == "cut_extrude_through_slot":
+                profile = operation.profile
+                radius = profile["width_mm"] / 2.0
+                centre_distance = profile["overall_length_mm"] - 2.0 * radius
+                if centre_distance <= 0:
+                    raise ValueError("straight slot overall length must exceed its width")
+                cx, cy = profile["center_x_mm"], profile["center_y_mm"]
+                if profile["major_axis"] == "X":
+                    start, end = (cx-centre_distance/2, cy), (cx+centre_distance/2, cy)
+                else:
+                    start, end = (cx, cy-centre_distance/2), (cx, cy+centre_distance/2)
+                # UPSTREAM_GAP: create_semicircular_slot divides width by two,
+                # but SW2024 CreateSketchSlot interprets this argument as the
+                # end radius. Use the upstream sketch/extrude primitives with
+                # corrected adapter semantics; do not patch/copy upstream.
+                with sketch(part, operation.sketch_plane) as sketch_name:
+                    # sketch_slot's final argument is forwarded as SW's slot
+                    # width input despite its upstream name ``radius``.
+                    segments = sketch_slot(part, mm(start[0]), mm(start[1]), mm(end[0]), mm(end[1]), mm(profile["width_mm"]))
+                    if segments is None:
+                        raise RuntimeError("UPSTREAM_GAP: sketch_slot returned None")
+                    try:
+                        active_sketch = get_com_member(part, "GetActiveSketch2")
+                        sketch_segments = list(get_com_member(active_sketch, "GetSketchSegments") or [])
+                        segment_rows = []
+                        for item in sketch_segments:
+                            try:
+                                construction = bool(get_com_member(item, "ConstructionGeometry"))
+                            except Exception:
+                                construction = False
+                            try:
+                                segment_type = int(get_com_member(item, "GetType"))
+                            except Exception:
+                                segment_type = None
+                            segment_rows.append({"type": segment_type, "construction": construction})
+                        segment_count = len(sketch_segments)
+                        profile_segment_count = sum(not row["construction"] for row in segment_rows)
+                    except Exception:
+                        segment_count = profile_segment_count = None; segment_rows = []
+                feature = extrude_cut(part, sketch_name, 0.0)
+                if feature is None:
+                    raise RuntimeError("UPSTREAM_GAP: slot through-cut returned None")
+                feature.Name = "ThroughSlot_L40_W20"
+                evidence = {"feature_kind": "semicircular_slot", "start_mm": list(start), "end_mm": list(end),
+                            "width_mm": profile["width_mm"], "depth_mm": None, "through": True,
+                            "plane_name": operation.sketch_plane, "feature_names": ["ThroughSlot_L40_W20"],
+                            "overall_length_mm": profile["overall_length_mm"], "center_to_center_length_mm": centre_distance,
+                            "sketch_entity_count": segment_count, "profile_entity_count": profile_segment_count,
+                            "sketch_entities": segment_rows, "profile_entity_contract": 4, "api_success": True,
+                            "upstream_gap": "create_semicircular_slot width semantics produce half requested width on SW2024"}
+                result["skill_gaps"].append("UPSTREAM_GAP: corrected create_semicircular_slot width semantics in adapter")
+                result["operations"].append({"operation": operation.type, "evidence": evidence})
             else:
                 raise RuntimeError(f"SKILL_GAP: unsupported plan operation {operation.type}")
         part.ForceRebuild3(False)
         if not session.save(part, str(part_path)): raise RuntimeError("SLDPRT save failed")
         result["model_summary"] = collect_model_summary(part)
         result["geometry"] = collect_geometry_measurements(part)
+        result["geometry"]["slot_planar_side_candidates"] = _collect_slot_planar_sidewalls(part, plan)
         review, review_path = run_review(part, output_dir / "review", basename=name, expected_outputs=[part_path])
         result["review"] = {"path": str(review_path), "evaluation": review["evaluation"]}
         # Reopen is intentionally exercised before drawing generation.
         session.close(title=part_title); part = session.open(str(part_path), read_only=True, silent=True); part_title = str(get_com_member(part, "GetTitle"))
+        result["reopened_model_summary"] = collect_model_summary(part)
+        result["reopened_geometry"] = collect_geometry_measurements(part)
+        result["reopened_geometry"]["slot_planar_side_candidates"] = _collect_slot_planar_sidewalls(part, plan)
         drawing = session.new_drawing(); drawing_title = str(get_com_member(drawing, "GetTitle"))
         result["drawing_create"] = create_standard_views_with_projection(drawing, str(part_path), projection="third_angle")
         if not session.save(drawing, str(drawing_path)): raise RuntimeError("SLDDRW save failed")

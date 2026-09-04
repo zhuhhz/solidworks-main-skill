@@ -1,6 +1,6 @@
 from __future__ import annotations
 from drawing.view_orientation import CanonicalViewOrientation, canonicalize
-from parser.projection_mapping import map_circles_to_frame, map_lines_to_frame
+from parser.projection_mapping import map_arcs_to_frame, map_circles_to_frame, map_lines_to_frame
 from validation.primitive_matcher import match
 
 
@@ -40,7 +40,9 @@ def validate(graph, extracted: dict) -> dict:
         target_frame = canonicalize(target_role.value, graph.projection.upper())
         expected_lines = map_lines_to_frame(key, _implicit_outline(expected), expected.horizontal_extent, expected.vertical_extent, target_frame)
         expected_circles = map_circles_to_frame(key, [x.__dict__ for x in expected.circles], expected.horizontal_extent, expected.vertical_extent, target_frame)
+        expected_arcs = map_arcs_to_frame(key, [x.__dict__ for x in expected.arcs], expected.horizontal_extent, expected.vertical_extent, target_frame)
         visible = match(expected_lines, actual["visible_segments"], "line")
         circles = match(expected_circles, actual["circles"], "circle")
-        reports[key] = {"visible_lines": visible, "hidden_lines": {"status": "NOT_EVALUABLE", "expected": len(expected.hidden_segments), "reason": "SW2024 API response did not expose visibility semantics"}, "circles": circles, "arcs": {"status": "NOT_EVALUABLE", "expected": len(expected.arcs)}, "centerlines": {"status": "NOT_EVALUABLE", "expected": len(expected.centerlines)}}
+        arcs = match(expected_arcs, actual["arcs"], "arc")
+        reports[key] = {"visible_lines": visible, "hidden_lines": {"status": "NOT_EVALUABLE", "expected": len(expected.hidden_segments), "reason": "SW2024 API response did not expose visibility semantics"}, "circles": circles, "arcs": arcs, "centerlines": {"status": "NOT_EVALUABLE", "expected": len(expected.centerlines)}}
     return {"status": "PARTIAL", "overall_rule": "cannot PASS while requested hidden-line semantics are not extractable", "views": reports, "extraction": {"api": extracted["api"], "coordinate_space": extracted["coordinate_space"], "capability_gap": extracted["capability_gap"]}}

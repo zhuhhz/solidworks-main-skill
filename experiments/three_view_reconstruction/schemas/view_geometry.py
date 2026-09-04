@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field
+import math
 
 
 @dataclass(frozen=True)
@@ -33,6 +34,28 @@ class Arc:
     radius: float
     start_angle_deg: float
     end_angle_deg: float
+    sweep_direction: str = "CCW"
+
+    def __post_init__(self):
+        values = (self.x, self.y, self.radius, self.start_angle_deg, self.end_angle_deg)
+        if not all(math.isfinite(float(value)) for value in values):
+            raise ValueError("arc values must be finite")
+        if self.radius <= 0:
+            raise ValueError("arc radius must be positive")
+        direction = self.sweep_direction.upper()
+        if direction not in {"CW", "CCW"}:
+            raise ValueError("arc sweep_direction must be CW or CCW")
+        object.__setattr__(self, "start_angle_deg", float(self.start_angle_deg) % 360.0)
+        object.__setattr__(self, "end_angle_deg", float(self.end_angle_deg) % 360.0)
+        object.__setattr__(self, "sweep_direction", direction)
+        if abs((self.end_angle_deg - self.start_angle_deg) % 360.0) < 1e-9:
+            raise ValueError("Arc cannot represent a full circle or zero sweep")
+
+    @property
+    def sweep_deg(self) -> float:
+        if self.sweep_direction == "CCW":
+            return (self.end_angle_deg - self.start_angle_deg) % 360.0
+        return (self.start_angle_deg - self.end_angle_deg) % 360.0
 
 
 @dataclass
