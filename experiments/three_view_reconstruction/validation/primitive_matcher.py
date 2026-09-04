@@ -108,6 +108,11 @@ def _missing_intervals(expected, actual):
     return missing
 
 
+def _interval_difference(source, subtract):
+    """Return the parts of ``source`` not covered by ``subtract``."""
+    return _missing_intervals(source, subtract)
+
+
 def match_line_supports(expected: list[dict], actual: list[dict]) -> dict:
     supports: list[_Support] = []
     invalid = []
@@ -170,6 +175,38 @@ def match_line_supports(expected: list[dict], actual: list[dict]) -> dict:
         "precision": intersection / actual_length if actual_length > _EPS else (1.0 if expected_length <= _EPS else 0.0),
         "recall": intersection / expected_length if expected_length > _EPS else 1.0,
     }
+
+
+def support_difference(base: list[dict], superset: list[dict]) -> dict:
+    """Canonical support subtraction used by the HLV-minus-HLR experiment."""
+    supports: list[_Support] = []
+    for line in base:
+        _add(supports, line, "expected")
+    for line in superset:
+        _add(supports, line, "actual")
+    candidates = []
+    for support in supports:
+        base_union, superset_union = _union(support.expected), _union(support.actual)
+        origin = (support.normal[0] * support.offset, support.normal[1] * support.offset)
+        for start, end in _interval_difference(superset_union, base_union):
+            if end - start <= POSITION_TOLERANCE_MM:
+                continue
+            candidates.append({
+                "geometry_type": "LINE", "semantic": "HIDDEN",
+                "source": "HLV_MINUS_HLR", "confidence": 1.0,
+                "geometry": {
+                    "x1": origin[0] + support.direction[0] * start,
+                    "y1": origin[1] + support.direction[1] * start,
+                    "x2": origin[0] + support.direction[0] * end,
+                    "y2": origin[1] + support.direction[1] * end,
+                },
+                "support_length_mm": end - start,
+            })
+    coverage = match_line_supports(base, superset)
+    visible_stable = coverage["missing_ratio"] <= 1.0 - SUPPORT_IOU_MIN and coverage["max_gap_mm"] <= MAX_GAP_MM
+    return {"status": "PASS" if visible_stable else "FAIL", "visible_supports_stable": visible_stable,
+            "candidates": candidates, "candidate_support_length_mm": sum(x["support_length_mm"] for x in candidates),
+            "coverage": coverage}
 
 
 def _circle_match(a: dict, b: dict) -> bool:

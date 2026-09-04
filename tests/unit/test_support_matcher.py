@@ -4,7 +4,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2] / "experiments" / "three_view_reconstruction"
 sys.path.insert(0, str(ROOT))
 
-from validation.primitive_matcher import match_line_supports
+from validation.primitive_matcher import match_line_supports, support_difference
 
 
 def line(x1, y1, x2, y2):
@@ -39,3 +39,13 @@ def test_overflow_is_reported_and_rejected():
 def test_small_angular_noise_clusters_on_same_support():
     result = match_line_supports([line(0, 0, 100, 0)], [line(0, 0.02, 100, 0.03)])
     assert result["status"] == "PASS"
+
+
+def test_support_difference_returns_only_hlv_overflow_as_hidden():
+    hlr = [line(0, 0, 100, 0)]
+    hlv = [line(0, 0, 100, 0), line(20, 10, 80, 10)]
+    result = support_difference(hlr, hlv)
+    assert result["status"] == "PASS"
+    assert len(result["candidates"]) == 1
+    assert result["candidates"][0]["source"] == "HLV_MINUS_HLR"
+    assert result["candidate_support_length_mm"] == 60.0
