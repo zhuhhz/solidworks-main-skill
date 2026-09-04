@@ -11,7 +11,7 @@ from __future__ import annotations
 import os, sys
 from pathlib import Path
 from win32com.client import gencache
-from .view_coordinate_transform import to_view_local_mm, transform_metadata
+from .view_coordinate_transform import normalize_primitives, to_view_local_mm, transform_metadata
 from .view_orientation import canonicalize
 
 
@@ -74,12 +74,7 @@ def extract(drawing_path: str | Path, *, upstream_path: str | Path | None = None
                 else: polylines.append(payload)
             # Canonical origin is the projected geometry bounding-box lower-left,
             # not the sheet location or arbitrary model origin.
-            xs = [p[k] for p in visible for k in ("x1", "x2")] + [c["x"] - c["diameter"] / 2 for c in circles]
-            ys = [p[k] for p in visible for k in ("y1", "y2")] + [c["y"] - c["diameter"] / 2 for c in circles]
-            dx, dy = (min(xs), min(ys)) if xs and ys else (0.0, 0.0)
-            for p in visible:
-                p["x1"] -= dx; p["x2"] -= dx; p["y1"] -= dy; p["y2"] -= dy
-            for c in circles: c["x"] -= dx; c["y"] -= dy
+            visible, circles, (dx, dy) = normalize_primitives(visible, circles)
             meta = transform_metadata(scale); meta["bounding_box_origin_removed_mm"] = [dx, dy]
             declared = declared_views[len(views)] if len(views) < len(declared_views) else {}
             semantic_view = declared.get("semantic_view")
