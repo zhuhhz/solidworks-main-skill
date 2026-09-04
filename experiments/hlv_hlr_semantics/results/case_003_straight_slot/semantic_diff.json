@@ -1,7 +1,7 @@
 {
   "case": "case_003_straight_slot",
   "source_drawing": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_003_straight_slot\\case_003_straight_slot.slddrw",
-  "run_at": "2026-09-04T19:21:42",
+  "run_at": "2026-09-04T22:06:34",
   "solidworks_api": {
     "method": "IView.SetDisplayMode3",
     "hlv": 1,
