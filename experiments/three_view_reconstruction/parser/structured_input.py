@@ -23,8 +23,8 @@ def _view(name: str, data: dict) -> ViewGeometry:
 
 def load_structured_input(path: str | Path) -> ProjectionGraph:
     raw = json.loads(Path(path).read_text(encoding="utf-8"))
-    if raw.get("schema_version") not in {"0.1", "0.2"}:
-        raise ValueError("只接受 schema_version=0.1 或 0.2 的结构化三视图输入")
+    if raw.get("schema_version") not in {"0.1", "0.2", "0.3"}:
+        raise ValueError("只接受 schema_version=0.1、0.2 或 0.3 的结构化三视图输入")
     return ProjectionGraph(
         projection=raw.get("projection", "third_angle"),
         front=_view("front", raw["front"]),
@@ -36,4 +36,6 @@ def load_structured_input(path: str | Path) -> ProjectionGraph:
             "internal": "mm; base-block centre origin; +Z is extrude direction",
         },
         feature_evidence=raw.get("feature_evidence"),
+        center_requirements=raw.get("center_requirements", []),
+        reference_integrity=raw.get("reference_integrity"),
     )

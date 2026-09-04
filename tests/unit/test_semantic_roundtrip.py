@@ -20,9 +20,9 @@ def semantic_evidence():
             "differential": {"semantic_provenance": "HLV_MINUS_HLR", "views": [{"hidden_supports": [], "hidden_circles": []}]}}
 
 
-def expected_graph(centerline_count=0):
+def expected_graph(centerline_count=0, center_requirements=None):
     view = lambda count: SimpleNamespace(centerlines=[object()] * count)
-    return SimpleNamespace(front=view(centerline_count), top=view(0), left=view(0))
+    return SimpleNamespace(front=view(centerline_count), top=view(0), left=view(0), center_requirements=center_requirements or [])
 
 
 def level_2_geometry():
@@ -50,3 +50,21 @@ def test_expected_centerline_without_annotation_keeps_level_2b_partial():
     result = split(level_2_geometry(), graph, expected_graph(2))["level_2b_drawing_semantics"]
     assert result["status"] == "PARTIAL"
     assert result["reasons"] == ["EXPECTED_CENTERLINE_ANNOTATIONS_MISSING"]
+
+
+def test_centermark_requirement_is_distinct_from_centerline():
+    structure = {"professional_annotations": {"center_marks": [{"semantic_view": "front"}], "center_lines": []}}
+    graph = extract(projected(), structure, semantic_evidence())
+    expected = expected_graph(center_requirements=[{"kind": "CENTERMARK", "view": "front", "count": 1}])
+    result = split(level_2_geometry(), graph, expected)["level_2b_drawing_semantics"]
+    assert result["status"] == "PASS"
+    assert result["expected_center_marks"] == 1
+    assert result["expected_center_lines"] == 0
+
+
+def test_missing_centermark_does_not_pass_as_centerline_or_axis():
+    graph = extract(projected(), {}, semantic_evidence())
+    expected = expected_graph(center_requirements=[{"kind": "CENTERMARK", "view": "front", "count": 1}])
+    result = split(level_2_geometry(), graph, expected)["level_2b_drawing_semantics"]
+    assert result["status"] == "PARTIAL"
+    assert result["reasons"] == ["EXPECTED_CENTERMARK_ANNOTATIONS_MISSING"]

@@ -35,7 +35,7 @@ def main():
     case_path = ROOT / "benchmarks" / f"{args.case}.json"; out = ROOT / "results" / args.case
     out.mkdir(parents=True, exist_ok=True)
     graph = load_structured_input(case_path); consistency = validate_projection(graph); features = infer_feature_graph(graph)
-    result = {"run_at": datetime.now().isoformat(timespec="seconds"), "case": args.case, "projection_graph": graph.to_dict(), "input_consistency": consistency, "feature_graph": features.to_dict()}
+    result = {"run_at": datetime.now().isoformat(timespec="seconds"), "case": args.case, "projection_graph": graph.to_dict(), "reference_integrity": graph.reference_integrity or {"status": "UNASSESSED"}, "input_consistency": consistency, "feature_graph": features.to_dict()}
     if args.case == "case_002_step_block": result["negative_tests"] = run_negative_tests(graph)
     if consistency["status"] != "PASS" or features.status != "PASS":
         result.update({"status": "AMBIGUOUS" if features.status == "AMBIGUOUS" else "FAIL", "backend": "not_called"})

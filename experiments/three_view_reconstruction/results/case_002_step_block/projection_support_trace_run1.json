@@ -1,0 +1,143 @@
+{
+  "status": "PASS",
+  "api": "IView.GetPolylines7(1)",
+  "drawing_path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\case_002_step_block.SLDDRW",
+  "traces": [
+    {
+      "id": "B002_TOP_OVERFLOW_60",
+      "view": "TOP",
+      "support": {
+        "x1": 20.0,
+        "y1": 20.0,
+        "x2": 80.0,
+        "y2": 20.0
+      },
+      "drawing_view_name": "工程图视图2",
+      "projected_model_edge": {
+        "x1": 100.0,
+        "y1": 20.0,
+        "x2": 0.0,
+        "y2": 20.0
+      },
+      "support_length_mm": 60.0,
+      "support_direction": "HORIZONTAL",
+      "semantic": "VISIBLE",
+      "provenance": "HLR_CAPTURE_GETPOLYLINES7",
+      "normalization_origin_mm": [
+        -50.0,
+        -20.0
+      ],
+      "correspondence": "EXACT",
+      "source_edge": {
+        "edge_id": 0,
+        "start_mm": [
+          50.0,
+          30.0,
+          0.0
+        ],
+        "end_mm": [
+          -50.0,
+          30.0,
+          0.0
+        ]
+      },
+      "adjacent_faces": [
+        {
+          "face_id": 0,
+          "bounding_box_mm": [
+            -50.0,
+            -30.0,
+            0.0,
+            50.0,
+            30.0,
+            0.0
+          ],
+          "owning_feature": "BaseBlock"
+        },
+        {
+          "face_id": 0,
+          "bounding_box_mm": [
+            -50.0,
+            30.0,
+            -20.0,
+            50.0,
+            30.0,
+            0.0
+          ],
+          "owning_feature": "BaseBlock"
+        }
+      ],
+      "owning_features": [
+        "BaseBlock"
+      ]
+    },
+    {
+      "id": "B002_RIGHT_OVERFLOW_40",
+      "view": "RIGHT",
+      "support": {
+        "x1": 20.0,
+        "y1": 10.0,
+        "x2": 20.0,
+        "y2": 50.0
+      },
+      "drawing_view_name": "工程图视图3",
+      "projected_model_edge": {
+        "x1": 20.0,
+        "y1": 0.0,
+        "x2": 20.0,
+        "y2": 60.0
+      },
+      "support_length_mm": 40.0,
+      "support_direction": "VERTICAL",
+      "semantic": "VISIBLE",
+      "provenance": "HLR_CAPTURE_GETPOLYLINES7",
+      "normalization_origin_mm": [
+        -20.0,
+        -30.0
+      ],
+      "correspondence": "EXACT",
+      "source_edge": {
+        "edge_id": 0,
+        "start_mm": [
+          50.0,
+          -30.0,
+          0.0
+        ],
+        "end_mm": [
+          50.0,
+          30.0,
+          0.0
+        ]
+      },
+      "adjacent_faces": [
+        {
+          "face_id": 0,
+          "bounding_box_mm": [
+            -50.0,
+            -30.0,
+            0.0,
+            50.0,
+            30.0,
+            0.0
+          ],
+          "owning_feature": "BaseBlock"
+        },
+        {
+          "face_id": 0,
+          "bounding_box_mm": [
+            50.0,
+            -30.0,
+            -20.0,
+            50.0,
+            30.0,
+            0.0
+          ],
+          "owning_feature": "BaseBlock"
+        }
+      ],
+      "owning_features": [
+        "BaseBlock"
+      ]
+    }
+  ]
+}
