@@ -24,7 +24,7 @@
 
 ## Previews
 
-- `D:\LocalFile\DeskTop\sw\soildworks-main-skill\experiments\three_view_reconstruction\results\case_002_step_block\review\case_002_step_block_isometric.bmp`
-- `D:\LocalFile\DeskTop\sw\soildworks-main-skill\experiments\three_view_reconstruction\results\case_002_step_block\review\case_002_step_block_front.bmp`
-- `D:\LocalFile\DeskTop\sw\soildworks-main-skill\experiments\three_view_reconstruction\results\case_002_step_block\review\case_002_step_block_top.bmp`
-- `D:\LocalFile\DeskTop\sw\soildworks-main-skill\experiments\three_view_reconstruction\results\case_002_step_block\review\case_002_step_block_right.bmp`
+- `D:\LocalFile\DeskTop\sw\solidworks-main-skill\experiments\three_view_reconstruction\results\case_002_step_block\review\case_002_step_block_isometric.bmp`
+- `D:\LocalFile\DeskTop\sw\solidworks-main-skill\experiments\three_view_reconstruction\results\case_002_step_block\review\case_002_step_block_front.bmp`
+- `D:\LocalFile\DeskTop\sw\solidworks-main-skill\experiments\three_view_reconstruction\results\case_002_step_block\review\case_002_step_block_top.bmp`
+- `D:\LocalFile\DeskTop\sw\solidworks-main-skill\experiments\three_view_reconstruction\results\case_002_step_block\review\case_002_step_block_right.bmp`

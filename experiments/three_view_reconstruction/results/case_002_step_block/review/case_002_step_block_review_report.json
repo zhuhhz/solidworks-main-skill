@@ -1,7 +1,7 @@
 {
   "model": {
     "title": "case_002_step_block.SLDPRT",
-    "path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\case_002_step_block.SLDPRT",
+    "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\case_002_step_block.SLDPRT",
     "type": 1,
     "feature_count": 25,
     "features": [
@@ -202,51 +202,51 @@
   },
   "previews": [
     {
-      "path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\review\\case_002_step_block_isometric.bmp",
+      "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\review\\case_002_step_block_isometric.bmp",
       "exists": true,
       "size_bytes": 4800054,
       "width": 1600,
       "height": 1000,
-      "unique_sample_values": 373,
-      "dark_pixel_ratio": 0.4890407986111111,
+      "unique_sample_values": 374,
+      "dark_pixel_ratio": 0.4927300347222222,
       "likely_blank": false
     },
     {
-      "path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\review\\case_002_step_block_front.bmp",
+      "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\review\\case_002_step_block_front.bmp",
       "exists": true,
       "size_bytes": 4800054,
       "width": 1600,
       "height": 1000,
-      "unique_sample_values": 268,
-      "dark_pixel_ratio": 0.6003689236111112,
+      "unique_sample_values": 249,
+      "dark_pixel_ratio": 0.6072048611111112,
       "likely_blank": false
     },
     {
-      "path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\review\\case_002_step_block_top.bmp",
+      "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\review\\case_002_step_block_top.bmp",
       "exists": true,
       "size_bytes": 4800054,
       "width": 1600,
       "height": 1000,
-      "unique_sample_values": 157,
-      "dark_pixel_ratio": 0.4596354166666667,
+      "unique_sample_values": 159,
+      "dark_pixel_ratio": 0.4705946180555556,
       "likely_blank": false
     },
     {
-      "path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\review\\case_002_step_block_right.bmp",
+      "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\review\\case_002_step_block_right.bmp",
       "exists": true,
       "size_bytes": 4800054,
       "width": 1600,
       "height": 1000,
-      "unique_sample_values": 157,
-      "dark_pixel_ratio": 0.4825303819444444,
+      "unique_sample_values": 160,
+      "dark_pixel_ratio": 0.4896918402777778,
       "likely_blank": false
     }
   ],
   "expected_outputs": [
     {
-      "path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\case_002_step_block.SLDPRT",
+      "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\case_002_step_block.SLDPRT",
       "exists": true,
-      "size_bytes": 104360
+      "size_bytes": 104994
     }
   ],
   "checks": {
@@ -271,5 +271,5 @@
     "manual_review_required": true,
     "manual_review_reason": "规则评分只能发现明显失败，最终几何是否符合用户意图仍需查看预览图或截图。"
   },
-  "summary_path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\review\\case_002_step_block_review_summary.md"
+  "summary_path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_002_step_block\\review\\case_002_step_block_review_summary.md"
 }

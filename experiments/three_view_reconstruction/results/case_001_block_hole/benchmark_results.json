@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-09-03T22:09:50",
+  "run_at": "2026-09-04T13:21:55",
   "case": "case_001_block_hole",
   "projection_graph": {
     "projection": "third_angle",
@@ -177,9 +177,10 @@
         }
       }
     ],
+    "external_backend_path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-automation-skill",
     "model_summary": {
       "title": "case_001_block_hole.SLDPRT",
-      "path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\case_001_block_hole.SLDPRT",
+      "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\case_001_block_hole.SLDPRT",
       "type": 1,
       "feature_count": 21,
       "features": [
@@ -363,7 +364,7 @@
       ]
     },
     "review": {
-      "path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\review\\case_001_block_hole_review_report.json",
+      "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\review\\case_001_block_hole_review_report.json",
       "evaluation": {
         "status": "pass",
         "score": 100,
@@ -523,8 +524,8 @@
         }
       ]
     },
-    "part_path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\case_001_block_hole.sldprt",
-    "drawing_path": "D:\\LocalFile\\DeskTop\\sw\\soildworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\case_001_block_hole.slddrw"
+    "part_path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\case_001_block_hole.sldprt",
+    "drawing_path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\case_001_block_hole.slddrw"
   },
   "reconstruction_qa": {
     "status": "PASS",
@@ -550,6 +551,21 @@
         "passed": true
       }
     ]
+  },
+  "drawing_qa": {
+    "technical_success": true,
+    "layout": {
+      "status": "PASS",
+      "view_count": 3,
+      "overlaps": []
+    },
+    "dimensions": {
+      "status": "PASS",
+      "required": [],
+      "native_dimensions": [],
+      "missing": []
+    },
+    "engineering_acceptance": "PASS"
   },
   "roundtrip": {
     "level_1_projection": {
@@ -612,20 +628,37 @@
         "passed": true
       }
     },
-    "level_2_vector_geometry": {
-      "status": "PARTIAL",
-      "overall_rule": "cannot PASS while requested hidden-line semantics are not extractable",
+    "level_2a_vector_geometry": {
+      "status": "PASS",
+      "scope": "lines/circles/arcs only; semantics excluded",
       "views": {
         "front": {
           "visible_lines": {
-            "expected": 0,
+            "expected": 4,
             "actual": 4,
-            "matched": 0,
+            "matched": 4,
             "missing": 0,
-            "extra": 4,
-            "precision": 0.0,
+            "extra": 0,
+            "precision": 1.0,
             "recall": 1.0,
-            "pairs": []
+            "pairs": [
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                3,
+                1
+              ]
+            ]
           },
           "hidden_lines": {
             "status": "NOT_EVALUABLE",
@@ -635,12 +668,17 @@
           "circles": {
             "expected": 1,
             "actual": 1,
-            "matched": 0,
-            "missing": 1,
-            "extra": 1,
-            "precision": 0.0,
-            "recall": 0.0,
-            "pairs": []
+            "matched": 1,
+            "missing": 0,
+            "extra": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "pairs": [
+              [
+                0,
+                0
+              ]
+            ]
           },
           "arcs": {
             "status": "NOT_EVALUABLE",
@@ -653,14 +691,31 @@
         },
         "top": {
           "visible_lines": {
-            "expected": 0,
+            "expected": 4,
             "actual": 4,
-            "matched": 0,
+            "matched": 4,
             "missing": 0,
-            "extra": 4,
-            "precision": 0.0,
+            "extra": 0,
+            "precision": 1.0,
             "recall": 1.0,
-            "pairs": []
+            "pairs": [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                3,
+                1
+              ]
+            ]
           },
           "hidden_lines": {
             "status": "NOT_EVALUABLE",
@@ -688,14 +743,31 @@
         },
         "left": {
           "visible_lines": {
-            "expected": 0,
+            "expected": 4,
             "actual": 4,
-            "matched": 0,
+            "matched": 4,
             "missing": 0,
-            "extra": 4,
-            "precision": 0.0,
+            "extra": 0,
+            "precision": 1.0,
             "recall": 1.0,
-            "pairs": []
+            "pairs": [
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                3,
+                3
+              ]
+            ]
           },
           "hidden_lines": {
             "status": "NOT_EVALUABLE",
@@ -721,12 +793,240 @@
             "expected": 0
           }
         }
-      },
-      "extraction": {
-        "api": "IView.GetPolyLinesAndCurves(0)",
-        "coordinate_space": "view-local mm",
-        "capability_gap": "hidden/centre-line semantic extraction not demonstrated"
       }
+    },
+    "level_2b_drawing_semantics": {
+      "status": "PARTIAL",
+      "scope": "visible/hidden/centerline/centermark semantics",
+      "known_center_marks": 1,
+      "reason": "No exact hidden/visible projected-primitive provenance has been demonstrated."
+    },
+    "drawing_primitive_graph": {
+      "status": "PARTIAL",
+      "views": [
+        {
+          "name": "工程图视图1",
+          "semantic_view": "front",
+          "orientation": {
+            "orientation": "FRONT",
+            "screen_u_world": "+X",
+            "screen_v_world": "+Y",
+            "view_normal_world": "+Z",
+            "handedness": "RIGHT_HANDED",
+            "mirrored": false,
+            "rotation_deg": 0,
+            "projection_standard": "THIRD_ANGLE",
+            "source_solidworks_orientation": "*前视"
+          },
+          "primitives": [
+            {
+              "geometry_type": "LINE",
+              "semantic": "UNKNOWN",
+              "source": "IView.GetPolyLinesAndCurves",
+              "confidence": 0.0,
+              "geometry": {
+                "x1": 100.0,
+                "y1": 60.0,
+                "x2": 0.0,
+                "y2": 60.0
+              }
+            },
+            {
+              "geometry_type": "LINE",
+              "semantic": "UNKNOWN",
+              "source": "IView.GetPolyLinesAndCurves",
+              "confidence": 0.0,
+              "geometry": {
+                "x1": 0.0,
+                "y1": 60.0,
+                "x2": 0.0,
+                "y2": 0.0
+              }
+            },
+            {
+              "geometry_type": "LINE",
+              "semantic": "UNKNOWN",
+              "source": "IView.GetPolyLinesAndCurves",
+              "confidence": 0.0,
+              "geometry": {
+                "x1": 0.0,
+                "y1": 0.0,
+                "x2": 100.0,
+                "y2": 0.0
+              }
+            },
+            {
+              "geometry_type": "LINE",
+              "semantic": "UNKNOWN",
+              "source": "IView.GetPolyLinesAndCurves",
+              "confidence": 0.0,
+              "geometry": {
+                "x1": 100.0,
+                "y1": 0.0,
+                "x2": 100.0,
+                "y2": 60.0
+              }
+            },
+            {
+              "geometry_type": "CIRCLE",
+              "semantic": "UNKNOWN",
+              "source": "IView.GetPolyLinesAndCurves",
+              "confidence": 0.0,
+              "geometry": {
+                "x": 50.00000000000001,
+                "y": 30.000000000000004,
+                "diameter": 19.99999999999998
+              }
+            },
+            {
+              "geometry_type": "ANNOTATION",
+              "semantic": "CENTERMARK",
+              "source": "DrawingAnnotation",
+              "confidence": 1.0,
+              "geometry": {
+                "size_m": 0.0025,
+                "show_lines": true
+              }
+            }
+          ]
+        },
+        {
+          "name": "工程图视图2",
+          "semantic_view": "top",
+          "orientation": {
+            "orientation": "TOP",
+            "screen_u_world": "+X",
+            "screen_v_world": "-Z",
+            "view_normal_world": "+Y",
+            "handedness": "RIGHT_HANDED",
+            "mirrored": false,
+            "rotation_deg": 0,
+            "projection_standard": "THIRD_ANGLE",
+            "source_solidworks_orientation": "top",
+            "source": "drawing_structure.semantic_view"
+          },
+          "primitives": [
+            {
+              "geometry_type": "LINE",
+              "semantic": "UNKNOWN",
+              "source": "IView.GetPolyLinesAndCurves",
+              "confidence": 0.0,
+              "geometry": {
+                "x1": 100.0,
+                "y1": 0.0,
+                "x2": 0.0,
+                "y2": 0.0
+              }
+            },
+            {
+              "geometry_type": "LINE",
+              "semantic": "UNKNOWN",
+              "source": "IView.GetPolyLinesAndCurves",
+              "confidence": 0.0,
+              "geometry": {
+                "x1": 0.0,
+                "y1": 40.0,
+                "x2": 0.0,
+                "y2": 0.0
+              }
+            },
+            {
+              "geometry_type": "LINE",
+              "semantic": "UNKNOWN",
+              "source": "IView.GetPolyLinesAndCurves",
+              "confidence": 0.0,
+              "geometry": {
+                "x1": 100.0,
+                "y1": 40.0,
+                "x2": 0.0,
+                "y2": 40.0
+              }
+            },
+            {
+              "geometry_type": "LINE",
+              "semantic": "UNKNOWN",
+              "source": "IView.GetPolyLinesAndCurves",
+              "confidence": 0.0,
+              "geometry": {
+                "x1": 100.0,
+                "y1": 40.0,
+                "x2": 100.0,
+                "y2": 0.0
+              }
+            }
+          ]
+        },
+        {
+          "name": "工程图视图3",
+          "semantic_view": "right",
+          "orientation": {
+            "orientation": "RIGHT",
+            "screen_u_world": "-Z",
+            "screen_v_world": "+Y",
+            "view_normal_world": "+X",
+            "handedness": "RIGHT_HANDED",
+            "mirrored": false,
+            "rotation_deg": 0,
+            "projection_standard": "THIRD_ANGLE",
+            "source_solidworks_orientation": "right",
+            "source": "drawing_structure.semantic_view"
+          },
+          "primitives": [
+            {
+              "geometry_type": "LINE",
+              "semantic": "UNKNOWN",
+              "source": "IView.GetPolyLinesAndCurves",
+              "confidence": 0.0,
+              "geometry": {
+                "x1": 40.0,
+                "y1": 60.0,
+                "x2": 0.0,
+                "y2": 60.0
+              }
+            },
+            {
+              "geometry_type": "LINE",
+              "semantic": "UNKNOWN",
+              "source": "IView.GetPolyLinesAndCurves",
+              "confidence": 0.0,
+              "geometry": {
+                "x1": 40.0,
+                "y1": 0.0,
+                "x2": 40.0,
+                "y2": 60.0
+              }
+            },
+            {
+              "geometry_type": "LINE",
+              "semantic": "UNKNOWN",
+              "source": "IView.GetPolyLinesAndCurves",
+              "confidence": 0.0,
+              "geometry": {
+                "x1": 40.0,
+                "y1": 0.0,
+                "x2": 0.0,
+                "y2": 0.0
+              }
+            },
+            {
+              "geometry_type": "LINE",
+              "semantic": "UNKNOWN",
+              "source": "IView.GetPolyLinesAndCurves",
+              "confidence": 0.0,
+              "geometry": {
+                "x1": 0.0,
+                "y1": 0.0,
+                "x2": 0.0,
+                "y2": 60.0
+              }
+            }
+          ]
+        }
+      ],
+      "limitations": [
+        "Projected primitive visibility is UNKNOWN until API/topology evidence is demonstrated.",
+        "Center marks are read independently as annotation evidence."
+      ]
     }
   },
   "roundtrip_qa": {

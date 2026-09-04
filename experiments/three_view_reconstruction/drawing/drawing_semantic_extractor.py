@@ -16,5 +16,5 @@ def extract(projected: dict, drawing_structure: dict | None = None) -> dict:
         primitives += [{"geometry_type": "CIRCLE", "semantic": "UNKNOWN", "source": "IView.GetPolyLinesAndCurves", "confidence": 0.0, "geometry": x} for x in view.get("circles", [])]
         owner_marks = [m for m in marks if m.get("view") == view.get("name")]
         primitives += [{"geometry_type": "ANNOTATION", "semantic": "CENTERMARK", "source": "DrawingAnnotation", "confidence": 1.0, "geometry": {"size_m": m.get("size_m"), "show_lines": m.get("show_lines")}} for m in owner_marks]
-        views.append({"name": view.get("name"), "orientation": view.get("orientation"), "primitives": primitives})
+        views.append({"name": view.get("name"), "semantic_view": view.get("semantic_view"), "orientation": view.get("orientation"), "primitives": primitives})
     return {"status": "PARTIAL", "views": views, "limitations": ["Projected primitive visibility is UNKNOWN until API/topology evidence is demonstrated.", "Center marks are read independently as annotation evidence."]}

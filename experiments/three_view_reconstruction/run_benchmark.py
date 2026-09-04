@@ -15,6 +15,7 @@ from validation.reconstruction_validator import validate as validate_reconstruct
 from validation.roundtrip_validator import validate as validate_roundtrip
 from validation.roundtrip_geometry_validator import validate as validate_geometry_roundtrip
 from validation.roundtrip_levels import split as split_roundtrip_levels
+from validation.drawing_qa import acceptance as drawing_acceptance
 from validation.negative_tests import run as run_negative_tests
 
 
@@ -39,10 +40,14 @@ def main():
     else:
         plan = build_plan(features); result["modeling_plan"] = plan.to_dict(); backend = execute(plan, out, args.case); result["solidworks_backend"] = backend
         result["reconstruction_qa"] = validate_reconstruction(features, backend); level_1 = validate_roundtrip(graph, features, backend)
+        result["drawing_qa"] = drawing_acceptance(backend.get("drawing_structure", {}))
         try:
             from drawing.drawing_geometry_extractor import extract as extract_projected_geometry
             from drawing.drawing_semantic_extractor import extract as extract_drawing_semantics
-            projected = extract_projected_geometry(backend["drawing_path"])
+            projected = extract_projected_geometry(
+                backend["drawing_path"], upstream_path=backend.get("external_backend_path"),
+                drawing_structure=backend.get("drawing_structure"),
+            )
             level_2 = validate_geometry_roundtrip(graph, projected)
             semantic_graph = extract_drawing_semantics(projected, backend.get("drawing_structure"))
             levels = split_roundtrip_levels(level_2, semantic_graph)

@@ -44,8 +44,17 @@ def _line_or_circle(kind, pts, scale):
     return "polyline", {"points": points}
 
 
-def extract(drawing_path: str | Path) -> dict:
-    upstream = Path(os.environ["SOLIDWORKS_AUTOMATION_BACKEND_PATH"])
+def extract(drawing_path: str | Path, *, upstream_path: str | Path | None = None,
+            drawing_structure: dict | None = None) -> dict:
+    """Read generated drawing primitives.
+
+    ``upstream_path`` is explicit because the adapter can be invoked after the
+    backend process/environment was configured.  Environment lookup remains a
+    convenience for standalone diagnostics only.
+    """
+    upstream = Path(upstream_path or os.environ.get("SOLIDWORKS_AUTOMATION_BACKEND_PATH", ""))
+    if not (upstream / "scripts" / "sw_session.py").is_file():
+        raise RuntimeError("UPSTREAM_GAP: external backend path was not supplied")
     sys.path.insert(0, str(upstream / "scripts"))
     from sw_session import SolidWorksSession
     session = SolidWorksSession(version=2024, visible=True, wait_seconds=20)
@@ -54,6 +63,7 @@ def extract(drawing_path: str | Path) -> dict:
         mod = gencache.GetModuleForCLSID(DRAWING_DOC_CLSID)
         doc = mod.IDrawingDoc(model._oleobj_)
         view = mod.IView(doc.GetFirstView()._oleobj_).GetNextView(); views = []
+        declared_views = (drawing_structure or {}).get("views", [])
         while view is not None:
             v = mod.IView(view._oleobj_); ratio = list(v.ScaleRatio); scale = float(ratio[0]) / float(ratio[1])
             raw = list(v.GetPolyLinesAndCurves(0)); visible, circles, polylines = [], [], []
@@ -71,11 +81,22 @@ def extract(drawing_path: str | Path) -> dict:
                 p["x1"] -= dx; p["x2"] -= dx; p["y1"] -= dy; p["y2"] -= dy
             for c in circles: c["x"] -= dx; c["y"] -= dy
             meta = transform_metadata(scale); meta["bounding_box_origin_removed_mm"] = [dx, dy]
+            declared = declared_views[len(views)] if len(views) < len(declared_views) else {}
+            semantic_view = declared.get("semantic_view")
             try:
-                orientation = canonicalize(str(v.GetOrientationName())).to_dict()
+                raw_orientation = str(v.GetOrientationName())
+                # Projected views report an empty GetOrientationName in the
+                # tested SW2024 wrapper.  The drawing creator records their
+                # deterministic standard-view role, which is stronger evidence
+                # than their localized generated names.
+                if not raw_orientation and semantic_view:
+                    raw_orientation = semantic_view
+                orientation = canonicalize(raw_orientation).to_dict()
+                if semantic_view and not str(v.GetOrientationName()):
+                    orientation["source"] = "drawing_structure.semantic_view"
             except Exception as exc:
                 orientation = {"status": "UNKNOWN", "reason": repr(exc)}
-            views.append({"name": str(v.Name), "scale": scale, "outline_m": list(v.GetOutline()), "position_m": list(v.Position), "visible_segments": visible, "hidden_segments": [], "circles": circles, "arcs": [], "centerlines": [], "unclassified_polylines": polylines, "transform": meta, "orientation": orientation, "semantic_limitations": ["GetPolyLinesAndCurves returned no line-style/hidden classification in this SW2024 run", "centre marks are annotations, not model-edge polylines"]})
+            views.append({"name": str(v.Name), "semantic_view": semantic_view, "scale": scale, "outline_m": list(v.GetOutline()), "position_m": list(v.Position), "visible_segments": visible, "hidden_segments": [], "circles": circles, "arcs": [], "centerlines": [], "unclassified_polylines": polylines, "transform": meta, "orientation": orientation, "semantic_limitations": ["GetPolyLinesAndCurves returned no line-style/hidden classification in this SW2024 run", "centre marks are annotations, not model-edge polylines"]})
             view = v.GetNextView()
         return {"status": "PARTIAL", "api": "IView.GetPolyLinesAndCurves(0)", "coordinate_space": "view-local mm", "views": views, "capability_gap": "hidden/centre-line semantic extraction not demonstrated"}
     finally:

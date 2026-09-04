@@ -6,7 +6,11 @@ from pathlib import Path
 
 # The CAD execution layer is an explicit third-party dependency, never this
 # experiment's source tree.  A missing value is an actionable integration gap.
-UPSTREAM_ROOT = Path(os.environ.get("SOLIDWORKS_AUTOMATION_BACKEND_PATH", ""))
+_configured_upstream = os.environ.get("SOLIDWORKS_AUTOMATION_BACKEND_PATH")
+# The sibling checkout is the documented local-development integration target.
+# An empty environment variable must never resolve to this repository's copied
+# compatibility files (``Path(\"\") == .`` on Windows).
+UPSTREAM_ROOT = Path(_configured_upstream) if _configured_upstream else Path(__file__).resolve().parents[4] / "solidworks-automation-skill"
 if not (UPSTREAM_ROOT / "scripts" / "sw_session.py").is_file():
     raise RuntimeError("UPSTREAM_GAP: set SOLIDWORKS_AUTOMATION_BACKEND_PATH to the external solidworks-automation-skill clone")
 sys.path.insert(0, str(UPSTREAM_ROOT / "scripts"))
@@ -27,14 +31,38 @@ def _select_front_plane(model) -> bool:
     return False
 
 
+def _close_existing_target_documents(session, targets: tuple[Path, ...]) -> None:
+    """Close only prior benchmark artefacts at exact known paths.
+
+    This prevents a connected user-owned SolidWorks instance from holding a
+    generated test drawing open across runs.  It never closes unrelated or
+    unsaved user documents.
+    """
+    wanted = {str(path.resolve()).casefold() for path in targets}
+    # The late-bound COM wrapper varies between pywin32 generated interfaces.
+    # Close only the active document when its fully-qualified path is an exact
+    # benchmark target.  This avoids relying on undocumented enumeration names
+    # and is deliberately conservative around user documents.
+    try:
+        active = session.sw.ActiveDoc
+        active_path = str(get_com_member(active, "GetPathName")) if active is not None else ""
+        if active is not None and active_path.casefold() in wanted:
+            session.sw.CloseDoc(str(get_com_member(active, "GetTitle")))
+    except Exception:
+        # A failed clean-up must not hide the actual modelling diagnostic.
+        return
+
+
 def execute(plan, output_dir: Path, name: str) -> dict:
     """Backend is intentionally thin: all CAD calls go through the existing Skill."""
     output_dir.mkdir(parents=True, exist_ok=True)
     part_path, drawing_path = output_dir / f"{name}.sldprt", output_dir / f"{name}.slddrw"
     session = SolidWorksSession(version=2024, visible=True, wait_seconds=20)
     part_title = drawing_title = None
-    result = {"status": "FAIL", "skill_gaps": [], "operations": []}
+    result = {"status": "FAIL", "skill_gaps": [], "operations": [],
+              "external_backend_path": str(UPSTREAM_ROOT)}
     try:
+        _close_existing_target_documents(session, (part_path, drawing_path))
         part = session.new_part(); part_title = str(get_com_member(part, "GetTitle"))
         for operation in plan.operations:
             if operation.type == "base_extrude":

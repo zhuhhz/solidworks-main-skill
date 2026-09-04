@@ -24,7 +24,7 @@
 
 ## Previews
 
-- `D:\LocalFile\DeskTop\sw\soildworks-main-skill\experiments\three_view_reconstruction\results\case_001_block_hole\review\case_001_block_hole_isometric.bmp`
-- `D:\LocalFile\DeskTop\sw\soildworks-main-skill\experiments\three_view_reconstruction\results\case_001_block_hole\review\case_001_block_hole_front.bmp`
-- `D:\LocalFile\DeskTop\sw\soildworks-main-skill\experiments\three_view_reconstruction\results\case_001_block_hole\review\case_001_block_hole_top.bmp`
-- `D:\LocalFile\DeskTop\sw\soildworks-main-skill\experiments\three_view_reconstruction\results\case_001_block_hole\review\case_001_block_hole_right.bmp`
+- `D:\LocalFile\DeskTop\sw\solidworks-main-skill\experiments\three_view_reconstruction\results\case_001_block_hole\review\case_001_block_hole_isometric.bmp`
+- `D:\LocalFile\DeskTop\sw\solidworks-main-skill\experiments\three_view_reconstruction\results\case_001_block_hole\review\case_001_block_hole_front.bmp`
+- `D:\LocalFile\DeskTop\sw\solidworks-main-skill\experiments\three_view_reconstruction\results\case_001_block_hole\review\case_001_block_hole_top.bmp`
+- `D:\LocalFile\DeskTop\sw\solidworks-main-skill\experiments\three_view_reconstruction\results\case_001_block_hole\review\case_001_block_hole_right.bmp`
