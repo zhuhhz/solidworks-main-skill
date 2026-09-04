@@ -15,4 +15,4 @@ This is an engineering reuse screen, not legal advice. It records GitHub reposit
 | `getvenkateshprasad-sys/step-to-drawing` | NOASSERTION | UNKNOWN | Do not copy source without an explicit license. |
 | `zarcherlot/q3ds-solidworks-mcp` | unavailable | UNKNOWN | GitHub API returned not found/unavailable; no reuse. |
 
-`soildworks-main-skill` must keep external projects external. A successful technical experiment never changes license obligations.
+`solidworks-main-skill` must keep external projects external. A successful technical experiment never changes license obligations.

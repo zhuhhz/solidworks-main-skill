@@ -1,9 +1,9 @@
 ---
-name: soildworks-main-skill
+name: solidworks-main-skill
 description: 从结构化正交三视图重建简单机械零件，并规划经验证的 3D→工程图流程 / Reconstruct simple mechanical parts from structured orthographic views and plan validated 3D-to-drawing workflows. Use only through this project's external-backend adapter boundary.
 ---
 
-# soildworks-main-skill
+# solidworks-main-skill
 
 ## 项目边界 / Ownership boundary
 

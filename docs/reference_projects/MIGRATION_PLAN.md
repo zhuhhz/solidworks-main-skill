@@ -2,7 +2,7 @@
 
 ## Phase 1 — Level 2A/2B gate before Benchmark 003
 
-1. Restore the official project identifier `soildworks-main-skill` in project metadata/documentation.
+1. Keep the official project identifier `solidworks-main-skill` in project metadata and documentation.
 2. Add `CanonicalViewOrientation` and explicit Front/Top/Left ↔ generated Front/Top/Right transform tests.
 3. Run a minimal controlled SolidWorks experiment: same part, HLR and HLV views created with documented `IView.SetDisplayMode3`; compare normalized projected primitives and record whether set difference isolates hidden candidates.
 4. Read existing centre-mark annotations into a separate semantic channel.
