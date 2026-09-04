@@ -1,7 +1,7 @@
 {
   "case": "case_001_block_hole",
   "source_drawing": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\case_001_block_hole.slddrw",
-  "run_at": "2026-09-04T18:43:55",
+  "run_at": "2026-09-04T19:17:15",
   "solidworks_api": {
     "method": "IView.SetDisplayMode3",
     "hlv": 1,
@@ -91,11 +91,12 @@
         ],
         "circles": [
           {
-            "x": 50.00000000000001,
-            "y": 30.000000000000004,
+            "x": 50.0,
+            "y": 30.0,
             "diameter": 19.99999999999998
           }
         ],
+        "arcs": [],
         "unclassified_polylines": [],
         "transform": {
           "source_units": "SolidWorks projected model metres",
@@ -151,6 +152,7 @@
           }
         ],
         "circles": [],
+        "arcs": [],
         "unclassified_polylines": [],
         "transform": {
           "source_units": "SolidWorks projected model metres",
@@ -206,6 +208,7 @@
           }
         ],
         "circles": [],
+        "arcs": [],
         "unclassified_polylines": [],
         "transform": {
           "source_units": "SolidWorks projected model metres",
@@ -264,11 +267,12 @@
         ],
         "circles": [
           {
-            "x": 50.00000000000001,
-            "y": 30.000000000000004,
+            "x": 50.0,
+            "y": 30.0,
             "diameter": 19.99999999999998
           }
         ],
+        "arcs": [],
         "unclassified_polylines": [],
         "transform": {
           "source_units": "SolidWorks projected model metres",
@@ -324,6 +328,7 @@
           }
         ],
         "circles": [],
+        "arcs": [],
         "unclassified_polylines": [],
         "transform": {
           "source_units": "SolidWorks projected model metres",
@@ -379,6 +384,7 @@
           }
         ],
         "circles": [],
+        "arcs": [],
         "unclassified_polylines": [],
         "transform": {
           "source_units": "SolidWorks projected model metres",
@@ -536,6 +542,32 @@
               0
             ]
           ]
+        },
+        "arcs": {
+          "status": "PASS",
+          "mode": "CIRCLE_SUPPORT_ANGULAR_INTERVAL_COVERAGE",
+          "expected": 0,
+          "actual": 0,
+          "angular_iou": 1.0,
+          "missing_angular_span_deg": 0.0,
+          "overflow_angular_span_deg": 0.0,
+          "max_endpoint_error_mm": 0.0,
+          "missing_ratio": 0.0,
+          "overflow_ratio": 0.0,
+          "max_gap_deg": 0.0,
+          "segmentation": "EQUIVALENT_OR_UNASSESSED",
+          "information": [
+            "GEOMETRY_EQUIVALENT"
+          ],
+          "thresholds": {
+            "arc_center_tolerance_mm": 0.1,
+            "arc_radius_tolerance_mm": 0.05,
+            "arc_angle_tolerance_deg": 0.25,
+            "arc_endpoint_tolerance_mm": 0.1,
+            "arc_max_gap_deg": 0.25,
+            "arc_max_overflow_ratio": 0.02
+          },
+          "supports": []
         },
         "position_stable": true,
         "scale_stable": true
@@ -677,6 +709,32 @@
           "recall": 1.0,
           "pairs": []
         },
+        "arcs": {
+          "status": "PASS",
+          "mode": "CIRCLE_SUPPORT_ANGULAR_INTERVAL_COVERAGE",
+          "expected": 0,
+          "actual": 0,
+          "angular_iou": 1.0,
+          "missing_angular_span_deg": 0.0,
+          "overflow_angular_span_deg": 0.0,
+          "max_endpoint_error_mm": 0.0,
+          "missing_ratio": 0.0,
+          "overflow_ratio": 0.0,
+          "max_gap_deg": 0.0,
+          "segmentation": "EQUIVALENT_OR_UNASSESSED",
+          "information": [
+            "GEOMETRY_EQUIVALENT"
+          ],
+          "thresholds": {
+            "arc_center_tolerance_mm": 0.1,
+            "arc_radius_tolerance_mm": 0.05,
+            "arc_angle_tolerance_deg": 0.25,
+            "arc_endpoint_tolerance_mm": 0.1,
+            "arc_max_gap_deg": 0.25,
+            "arc_max_overflow_ratio": 0.02
+          },
+          "supports": []
+        },
         "position_stable": true,
         "scale_stable": true
       },
@@ -817,6 +875,32 @@
           "recall": 1.0,
           "pairs": []
         },
+        "arcs": {
+          "status": "PASS",
+          "mode": "CIRCLE_SUPPORT_ANGULAR_INTERVAL_COVERAGE",
+          "expected": 0,
+          "actual": 0,
+          "angular_iou": 1.0,
+          "missing_angular_span_deg": 0.0,
+          "overflow_angular_span_deg": 0.0,
+          "max_endpoint_error_mm": 0.0,
+          "missing_ratio": 0.0,
+          "overflow_ratio": 0.0,
+          "max_gap_deg": 0.0,
+          "segmentation": "EQUIVALENT_OR_UNASSESSED",
+          "information": [
+            "GEOMETRY_EQUIVALENT"
+          ],
+          "thresholds": {
+            "arc_center_tolerance_mm": 0.1,
+            "arc_radius_tolerance_mm": 0.05,
+            "arc_angle_tolerance_deg": 0.25,
+            "arc_endpoint_tolerance_mm": 0.1,
+            "arc_max_gap_deg": 0.25,
+            "arc_max_overflow_ratio": 0.02
+          },
+          "supports": []
+        },
         "position_stable": true,
         "scale_stable": true
       }
@@ -907,11 +991,12 @@
         ],
         "circles": [
           {
-            "x": 50.00000000000001,
-            "y": 30.000000000000004,
+            "x": 50.0,
+            "y": 30.0,
             "diameter": 19.99999999999998
           }
         ],
+        "arcs": [],
         "unclassified_polylines": [],
         "transform": {
           "source_units": "SolidWorks projected model metres",
@@ -979,6 +1064,7 @@
           }
         ],
         "circles": [],
+        "arcs": [],
         "unclassified_polylines": [],
         "transform": {
           "source_units": "SolidWorks projected model metres",
@@ -1046,6 +1132,7 @@
           }
         ],
         "circles": [],
+        "arcs": [],
         "unclassified_polylines": [],
         "transform": {
           "source_units": "SolidWorks projected model metres",
@@ -1104,11 +1191,12 @@
         ],
         "circles": [
           {
-            "x": 50.00000000000001,
-            "y": 30.000000000000004,
+            "x": 50.0,
+            "y": 30.0,
             "diameter": 19.99999999999998
           }
         ],
+        "arcs": [],
         "unclassified_polylines": [],
         "transform": {
           "source_units": "SolidWorks projected model metres",
@@ -1176,6 +1264,7 @@
           }
         ],
         "circles": [],
+        "arcs": [],
         "unclassified_polylines": [],
         "transform": {
           "source_units": "SolidWorks projected model metres",
@@ -1243,6 +1332,7 @@
           }
         ],
         "circles": [],
+        "arcs": [],
         "unclassified_polylines": [],
         "transform": {
           "source_units": "SolidWorks projected model metres",
@@ -1400,6 +1490,32 @@
               0
             ]
           ]
+        },
+        "arcs": {
+          "status": "PASS",
+          "mode": "CIRCLE_SUPPORT_ANGULAR_INTERVAL_COVERAGE",
+          "expected": 0,
+          "actual": 0,
+          "angular_iou": 1.0,
+          "missing_angular_span_deg": 0.0,
+          "overflow_angular_span_deg": 0.0,
+          "max_endpoint_error_mm": 0.0,
+          "missing_ratio": 0.0,
+          "overflow_ratio": 0.0,
+          "max_gap_deg": 0.0,
+          "segmentation": "EQUIVALENT_OR_UNASSESSED",
+          "information": [
+            "GEOMETRY_EQUIVALENT"
+          ],
+          "thresholds": {
+            "arc_center_tolerance_mm": 0.1,
+            "arc_radius_tolerance_mm": 0.05,
+            "arc_angle_tolerance_deg": 0.25,
+            "arc_endpoint_tolerance_mm": 0.1,
+            "arc_max_gap_deg": 0.25,
+            "arc_max_overflow_ratio": 0.02
+          },
+          "supports": []
         },
         "position_stable": true,
         "scale_stable": true
@@ -1587,6 +1703,32 @@
           "recall": 1.0,
           "pairs": []
         },
+        "arcs": {
+          "status": "PASS",
+          "mode": "CIRCLE_SUPPORT_ANGULAR_INTERVAL_COVERAGE",
+          "expected": 0,
+          "actual": 0,
+          "angular_iou": 1.0,
+          "missing_angular_span_deg": 0.0,
+          "overflow_angular_span_deg": 0.0,
+          "max_endpoint_error_mm": 0.0,
+          "missing_ratio": 0.0,
+          "overflow_ratio": 0.0,
+          "max_gap_deg": 0.0,
+          "segmentation": "EQUIVALENT_OR_UNASSESSED",
+          "information": [
+            "GEOMETRY_EQUIVALENT"
+          ],
+          "thresholds": {
+            "arc_center_tolerance_mm": 0.1,
+            "arc_radius_tolerance_mm": 0.05,
+            "arc_angle_tolerance_deg": 0.25,
+            "arc_endpoint_tolerance_mm": 0.1,
+            "arc_max_gap_deg": 0.25,
+            "arc_max_overflow_ratio": 0.02
+          },
+          "supports": []
+        },
         "position_stable": true,
         "scale_stable": true
       },
@@ -1772,6 +1914,32 @@
           "precision": 1.0,
           "recall": 1.0,
           "pairs": []
+        },
+        "arcs": {
+          "status": "PASS",
+          "mode": "CIRCLE_SUPPORT_ANGULAR_INTERVAL_COVERAGE",
+          "expected": 0,
+          "actual": 0,
+          "angular_iou": 1.0,
+          "missing_angular_span_deg": 0.0,
+          "overflow_angular_span_deg": 0.0,
+          "max_endpoint_error_mm": 0.0,
+          "missing_ratio": 0.0,
+          "overflow_ratio": 0.0,
+          "max_gap_deg": 0.0,
+          "segmentation": "EQUIVALENT_OR_UNASSESSED",
+          "information": [
+            "GEOMETRY_EQUIVALENT"
+          ],
+          "thresholds": {
+            "arc_center_tolerance_mm": 0.1,
+            "arc_radius_tolerance_mm": 0.05,
+            "arc_angle_tolerance_deg": 0.25,
+            "arc_endpoint_tolerance_mm": 0.1,
+            "arc_max_gap_deg": 0.25,
+            "arc_max_overflow_ratio": 0.02
+          },
+          "supports": []
         },
         "position_stable": true,
         "scale_stable": true

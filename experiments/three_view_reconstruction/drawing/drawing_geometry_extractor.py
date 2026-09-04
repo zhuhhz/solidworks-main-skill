@@ -8,10 +8,10 @@ such rather than inferred.
 """
 from __future__ import annotations
 
-import os, sys
+import math, os, sys
 from pathlib import Path
 from win32com.client import gencache
-from .view_coordinate_transform import normalize_primitives, to_view_local_mm, transform_metadata
+from .view_coordinate_transform import normalize_geometry, to_view_local_mm, transform_metadata
 from .view_orientation import canonicalize
 
 
@@ -30,17 +30,27 @@ def _records(raw):
         yield kind, geo, attrs, pts
 
 
-def _line_or_circle(kind, pts, scale):
+def _line_or_circle(kind, pts, scale, geo=None):
     points = [to_view_local_mm((float(pts[i]), float(pts[i + 1])), scale=scale) for i in range(0, len(pts) - 2, 3)]
     if len(points) == 2:
         return "line", {"x1": points[0][0], "y1": points[0][1], "x2": points[1][0], "y2": points[1][1]}
-    # SW tessellates a projected circular edge.  Preserve it as a circle only
-    # when all samples fit its bounding-box centre/radius within 0.02 mm.
+    # Type-1 geometry exposes centre/start/end/normal. Tessellation order gives
+    # the sweep direction without guessing from the expected reference.
     if kind == 1 and len(points) >= 8:
-        xs, ys = zip(*points); cx, cy = (min(xs) + max(xs)) / 2, (min(ys) + max(ys)) / 2
-        radius = (max(xs) - min(xs) + max(ys) - min(ys)) / 4
-        if radius > 0 and max(abs(((x-cx)**2 + (y-cy)**2) ** .5 - radius) for x, y in points) <= .02:
-            return "circle", {"x": cx, "y": cy, "diameter": 2 * radius}
+        if geo is not None and len(geo) >= 9:
+            cx, cy = to_view_local_mm((float(geo[0]), float(geo[1])), scale=scale)
+        else:
+            xs, ys = zip(*points); cx, cy = (min(xs)+max(xs))/2, (min(ys)+max(ys))/2
+        radii = [math.hypot(x-cx, y-cy) for x, y in points]
+        radius = sum(radii)/len(radii)
+        if radius > 0 and max(abs(value-radius) for value in radii) <= .05:
+            if math.dist(points[0], points[-1]) <= .02:
+                return "circle", {"x": cx, "y": cy, "diameter": 2 * radius}
+            angles = [math.degrees(math.atan2(y-cy, x-cx)) % 360 for x, y in points]
+            signed = sum(((b-a+180) % 360)-180 for a, b in zip(angles, angles[1:]))
+            return "arc", {"x": cx, "y": cy, "radius": radius,
+                           "start_angle_deg": angles[0], "end_angle_deg": angles[-1],
+                           "sweep_direction": "CCW" if signed >= 0 else "CW"}
     return "polyline", {"points": points}
 
 
@@ -66,15 +76,16 @@ def extract(drawing_path: str | Path, *, upstream_path: str | Path | None = None
         declared_views = (drawing_structure or {}).get("views", [])
         while view is not None:
             v = mod.IView(view._oleobj_); ratio = list(v.ScaleRatio); scale = float(ratio[0]) / float(ratio[1])
-            raw = list(v.GetPolyLinesAndCurves(0)); visible, circles, polylines = [], [], []
-            for kind, _geo, _attrs, pts in _records(raw):
-                category, payload = _line_or_circle(kind, pts, scale)
+            raw = list(v.GetPolyLinesAndCurves(0)); visible, circles, arcs, polylines = [], [], [], []
+            for kind, geo, _attrs, pts in _records(raw):
+                category, payload = _line_or_circle(kind, pts, scale, geo)
                 if category == "line": visible.append(payload)
                 elif category == "circle": circles.append(payload)
+                elif category == "arc": arcs.append(payload)
                 else: polylines.append(payload)
             # Canonical origin is the projected geometry bounding-box lower-left,
             # not the sheet location or arbitrary model origin.
-            visible, circles, (dx, dy) = normalize_primitives(visible, circles)
+            visible, circles, arcs, (dx, dy) = normalize_geometry(visible, circles, arcs)
             meta = transform_metadata(scale); meta["bounding_box_origin_removed_mm"] = [dx, dy]
             declared = declared_views[len(views)] if len(views) < len(declared_views) else {}
             semantic_view = declared.get("semantic_view")
@@ -91,7 +102,7 @@ def extract(drawing_path: str | Path, *, upstream_path: str | Path | None = None
                     orientation["source"] = "drawing_structure.semantic_view"
             except Exception as exc:
                 orientation = {"status": "UNKNOWN", "reason": repr(exc)}
-            views.append({"name": str(v.Name), "semantic_view": semantic_view, "scale": scale, "outline_m": list(v.GetOutline()), "position_m": list(v.Position), "visible_segments": visible, "hidden_segments": [], "circles": circles, "arcs": [], "centerlines": [], "unclassified_polylines": polylines, "transform": meta, "orientation": orientation, "semantic_limitations": ["GetPolyLinesAndCurves returned no line-style/hidden classification in this SW2024 run", "centre marks are annotations, not model-edge polylines"]})
+            views.append({"name": str(v.Name), "semantic_view": semantic_view, "scale": scale, "outline_m": list(v.GetOutline()), "position_m": list(v.Position), "visible_segments": visible, "hidden_segments": [], "circles": circles, "arcs": arcs, "centerlines": [], "unclassified_polylines": polylines, "transform": meta, "orientation": orientation, "semantic_limitations": ["GetPolyLinesAndCurves returned no line-style/hidden classification in this SW2024 run", "centre marks are annotations, not model-edge polylines"]})
             view = v.GetNextView()
         return {"status": "PARTIAL", "api": "IView.GetPolyLinesAndCurves(0)", "coordinate_space": "view-local mm", "views": views, "capability_gap": "hidden/centre-line semantic extraction not demonstrated"}
     finally:

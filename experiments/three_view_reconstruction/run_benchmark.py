@@ -27,6 +27,7 @@ def build_plan(features):
     ops += [ModelingOperation("boss_extrude", "Plane_Base_Top", {"type": "rectangle", "width_mm": b.width, "height_mm": b.height, "plane_offset_mm": base.depth}, b.depth) for b in features.bosses]
     hole_plane = "Plane_Boss_Top" if features.bosses else "Front Plane"
     ops += [ModelingOperation("cut_extrude_through_circle", hole_plane, {"type": "circle", "diameter_mm": h.diameter, "center_x_mm": h.center_x, "center_y_mm": h.center_y, "plane_offset_mm": base.depth + sum(b.depth for b in features.bosses)}, direction="through_all") for h in features.holes]
+    ops += [ModelingOperation("cut_extrude_through_slot", "Front Plane", {"type": "straight_slot", "overall_length_mm": s.overall_length_mm, "width_mm": s.width_mm, "radius_mm": s.radius_mm, "center_x_mm": s.center_x_mm, "center_y_mm": s.center_y_mm, "major_axis": s.major_axis}, direction="through_all") for s in features.slots]
     return ModelingPlan(ops)
 
 
@@ -36,7 +37,7 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     graph = load_structured_input(case_path); consistency = validate_projection(graph); features = infer_feature_graph(graph)
     result = {"run_at": datetime.now().isoformat(timespec="seconds"), "case": args.case, "projection_graph": graph.to_dict(), "reference_integrity": graph.reference_integrity or {"status": "UNASSESSED"}, "input_consistency": consistency, "feature_graph": features.to_dict()}
-    if args.case == "case_002_step_block": result["negative_tests"] = run_negative_tests(graph)
+    if args.case in {"case_002_step_block", "case_003_straight_slot"}: result["negative_tests"] = run_negative_tests(graph)
     if consistency["status"] != "PASS" or features.status != "PASS":
         result.update({"status": "AMBIGUOUS" if features.status == "AMBIGUOUS" else "FAIL", "backend": "not_called"})
     else:

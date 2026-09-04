@@ -41,6 +41,11 @@ def extract(projected: dict, drawing_structure: dict | None = None,
                  "confidence": 1.0, "geometry": circle}
                 for circle in hlr_views[index].get("circles", [])
             ]
+            projected_geometry["visible"] += [
+                {"geometry_type": "ARC", "semantic": "VISIBLE", "source": "HLR_CAPTURE",
+                 "confidence": 1.0, "geometry": arc}
+                for arc in hlr_views[index].get("arcs", [])
+            ]
             projected_geometry["hidden"] += evidence_views[index].get("hidden_supports", [])
             projected_geometry["hidden"] += evidence_views[index].get("hidden_circles", [])
         else:
@@ -53,6 +58,11 @@ def extract(projected: dict, drawing_structure: dict | None = None,
                 {"geometry_type": "CIRCLE", "semantic": "UNKNOWN", "source": "IView.GetPolyLinesAndCurves",
                  "confidence": 0.0, "geometry": circle}
                 for circle in view.get("circles", [])
+            ]
+            projected_geometry["unknown"] += [
+                {"geometry_type": "ARC", "semantic": "UNKNOWN", "source": "IView.GetPolyLinesAndCurves",
+                 "confidence": 0.0, "geometry": arc}
+                for arc in view.get("arcs", [])
             ]
         unknown_count += len(projected_geometry["unknown"])
         view_annotations = {

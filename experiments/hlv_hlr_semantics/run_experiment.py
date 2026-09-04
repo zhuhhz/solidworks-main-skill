@@ -16,7 +16,7 @@ RECON = ROOT / "experiments" / "three_view_reconstruction"
 sys.path.insert(0, str(RECON))
 
 from drawing.drawing_geometry_extractor import DRAWING_DOC_CLSID, _line_or_circle, _records
-from drawing.view_coordinate_transform import normalize_primitives, transform_metadata
+from drawing.view_coordinate_transform import normalize_geometry, transform_metadata
 from validation.primitive_matcher import match, match_line_supports, support_difference
 
 SW_HLV = 1
@@ -46,18 +46,19 @@ def _capture(model) -> list[dict]:
     for index, view in enumerate(_typed_views(model)):
         ratio = list(view.ScaleRatio)
         scale = float(ratio[0]) / float(ratio[1])
-        lines, circles, polylines = [], [], []
+        lines, circles, arcs, polylines = [], [], [], []
         raw = list(view.GetPolyLinesAndCurves(0))
-        for kind, _geometry, _attributes, points in _records(raw):
-            category, payload = _line_or_circle(kind, points, scale)
+        for kind, geometry, _attributes, points in _records(raw):
+            category, payload = _line_or_circle(kind, points, scale, geometry)
             if category == "line": lines.append(payload)
             elif category == "circle": circles.append(payload)
+            elif category == "arc": arcs.append(payload)
             else: polylines.append(payload)
-        lines, circles, origin = normalize_primitives(lines, circles)
+        lines, circles, arcs, origin = normalize_geometry(lines, circles, arcs)
         rows.append({
             "index": index, "name": str(view.Name), "scale": scale,
             "position_m": list(view.Position), "outline_m": list(view.GetOutline()),
-            "lines": lines, "circles": circles, "unclassified_polylines": polylines,
+            "lines": lines, "circles": circles, "arcs": arcs, "unclassified_polylines": polylines,
             "transform": transform_metadata(scale) | {"bounding_box_origin_removed_mm": list(origin)},
         })
     return rows
@@ -99,12 +100,13 @@ def _mode_run(session, source: Path, target: Path, mode: int) -> dict:
             "view_index": first["index"],
             "lines": match_line_supports(first["lines"], second["lines"]),
             "circles": match(first["circles"], second["circles"], "circle"),
+            "arcs": match(first["arcs"], second["arcs"], "arc"),
             "position_stable": first["position_m"] == second["position_m"],
             "scale_stable": first["scale"] == second["scale"],
         })
     return {"mode": mode, "set_calls": calls, "saved": saved, "initial_transform": before,
             "pre_save": pre_save, "post_reopen": post_reopen, "stability": stability,
-            "status": "PASS" if saved and all(x["lines"]["status"] == "PASS" and x["circles"]["status"] == "PASS" and x["position_stable"] and x["scale_stable"] for x in stability) else "FAIL"}
+            "status": "PASS" if saved and all(x["lines"]["status"] == "PASS" and x["circles"]["status"] == "PASS" and x["arcs"]["status"] == "PASS" and x["position_stable"] and x["scale_stable"] for x in stability) else "FAIL"}
 
 
 def _differential(hlr: dict, hlv: dict) -> dict:
