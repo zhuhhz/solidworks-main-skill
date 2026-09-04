@@ -22,4 +22,7 @@ def test_left_and_right_are_not_name_equivalent():
 
 
 def test_sheet_position_and_scale_do_not_change_frame():
-    assert canonicalize("Front", "THIRD_ANGLE") == canonicalize("*Front", "THIRD_ANGLE")
+    plain = canonicalize("Front", "THIRD_ANGLE")
+    solidworks_named = canonicalize("*Front", "THIRD_ANGLE")
+    assert comparable(plain, solidworks_named)
+    assert plain.projection_standard == solidworks_named.projection_standard

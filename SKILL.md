@@ -35,6 +35,12 @@ Drawing Plan、布局、尺寸/注释计划、剖视图处理和 Drawing QA 必�
 
 Keep Drawing Plan, layout, dimension/annotation planning, section handling, and drawing QA independent of the backend. A non-overlapping, manufacturable drawing requires a final validation gate; a successful API return is insufficient.
 
-修改后端 adapter 前阅读 [docs/upstream_integration.md](docs/upstream_integration.md)；新增或执行 benchmark 前阅读 [docs/benchmark_spec.md](docs/benchmark_spec.md)。
+## 测试入口 / Test entrypoint
 
-Read [docs/upstream_integration.md](docs/upstream_integration.md) before changing the backend adapter. Read [docs/benchmark_spec.md](docs/benchmark_spec.md) when adding or running a benchmark.
+本项目在 Windows 上统一使用 `python -m pytest` 运行单元、回归、benchmark 与集成测试，因为 `pytest.exe` 所在目录可能未加入 `PATH`。运行单文件、单测试函数或详细输出时，也必须以 `python -m pytest` 开头；除非环境后来明确配置了 pytest PATH，否则不要直接调用 `pytest`。
+
+On Windows, run unit, regression, benchmark, and integration tests through `python -m pytest`, because the directory containing `pytest.exe` may not be on `PATH`. File selection, node selection, verbosity, and live stdout options must keep the same `python -m pytest` prefix. Do not invoke bare `pytest` unless its PATH configuration is later explicitly verified.
+
+修改后端 adapter 前阅读 [docs/upstream_integration.md](docs/upstream_integration.md)；新增或执行 benchmark 前阅读 [docs/benchmark_spec.md](docs/benchmark_spec.md) 和 [docs/testing.md](docs/testing.md)。
+
+Read [docs/upstream_integration.md](docs/upstream_integration.md) before changing the backend adapter. Read [docs/benchmark_spec.md](docs/benchmark_spec.md) and [docs/testing.md](docs/testing.md) when adding or running a benchmark.

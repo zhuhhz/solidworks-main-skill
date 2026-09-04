@@ -12,6 +12,10 @@ It does **not** own or vendor the SolidWorks COM execution layer. The third-part
 
 See [architecture](docs/architecture.md), [upstream integration](docs/upstream_integration.md), and the [Benchmark 001 report](experiments/three_view_reconstruction/THREE_VIEW_RECONSTRUCTION_REPORT.md).
 
+## Testing
+
+Use `python -m pytest` as the canonical test entrypoint on this Windows environment. Do not assume `pytest.exe` is available on `PATH`. See [testing instructions](docs/testing.md) for file, test-node, verbosity, and live-output examples.
+
 ## Status
 
 Benchmarks 001 and 002 have passed deterministic input consistency, feature inference, native SolidWorks creation, B-Rep/Feature Tree validation, and Level 1 structured projection round-trip validation. Level 2 projected-vector extraction is experimental and currently reports `PARTIAL` because hidden-line semantics are not yet reliably exposed.
