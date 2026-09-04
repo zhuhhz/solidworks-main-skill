@@ -12,6 +12,7 @@ import os, sys
 from pathlib import Path
 from win32com.client import gencache
 from .view_coordinate_transform import to_view_local_mm, transform_metadata
+from .view_orientation import canonicalize
 
 
 DRAWING_DOC_CLSID = "{83A33D33-27C5-11CE-BFD4-00400513BB57}"
@@ -70,7 +71,11 @@ def extract(drawing_path: str | Path) -> dict:
                 p["x1"] -= dx; p["x2"] -= dx; p["y1"] -= dy; p["y2"] -= dy
             for c in circles: c["x"] -= dx; c["y"] -= dy
             meta = transform_metadata(scale); meta["bounding_box_origin_removed_mm"] = [dx, dy]
-            views.append({"name": str(v.Name), "scale": scale, "outline_m": list(v.GetOutline()), "position_m": list(v.Position), "visible_segments": visible, "hidden_segments": [], "circles": circles, "arcs": [], "centerlines": [], "unclassified_polylines": polylines, "transform": meta, "semantic_limitations": ["GetPolyLinesAndCurves returned no line-style/hidden classification in this SW2024 run", "centre marks are annotations, not model-edge polylines"]})
+            try:
+                orientation = canonicalize(str(v.GetOrientationName())).to_dict()
+            except Exception as exc:
+                orientation = {"status": "UNKNOWN", "reason": repr(exc)}
+            views.append({"name": str(v.Name), "scale": scale, "outline_m": list(v.GetOutline()), "position_m": list(v.Position), "visible_segments": visible, "hidden_segments": [], "circles": circles, "arcs": [], "centerlines": [], "unclassified_polylines": polylines, "transform": meta, "orientation": orientation, "semantic_limitations": ["GetPolyLinesAndCurves returned no line-style/hidden classification in this SW2024 run", "centre marks are annotations, not model-edge polylines"]})
             view = v.GetNextView()
         return {"status": "PARTIAL", "api": "IView.GetPolyLinesAndCurves(0)", "coordinate_space": "view-local mm", "views": views, "capability_gap": "hidden/centre-line semantic extraction not demonstrated"}
     finally:

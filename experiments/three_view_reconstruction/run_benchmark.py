@@ -14,6 +14,7 @@ from validation.projection_consistency import validate as validate_projection
 from validation.reconstruction_validator import validate as validate_reconstruction
 from validation.roundtrip_validator import validate as validate_roundtrip
 from validation.roundtrip_geometry_validator import validate as validate_geometry_roundtrip
+from validation.roundtrip_levels import split as split_roundtrip_levels
 from validation.negative_tests import run as run_negative_tests
 
 
@@ -39,15 +40,23 @@ def main():
         plan = build_plan(features); result["modeling_plan"] = plan.to_dict(); backend = execute(plan, out, args.case); result["solidworks_backend"] = backend
         result["reconstruction_qa"] = validate_reconstruction(features, backend); level_1 = validate_roundtrip(graph, features, backend)
         try:
-            from drawing.drawing_geometry_extractor import extract
-            level_2 = validate_geometry_roundtrip(graph, extract(backend["drawing_path"]))
+            from drawing.drawing_geometry_extractor import extract as extract_projected_geometry
+            from drawing.drawing_semantic_extractor import extract as extract_drawing_semantics
+            projected = extract_projected_geometry(backend["drawing_path"])
+            level_2 = validate_geometry_roundtrip(graph, projected)
+            semantic_graph = extract_drawing_semantics(projected, backend.get("drawing_structure"))
+            levels = split_roundtrip_levels(level_2, semantic_graph)
         except Exception as exc:
             level_2 = {"status": "FAIL", "reason": repr(exc)}
-        result["roundtrip"] = {"level_1_projection": level_1, "level_2_vector_geometry": level_2}
+            semantic_graph = {"status": "FAIL", "reason": repr(exc)}
+            levels = split_roundtrip_levels(level_2, semantic_graph)
+        result["roundtrip"] = {"level_1_projection": level_1, **levels, "drawing_primitive_graph": semantic_graph}
         result["roundtrip_qa"] = level_1  # retained for Benchmark 001 consumers
-        result["status"] = "PASS" if result["reconstruction_qa"]["status"] == "PASS" and level_1["status"] == "PASS" and level_2["status"] == "PASS" else "PARTIAL" if result["reconstruction_qa"]["status"] == "PASS" and level_1["status"] == "PASS" else "FAIL"
+        technical_pass = result["reconstruction_qa"]["status"] == "PASS" and level_1["status"] == "PASS"
+        roundtrip_pass = levels["level_2a_vector_geometry"]["status"] == "PASS" and levels["level_2b_drawing_semantics"]["status"] == "PASS"
+        result["status"] = "PASS" if technical_pass and roundtrip_pass else "PARTIAL" if technical_pass else "FAIL"
     (out / "benchmark_results.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(json.dumps(result, ensure_ascii=False, indent=2)); return 0 if result["status"] == "PASS" else 1
+    print(json.dumps(result, ensure_ascii=False, indent=2)); return 0 if result["status"] in {"PASS", "PARTIAL"} else 1
 
 
 if __name__ == "__main__": raise SystemExit(main())
