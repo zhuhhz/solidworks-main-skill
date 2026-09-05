@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 from schemas.projection_graph import ProjectionGraph
+from schemas.feature_evidence import FeatureEvidence
 from schemas.view_geometry import Arc, Circle, HiddenLinePair, LineSegment, ViewGeometry
 
 
@@ -23,8 +24,11 @@ def _view(name: str, data: dict) -> ViewGeometry:
 
 def load_structured_input(path: str | Path) -> ProjectionGraph:
     raw = json.loads(Path(path).read_text(encoding="utf-8"))
-    if raw.get("schema_version") not in {"0.1", "0.2", "0.3", "0.4"}:
-        raise ValueError("只接受 schema_version=0.1、0.2、0.3 或 0.4 的结构化三视图输入")
+    if raw.get("schema_version") not in {"0.1", "0.2", "0.3", "0.4", "0.5"}:
+        raise ValueError("只接受 schema_version=0.1、0.2、0.3、0.4 或 0.5 的结构化三视图输入")
+    raw_evidence = raw.get("feature_evidence")
+    legacy_evidence = raw_evidence if isinstance(raw_evidence, dict) else None
+    evidence_records = [FeatureEvidence(**item) for item in raw_evidence] if isinstance(raw_evidence, list) else []
     return ProjectionGraph(
         projection=raw.get("projection", "third_angle"),
         front=_view("front", raw["front"]),
@@ -35,7 +39,9 @@ def load_structured_input(path: str | Path) -> ProjectionGraph:
             "front": "X/Y", "top": "X/Z", "left": "Z/Y",
             "internal": "mm; base-block centre origin; +Z is extrude direction",
         },
-        feature_evidence=raw.get("feature_evidence"),
+        feature_evidence=legacy_evidence,
+        feature_evidence_records=evidence_records,
+        expected_features=raw.get("expected_features"),
         center_requirements=raw.get("center_requirements", []),
         reference_integrity=raw.get("reference_integrity"),
     )

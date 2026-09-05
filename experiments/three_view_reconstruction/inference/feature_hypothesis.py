@@ -6,9 +6,13 @@ from .block_inference import infer_base_block
 from .hole_inference import infer_holes
 from .boss_inference import infer_bosses
 from .slot_inference import infer_slots
+from .evidence_binding import build_feature_graph_from_evidence
 
 
 def infer_feature_graph(graph: ProjectionGraph) -> FeatureGraph:
+    if graph.feature_evidence_records:
+        features, _ = build_feature_graph_from_evidence(graph)
+        return features
     holes, hypotheses = infer_holes(graph)
     bosses, boss_hypotheses = infer_bosses(graph)
     slots, slot_hypotheses = infer_slots(graph)
