@@ -1,0 +1,312 @@
+{
+  "status": "PASS",
+  "strict_api_exact_status": "FAIL",
+  "rows": [
+    {
+      "geometry_reference": "front_pattern_circle_001",
+      "semantic_view": "front",
+      "geometry_type": "CIRCLE",
+      "semantic": "VISIBLE",
+      "geometry": {
+        "x": 15.0,
+        "y": 20.0,
+        "diameter": 10
+      },
+      "ownership_set": [
+        "instance_001"
+      ],
+      "status": "ATTRIBUTED",
+      "ownership": "API_EXACT",
+      "source": "PatternEvidence + HLV/HLR geometry + reopened B-Rep occurrence evidence"
+    },
+    {
+      "geometry_reference": "top_pattern_001_left",
+      "semantic_view": "top",
+      "geometry_type": "LINE",
+      "semantic": "HIDDEN",
+      "geometry": {
+        "x1": 10.0,
+        "y1": 20.0,
+        "x2": 10.0,
+        "y2": 0.0
+      },
+      "ownership_set": [
+        "instance_001"
+      ],
+      "status": "ATTRIBUTED",
+      "ownership": "API_EXACT",
+      "source": "PatternEvidence + HLV/HLR geometry + reopened B-Rep occurrence evidence"
+    },
+    {
+      "geometry_reference": "top_pattern_001_right",
+      "semantic_view": "top",
+      "geometry_type": "LINE",
+      "semantic": "HIDDEN",
+      "geometry": {
+        "x1": 20.0,
+        "y1": 20.0,
+        "x2": 20.0,
+        "y2": 0.0
+      },
+      "ownership_set": [
+        "instance_001"
+      ],
+      "status": "ATTRIBUTED",
+      "ownership": "API_EXACT",
+      "source": "PatternEvidence + HLV/HLR geometry + reopened B-Rep occurrence evidence"
+    },
+    {
+      "geometry_reference": "front_pattern_circle_002",
+      "semantic_view": "front",
+      "geometry_type": "CIRCLE",
+      "semantic": "VISIBLE",
+      "geometry": {
+        "x": 35.0,
+        "y": 20.0,
+        "diameter": 10
+      },
+      "ownership_set": [
+        "instance_002"
+      ],
+      "status": "ATTRIBUTED",
+      "ownership": "INSTANCE_EXACT",
+      "source": "PatternEvidence + HLV/HLR geometry + reopened B-Rep occurrence evidence"
+    },
+    {
+      "geometry_reference": "top_pattern_002_left",
+      "semantic_view": "top",
+      "geometry_type": "LINE",
+      "semantic": "HIDDEN",
+      "geometry": {
+        "x1": 30.0,
+        "y1": 20.0,
+        "x2": 30.0,
+        "y2": 0.0
+      },
+      "ownership_set": [
+        "instance_002"
+      ],
+      "status": "ATTRIBUTED",
+      "ownership": "INSTANCE_EXACT",
+      "source": "PatternEvidence + HLV/HLR geometry + reopened B-Rep occurrence evidence"
+    },
+    {
+      "geometry_reference": "top_pattern_002_right",
+      "semantic_view": "top",
+      "geometry_type": "LINE",
+      "semantic": "HIDDEN",
+      "geometry": {
+        "x1": 40.0,
+        "y1": 20.0,
+        "x2": 40.0,
+        "y2": 0.0
+      },
+      "ownership_set": [
+        "instance_002"
+      ],
+      "status": "ATTRIBUTED",
+      "ownership": "INSTANCE_EXACT",
+      "source": "PatternEvidence + HLV/HLR geometry + reopened B-Rep occurrence evidence"
+    },
+    {
+      "geometry_reference": "front_pattern_circle_003",
+      "semantic_view": "front",
+      "geometry_type": "CIRCLE",
+      "semantic": "VISIBLE",
+      "geometry": {
+        "x": 55.0,
+        "y": 20.0,
+        "diameter": 10
+      },
+      "ownership_set": [
+        "instance_003"
+      ],
+      "status": "ATTRIBUTED",
+      "ownership": "INSTANCE_EXACT",
+      "source": "PatternEvidence + HLV/HLR geometry + reopened B-Rep occurrence evidence"
+    },
+    {
+      "geometry_reference": "top_pattern_003_left",
+      "semantic_view": "top",
+      "geometry_type": "LINE",
+      "semantic": "HIDDEN",
+      "geometry": {
+        "x1": 50.0,
+        "y1": 20.0,
+        "x2": 50.0,
+        "y2": 0.0
+      },
+      "ownership_set": [
+        "instance_003"
+      ],
+      "status": "ATTRIBUTED",
+      "ownership": "INSTANCE_EXACT",
+      "source": "PatternEvidence + HLV/HLR geometry + reopened B-Rep occurrence evidence"
+    },
+    {
+      "geometry_reference": "top_pattern_003_right",
+      "semantic_view": "top",
+      "geometry_type": "LINE",
+      "semantic": "HIDDEN",
+      "geometry": {
+        "x1": 60.0,
+        "y1": 20.0,
+        "x2": 60.0,
+        "y2": 0.0
+      },
+      "ownership_set": [
+        "instance_003"
+      ],
+      "status": "ATTRIBUTED",
+      "ownership": "INSTANCE_EXACT",
+      "source": "PatternEvidence + HLV/HLR geometry + reopened B-Rep occurrence evidence"
+    },
+    {
+      "geometry_reference": "front_pattern_circle_004",
+      "semantic_view": "front",
+      "geometry_type": "CIRCLE",
+      "semantic": "VISIBLE",
+      "geometry": {
+        "x": 75.0,
+        "y": 20.0,
+        "diameter": 10
+      },
+      "ownership_set": [
+        "instance_004"
+      ],
+      "status": "ATTRIBUTED",
+      "ownership": "INSTANCE_EXACT",
+      "source": "PatternEvidence + HLV/HLR geometry + reopened B-Rep occurrence evidence"
+    },
+    {
+      "geometry_reference": "top_pattern_004_left",
+      "semantic_view": "top",
+      "geometry_type": "LINE",
+      "semantic": "HIDDEN",
+      "geometry": {
+        "x1": 70.0,
+        "y1": 20.0,
+        "x2": 70.0,
+        "y2": 0.0
+      },
+      "ownership_set": [
+        "instance_004"
+      ],
+      "status": "ATTRIBUTED",
+      "ownership": "INSTANCE_EXACT",
+      "source": "PatternEvidence + HLV/HLR geometry + reopened B-Rep occurrence evidence"
+    },
+    {
+      "geometry_reference": "top_pattern_004_right",
+      "semantic_view": "top",
+      "geometry_type": "LINE",
+      "semantic": "HIDDEN",
+      "geometry": {
+        "x1": 80.0,
+        "y1": 20.0,
+        "x2": 80.0,
+        "y2": 0.0
+      },
+      "ownership_set": [
+        "instance_004"
+      ],
+      "status": "ATTRIBUTED",
+      "ownership": "INSTANCE_EXACT",
+      "source": "PatternEvidence + HLV/HLR geometry + reopened B-Rep occurrence evidence"
+    },
+    {
+      "geometry_reference": "left_pattern_shared_lower",
+      "semantic_view": "left",
+      "geometry_type": "LINE",
+      "semantic": "HIDDEN",
+      "geometry": {
+        "x1": 20.0,
+        "y1": 15.0,
+        "x2": 0.0,
+        "y2": 15.0
+      },
+      "ownership_set": [
+        "instance_001",
+        "instance_002",
+        "instance_003",
+        "instance_004"
+      ],
+      "status": "ATTRIBUTED",
+      "ownership": "INSTANCE_EXACT",
+      "source": "PatternEvidence + HLV/HLR geometry + reopened B-Rep occurrence evidence"
+    },
+    {
+      "geometry_reference": "left_pattern_shared_upper",
+      "semantic_view": "left",
+      "geometry_type": "LINE",
+      "semantic": "HIDDEN",
+      "geometry": {
+        "x1": 20.0,
+        "y1": 25.0,
+        "x2": 0.0,
+        "y2": 25.0
+      },
+      "ownership_set": [
+        "instance_001",
+        "instance_002",
+        "instance_003",
+        "instance_004"
+      ],
+      "status": "ATTRIBUTED",
+      "ownership": "INSTANCE_EXACT",
+      "source": "PatternEvidence + HLV/HLR geometry + reopened B-Rep occurrence evidence"
+    }
+  ],
+  "shared_projection_rows": [
+    {
+      "geometry_reference": "left_pattern_shared_lower",
+      "semantic_view": "left",
+      "geometry_type": "LINE",
+      "semantic": "HIDDEN",
+      "geometry": {
+        "x1": 20.0,
+        "y1": 15.0,
+        "x2": 0.0,
+        "y2": 15.0
+      },
+      "ownership_set": [
+        "instance_001",
+        "instance_002",
+        "instance_003",
+        "instance_004"
+      ],
+      "status": "ATTRIBUTED",
+      "ownership": "INSTANCE_EXACT",
+      "source": "PatternEvidence + HLV/HLR geometry + reopened B-Rep occurrence evidence"
+    },
+    {
+      "geometry_reference": "left_pattern_shared_upper",
+      "semantic_view": "left",
+      "geometry_type": "LINE",
+      "semantic": "HIDDEN",
+      "geometry": {
+        "x1": 20.0,
+        "y1": 25.0,
+        "x2": 0.0,
+        "y2": 25.0
+      },
+      "ownership_set": [
+        "instance_001",
+        "instance_002",
+        "instance_003",
+        "instance_004"
+      ],
+      "status": "ATTRIBUTED",
+      "ownership": "INSTANCE_EXACT",
+      "source": "PatternEvidence + HLV/HLR geometry + reopened B-Rep occurrence evidence"
+    }
+  ],
+  "unknown_count": 0,
+  "unattributed_count": 0,
+  "api_exact_count": 3,
+  "instance_exact_count": 11,
+  "ownership_rule": "explicit PatternEvidence plus exact equality; no nearest-owner selection",
+  "name_matching_used": false,
+  "nearest_geometry_used": false,
+  "array_order_used": false
+}

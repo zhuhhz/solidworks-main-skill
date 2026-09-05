@@ -1,5 +1,17 @@
 # solidworks-main-skill progress report
 
+## Current benchmark status
+
+- B001-B005: **COMPLETE**
+- B006: **PASS_CANDIDATE**
+- Release status: **not released**
+- Baseline status: **not established**
+
+The B006 decision is limited to the defined `PART_FEATURE_PATTERN` benchmark:
+one BaseBlock, one offset through-hole seed, and one four-occurrence native
+linear pattern. Merge review and the `v0.6-benchmark-006` tag are still
+required before this candidate becomes a released baseline.
+
 ## v0.5 B005 Multi Feature Interaction
 
 The B005 merge at `aef209a3139d034f6a1bff0b98ff8e95cd92ab76` passed

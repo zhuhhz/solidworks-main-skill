@@ -1,0 +1,3105 @@
+{
+  "case": "case_006_pattern",
+  "source_drawing": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill-b006\\experiments\\three_view_reconstruction\\results\\case_006_pattern\\case_006_pattern.slddrw",
+  "run_at": "2026-09-05T15:07:49",
+  "solidworks_api": {
+    "method": "IView.SetDisplayMode3",
+    "hlv": 1,
+    "hlr": 2
+  },
+  "hlr": {
+    "mode": 2,
+    "set_calls": [
+      {
+        "index": 0,
+        "set_return": true,
+        "update_error": null
+      },
+      {
+        "index": 1,
+        "set_return": true,
+        "update_error": null
+      },
+      {
+        "index": 2,
+        "set_return": true,
+        "update_error": null
+      }
+    ],
+    "saved": true,
+    "initial_transform": {
+      "position_m": [
+        [
+          0.062865,
+          0.08635999999999999
+        ],
+        [
+          0.062865,
+          0.17271999999999998
+        ],
+        [
+          0.160655,
+          0.08635999999999999
+        ]
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "pre_save": [
+      {
+        "index": 0,
+        "name": "工程图视图1",
+        "scale": 0.5,
+        "position_m": [
+          0.062865,
+          0.08635999999999999
+        ],
+        "outline_m": [
+          0.033547,
+          0.06704199999999999,
+          0.092183,
+          0.105678
+        ],
+        "lines": [
+          {
+            "x1": 100.0,
+            "y1": 60.0,
+            "x2": 0.0,
+            "y2": 60.0
+          },
+          {
+            "x1": 0.0,
+            "y1": 60.0,
+            "x2": 0.0,
+            "y2": 0.0
+          },
+          {
+            "x1": 0.0,
+            "y1": 0.0,
+            "x2": 100.0,
+            "y2": 0.0
+          },
+          {
+            "x1": 100.0,
+            "y1": 0.0,
+            "x2": 100.0,
+            "y2": 60.0
+          }
+        ],
+        "circles": [
+          {
+            "x": 35.0,
+            "y": 20.0,
+            "diameter": 9.999999999999996
+          },
+          {
+            "x": 15.0,
+            "y": 20.0,
+            "diameter": 9.999999999999995
+          },
+          {
+            "x": 55.0,
+            "y": 20.0,
+            "diameter": 9.999999999999995
+          },
+          {
+            "x": 74.99999999999999,
+            "y": 20.0,
+            "diameter": 9.999999999999996
+          }
+        ],
+        "arcs": [],
+        "unclassified_polylines": [],
+        "transform": {
+          "source_units": "SolidWorks projected model metres",
+          "target_units": "view-local model mm",
+          "translation_removed": "bounding-box origin normalized by extractor",
+          "view_scale_recorded": 0.5,
+          "scale_removed": false,
+          "axis_flip": false,
+          "bounding_box_origin_removed_mm": [
+            -50.0,
+            -30.0
+          ]
+        }
+      },
+      {
+        "index": 1,
+        "name": "工程图视图2",
+        "scale": 0.5,
+        "position_m": [
+          0.062865,
+          0.17271999999999998
+        ],
+        "outline_m": [
+          0.033547,
+          0.16340199999999994,
+          0.092183,
+          0.18203800000000003
+        ],
+        "lines": [
+          {
+            "x1": 0.0,
+            "y1": 20.0,
+            "x2": 0.0,
+            "y2": 0.0
+          },
+          {
+            "x1": 100.0,
+            "y1": 20.0,
+            "x2": 0.0,
+            "y2": 20.0
+          },
+          {
+            "x1": 100.0,
+            "y1": 20.0,
+            "x2": 100.0,
+            "y2": 0.0
+          },
+          {
+            "x1": 100.0,
+            "y1": 0.0,
+            "x2": 0.0,
+            "y2": 0.0
+          }
+        ],
+        "circles": [],
+        "arcs": [],
+        "unclassified_polylines": [],
+        "transform": {
+          "source_units": "SolidWorks projected model metres",
+          "target_units": "view-local model mm",
+          "translation_removed": "bounding-box origin normalized by extractor",
+          "view_scale_recorded": 0.5,
+          "scale_removed": false,
+          "axis_flip": false,
+          "bounding_box_origin_removed_mm": [
+            -50.0,
+            -10.0
+          ]
+        }
+      },
+      {
+        "index": 2,
+        "name": "工程图视图3",
+        "scale": 0.5,
+        "position_m": [
+          0.160655,
+          0.08635999999999999
+        ],
+        "outline_m": [
+          0.15133699999999992,
+          0.06704199999999999,
+          0.16997300000000007,
+          0.105678
+        ],
+        "lines": [
+          {
+            "x1": 20.0,
+            "y1": 0.0,
+            "x2": 0.0,
+            "y2": 0.0
+          },
+          {
+            "x1": 0.0,
+            "y1": 0.0,
+            "x2": 0.0,
+            "y2": 60.0
+          },
+          {
+            "x1": 20.0,
+            "y1": 0.0,
+            "x2": 20.0,
+            "y2": 60.0
+          },
+          {
+            "x1": 20.0,
+            "y1": 60.0,
+            "x2": 0.0,
+            "y2": 60.0
+          }
+        ],
+        "circles": [],
+        "arcs": [],
+        "unclassified_polylines": [],
+        "transform": {
+          "source_units": "SolidWorks projected model metres",
+          "target_units": "view-local model mm",
+          "translation_removed": "bounding-box origin normalized by extractor",
+          "view_scale_recorded": 0.5,
+          "scale_removed": false,
+          "axis_flip": false,
+          "bounding_box_origin_removed_mm": [
+            -10.0,
+            -30.0
+          ]
+        }
+      }
+    ],
+    "post_reopen": [
+      {
+        "index": 0,
+        "name": "工程图视图1",
+        "scale": 0.5,
+        "position_m": [
+          0.062865,
+          0.08635999999999999
+        ],
+        "outline_m": [
+          0.033547,
+          0.06704199999999999,
+          0.092183,
+          0.105678
+        ],
+        "lines": [
+          {
+            "x1": 100.0,
+            "y1": 60.0,
+            "x2": 0.0,
+            "y2": 60.0
+          },
+          {
+            "x1": 0.0,
+            "y1": 60.0,
+            "x2": 0.0,
+            "y2": 0.0
+          },
+          {
+            "x1": 0.0,
+            "y1": 0.0,
+            "x2": 100.0,
+            "y2": 0.0
+          },
+          {
+            "x1": 100.0,
+            "y1": 0.0,
+            "x2": 100.0,
+            "y2": 60.0
+          }
+        ],
+        "circles": [
+          {
+            "x": 35.0,
+            "y": 20.0,
+            "diameter": 9.999999999999996
+          },
+          {
+            "x": 15.0,
+            "y": 20.0,
+            "diameter": 9.999999999999995
+          },
+          {
+            "x": 55.0,
+            "y": 20.0,
+            "diameter": 9.999999999999995
+          },
+          {
+            "x": 74.99999999999999,
+            "y": 20.0,
+            "diameter": 9.999999999999996
+          }
+        ],
+        "arcs": [],
+        "unclassified_polylines": [],
+        "transform": {
+          "source_units": "SolidWorks projected model metres",
+          "target_units": "view-local model mm",
+          "translation_removed": "bounding-box origin normalized by extractor",
+          "view_scale_recorded": 0.5,
+          "scale_removed": false,
+          "axis_flip": false,
+          "bounding_box_origin_removed_mm": [
+            -50.0,
+            -30.0
+          ]
+        }
+      },
+      {
+        "index": 1,
+        "name": "工程图视图2",
+        "scale": 0.5,
+        "position_m": [
+          0.062865,
+          0.17271999999999998
+        ],
+        "outline_m": [
+          0.033547,
+          0.16340199999999994,
+          0.092183,
+          0.18203800000000003
+        ],
+        "lines": [
+          {
+            "x1": 0.0,
+            "y1": 20.0,
+            "x2": 0.0,
+            "y2": 0.0
+          },
+          {
+            "x1": 100.0,
+            "y1": 20.0,
+            "x2": 0.0,
+            "y2": 20.0
+          },
+          {
+            "x1": 100.0,
+            "y1": 20.0,
+            "x2": 100.0,
+            "y2": 0.0
+          },
+          {
+            "x1": 100.0,
+            "y1": 0.0,
+            "x2": 0.0,
+            "y2": 0.0
+          }
+        ],
+        "circles": [],
+        "arcs": [],
+        "unclassified_polylines": [],
+        "transform": {
+          "source_units": "SolidWorks projected model metres",
+          "target_units": "view-local model mm",
+          "translation_removed": "bounding-box origin normalized by extractor",
+          "view_scale_recorded": 0.5,
+          "scale_removed": false,
+          "axis_flip": false,
+          "bounding_box_origin_removed_mm": [
+            -50.0,
+            -10.0
+          ]
+        }
+      },
+      {
+        "index": 2,
+        "name": "工程图视图3",
+        "scale": 0.5,
+        "position_m": [
+          0.160655,
+          0.08635999999999999
+        ],
+        "outline_m": [
+          0.15133699999999992,
+          0.06704199999999999,
+          0.16997300000000007,
+          0.105678
+        ],
+        "lines": [
+          {
+            "x1": 20.0,
+            "y1": 0.0,
+            "x2": 0.0,
+            "y2": 0.0
+          },
+          {
+            "x1": 0.0,
+            "y1": 0.0,
+            "x2": 0.0,
+            "y2": 60.0
+          },
+          {
+            "x1": 20.0,
+            "y1": 0.0,
+            "x2": 20.0,
+            "y2": 60.0
+          },
+          {
+            "x1": 20.0,
+            "y1": 60.0,
+            "x2": 0.0,
+            "y2": 60.0
+          }
+        ],
+        "circles": [],
+        "arcs": [],
+        "unclassified_polylines": [],
+        "transform": {
+          "source_units": "SolidWorks projected model metres",
+          "target_units": "view-local model mm",
+          "translation_removed": "bounding-box origin normalized by extractor",
+          "view_scale_recorded": 0.5,
+          "scale_removed": false,
+          "axis_flip": false,
+          "bounding_box_origin_removed_mm": [
+            -10.0,
+            -30.0
+          ]
+        }
+      }
+    ],
+    "stability": [
+      {
+        "view_index": 0,
+        "lines": {
+          "status": "PASS",
+          "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
+          "expected": 4,
+          "actual": 4,
+          "expected_support_length_mm": 320.0,
+          "actual_support_length_mm": 320.0,
+          "intersection_length_mm": 320.0,
+          "union_length_mm": 320.0,
+          "support_iou": 1.0,
+          "missing_length_mm": 0.0,
+          "overflow_length_mm": 0.0,
+          "missing_ratio": 0.0,
+          "overflow_ratio": 0.0,
+          "max_gap_mm": 0.0,
+          "segmentation": "EQUIVALENT_OR_UNASSESSED",
+          "information": [
+            "GEOMETRY_EQUIVALENT"
+          ],
+          "thresholds": {
+            "support_iou_min": 0.98,
+            "max_gap_mm": 0.1,
+            "max_overflow_ratio": 0.02,
+            "angle_tolerance_deg": 0.1,
+            "line_distance_tolerance_mm": 0.1
+          },
+          "supports": [
+            {
+              "direction": [
+                1.0,
+                -0.0
+              ],
+              "normal_offset_mm": 60.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  100.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  100.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 100.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                -0.0,
+                1.0
+              ],
+              "normal_offset_mm": -0.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  60.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  60.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 60.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                1.0,
+                0.0
+              ],
+              "normal_offset_mm": 0.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  100.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  100.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 100.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                0.0,
+                1.0
+              ],
+              "normal_offset_mm": -100.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  60.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  60.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 60.0,
+              "max_gap_mm": 0.0
+            }
+          ],
+          "invalid_segments": [],
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "circles": {
+          "status": "PASS",
+          "expected": 4,
+          "actual": 4,
+          "matched": 4,
+          "missing": 0,
+          "extra": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "pairs": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              3
+            ]
+          ]
+        },
+        "arcs": {
+          "status": "PASS",
+          "mode": "CIRCLE_SUPPORT_ANGULAR_INTERVAL_COVERAGE",
+          "expected": 0,
+          "actual": 0,
+          "angular_iou": 1.0,
+          "missing_angular_span_deg": 0.0,
+          "overflow_angular_span_deg": 0.0,
+          "max_endpoint_error_mm": 0.0,
+          "missing_ratio": 0.0,
+          "overflow_ratio": 0.0,
+          "max_gap_deg": 0.0,
+          "segmentation": "EQUIVALENT_OR_UNASSESSED",
+          "information": [
+            "GEOMETRY_EQUIVALENT"
+          ],
+          "thresholds": {
+            "arc_center_tolerance_mm": 0.1,
+            "arc_radius_tolerance_mm": 0.05,
+            "arc_angle_tolerance_deg": 0.25,
+            "arc_endpoint_tolerance_mm": 0.1,
+            "arc_max_gap_deg": 0.25,
+            "arc_max_overflow_ratio": 0.02
+          },
+          "supports": []
+        },
+        "position_stable": true,
+        "scale_stable": true
+      },
+      {
+        "view_index": 1,
+        "lines": {
+          "status": "PASS",
+          "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
+          "expected": 4,
+          "actual": 4,
+          "expected_support_length_mm": 240.0,
+          "actual_support_length_mm": 240.0,
+          "intersection_length_mm": 240.0,
+          "union_length_mm": 240.0,
+          "support_iou": 1.0,
+          "missing_length_mm": 0.0,
+          "overflow_length_mm": 0.0,
+          "missing_ratio": 0.0,
+          "overflow_ratio": 0.0,
+          "max_gap_mm": 0.0,
+          "segmentation": "EQUIVALENT_OR_UNASSESSED",
+          "information": [
+            "GEOMETRY_EQUIVALENT"
+          ],
+          "thresholds": {
+            "support_iou_min": 0.98,
+            "max_gap_mm": 0.1,
+            "max_overflow_ratio": 0.02,
+            "angle_tolerance_deg": 0.1,
+            "line_distance_tolerance_mm": 0.1
+          },
+          "supports": [
+            {
+              "direction": [
+                -0.0,
+                1.0
+              ],
+              "normal_offset_mm": -0.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 20.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                1.0,
+                -0.0
+              ],
+              "normal_offset_mm": 20.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  100.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  100.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 100.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                -0.0,
+                1.0
+              ],
+              "normal_offset_mm": -100.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 20.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                1.0,
+                -0.0
+              ],
+              "normal_offset_mm": 0.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  100.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  100.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 100.0,
+              "max_gap_mm": 0.0
+            }
+          ],
+          "invalid_segments": [],
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "circles": {
+          "status": "PASS",
+          "expected": 0,
+          "actual": 0,
+          "matched": 0,
+          "missing": 0,
+          "extra": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "pairs": []
+        },
+        "arcs": {
+          "status": "PASS",
+          "mode": "CIRCLE_SUPPORT_ANGULAR_INTERVAL_COVERAGE",
+          "expected": 0,
+          "actual": 0,
+          "angular_iou": 1.0,
+          "missing_angular_span_deg": 0.0,
+          "overflow_angular_span_deg": 0.0,
+          "max_endpoint_error_mm": 0.0,
+          "missing_ratio": 0.0,
+          "overflow_ratio": 0.0,
+          "max_gap_deg": 0.0,
+          "segmentation": "EQUIVALENT_OR_UNASSESSED",
+          "information": [
+            "GEOMETRY_EQUIVALENT"
+          ],
+          "thresholds": {
+            "arc_center_tolerance_mm": 0.1,
+            "arc_radius_tolerance_mm": 0.05,
+            "arc_angle_tolerance_deg": 0.25,
+            "arc_endpoint_tolerance_mm": 0.1,
+            "arc_max_gap_deg": 0.25,
+            "arc_max_overflow_ratio": 0.02
+          },
+          "supports": []
+        },
+        "position_stable": true,
+        "scale_stable": true
+      },
+      {
+        "view_index": 2,
+        "lines": {
+          "status": "PASS",
+          "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
+          "expected": 4,
+          "actual": 4,
+          "expected_support_length_mm": 160.0,
+          "actual_support_length_mm": 160.0,
+          "intersection_length_mm": 160.0,
+          "union_length_mm": 160.0,
+          "support_iou": 1.0,
+          "missing_length_mm": 0.0,
+          "overflow_length_mm": 0.0,
+          "missing_ratio": 0.0,
+          "overflow_ratio": 0.0,
+          "max_gap_mm": 0.0,
+          "segmentation": "EQUIVALENT_OR_UNASSESSED",
+          "information": [
+            "GEOMETRY_EQUIVALENT"
+          ],
+          "thresholds": {
+            "support_iou_min": 0.98,
+            "max_gap_mm": 0.1,
+            "max_overflow_ratio": 0.02,
+            "angle_tolerance_deg": 0.1,
+            "line_distance_tolerance_mm": 0.1
+          },
+          "supports": [
+            {
+              "direction": [
+                1.0,
+                -0.0
+              ],
+              "normal_offset_mm": 0.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 20.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                0.0,
+                1.0
+              ],
+              "normal_offset_mm": 0.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  60.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  60.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 60.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                0.0,
+                1.0
+              ],
+              "normal_offset_mm": -20.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  60.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  60.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 60.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                1.0,
+                -0.0
+              ],
+              "normal_offset_mm": 60.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 20.0,
+              "max_gap_mm": 0.0
+            }
+          ],
+          "invalid_segments": [],
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "circles": {
+          "status": "PASS",
+          "expected": 0,
+          "actual": 0,
+          "matched": 0,
+          "missing": 0,
+          "extra": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "pairs": []
+        },
+        "arcs": {
+          "status": "PASS",
+          "mode": "CIRCLE_SUPPORT_ANGULAR_INTERVAL_COVERAGE",
+          "expected": 0,
+          "actual": 0,
+          "angular_iou": 1.0,
+          "missing_angular_span_deg": 0.0,
+          "overflow_angular_span_deg": 0.0,
+          "max_endpoint_error_mm": 0.0,
+          "missing_ratio": 0.0,
+          "overflow_ratio": 0.0,
+          "max_gap_deg": 0.0,
+          "segmentation": "EQUIVALENT_OR_UNASSESSED",
+          "information": [
+            "GEOMETRY_EQUIVALENT"
+          ],
+          "thresholds": {
+            "arc_center_tolerance_mm": 0.1,
+            "arc_radius_tolerance_mm": 0.05,
+            "arc_angle_tolerance_deg": 0.25,
+            "arc_endpoint_tolerance_mm": 0.1,
+            "arc_max_gap_deg": 0.25,
+            "arc_max_overflow_ratio": 0.02
+          },
+          "supports": []
+        },
+        "position_stable": true,
+        "scale_stable": true
+      }
+    ],
+    "status": "PASS"
+  },
+  "hlv": {
+    "mode": 1,
+    "set_calls": [
+      {
+        "index": 0,
+        "set_return": true,
+        "update_error": null
+      },
+      {
+        "index": 1,
+        "set_return": true,
+        "update_error": null
+      },
+      {
+        "index": 2,
+        "set_return": true,
+        "update_error": null
+      }
+    ],
+    "saved": true,
+    "initial_transform": {
+      "position_m": [
+        [
+          0.062865,
+          0.08635999999999999
+        ],
+        [
+          0.062865,
+          0.17271999999999998
+        ],
+        [
+          0.160655,
+          0.08635999999999999
+        ]
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "pre_save": [
+      {
+        "index": 0,
+        "name": "工程图视图1",
+        "scale": 0.5,
+        "position_m": [
+          0.062865,
+          0.08635999999999999
+        ],
+        "outline_m": [
+          0.033547,
+          0.06704199999999999,
+          0.092183,
+          0.105678
+        ],
+        "lines": [
+          {
+            "x1": 100.0,
+            "y1": 60.0,
+            "x2": 0.0,
+            "y2": 60.0
+          },
+          {
+            "x1": 0.0,
+            "y1": 60.0,
+            "x2": 0.0,
+            "y2": 0.0
+          },
+          {
+            "x1": 0.0,
+            "y1": 0.0,
+            "x2": 100.0,
+            "y2": 0.0
+          },
+          {
+            "x1": 100.0,
+            "y1": 0.0,
+            "x2": 100.0,
+            "y2": 60.0
+          }
+        ],
+        "circles": [
+          {
+            "x": 35.0,
+            "y": 20.0,
+            "diameter": 9.999999999999996
+          },
+          {
+            "x": 15.0,
+            "y": 20.0,
+            "diameter": 9.999999999999995
+          },
+          {
+            "x": 55.0,
+            "y": 20.0,
+            "diameter": 9.999999999999995
+          },
+          {
+            "x": 74.99999999999999,
+            "y": 20.0,
+            "diameter": 9.999999999999996
+          }
+        ],
+        "arcs": [],
+        "unclassified_polylines": [],
+        "transform": {
+          "source_units": "SolidWorks projected model metres",
+          "target_units": "view-local model mm",
+          "translation_removed": "bounding-box origin normalized by extractor",
+          "view_scale_recorded": 0.5,
+          "scale_removed": false,
+          "axis_flip": false,
+          "bounding_box_origin_removed_mm": [
+            -50.0,
+            -30.0
+          ]
+        }
+      },
+      {
+        "index": 1,
+        "name": "工程图视图2",
+        "scale": 0.5,
+        "position_m": [
+          0.062865,
+          0.17271999999999998
+        ],
+        "outline_m": [
+          0.033547,
+          0.16340199999999994,
+          0.092183,
+          0.18203800000000003
+        ],
+        "lines": [
+          {
+            "x1": 0.0,
+            "y1": 20.0,
+            "x2": 0.0,
+            "y2": 0.0
+          },
+          {
+            "x1": 100.0,
+            "y1": 20.0,
+            "x2": 0.0,
+            "y2": 20.0
+          },
+          {
+            "x1": 100.0,
+            "y1": 20.0,
+            "x2": 100.0,
+            "y2": 0.0
+          },
+          {
+            "x1": 100.0,
+            "y1": 0.0,
+            "x2": 0.0,
+            "y2": 0.0
+          },
+          {
+            "x1": 19.999999999999996,
+            "y1": 0.0,
+            "x2": 19.999999999999996,
+            "y2": 20.0
+          },
+          {
+            "x1": 9.999999999999993,
+            "y1": 20.0,
+            "x2": 9.999999999999993,
+            "y2": 0.0
+          },
+          {
+            "x1": 60.0,
+            "y1": 0.0,
+            "x2": 60.0,
+            "y2": 20.0
+          },
+          {
+            "x1": 50.0,
+            "y1": 20.0,
+            "x2": 50.0,
+            "y2": 0.0
+          },
+          {
+            "x1": 80.0,
+            "y1": 0.0,
+            "x2": 80.0,
+            "y2": 20.0
+          },
+          {
+            "x1": 69.99999999999999,
+            "y1": 20.0,
+            "x2": 69.99999999999999,
+            "y2": 0.0
+          },
+          {
+            "x1": 40.0,
+            "y1": 0.0,
+            "x2": 40.0,
+            "y2": 20.0
+          },
+          {
+            "x1": 29.999999999999996,
+            "y1": 20.0,
+            "x2": 29.999999999999996,
+            "y2": 0.0
+          }
+        ],
+        "circles": [],
+        "arcs": [],
+        "unclassified_polylines": [],
+        "transform": {
+          "source_units": "SolidWorks projected model metres",
+          "target_units": "view-local model mm",
+          "translation_removed": "bounding-box origin normalized by extractor",
+          "view_scale_recorded": 0.5,
+          "scale_removed": false,
+          "axis_flip": false,
+          "bounding_box_origin_removed_mm": [
+            -50.0,
+            -10.0
+          ]
+        }
+      },
+      {
+        "index": 2,
+        "name": "工程图视图3",
+        "scale": 0.5,
+        "position_m": [
+          0.160655,
+          0.08635999999999999
+        ],
+        "outline_m": [
+          0.15133699999999992,
+          0.06704199999999999,
+          0.16997300000000007,
+          0.105678
+        ],
+        "lines": [
+          {
+            "x1": 20.0,
+            "y1": 0.0,
+            "x2": 0.0,
+            "y2": 0.0
+          },
+          {
+            "x1": 0.0,
+            "y1": 0.0,
+            "x2": 0.0,
+            "y2": 60.0
+          },
+          {
+            "x1": 20.0,
+            "y1": 0.0,
+            "x2": 20.0,
+            "y2": 60.0
+          },
+          {
+            "x1": 20.0,
+            "y1": 60.0,
+            "x2": 0.0,
+            "y2": 60.0
+          },
+          {
+            "x1": 0.0,
+            "y1": 14.999999999999998,
+            "x2": 20.0,
+            "y2": 14.999999999999998
+          },
+          {
+            "x1": 20.0,
+            "y1": 25.0,
+            "x2": 0.0,
+            "y2": 25.0
+          }
+        ],
+        "circles": [],
+        "arcs": [],
+        "unclassified_polylines": [],
+        "transform": {
+          "source_units": "SolidWorks projected model metres",
+          "target_units": "view-local model mm",
+          "translation_removed": "bounding-box origin normalized by extractor",
+          "view_scale_recorded": 0.5,
+          "scale_removed": false,
+          "axis_flip": false,
+          "bounding_box_origin_removed_mm": [
+            -10.0,
+            -30.0
+          ]
+        }
+      }
+    ],
+    "post_reopen": [
+      {
+        "index": 0,
+        "name": "工程图视图1",
+        "scale": 0.5,
+        "position_m": [
+          0.062865,
+          0.08635999999999999
+        ],
+        "outline_m": [
+          0.033547,
+          0.06704199999999999,
+          0.092183,
+          0.105678
+        ],
+        "lines": [
+          {
+            "x1": 100.0,
+            "y1": 60.0,
+            "x2": 0.0,
+            "y2": 60.0
+          },
+          {
+            "x1": 0.0,
+            "y1": 60.0,
+            "x2": 0.0,
+            "y2": 0.0
+          },
+          {
+            "x1": 0.0,
+            "y1": 0.0,
+            "x2": 100.0,
+            "y2": 0.0
+          },
+          {
+            "x1": 100.0,
+            "y1": 0.0,
+            "x2": 100.0,
+            "y2": 60.0
+          }
+        ],
+        "circles": [
+          {
+            "x": 35.0,
+            "y": 20.0,
+            "diameter": 9.999999999999996
+          },
+          {
+            "x": 15.0,
+            "y": 20.0,
+            "diameter": 9.999999999999995
+          },
+          {
+            "x": 55.0,
+            "y": 20.0,
+            "diameter": 9.999999999999995
+          },
+          {
+            "x": 74.99999999999999,
+            "y": 20.0,
+            "diameter": 9.999999999999996
+          }
+        ],
+        "arcs": [],
+        "unclassified_polylines": [],
+        "transform": {
+          "source_units": "SolidWorks projected model metres",
+          "target_units": "view-local model mm",
+          "translation_removed": "bounding-box origin normalized by extractor",
+          "view_scale_recorded": 0.5,
+          "scale_removed": false,
+          "axis_flip": false,
+          "bounding_box_origin_removed_mm": [
+            -50.0,
+            -30.0
+          ]
+        }
+      },
+      {
+        "index": 1,
+        "name": "工程图视图2",
+        "scale": 0.5,
+        "position_m": [
+          0.062865,
+          0.17271999999999998
+        ],
+        "outline_m": [
+          0.033547,
+          0.16340199999999994,
+          0.092183,
+          0.18203800000000003
+        ],
+        "lines": [
+          {
+            "x1": 0.0,
+            "y1": 20.0,
+            "x2": 0.0,
+            "y2": 0.0
+          },
+          {
+            "x1": 100.0,
+            "y1": 20.0,
+            "x2": 0.0,
+            "y2": 20.0
+          },
+          {
+            "x1": 100.0,
+            "y1": 20.0,
+            "x2": 100.0,
+            "y2": 0.0
+          },
+          {
+            "x1": 100.0,
+            "y1": 0.0,
+            "x2": 0.0,
+            "y2": 0.0
+          },
+          {
+            "x1": 19.999999999999996,
+            "y1": 0.0,
+            "x2": 19.999999999999996,
+            "y2": 20.0
+          },
+          {
+            "x1": 9.999999999999993,
+            "y1": 20.0,
+            "x2": 9.999999999999993,
+            "y2": 0.0
+          },
+          {
+            "x1": 60.0,
+            "y1": 0.0,
+            "x2": 60.0,
+            "y2": 20.0
+          },
+          {
+            "x1": 50.0,
+            "y1": 20.0,
+            "x2": 50.0,
+            "y2": 0.0
+          },
+          {
+            "x1": 80.0,
+            "y1": 0.0,
+            "x2": 80.0,
+            "y2": 20.0
+          },
+          {
+            "x1": 69.99999999999999,
+            "y1": 20.0,
+            "x2": 69.99999999999999,
+            "y2": 0.0
+          },
+          {
+            "x1": 40.0,
+            "y1": 0.0,
+            "x2": 40.0,
+            "y2": 20.0
+          },
+          {
+            "x1": 29.999999999999996,
+            "y1": 20.0,
+            "x2": 29.999999999999996,
+            "y2": 0.0
+          }
+        ],
+        "circles": [],
+        "arcs": [],
+        "unclassified_polylines": [],
+        "transform": {
+          "source_units": "SolidWorks projected model metres",
+          "target_units": "view-local model mm",
+          "translation_removed": "bounding-box origin normalized by extractor",
+          "view_scale_recorded": 0.5,
+          "scale_removed": false,
+          "axis_flip": false,
+          "bounding_box_origin_removed_mm": [
+            -50.0,
+            -10.0
+          ]
+        }
+      },
+      {
+        "index": 2,
+        "name": "工程图视图3",
+        "scale": 0.5,
+        "position_m": [
+          0.160655,
+          0.08635999999999999
+        ],
+        "outline_m": [
+          0.15133699999999992,
+          0.06704199999999999,
+          0.16997300000000007,
+          0.105678
+        ],
+        "lines": [
+          {
+            "x1": 20.0,
+            "y1": 0.0,
+            "x2": 0.0,
+            "y2": 0.0
+          },
+          {
+            "x1": 0.0,
+            "y1": 0.0,
+            "x2": 0.0,
+            "y2": 60.0
+          },
+          {
+            "x1": 20.0,
+            "y1": 0.0,
+            "x2": 20.0,
+            "y2": 60.0
+          },
+          {
+            "x1": 20.0,
+            "y1": 60.0,
+            "x2": 0.0,
+            "y2": 60.0
+          },
+          {
+            "x1": 0.0,
+            "y1": 14.999999999999998,
+            "x2": 20.0,
+            "y2": 14.999999999999998
+          },
+          {
+            "x1": 20.0,
+            "y1": 25.0,
+            "x2": 0.0,
+            "y2": 25.0
+          }
+        ],
+        "circles": [],
+        "arcs": [],
+        "unclassified_polylines": [],
+        "transform": {
+          "source_units": "SolidWorks projected model metres",
+          "target_units": "view-local model mm",
+          "translation_removed": "bounding-box origin normalized by extractor",
+          "view_scale_recorded": 0.5,
+          "scale_removed": false,
+          "axis_flip": false,
+          "bounding_box_origin_removed_mm": [
+            -10.0,
+            -30.0
+          ]
+        }
+      }
+    ],
+    "stability": [
+      {
+        "view_index": 0,
+        "lines": {
+          "status": "PASS",
+          "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
+          "expected": 4,
+          "actual": 4,
+          "expected_support_length_mm": 320.0,
+          "actual_support_length_mm": 320.0,
+          "intersection_length_mm": 320.0,
+          "union_length_mm": 320.0,
+          "support_iou": 1.0,
+          "missing_length_mm": 0.0,
+          "overflow_length_mm": 0.0,
+          "missing_ratio": 0.0,
+          "overflow_ratio": 0.0,
+          "max_gap_mm": 0.0,
+          "segmentation": "EQUIVALENT_OR_UNASSESSED",
+          "information": [
+            "GEOMETRY_EQUIVALENT"
+          ],
+          "thresholds": {
+            "support_iou_min": 0.98,
+            "max_gap_mm": 0.1,
+            "max_overflow_ratio": 0.02,
+            "angle_tolerance_deg": 0.1,
+            "line_distance_tolerance_mm": 0.1
+          },
+          "supports": [
+            {
+              "direction": [
+                1.0,
+                -0.0
+              ],
+              "normal_offset_mm": 60.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  100.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  100.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 100.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                -0.0,
+                1.0
+              ],
+              "normal_offset_mm": -0.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  60.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  60.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 60.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                1.0,
+                0.0
+              ],
+              "normal_offset_mm": 0.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  100.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  100.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 100.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                0.0,
+                1.0
+              ],
+              "normal_offset_mm": -100.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  60.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  60.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 60.0,
+              "max_gap_mm": 0.0
+            }
+          ],
+          "invalid_segments": [],
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "circles": {
+          "status": "PASS",
+          "expected": 4,
+          "actual": 4,
+          "matched": 4,
+          "missing": 0,
+          "extra": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "pairs": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              3
+            ]
+          ]
+        },
+        "arcs": {
+          "status": "PASS",
+          "mode": "CIRCLE_SUPPORT_ANGULAR_INTERVAL_COVERAGE",
+          "expected": 0,
+          "actual": 0,
+          "angular_iou": 1.0,
+          "missing_angular_span_deg": 0.0,
+          "overflow_angular_span_deg": 0.0,
+          "max_endpoint_error_mm": 0.0,
+          "missing_ratio": 0.0,
+          "overflow_ratio": 0.0,
+          "max_gap_deg": 0.0,
+          "segmentation": "EQUIVALENT_OR_UNASSESSED",
+          "information": [
+            "GEOMETRY_EQUIVALENT"
+          ],
+          "thresholds": {
+            "arc_center_tolerance_mm": 0.1,
+            "arc_radius_tolerance_mm": 0.05,
+            "arc_angle_tolerance_deg": 0.25,
+            "arc_endpoint_tolerance_mm": 0.1,
+            "arc_max_gap_deg": 0.25,
+            "arc_max_overflow_ratio": 0.02
+          },
+          "supports": []
+        },
+        "position_stable": true,
+        "scale_stable": true
+      },
+      {
+        "view_index": 1,
+        "lines": {
+          "status": "PASS",
+          "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
+          "expected": 12,
+          "actual": 12,
+          "expected_support_length_mm": 400.0,
+          "actual_support_length_mm": 400.0,
+          "intersection_length_mm": 400.0,
+          "union_length_mm": 400.0,
+          "support_iou": 1.0,
+          "missing_length_mm": 0.0,
+          "overflow_length_mm": 0.0,
+          "missing_ratio": 0.0,
+          "overflow_ratio": 0.0,
+          "max_gap_mm": 0.0,
+          "segmentation": "EQUIVALENT_OR_UNASSESSED",
+          "information": [
+            "GEOMETRY_EQUIVALENT"
+          ],
+          "thresholds": {
+            "support_iou_min": 0.98,
+            "max_gap_mm": 0.1,
+            "max_overflow_ratio": 0.02,
+            "angle_tolerance_deg": 0.1,
+            "line_distance_tolerance_mm": 0.1
+          },
+          "supports": [
+            {
+              "direction": [
+                -0.0,
+                1.0
+              ],
+              "normal_offset_mm": -0.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 20.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                1.0,
+                -0.0
+              ],
+              "normal_offset_mm": 20.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  100.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  100.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 100.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                -0.0,
+                1.0
+              ],
+              "normal_offset_mm": -100.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 20.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                1.0,
+                -0.0
+              ],
+              "normal_offset_mm": 0.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  100.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  100.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 100.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                0.0,
+                1.0
+              ],
+              "normal_offset_mm": -19.999999999999996,
+              "expected_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 20.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                -0.0,
+                1.0
+              ],
+              "normal_offset_mm": -9.999999999999993,
+              "expected_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 20.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                0.0,
+                1.0
+              ],
+              "normal_offset_mm": -60.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 20.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                -0.0,
+                1.0
+              ],
+              "normal_offset_mm": -50.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 20.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                0.0,
+                1.0
+              ],
+              "normal_offset_mm": -80.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 20.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                -0.0,
+                1.0
+              ],
+              "normal_offset_mm": -69.99999999999999,
+              "expected_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 20.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                0.0,
+                1.0
+              ],
+              "normal_offset_mm": -40.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 20.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                -0.0,
+                1.0
+              ],
+              "normal_offset_mm": -29.999999999999996,
+              "expected_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 20.0,
+              "max_gap_mm": 0.0
+            }
+          ],
+          "invalid_segments": [],
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "circles": {
+          "status": "PASS",
+          "expected": 0,
+          "actual": 0,
+          "matched": 0,
+          "missing": 0,
+          "extra": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "pairs": []
+        },
+        "arcs": {
+          "status": "PASS",
+          "mode": "CIRCLE_SUPPORT_ANGULAR_INTERVAL_COVERAGE",
+          "expected": 0,
+          "actual": 0,
+          "angular_iou": 1.0,
+          "missing_angular_span_deg": 0.0,
+          "overflow_angular_span_deg": 0.0,
+          "max_endpoint_error_mm": 0.0,
+          "missing_ratio": 0.0,
+          "overflow_ratio": 0.0,
+          "max_gap_deg": 0.0,
+          "segmentation": "EQUIVALENT_OR_UNASSESSED",
+          "information": [
+            "GEOMETRY_EQUIVALENT"
+          ],
+          "thresholds": {
+            "arc_center_tolerance_mm": 0.1,
+            "arc_radius_tolerance_mm": 0.05,
+            "arc_angle_tolerance_deg": 0.25,
+            "arc_endpoint_tolerance_mm": 0.1,
+            "arc_max_gap_deg": 0.25,
+            "arc_max_overflow_ratio": 0.02
+          },
+          "supports": []
+        },
+        "position_stable": true,
+        "scale_stable": true
+      },
+      {
+        "view_index": 2,
+        "lines": {
+          "status": "PASS",
+          "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
+          "expected": 6,
+          "actual": 6,
+          "expected_support_length_mm": 200.0,
+          "actual_support_length_mm": 200.0,
+          "intersection_length_mm": 200.0,
+          "union_length_mm": 200.0,
+          "support_iou": 1.0,
+          "missing_length_mm": 0.0,
+          "overflow_length_mm": 0.0,
+          "missing_ratio": 0.0,
+          "overflow_ratio": 0.0,
+          "max_gap_mm": 0.0,
+          "segmentation": "EQUIVALENT_OR_UNASSESSED",
+          "information": [
+            "GEOMETRY_EQUIVALENT"
+          ],
+          "thresholds": {
+            "support_iou_min": 0.98,
+            "max_gap_mm": 0.1,
+            "max_overflow_ratio": 0.02,
+            "angle_tolerance_deg": 0.1,
+            "line_distance_tolerance_mm": 0.1
+          },
+          "supports": [
+            {
+              "direction": [
+                1.0,
+                -0.0
+              ],
+              "normal_offset_mm": 0.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 20.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                0.0,
+                1.0
+              ],
+              "normal_offset_mm": 0.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  60.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  60.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 60.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                0.0,
+                1.0
+              ],
+              "normal_offset_mm": -20.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  60.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  60.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 60.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                1.0,
+                -0.0
+              ],
+              "normal_offset_mm": 60.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 20.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                1.0,
+                0.0
+              ],
+              "normal_offset_mm": 14.999999999999998,
+              "expected_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 20.0,
+              "max_gap_mm": 0.0
+            },
+            {
+              "direction": [
+                1.0,
+                -0.0
+              ],
+              "normal_offset_mm": 25.0,
+              "expected_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "actual_intervals": [
+                [
+                  0.0,
+                  20.0
+                ]
+              ],
+              "expected_segment_count": 1,
+              "actual_segment_count": 1,
+              "intersection_length_mm": 20.0,
+              "max_gap_mm": 0.0
+            }
+          ],
+          "invalid_segments": [],
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "circles": {
+          "status": "PASS",
+          "expected": 0,
+          "actual": 0,
+          "matched": 0,
+          "missing": 0,
+          "extra": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "pairs": []
+        },
+        "arcs": {
+          "status": "PASS",
+          "mode": "CIRCLE_SUPPORT_ANGULAR_INTERVAL_COVERAGE",
+          "expected": 0,
+          "actual": 0,
+          "angular_iou": 1.0,
+          "missing_angular_span_deg": 0.0,
+          "overflow_angular_span_deg": 0.0,
+          "max_endpoint_error_mm": 0.0,
+          "missing_ratio": 0.0,
+          "overflow_ratio": 0.0,
+          "max_gap_deg": 0.0,
+          "segmentation": "EQUIVALENT_OR_UNASSESSED",
+          "information": [
+            "GEOMETRY_EQUIVALENT"
+          ],
+          "thresholds": {
+            "arc_center_tolerance_mm": 0.1,
+            "arc_radius_tolerance_mm": 0.05,
+            "arc_angle_tolerance_deg": 0.25,
+            "arc_endpoint_tolerance_mm": 0.1,
+            "arc_max_gap_deg": 0.25,
+            "arc_max_overflow_ratio": 0.02
+          },
+          "supports": []
+        },
+        "position_stable": true,
+        "scale_stable": true
+      }
+    ],
+    "status": "PASS"
+  },
+  "differential": {
+    "status": "PASS",
+    "semantic_provenance": "HLV_MINUS_HLR",
+    "views": [
+      {
+        "view_index": 0,
+        "same_scale": true,
+        "same_sheet_location": true,
+        "visible_supports_stable": true,
+        "hidden_supports": [],
+        "hidden_circles": [],
+        "support_difference": {
+          "status": "PASS",
+          "visible_supports_stable": true,
+          "candidates": [],
+          "candidate_support_length_mm": 0,
+          "coverage": {
+            "status": "PASS",
+            "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
+            "expected": 4,
+            "actual": 4,
+            "expected_support_length_mm": 320.0,
+            "actual_support_length_mm": 320.0,
+            "intersection_length_mm": 320.0,
+            "union_length_mm": 320.0,
+            "support_iou": 1.0,
+            "missing_length_mm": 0.0,
+            "overflow_length_mm": 0.0,
+            "missing_ratio": 0.0,
+            "overflow_ratio": 0.0,
+            "max_gap_mm": 0.0,
+            "segmentation": "EQUIVALENT_OR_UNASSESSED",
+            "information": [
+              "GEOMETRY_EQUIVALENT"
+            ],
+            "thresholds": {
+              "support_iou_min": 0.98,
+              "max_gap_mm": 0.1,
+              "max_overflow_ratio": 0.02,
+              "angle_tolerance_deg": 0.1,
+              "line_distance_tolerance_mm": 0.1
+            },
+            "supports": [
+              {
+                "direction": [
+                  1.0,
+                  -0.0
+                ],
+                "normal_offset_mm": 60.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    100.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    100.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 100.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  -0.0,
+                  1.0
+                ],
+                "normal_offset_mm": -0.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    60.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    60.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 60.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  1.0,
+                  0.0
+                ],
+                "normal_offset_mm": 0.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    100.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    100.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 100.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  0.0,
+                  1.0
+                ],
+                "normal_offset_mm": -100.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    60.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    60.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 60.0,
+                "max_gap_mm": 0.0
+              }
+            ],
+            "invalid_segments": [],
+            "precision": 1.0,
+            "recall": 1.0
+          }
+        }
+      },
+      {
+        "view_index": 1,
+        "same_scale": true,
+        "same_sheet_location": true,
+        "visible_supports_stable": true,
+        "hidden_supports": [
+          {
+            "geometry_type": "LINE",
+            "semantic": "HIDDEN",
+            "source": "HLV_MINUS_HLR",
+            "confidence": 1.0,
+            "geometry": {
+              "x1": 19.999999999999996,
+              "y1": 0.0,
+              "x2": 19.999999999999996,
+              "y2": 20.0
+            },
+            "support_length_mm": 20.0
+          },
+          {
+            "geometry_type": "LINE",
+            "semantic": "HIDDEN",
+            "source": "HLV_MINUS_HLR",
+            "confidence": 1.0,
+            "geometry": {
+              "x1": 9.999999999999993,
+              "y1": 0.0,
+              "x2": 9.999999999999993,
+              "y2": 20.0
+            },
+            "support_length_mm": 20.0
+          },
+          {
+            "geometry_type": "LINE",
+            "semantic": "HIDDEN",
+            "source": "HLV_MINUS_HLR",
+            "confidence": 1.0,
+            "geometry": {
+              "x1": 60.0,
+              "y1": 0.0,
+              "x2": 60.0,
+              "y2": 20.0
+            },
+            "support_length_mm": 20.0
+          },
+          {
+            "geometry_type": "LINE",
+            "semantic": "HIDDEN",
+            "source": "HLV_MINUS_HLR",
+            "confidence": 1.0,
+            "geometry": {
+              "x1": 50.0,
+              "y1": 0.0,
+              "x2": 50.0,
+              "y2": 20.0
+            },
+            "support_length_mm": 20.0
+          },
+          {
+            "geometry_type": "LINE",
+            "semantic": "HIDDEN",
+            "source": "HLV_MINUS_HLR",
+            "confidence": 1.0,
+            "geometry": {
+              "x1": 80.0,
+              "y1": 0.0,
+              "x2": 80.0,
+              "y2": 20.0
+            },
+            "support_length_mm": 20.0
+          },
+          {
+            "geometry_type": "LINE",
+            "semantic": "HIDDEN",
+            "source": "HLV_MINUS_HLR",
+            "confidence": 1.0,
+            "geometry": {
+              "x1": 69.99999999999999,
+              "y1": 0.0,
+              "x2": 69.99999999999999,
+              "y2": 20.0
+            },
+            "support_length_mm": 20.0
+          },
+          {
+            "geometry_type": "LINE",
+            "semantic": "HIDDEN",
+            "source": "HLV_MINUS_HLR",
+            "confidence": 1.0,
+            "geometry": {
+              "x1": 40.0,
+              "y1": 0.0,
+              "x2": 40.0,
+              "y2": 20.0
+            },
+            "support_length_mm": 20.0
+          },
+          {
+            "geometry_type": "LINE",
+            "semantic": "HIDDEN",
+            "source": "HLV_MINUS_HLR",
+            "confidence": 1.0,
+            "geometry": {
+              "x1": 29.999999999999996,
+              "y1": 0.0,
+              "x2": 29.999999999999996,
+              "y2": 20.0
+            },
+            "support_length_mm": 20.0
+          }
+        ],
+        "hidden_circles": [],
+        "support_difference": {
+          "status": "PASS",
+          "visible_supports_stable": true,
+          "candidates": [
+            {
+              "geometry_type": "LINE",
+              "semantic": "HIDDEN",
+              "source": "HLV_MINUS_HLR",
+              "confidence": 1.0,
+              "geometry": {
+                "x1": 19.999999999999996,
+                "y1": 0.0,
+                "x2": 19.999999999999996,
+                "y2": 20.0
+              },
+              "support_length_mm": 20.0
+            },
+            {
+              "geometry_type": "LINE",
+              "semantic": "HIDDEN",
+              "source": "HLV_MINUS_HLR",
+              "confidence": 1.0,
+              "geometry": {
+                "x1": 9.999999999999993,
+                "y1": 0.0,
+                "x2": 9.999999999999993,
+                "y2": 20.0
+              },
+              "support_length_mm": 20.0
+            },
+            {
+              "geometry_type": "LINE",
+              "semantic": "HIDDEN",
+              "source": "HLV_MINUS_HLR",
+              "confidence": 1.0,
+              "geometry": {
+                "x1": 60.0,
+                "y1": 0.0,
+                "x2": 60.0,
+                "y2": 20.0
+              },
+              "support_length_mm": 20.0
+            },
+            {
+              "geometry_type": "LINE",
+              "semantic": "HIDDEN",
+              "source": "HLV_MINUS_HLR",
+              "confidence": 1.0,
+              "geometry": {
+                "x1": 50.0,
+                "y1": 0.0,
+                "x2": 50.0,
+                "y2": 20.0
+              },
+              "support_length_mm": 20.0
+            },
+            {
+              "geometry_type": "LINE",
+              "semantic": "HIDDEN",
+              "source": "HLV_MINUS_HLR",
+              "confidence": 1.0,
+              "geometry": {
+                "x1": 80.0,
+                "y1": 0.0,
+                "x2": 80.0,
+                "y2": 20.0
+              },
+              "support_length_mm": 20.0
+            },
+            {
+              "geometry_type": "LINE",
+              "semantic": "HIDDEN",
+              "source": "HLV_MINUS_HLR",
+              "confidence": 1.0,
+              "geometry": {
+                "x1": 69.99999999999999,
+                "y1": 0.0,
+                "x2": 69.99999999999999,
+                "y2": 20.0
+              },
+              "support_length_mm": 20.0
+            },
+            {
+              "geometry_type": "LINE",
+              "semantic": "HIDDEN",
+              "source": "HLV_MINUS_HLR",
+              "confidence": 1.0,
+              "geometry": {
+                "x1": 40.0,
+                "y1": 0.0,
+                "x2": 40.0,
+                "y2": 20.0
+              },
+              "support_length_mm": 20.0
+            },
+            {
+              "geometry_type": "LINE",
+              "semantic": "HIDDEN",
+              "source": "HLV_MINUS_HLR",
+              "confidence": 1.0,
+              "geometry": {
+                "x1": 29.999999999999996,
+                "y1": 0.0,
+                "x2": 29.999999999999996,
+                "y2": 20.0
+              },
+              "support_length_mm": 20.0
+            }
+          ],
+          "candidate_support_length_mm": 160.0,
+          "coverage": {
+            "status": "FAIL",
+            "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
+            "expected": 4,
+            "actual": 12,
+            "expected_support_length_mm": 240.0,
+            "actual_support_length_mm": 400.0,
+            "intersection_length_mm": 240.0,
+            "union_length_mm": 400.0,
+            "support_iou": 0.6,
+            "missing_length_mm": 0.0,
+            "overflow_length_mm": 160.0,
+            "missing_ratio": 0.0,
+            "overflow_ratio": 0.6666666666666666,
+            "max_gap_mm": 0.0,
+            "segmentation": "EQUIVALENT_OR_UNASSESSED",
+            "information": [],
+            "thresholds": {
+              "support_iou_min": 0.98,
+              "max_gap_mm": 0.1,
+              "max_overflow_ratio": 0.02,
+              "angle_tolerance_deg": 0.1,
+              "line_distance_tolerance_mm": 0.1
+            },
+            "supports": [
+              {
+                "direction": [
+                  -0.0,
+                  1.0
+                ],
+                "normal_offset_mm": -0.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    20.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    20.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 20.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  1.0,
+                  -0.0
+                ],
+                "normal_offset_mm": 20.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    100.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    100.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 100.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  -0.0,
+                  1.0
+                ],
+                "normal_offset_mm": -100.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    20.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    20.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 20.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  1.0,
+                  -0.0
+                ],
+                "normal_offset_mm": 0.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    100.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    100.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 100.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  0.0,
+                  1.0
+                ],
+                "normal_offset_mm": -19.999999999999996,
+                "expected_intervals": [],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    20.0
+                  ]
+                ],
+                "expected_segment_count": 0,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 0.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  -0.0,
+                  1.0
+                ],
+                "normal_offset_mm": -9.999999999999993,
+                "expected_intervals": [],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    20.0
+                  ]
+                ],
+                "expected_segment_count": 0,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 0.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  0.0,
+                  1.0
+                ],
+                "normal_offset_mm": -60.0,
+                "expected_intervals": [],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    20.0
+                  ]
+                ],
+                "expected_segment_count": 0,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 0.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  -0.0,
+                  1.0
+                ],
+                "normal_offset_mm": -50.0,
+                "expected_intervals": [],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    20.0
+                  ]
+                ],
+                "expected_segment_count": 0,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 0.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  0.0,
+                  1.0
+                ],
+                "normal_offset_mm": -80.0,
+                "expected_intervals": [],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    20.0
+                  ]
+                ],
+                "expected_segment_count": 0,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 0.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  -0.0,
+                  1.0
+                ],
+                "normal_offset_mm": -69.99999999999999,
+                "expected_intervals": [],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    20.0
+                  ]
+                ],
+                "expected_segment_count": 0,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 0.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  0.0,
+                  1.0
+                ],
+                "normal_offset_mm": -40.0,
+                "expected_intervals": [],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    20.0
+                  ]
+                ],
+                "expected_segment_count": 0,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 0.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  -0.0,
+                  1.0
+                ],
+                "normal_offset_mm": -29.999999999999996,
+                "expected_intervals": [],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    20.0
+                  ]
+                ],
+                "expected_segment_count": 0,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 0.0,
+                "max_gap_mm": 0.0
+              }
+            ],
+            "invalid_segments": [],
+            "precision": 0.6,
+            "recall": 1.0
+          }
+        }
+      },
+      {
+        "view_index": 2,
+        "same_scale": true,
+        "same_sheet_location": true,
+        "visible_supports_stable": true,
+        "hidden_supports": [
+          {
+            "geometry_type": "LINE",
+            "semantic": "HIDDEN",
+            "source": "HLV_MINUS_HLR",
+            "confidence": 1.0,
+            "geometry": {
+              "x1": 0.0,
+              "y1": 14.999999999999998,
+              "x2": 20.0,
+              "y2": 14.999999999999998
+            },
+            "support_length_mm": 20.0
+          },
+          {
+            "geometry_type": "LINE",
+            "semantic": "HIDDEN",
+            "source": "HLV_MINUS_HLR",
+            "confidence": 1.0,
+            "geometry": {
+              "x1": 0.0,
+              "y1": 25.0,
+              "x2": 20.0,
+              "y2": 25.0
+            },
+            "support_length_mm": 20.0
+          }
+        ],
+        "hidden_circles": [],
+        "support_difference": {
+          "status": "PASS",
+          "visible_supports_stable": true,
+          "candidates": [
+            {
+              "geometry_type": "LINE",
+              "semantic": "HIDDEN",
+              "source": "HLV_MINUS_HLR",
+              "confidence": 1.0,
+              "geometry": {
+                "x1": 0.0,
+                "y1": 14.999999999999998,
+                "x2": 20.0,
+                "y2": 14.999999999999998
+              },
+              "support_length_mm": 20.0
+            },
+            {
+              "geometry_type": "LINE",
+              "semantic": "HIDDEN",
+              "source": "HLV_MINUS_HLR",
+              "confidence": 1.0,
+              "geometry": {
+                "x1": 0.0,
+                "y1": 25.0,
+                "x2": 20.0,
+                "y2": 25.0
+              },
+              "support_length_mm": 20.0
+            }
+          ],
+          "candidate_support_length_mm": 40.0,
+          "coverage": {
+            "status": "FAIL",
+            "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
+            "expected": 4,
+            "actual": 6,
+            "expected_support_length_mm": 160.0,
+            "actual_support_length_mm": 200.0,
+            "intersection_length_mm": 160.0,
+            "union_length_mm": 200.0,
+            "support_iou": 0.8,
+            "missing_length_mm": 0.0,
+            "overflow_length_mm": 40.0,
+            "missing_ratio": 0.0,
+            "overflow_ratio": 0.25,
+            "max_gap_mm": 0.0,
+            "segmentation": "EQUIVALENT_OR_UNASSESSED",
+            "information": [],
+            "thresholds": {
+              "support_iou_min": 0.98,
+              "max_gap_mm": 0.1,
+              "max_overflow_ratio": 0.02,
+              "angle_tolerance_deg": 0.1,
+              "line_distance_tolerance_mm": 0.1
+            },
+            "supports": [
+              {
+                "direction": [
+                  1.0,
+                  -0.0
+                ],
+                "normal_offset_mm": 0.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    20.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    20.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 20.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  0.0,
+                  1.0
+                ],
+                "normal_offset_mm": 0.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    60.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    60.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 60.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  0.0,
+                  1.0
+                ],
+                "normal_offset_mm": -20.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    60.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    60.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 60.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  1.0,
+                  -0.0
+                ],
+                "normal_offset_mm": 60.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    20.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    20.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 20.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  1.0,
+                  0.0
+                ],
+                "normal_offset_mm": 14.999999999999998,
+                "expected_intervals": [],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    20.0
+                  ]
+                ],
+                "expected_segment_count": 0,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 0.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  1.0,
+                  -0.0
+                ],
+                "normal_offset_mm": 25.0,
+                "expected_intervals": [],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    20.0
+                  ]
+                ],
+                "expected_segment_count": 0,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 0.0,
+                "max_gap_mm": 0.0
+              }
+            ],
+            "invalid_segments": [],
+            "precision": 0.8,
+            "recall": 1.0
+          }
+        }
+      }
+    ]
+  },
+  "status": "PASS"
+}
