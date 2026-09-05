@@ -4,13 +4,14 @@
 
 - B001-B005: **COMPLETE**
 - B006: **PASS_CANDIDATE**
-- Release status: **not released**
-- Baseline status: **not established**
+- Release status: **`v0.6-benchmark-006` baseline freeze**
+- Baseline status: **merge validated**
 
 The B006 decision is limited to the defined `PART_FEATURE_PATTERN` benchmark:
 one BaseBlock, one offset through-hole seed, and one four-occurrence native
-linear pattern. Merge review and the `v0.6-benchmark-006` tag are still
-required before this candidate becomes a released baseline.
+linear pattern. The main-branch merge review and post-merge regression passed;
+the `v0.6-benchmark-006` tag identifies this reviewed baseline without
+broadening B006 into general Pattern reconstruction support.
 
 ## v0.5 B005 Multi Feature Interaction
 
