@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-09-04T22:06:14",
+  "run_at": "2026-09-05T11:08:21",
   "case": "case_003_straight_slot",
   "projection_graph": {
     "projection": "third_angle",
@@ -257,6 +257,7 @@
         "tangent_junctions",
         "width_consistent",
         "center_consistent",
+        "cross_view_position_consistent",
         "orthogonal_depth_evidence",
         "through_state_evidence"
       ],
@@ -296,6 +297,7 @@
           "tangent_junctions",
           "width_consistent",
           "center_consistent",
+          "cross_view_position_consistent",
           "orthogonal_depth_evidence",
           "through_state_evidence"
         ],
@@ -1088,6 +1090,25 @@
         "spacing_mm": 20.0
       },
       {
+        "id": "slot_brep_center",
+        "passed": true,
+        "expected_center_mm": [
+          0.0,
+          0.0
+        ],
+        "measured_center_mm": [
+          0.0,
+          0.0
+        ],
+        "center_error_mm": 0.0
+      },
+      {
+        "id": "slot_planar_midpoint",
+        "passed": true,
+        "expected_mm": 0.0,
+        "measured_mm": 0.0
+      },
+      {
         "id": "slot_through_multi_evidence",
         "passed": true,
         "evidence": {
@@ -1168,7 +1189,16 @@
             50.0,
             30.0
           ],
-          "passed": true
+          "passed": true,
+          "expected_model_center_mm": [
+            0.0,
+            0.0
+          ],
+          "measured_model_center_mm": [
+            0.0,
+            0.0
+          ],
+          "center_error_mm": 0.0
         }
       ],
       "drawing_check": {
@@ -2476,7 +2506,16 @@
           50.0,
           30.0
         ],
-        "passed": true
+        "passed": true,
+        "expected_model_center_mm": [
+          0.0,
+          0.0
+        ],
+        "measured_model_center_mm": [
+          0.0,
+          0.0
+        ],
+        "center_error_mm": 0.0
       }
     ],
     "drawing_check": {

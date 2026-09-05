@@ -193,8 +193,8 @@
       "size_bytes": 4800054,
       "width": 1600,
       "height": 1000,
-      "unique_sample_values": 225,
-      "dark_pixel_ratio": 0.4851345486111111,
+      "unique_sample_values": 235,
+      "dark_pixel_ratio": 0.5211588541666666,
       "likely_blank": false
     },
     {
@@ -203,8 +203,8 @@
       "size_bytes": 4800054,
       "width": 1600,
       "height": 1000,
-      "unique_sample_values": 165,
-      "dark_pixel_ratio": 0.5381944444444444,
+      "unique_sample_values": 156,
+      "dark_pixel_ratio": 0.6003689236111112,
       "likely_blank": false
     },
     {
@@ -213,7 +213,7 @@
       "size_bytes": 4800054,
       "width": 1600,
       "height": 1000,
-      "unique_sample_values": 155,
+      "unique_sample_values": 152,
       "dark_pixel_ratio": 0.4265407986111111,
       "likely_blank": false
     },
@@ -223,8 +223,8 @@
       "size_bytes": 4800054,
       "width": 1600,
       "height": 1000,
-      "unique_sample_values": 158,
-      "dark_pixel_ratio": 0.4651692708333333,
+      "unique_sample_values": 162,
+      "dark_pixel_ratio": 0.4956597222222222,
       "likely_blank": false
     }
   ],
@@ -232,7 +232,7 @@
     {
       "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill\\experiments\\three_view_reconstruction\\results\\case_003_straight_slot\\case_003_straight_slot.SLDPRT",
       "exists": true,
-      "size_bytes": 65020
+      "size_bytes": 67759
     }
   ],
   "checks": {
