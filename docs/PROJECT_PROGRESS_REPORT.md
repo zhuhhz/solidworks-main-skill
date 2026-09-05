@@ -179,3 +179,39 @@ Development was isolated on `feat/semantic-roundtrip` through the complete
 pre-merge quality gate. The branch uses the
 repository-specific SSH-over-443 remote because GitHub HTTPS is unavailable on
 this host.
+
+## v0.4 Benchmark 004 baseline
+
+Benchmark 004 adds one bounded capability: translation/placement semantics for
+the already-supported X-major straight through slot. A 40 × 20 mm R10 slot in
+a 100 × 60 × 20 mm block is reconstructed at canonical model centre `(15,8)`
+mm. Arbitrary rotation, Y-major slots, and blind slots remain outside scope.
+
+Placement survives the complete engineering chain:
+
+`ProjectionGraph (15,8) → FeatureGraph (15,8) → ModelingPlan (15,8) → real SolidWorks B-Rep (15,8)`.
+
+The real B-Rep centre error is 0 mm. Cross-view X/Y conflicts are rejected,
+missing position evidence remains ambiguous, and correct shape at an incorrect
+position fails both reconstruction and roundtrip gates. Moving or scaling a
+drawing view does not change canonical model-local placement.
+
+Real SolidWorks 2024 SP04 evidence on 2026-09-05 includes rebuilt and reopened
+SLDPRT, regenerated SLDDRW, Feature Tree, B-Rep measurement, HLR/HLV semantic
+extraction, review images, and machine-readable benchmark results.
+
+| Benchmark | Backend | B-Rep | Level1 | Level2A | Level2B | UNKNOWN |
+| --- | --- | --- | --- | --- | --- | --- |
+| B001 | PASS | PASS | PASS | PASS | PASS | 0 |
+| B002 | PASS | PASS | PASS | PASS | PASS | 0 |
+| B003 | PASS | PASS | PASS | PASS | PASS | 0 |
+| B004 | PASS | PASS | PASS | PASS | PASS | 0 |
+
+Post-merge `python -m pytest -v` result: 531 passed, 15 skipped, 2 deselected,
+0 failed, with 26 warnings in 37.98 seconds. This capability is validated for
+the defined benchmark scope; it is not a claim of general industrial drawing
+reconstruction.
+
+The known SolidWorks 2024 `create_semicircular_slot` width-semantics
+`UPSTREAM_GAP` remains open and isolated in the main-project adapter. The
+third-party external execution backend was not modified.

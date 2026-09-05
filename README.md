@@ -10,7 +10,7 @@ It owns the engineering layer:
 
 It does **not** own or vendor the SolidWorks COM execution layer. The third-party project [`wzyn20051216/solidworks-automation-skill`](https://github.com/wzyn20051216/solidworks-automation-skill) is an external SolidWorks automation backend and technical reference. Integration must use an adapter, import, wrapper, or CLI/subprocess boundary.
 
-See [architecture](docs/architecture.md), [upstream integration](docs/upstream_integration.md), and the [Benchmark 001 report](experiments/three_view_reconstruction/THREE_VIEW_RECONSTRUCTION_REPORT.md).
+See [architecture](docs/architecture.md), [upstream integration](docs/upstream_integration.md), the [Benchmark 001–003 report](experiments/three_view_reconstruction/THREE_VIEW_RECONSTRUCTION_REPORT.md), and the [Benchmark 004 verification report](docs/B004_BENCHMARK_REPORT.md).
 
 ## Testing
 
@@ -18,7 +18,7 @@ Use `python -m pytest` as the canonical test entrypoint on this Windows environm
 
 ## Status
 
-Benchmarks 001 and 002 pass deterministic input consistency, feature inference, native SolidWorks creation, B-Rep/Feature Tree validation, Level 1 structured projection, Level 2A vector geometry, and Level 2B drawing semantics on SolidWorks 2024 SP04. B002's former v0.2 reference was proven `REFERENCE_INVALID` through exact projected-edge topology, archived, and corrected without relaxing matcher thresholds. See the [progress report](docs/PROJECT_PROGRESS_REPORT.md) and [B002 reference audit](docs/B002_REFERENCE_AUDIT.md).
+Benchmarks 001–004 pass deterministic input consistency, feature inference, native SolidWorks creation, save/reopen, B-Rep/Feature Tree validation, Level 1 structured projection, Level 2A vector geometry, and Level 2B drawing semantics on SolidWorks 2024 SP04. Benchmark 004 validates an offset straight through slot, including feature-placement preservation and the `ProjectionGraph -> FeatureGraph -> ModelingPlan -> B-Rep` closure, for the defined benchmark scope. B002 and B003 retain their audited reference histories; no matcher threshold was relaxed. See the [progress report](docs/PROJECT_PROGRESS_REPORT.md), [benchmark registry](docs/benchmark_spec.md), and [v0.4 Benchmark 004 release report](docs/V0.4_BENCHMARK_004_RELEASE.md).
 
 ## Transitional note
 
