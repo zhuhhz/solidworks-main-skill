@@ -1,0 +1,111 @@
+{
+  "schema_version": "0.5",
+  "name": "case_005_multi_feature",
+  "projection": "third_angle",
+  "reference_integrity": {
+    "status": "PASS",
+    "history_status": "ORIGINAL",
+    "basis": "B001 through-hole and B004 offset-slot contracts combined without geometric overlap"
+  },
+  "front": {
+    "horizontal_extent_mm": 100,
+    "vertical_extent_mm": 60,
+    "visible_segments": [
+      {"primitive_id":"front_base_bottom_001","x1":0,"y1":0,"x2":100,"y2":0},
+      {"primitive_id":"front_base_right_001","x1":100,"y1":0,"x2":100,"y2":60},
+      {"primitive_id":"front_base_top_001","x1":100,"y1":60,"x2":0,"y2":60},
+      {"primitive_id":"front_base_left_001","x1":0,"y1":60,"x2":0,"y2":0},
+      {"primitive_id":"front_slot_bottom_001","x1":55,"y1":28,"x2":75,"y2":28},
+      {"primitive_id":"front_slot_top_001","x1":75,"y1":48,"x2":55,"y2":48}
+    ],
+    "circles": [
+      {"primitive_id":"front_hole_circle_001","x":25,"y":20,"diameter":20}
+    ],
+    "arcs": [
+      {"primitive_id":"front_slot_arc_left_001","x":55,"y":38,"radius":10,"start_angle_deg":90,"end_angle_deg":270,"sweep_direction":"CCW"},
+      {"primitive_id":"front_slot_arc_right_001","x":75,"y":38,"radius":10,"start_angle_deg":270,"end_angle_deg":90,"sweep_direction":"CCW"}
+    ]
+  },
+  "top": {
+    "horizontal_extent_mm": 100,
+    "vertical_extent_mm": 20,
+    "visible_segments": [
+      {"primitive_id":"top_base_bottom_001","x1":0,"y1":0,"x2":100,"y2":0},
+      {"primitive_id":"top_base_right_001","x1":100,"y1":0,"x2":100,"y2":20},
+      {"primitive_id":"top_base_top_001","x1":100,"y1":20,"x2":0,"y2":20},
+      {"primitive_id":"top_base_left_001","x1":0,"y1":20,"x2":0,"y2":0}
+    ],
+    "hidden_line_pairs": [
+      {"primitive_id":"top_hole_pair_001","axis":"x","offset_1":15,"offset_2":35},
+      {"primitive_id":"top_slot_pair_001","axis":"x","offset_1":45,"offset_2":85}
+    ],
+    "hidden_segments": [
+      {"primitive_id":"top_hole_hidden_left_001","x1":15,"y1":0,"x2":15,"y2":20},
+      {"primitive_id":"top_hole_hidden_right_001","x1":35,"y1":0,"x2":35,"y2":20},
+      {"primitive_id":"top_slot_hidden_outer_left_001","x1":45,"y1":0,"x2":45,"y2":20},
+      {"primitive_id":"top_slot_hidden_inner_left_001","x1":55,"y1":0,"x2":55,"y2":20},
+      {"primitive_id":"top_slot_hidden_inner_right_001","x1":75,"y1":0,"x2":75,"y2":20},
+      {"primitive_id":"top_slot_hidden_outer_right_001","x1":85,"y1":0,"x2":85,"y2":20}
+    ]
+  },
+  "left": {
+    "horizontal_extent_mm": 20,
+    "vertical_extent_mm": 60,
+    "visible_segments": [
+      {"primitive_id":"left_base_bottom_001","x1":0,"y1":0,"x2":20,"y2":0},
+      {"primitive_id":"left_base_right_001","x1":20,"y1":0,"x2":20,"y2":60},
+      {"primitive_id":"left_base_top_001","x1":20,"y1":60,"x2":0,"y2":60},
+      {"primitive_id":"left_base_left_001","x1":0,"y1":60,"x2":0,"y2":0}
+    ],
+    "hidden_line_pairs": [
+      {"primitive_id":"left_hole_pair_001","axis":"y","offset_1":10,"offset_2":30},
+      {"primitive_id":"left_slot_pair_001","axis":"y","offset_1":28,"offset_2":48}
+    ],
+    "hidden_segments": [
+      {"primitive_id":"left_hole_hidden_bottom_001","x1":0,"y1":10,"x2":20,"y2":10},
+      {"primitive_id":"left_hole_hidden_top_001","x1":0,"y1":30,"x2":20,"y2":30},
+      {"primitive_id":"left_slot_hidden_bottom_001","x1":0,"y1":28,"x2":20,"y2":28},
+      {"primitive_id":"left_slot_hidden_top_001","x1":0,"y1":48,"x2":20,"y2":48}
+    ]
+  },
+  "expected_features": {
+    "base_001": {"type":"BASE_BLOCK","width_mm":100,"height_mm":60,"depth_mm":20},
+    "hole_001": {"type":"THROUGH_HOLE","diameter_mm":20,"center_x_mm":-25,"center_y_mm":-10,"axis":"Z","through":true},
+    "slot_001": {"type":"STRAIGHT_SLOT","overall_length_mm":40,"width_mm":20,"radius_mm":10,"center_x_mm":15,"center_y_mm":8,"major_axis":"X","through":true}
+  },
+  "feature_evidence": [
+    {"feature_id":"base_001","evidence_id":"ev_front_base_bottom_001","view":"front","geometry_type":"LINE","geometry_reference":"front_base_bottom_001","confidence":1.0,"source":"structured_input"},
+    {"feature_id":"base_001","evidence_id":"ev_front_base_right_001","view":"front","geometry_type":"LINE","geometry_reference":"front_base_right_001","confidence":1.0,"source":"structured_input"},
+    {"feature_id":"base_001","evidence_id":"ev_front_base_top_001","view":"front","geometry_type":"LINE","geometry_reference":"front_base_top_001","confidence":1.0,"source":"structured_input"},
+    {"feature_id":"base_001","evidence_id":"ev_front_base_left_001","view":"front","geometry_type":"LINE","geometry_reference":"front_base_left_001","confidence":1.0,"source":"structured_input"},
+    {"feature_id":"base_001","evidence_id":"ev_top_base_bottom_001","view":"top","geometry_type":"LINE","geometry_reference":"top_base_bottom_001","confidence":1.0,"source":"structured_input"},
+    {"feature_id":"base_001","evidence_id":"ev_top_base_right_001","view":"top","geometry_type":"LINE","geometry_reference":"top_base_right_001","confidence":1.0,"source":"structured_input"},
+    {"feature_id":"base_001","evidence_id":"ev_top_base_top_001","view":"top","geometry_type":"LINE","geometry_reference":"top_base_top_001","confidence":1.0,"source":"structured_input"},
+    {"feature_id":"base_001","evidence_id":"ev_top_base_left_001","view":"top","geometry_type":"LINE","geometry_reference":"top_base_left_001","confidence":1.0,"source":"structured_input"},
+    {"feature_id":"base_001","evidence_id":"ev_left_base_bottom_001","view":"left","geometry_type":"LINE","geometry_reference":"left_base_bottom_001","confidence":1.0,"source":"structured_input"},
+    {"feature_id":"base_001","evidence_id":"ev_left_base_right_001","view":"left","geometry_type":"LINE","geometry_reference":"left_base_right_001","confidence":1.0,"source":"structured_input"},
+    {"feature_id":"base_001","evidence_id":"ev_left_base_top_001","view":"left","geometry_type":"LINE","geometry_reference":"left_base_top_001","confidence":1.0,"source":"structured_input"},
+    {"feature_id":"base_001","evidence_id":"ev_left_base_left_001","view":"left","geometry_type":"LINE","geometry_reference":"left_base_left_001","confidence":1.0,"source":"structured_input"},
+
+    {"feature_id":"hole_001","evidence_id":"ev_front_hole_circle_001","view":"front","geometry_type":"CIRCLE","geometry_reference":"front_hole_circle_001","confidence":1.0,"source":"structured_input"},
+    {"feature_id":"hole_001","evidence_id":"ev_top_hole_pair_001","view":"top","geometry_type":"HIDDEN_LINE_PAIR","geometry_reference":"top_hole_pair_001","confidence":0.95,"source":"projection_correspondence"},
+    {"feature_id":"hole_001","evidence_id":"ev_top_hole_hidden_left_001","view":"top","geometry_type":"HIDDEN_LINE","geometry_reference":"top_hole_hidden_left_001","confidence":0.95,"source":"projection_correspondence"},
+    {"feature_id":"hole_001","evidence_id":"ev_top_hole_hidden_right_001","view":"top","geometry_type":"HIDDEN_LINE","geometry_reference":"top_hole_hidden_right_001","confidence":0.95,"source":"projection_correspondence"},
+    {"feature_id":"hole_001","evidence_id":"ev_left_hole_pair_001","view":"left","geometry_type":"HIDDEN_LINE_PAIR","geometry_reference":"left_hole_pair_001","confidence":0.95,"source":"projection_correspondence"},
+    {"feature_id":"hole_001","evidence_id":"ev_left_hole_hidden_bottom_001","view":"left","geometry_type":"HIDDEN_LINE","geometry_reference":"left_hole_hidden_bottom_001","confidence":0.95,"source":"projection_correspondence"},
+    {"feature_id":"hole_001","evidence_id":"ev_left_hole_hidden_top_001","view":"left","geometry_type":"HIDDEN_LINE","geometry_reference":"left_hole_hidden_top_001","confidence":0.95,"source":"projection_correspondence"},
+
+    {"feature_id":"slot_001","evidence_id":"ev_front_slot_bottom_001","view":"front","geometry_type":"LINE","geometry_reference":"front_slot_bottom_001","confidence":1.0,"source":"structured_input"},
+    {"feature_id":"slot_001","evidence_id":"ev_front_slot_top_001","view":"front","geometry_type":"LINE","geometry_reference":"front_slot_top_001","confidence":1.0,"source":"structured_input"},
+    {"feature_id":"slot_001","evidence_id":"ev_front_slot_arc_left_001","view":"front","geometry_type":"ARC","geometry_reference":"front_slot_arc_left_001","confidence":1.0,"source":"structured_input"},
+    {"feature_id":"slot_001","evidence_id":"ev_front_slot_arc_right_001","view":"front","geometry_type":"ARC","geometry_reference":"front_slot_arc_right_001","confidence":1.0,"source":"structured_input"},
+    {"feature_id":"slot_001","evidence_id":"ev_top_slot_pair_001","view":"top","geometry_type":"HIDDEN_LINE_PAIR","geometry_reference":"top_slot_pair_001","confidence":0.95,"source":"projection_correspondence"},
+    {"feature_id":"slot_001","evidence_id":"ev_top_slot_hidden_outer_left_001","view":"top","geometry_type":"HIDDEN_LINE","geometry_reference":"top_slot_hidden_outer_left_001","confidence":0.95,"source":"projection_correspondence"},
+    {"feature_id":"slot_001","evidence_id":"ev_top_slot_hidden_inner_left_001","view":"top","geometry_type":"HIDDEN_LINE","geometry_reference":"top_slot_hidden_inner_left_001","confidence":0.95,"source":"projection_correspondence"},
+    {"feature_id":"slot_001","evidence_id":"ev_top_slot_hidden_inner_right_001","view":"top","geometry_type":"HIDDEN_LINE","geometry_reference":"top_slot_hidden_inner_right_001","confidence":0.95,"source":"projection_correspondence"},
+    {"feature_id":"slot_001","evidence_id":"ev_top_slot_hidden_outer_right_001","view":"top","geometry_type":"HIDDEN_LINE","geometry_reference":"top_slot_hidden_outer_right_001","confidence":0.95,"source":"projection_correspondence"},
+    {"feature_id":"slot_001","evidence_id":"ev_left_slot_pair_001","view":"left","geometry_type":"HIDDEN_LINE_PAIR","geometry_reference":"left_slot_pair_001","confidence":0.95,"source":"projection_correspondence"},
+    {"feature_id":"slot_001","evidence_id":"ev_left_slot_hidden_bottom_001","view":"left","geometry_type":"HIDDEN_LINE","geometry_reference":"left_slot_hidden_bottom_001","confidence":0.95,"source":"projection_correspondence"},
+    {"feature_id":"slot_001","evidence_id":"ev_left_slot_hidden_top_001","view":"left","geometry_type":"HIDDEN_LINE","geometry_reference":"left_slot_hidden_top_001","confidence":0.95,"source":"projection_correspondence"}
+  ]
+}

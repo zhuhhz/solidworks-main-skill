@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
+from .feature_evidence import FeatureEvidence
 from .view_geometry import ViewGeometry
 
 
@@ -12,6 +13,8 @@ class ProjectionGraph:
     left: ViewGeometry
     coordinate_convention: dict
     feature_evidence: dict | None = None
+    feature_evidence_records: list[FeatureEvidence] = field(default_factory=list)
+    expected_features: dict | None = None
     center_requirements: list[dict] | None = None
     reference_integrity: dict | None = None
 

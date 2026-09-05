@@ -1,0 +1,344 @@
+{
+  "model": {
+    "title": "case_005_multi_feature.SLDPRT",
+    "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill-b005-plan\\experiments\\three_view_reconstruction\\results\\case_005_multi_feature\\case_005_multi_feature.SLDPRT",
+    "type": 1,
+    "feature_count": 23,
+    "features": [
+      {
+        "name": "评论",
+        "type": "CommentsFolder"
+      },
+      {
+        "name": "收藏",
+        "type": "FavoriteFolder"
+      },
+      {
+        "name": "历史记录",
+        "type": "HistoryFolder"
+      },
+      {
+        "name": "选择集",
+        "type": "SelectionSetFolder"
+      },
+      {
+        "name": "传感器",
+        "type": "SensorFolder"
+      },
+      {
+        "name": "设计活页夹",
+        "type": "DocsFolder"
+      },
+      {
+        "name": "注解",
+        "type": "DetailCabinet"
+      },
+      {
+        "name": "曲面实体",
+        "type": "SurfaceBodyFolder"
+      },
+      {
+        "name": "实体",
+        "type": "SolidBodyFolder"
+      },
+      {
+        "name": "光源与相机",
+        "type": "EnvFolder"
+      },
+      {
+        "name": "标注",
+        "type": "InkMarkupFolder"
+      },
+      {
+        "name": "方程式",
+        "type": "EqnFolder"
+      },
+      {
+        "name": "材质 <未指定>",
+        "type": "MaterialFolder"
+      },
+      {
+        "name": "前视基准面",
+        "type": "RefPlane"
+      },
+      {
+        "name": "上视基准面",
+        "type": "RefPlane"
+      },
+      {
+        "name": "右视基准面",
+        "type": "RefPlane"
+      },
+      {
+        "name": "原点",
+        "type": "OriginProfileFeature"
+      },
+      {
+        "name": "草图1",
+        "type": "ProfileFeature"
+      },
+      {
+        "name": "BaseBlock",
+        "type": "Extrusion"
+      },
+      {
+        "name": "草图2",
+        "type": "ProfileFeature"
+      },
+      {
+        "name": "ThroughHole_D20",
+        "type": "ICE"
+      },
+      {
+        "name": "草图3",
+        "type": "ProfileFeature"
+      },
+      {
+        "name": "ThroughSlot_L40_W20",
+        "type": "ICE"
+      }
+    ]
+  },
+  "cad_spec": {
+    "units": "mm",
+    "measurement_source": "SolidWorks API GetPartBox(True) + B-Rep cylindrical faces",
+    "envelope_mm": {
+      "length": 100.0,
+      "width": 60.0,
+      "height": 20.0,
+      "axis_order": "model_xyz"
+    },
+    "holes": [
+      {
+        "diameter_mm": 20.0,
+        "position_mm": [
+          -25.0,
+          -10.0,
+          -20.0
+        ],
+        "axis": [
+          -0.0,
+          -0.0,
+          1.0
+        ],
+        "axial_length_mm": 20.0,
+        "through_state": "unknown",
+        "through_evidence": "B-Rep cylinder boundaries cannot distinguish blind from through",
+        "measurement_source": "B-Rep internal cylindrical face"
+      }
+    ],
+    "compound_holes": [],
+    "slot_arc_candidates": [
+      {
+        "diameter_mm": 20.0,
+        "position_mm": [
+          5.0,
+          8.0,
+          -20.0
+        ],
+        "axis": [
+          -0.0,
+          -0.0,
+          1.0
+        ],
+        "axial_length_mm": 10.0,
+        "through_state": "unknown",
+        "through_evidence": "B-Rep cylinder boundaries cannot distinguish blind from through",
+        "measurement_source": "B-Rep internal cylindrical face",
+        "classification_reason": "internal cylinder has more than two boundary edges"
+      },
+      {
+        "diameter_mm": 20.0,
+        "position_mm": [
+          25.0,
+          8.0,
+          -20.0
+        ],
+        "axis": [
+          -0.0,
+          -0.0,
+          1.0
+        ],
+        "axial_length_mm": 10.0,
+        "through_state": "unknown",
+        "through_evidence": "B-Rep cylinder boundaries cannot distinguish blind from through",
+        "measurement_source": "B-Rep internal cylindrical face",
+        "classification_reason": "internal cylinder has more than two boundary edges"
+      }
+    ],
+    "cylindrical_faces": [
+      {
+        "diameter_mm": 20.0,
+        "origin_mm": [
+          -25.0,
+          -10.0,
+          -20.0
+        ],
+        "axis": [
+          -0.0,
+          -0.0,
+          1.0
+        ],
+        "area_mm2": 1256.637061,
+        "axial_length_mm": 20.0,
+        "internal": true,
+        "loop_count": 2,
+        "edge_count": 2,
+        "body_index": 0,
+        "face_index": 6
+      },
+      {
+        "diameter_mm": 20.0,
+        "origin_mm": [
+          5.0,
+          8.0,
+          -20.0
+        ],
+        "axis": [
+          -0.0,
+          -0.0,
+          1.0
+        ],
+        "area_mm2": 628.318531,
+        "axial_length_mm": 10.0,
+        "internal": true,
+        "loop_count": 1,
+        "edge_count": 4,
+        "body_index": 0,
+        "face_index": 7
+      },
+      {
+        "diameter_mm": 20.0,
+        "origin_mm": [
+          25.0,
+          8.0,
+          -20.0
+        ],
+        "axis": [
+          -0.0,
+          -0.0,
+          1.0
+        ],
+        "area_mm2": 628.318531,
+        "axial_length_mm": 10.0,
+        "internal": true,
+        "loop_count": 1,
+        "edge_count": 4,
+        "body_index": 0,
+        "face_index": 9
+      }
+    ],
+    "errors": [],
+    "hole_count": 1,
+    "hole_groups": [
+      {
+        "position_mm": [
+          -25.0,
+          -10.0,
+          -20.0
+        ],
+        "axis": [
+          -0.0,
+          -0.0,
+          1.0
+        ],
+        "segment_count": 1,
+        "diameters_mm": [
+          20.0
+        ],
+        "feature_kind": "simple",
+        "segments": [
+          {
+            "diameter_mm": 20.0,
+            "position_mm": [
+              -25.0,
+              -10.0,
+              -20.0
+            ],
+            "axis": [
+              -0.0,
+              -0.0,
+              1.0
+            ],
+            "axial_length_mm": 20.0,
+            "through_state": "unknown",
+            "through_evidence": "B-Rep cylinder boundaries cannot distinguish blind from through",
+            "measurement_source": "B-Rep internal cylindrical face"
+          }
+        ]
+      }
+    ]
+  },
+  "previews": [
+    {
+      "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill-b005-plan\\experiments\\three_view_reconstruction\\results\\case_005_multi_feature\\review\\case_005_multi_feature_isometric.bmp",
+      "exists": true,
+      "size_bytes": 4800054,
+      "width": 1600,
+      "height": 1000,
+      "unique_sample_values": 281,
+      "dark_pixel_ratio": 0.5211588541666666,
+      "likely_blank": false
+    },
+    {
+      "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill-b005-plan\\experiments\\three_view_reconstruction\\results\\case_005_multi_feature\\review\\case_005_multi_feature_front.bmp",
+      "exists": true,
+      "size_bytes": 4800054,
+      "width": 1600,
+      "height": 1000,
+      "unique_sample_values": 164,
+      "dark_pixel_ratio": 0.5932074652777778,
+      "likely_blank": false
+    },
+    {
+      "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill-b005-plan\\experiments\\three_view_reconstruction\\results\\case_005_multi_feature\\review\\case_005_multi_feature_top.bmp",
+      "exists": true,
+      "size_bytes": 4800054,
+      "width": 1600,
+      "height": 1000,
+      "unique_sample_values": 152,
+      "dark_pixel_ratio": 0.4265407986111111,
+      "likely_blank": false
+    },
+    {
+      "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill-b005-plan\\experiments\\three_view_reconstruction\\results\\case_005_multi_feature\\review\\case_005_multi_feature_right.bmp",
+      "exists": true,
+      "size_bytes": 4800054,
+      "width": 1600,
+      "height": 1000,
+      "unique_sample_values": 162,
+      "dark_pixel_ratio": 0.4956597222222222,
+      "likely_blank": false
+    }
+  ],
+  "expected_outputs": [
+    {
+      "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill-b005-plan\\experiments\\three_view_reconstruction\\results\\case_005_multi_feature\\case_005_multi_feature.SLDPRT",
+      "exists": true,
+      "size_bytes": 75029
+    }
+  ],
+  "checks": {
+    "model_available": true,
+    "previews_created": true,
+    "previews_not_blank": true,
+    "expected_outputs_exist": true,
+    "feature_summary_available": true,
+    "geometry_measurements_available": true,
+    "geometry_measurements_error_free": true
+  },
+  "review_notes": [
+    "人工或视觉模型仍需检查预览图中的主体、比例、方向、关键部件、重叠/悬空问题。",
+    "若 previews_not_blank 为 false，优先检查视图缩放、模型是否为空、SaveBMP 是否成功。",
+    "若 expected_outputs_exist 为 false，优先检查保存/导出路径和 COM 错误码。"
+  ],
+  "evaluation": {
+    "status": "pass",
+    "score": 100,
+    "issues": [],
+    "recommendations": [],
+    "manual_review_required": true,
+    "manual_review_reason": "规则评分只能发现明显失败，最终几何是否符合用户意图仍需查看预览图或截图。"
+  },
+  "summary_path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill-b005-plan\\experiments\\three_view_reconstruction\\results\\case_005_multi_feature\\review\\case_005_multi_feature_review_summary.md"
+}

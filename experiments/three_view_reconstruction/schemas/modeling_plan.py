@@ -10,6 +10,9 @@ class ModelingOperation:
     profile: dict
     depth_mm: float | None = None
     direction: str | None = None
+    operation_id: str | None = None
+    source_feature_id: str | None = None
+    depends_on_operation_ids: list[str] = field(default_factory=list)
 
 
 @dataclass

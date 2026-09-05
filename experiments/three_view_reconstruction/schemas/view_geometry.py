@@ -9,6 +9,7 @@ class Circle:
     x: float
     y: float
     diameter: float
+    primitive_id: str | None = None
 
 
 @dataclass(frozen=True)
@@ -17,6 +18,7 @@ class HiddenLinePair:
     axis: str
     offset_1: float
     offset_2: float
+    primitive_id: str | None = None
 
 
 @dataclass(frozen=True)
@@ -25,6 +27,7 @@ class LineSegment:
     y1: float
     x2: float
     y2: float
+    primitive_id: str | None = None
 
 
 @dataclass(frozen=True)
@@ -35,6 +38,7 @@ class Arc:
     start_angle_deg: float
     end_angle_deg: float
     sweep_direction: str = "CCW"
+    primitive_id: str | None = None
 
     def __post_init__(self):
         values = (self.x, self.y, self.radius, self.start_angle_deg, self.end_angle_deg)
