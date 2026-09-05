@@ -1,7 +1,7 @@
 {
   "case": "case_006_pattern",
   "source_drawing": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill-b006\\experiments\\three_view_reconstruction\\results\\case_006_pattern\\case_006_pattern.slddrw",
-  "run_at": "2026-09-05T14:08:39",
+  "run_at": "2026-09-05T15:07:49",
   "solidworks_api": {
     "method": "IView.SetDisplayMode3",
     "hlv": 1,
