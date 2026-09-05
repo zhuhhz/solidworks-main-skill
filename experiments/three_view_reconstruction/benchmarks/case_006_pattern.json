@@ -1,0 +1,68 @@
+{
+  "schema_version": "0.6",
+  "name": "case_006_pattern",
+  "projection": "third_angle",
+  "front": {
+    "horizontal_extent_mm": 100,
+    "vertical_extent_mm": 60,
+    "circles": [
+      {"primitive_id":"front_pattern_circle_001","x":15,"y":20,"diameter":10},
+      {"primitive_id":"front_pattern_circle_002","x":35,"y":20,"diameter":10},
+      {"primitive_id":"front_pattern_circle_003","x":55,"y":20,"diameter":10},
+      {"primitive_id":"front_pattern_circle_004","x":75,"y":20,"diameter":10}
+    ]
+  },
+  "top": {
+    "horizontal_extent_mm": 100,
+    "vertical_extent_mm": 20,
+    "hidden_segments": [
+      {"primitive_id":"top_pattern_001_left","x1":10,"y1":0,"x2":10,"y2":20},
+      {"primitive_id":"top_pattern_001_right","x1":20,"y1":0,"x2":20,"y2":20},
+      {"primitive_id":"top_pattern_002_left","x1":30,"y1":0,"x2":30,"y2":20},
+      {"primitive_id":"top_pattern_002_right","x1":40,"y1":0,"x2":40,"y2":20},
+      {"primitive_id":"top_pattern_003_left","x1":50,"y1":0,"x2":50,"y2":20},
+      {"primitive_id":"top_pattern_003_right","x1":60,"y1":0,"x2":60,"y2":20},
+      {"primitive_id":"top_pattern_004_left","x1":70,"y1":0,"x2":70,"y2":20},
+      {"primitive_id":"top_pattern_004_right","x1":80,"y1":0,"x2":80,"y2":20}
+    ]
+  },
+  "left": {
+    "horizontal_extent_mm": 20,
+    "vertical_extent_mm": 60,
+    "hidden_segments": [
+      {"primitive_id":"left_pattern_shared_lower","x1":0,"y1":15,"x2":20,"y2":15},
+      {"primitive_id":"left_pattern_shared_upper","x1":0,"y1":25,"x2":20,"y2":25}
+    ]
+  },
+  "pattern_contract": {
+    "base": {"feature_id":"base_001","width_mm":100,"height_mm":60,"depth_mm":20,"dependencies":[]},
+    "seed": {"feature_id":"seed_hole_001","pattern_id":"pattern_001","source_feature_id":"base_001","center_mm":[-35,-10,0],"diameter_mm":10,"axis":"Z","through":true,"dependencies":["base_001"]},
+    "pattern": {"feature_id":"pattern_001","pattern_id":"pattern_001","source_feature_id":"seed_hole_001","spacing_mm":20,"direction":[1,0,0],"total_count":4,"includes_seed":true,"dependencies":["seed_hole_001"]},
+    "instances": [
+      {"feature_id":"instance_001","pattern_id":"pattern_001","source_feature_id":"seed_hole_001","instance_index":0,"center_mm":[-35,-10,0],"dependencies":["pattern_001"]},
+      {"feature_id":"instance_002","pattern_id":"pattern_001","source_feature_id":"seed_hole_001","instance_index":1,"center_mm":[-15,-10,0],"dependencies":["pattern_001"]},
+      {"feature_id":"instance_003","pattern_id":"pattern_001","source_feature_id":"seed_hole_001","instance_index":2,"center_mm":[5,-10,0],"dependencies":["pattern_001"]},
+      {"feature_id":"instance_004","pattern_id":"pattern_001","source_feature_id":"seed_hole_001","instance_index":3,"center_mm":[25,-10,0],"dependencies":["pattern_001"]}
+    ]
+  },
+  "pattern_evidence": [
+    {"pattern_id":"pattern_001","seed_feature_id":"seed_hole_001","instance_id":"instance_001","instance_index":0,"position":[-35,-10,0],"source_evidence_ids":["seed_geometry_001","front_circle_observation_001"],"geometry_reference":"front_pattern_circle_001","confidence":1.0,"view":"front","geometry_type":"CIRCLE","source":"structured_input","ownership_set":["instance_001"]},
+    {"pattern_id":"pattern_001","seed_feature_id":"seed_hole_001","instance_id":"instance_001","instance_index":0,"position":[-35,-10,0],"source_evidence_ids":["top_hidden_observation_001_left"],"geometry_reference":"top_pattern_001_left","confidence":0.95,"view":"top","geometry_type":"HIDDEN_LINE","source":"projection_correspondence","ownership_set":["instance_001"]},
+    {"pattern_id":"pattern_001","seed_feature_id":"seed_hole_001","instance_id":"instance_001","instance_index":0,"position":[-35,-10,0],"source_evidence_ids":["top_hidden_observation_001_right"],"geometry_reference":"top_pattern_001_right","confidence":0.95,"view":"top","geometry_type":"HIDDEN_LINE","source":"projection_correspondence","ownership_set":["instance_001"]},
+
+    {"pattern_id":"pattern_001","seed_feature_id":"seed_hole_001","instance_id":"instance_002","instance_index":1,"position":[-15,-10,0],"source_evidence_ids":["front_circle_observation_002"],"geometry_reference":"front_pattern_circle_002","confidence":1.0,"view":"front","geometry_type":"CIRCLE","source":"structured_input","ownership_set":["instance_002"]},
+    {"pattern_id":"pattern_001","seed_feature_id":"seed_hole_001","instance_id":"instance_002","instance_index":1,"position":[-15,-10,0],"source_evidence_ids":["top_hidden_observation_002_left"],"geometry_reference":"top_pattern_002_left","confidence":0.95,"view":"top","geometry_type":"HIDDEN_LINE","source":"projection_correspondence","ownership_set":["instance_002"]},
+    {"pattern_id":"pattern_001","seed_feature_id":"seed_hole_001","instance_id":"instance_002","instance_index":1,"position":[-15,-10,0],"source_evidence_ids":["top_hidden_observation_002_right"],"geometry_reference":"top_pattern_002_right","confidence":0.95,"view":"top","geometry_type":"HIDDEN_LINE","source":"projection_correspondence","ownership_set":["instance_002"]},
+
+    {"pattern_id":"pattern_001","seed_feature_id":"seed_hole_001","instance_id":"instance_003","instance_index":2,"position":[5,-10,0],"source_evidence_ids":["front_circle_observation_003"],"geometry_reference":"front_pattern_circle_003","confidence":1.0,"view":"front","geometry_type":"CIRCLE","source":"structured_input","ownership_set":["instance_003"]},
+    {"pattern_id":"pattern_001","seed_feature_id":"seed_hole_001","instance_id":"instance_003","instance_index":2,"position":[5,-10,0],"source_evidence_ids":["top_hidden_observation_003_left"],"geometry_reference":"top_pattern_003_left","confidence":0.95,"view":"top","geometry_type":"HIDDEN_LINE","source":"projection_correspondence","ownership_set":["instance_003"]},
+    {"pattern_id":"pattern_001","seed_feature_id":"seed_hole_001","instance_id":"instance_003","instance_index":2,"position":[5,-10,0],"source_evidence_ids":["top_hidden_observation_003_right"],"geometry_reference":"top_pattern_003_right","confidence":0.95,"view":"top","geometry_type":"HIDDEN_LINE","source":"projection_correspondence","ownership_set":["instance_003"]},
+
+    {"pattern_id":"pattern_001","seed_feature_id":"seed_hole_001","instance_id":"instance_004","instance_index":3,"position":[25,-10,0],"source_evidence_ids":["front_circle_observation_004"],"geometry_reference":"front_pattern_circle_004","confidence":1.0,"view":"front","geometry_type":"CIRCLE","source":"structured_input","ownership_set":["instance_004"]},
+    {"pattern_id":"pattern_001","seed_feature_id":"seed_hole_001","instance_id":"instance_004","instance_index":3,"position":[25,-10,0],"source_evidence_ids":["top_hidden_observation_004_left"],"geometry_reference":"top_pattern_004_left","confidence":0.95,"view":"top","geometry_type":"HIDDEN_LINE","source":"projection_correspondence","ownership_set":["instance_004"]},
+    {"pattern_id":"pattern_001","seed_feature_id":"seed_hole_001","instance_id":"instance_004","instance_index":3,"position":[25,-10,0],"source_evidence_ids":["top_hidden_observation_004_right"],"geometry_reference":"top_pattern_004_right","confidence":0.95,"view":"top","geometry_type":"HIDDEN_LINE","source":"projection_correspondence","ownership_set":["instance_004"]},
+
+    {"pattern_id":"pattern_001","seed_feature_id":"seed_hole_001","instance_id":null,"instance_index":null,"position":null,"source_evidence_ids":["left_hidden_shared_lower"],"geometry_reference":"left_pattern_shared_lower","confidence":0.95,"view":"left","geometry_type":"HIDDEN_LINE","source":"projection_overlap","ownership_set":["instance_001","instance_002","instance_003","instance_004"]},
+    {"pattern_id":"pattern_001","seed_feature_id":"seed_hole_001","instance_id":null,"instance_index":null,"position":null,"source_evidence_ids":["left_hidden_shared_upper"],"geometry_reference":"left_pattern_shared_upper","confidence":0.95,"view":"left","geometry_type":"HIDDEN_LINE","source":"projection_overlap","ownership_set":["instance_001","instance_002","instance_003","instance_004"]}
+  ]
+}
