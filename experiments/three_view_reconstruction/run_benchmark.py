@@ -23,11 +23,36 @@ from validation.negative_tests import run as run_negative_tests
 
 def build_plan(features):
     base = features.base_block
-    ops = [ModelingOperation("base_extrude", "Front Plane", {"type": "rectangle", "width_mm": base.width, "height_mm": base.height}, base.depth)]
-    ops += [ModelingOperation("boss_extrude", "Plane_Base_Top", {"type": "rectangle", "width_mm": b.width, "height_mm": b.height, "plane_offset_mm": base.depth}, b.depth) for b in features.bosses]
+    operation_id = lambda feature_id: f"op_{feature_id}"
+    dependencies = lambda feature: [operation_id(value) for value in feature.dependencies]
+    ops = [ModelingOperation(
+        "base_extrude", "Front Plane",
+        {"type": "rectangle", "width_mm": base.width, "height_mm": base.height}, base.depth,
+        operation_id=operation_id(base.feature_id), source_feature_id=base.feature_id,
+        depends_on_operation_ids=dependencies(base),
+    )]
+    ops += [ModelingOperation(
+        "boss_extrude", "Plane_Base_Top",
+        {"type": "rectangle", "width_mm": b.width, "height_mm": b.height, "plane_offset_mm": base.depth}, b.depth,
+        operation_id=operation_id(b.feature_id), source_feature_id=b.feature_id,
+        depends_on_operation_ids=dependencies(b),
+    ) for b in features.bosses]
     hole_plane = "Plane_Boss_Top" if features.bosses else "Front Plane"
-    ops += [ModelingOperation("cut_extrude_through_circle", hole_plane, {"type": "circle", "diameter_mm": h.diameter, "center_x_mm": h.center_x, "center_y_mm": h.center_y, "plane_offset_mm": base.depth + sum(b.depth for b in features.bosses)}, direction="through_all") for h in features.holes]
-    ops += [ModelingOperation("cut_extrude_through_slot", "Front Plane", {"type": "straight_slot", "overall_length_mm": s.overall_length_mm, "width_mm": s.width_mm, "radius_mm": s.radius_mm, "center_x_mm": s.center_x_mm, "center_y_mm": s.center_y_mm, "major_axis": s.major_axis}, direction="through_all") for s in features.slots]
+    ops += [ModelingOperation(
+        "cut_extrude_through_circle", hole_plane,
+        {"type": "circle", "diameter_mm": h.diameter, "center_x_mm": h.center_x,
+         "center_y_mm": h.center_y, "plane_offset_mm": base.depth + sum(b.depth for b in features.bosses)},
+        direction="through_all", operation_id=operation_id(h.feature_id), source_feature_id=h.feature_id,
+        depends_on_operation_ids=dependencies(h),
+    ) for h in features.holes]
+    ops += [ModelingOperation(
+        "cut_extrude_through_slot", "Front Plane",
+        {"type": "straight_slot", "overall_length_mm": s.overall_length_mm, "width_mm": s.width_mm,
+         "radius_mm": s.radius_mm, "center_x_mm": s.center_x_mm, "center_y_mm": s.center_y_mm,
+         "major_axis": s.major_axis},
+        direction="through_all", operation_id=operation_id(s.feature_id), source_feature_id=s.feature_id,
+        depends_on_operation_ids=dependencies(s),
+    ) for s in features.slots]
     return ModelingPlan(ops)
 
 

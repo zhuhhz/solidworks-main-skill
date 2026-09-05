@@ -9,6 +9,7 @@ sys.path.insert(0, str(ROOT))
 from schemas.feature_graph import BaseBlock, FeatureGraph, Hole, StraightSlot
 from schemas.modeling_plan import ModelingOperation, ModelingPlan
 from schemas.ownership_evidence import OwnershipEvidence
+from run_benchmark import build_plan
 from validation.feature_attribution import validate_feature_attribution, validate_ownership_evidence
 from validation.feature_graph_validator import validate_feature_graph, validate_modeling_plan
 from validation.multi_feature_validator import validate_multi_feature_geometry
@@ -92,7 +93,9 @@ def test_floating_or_chained_cut_dependency_fails():
 
 
 def test_operation_provenance_maps_each_feature_to_expected_operation():
-    result = validate_modeling_plan(feature_graph(), modeling_plan())
+    graph = feature_graph()
+    plan = build_plan(graph)
+    result = validate_modeling_plan(graph, plan)
     assert result["status"] == "PASS"
     assert result["classification"] == "CANONICAL_ORDER"
     assert result["feature_operations"] == {
@@ -100,6 +103,9 @@ def test_operation_provenance_maps_each_feature_to_expected_operation():
         "hole_001": "cut_extrude_through_circle",
         "slot_001": "cut_extrude_through_slot",
     }
+    assert [operation.operation_id for operation in plan.operations] == [
+        "op_base_001", "op_hole_001", "op_slot_001",
+    ]
 
 
 def test_valid_independent_feature_order_is_equivalent_not_failure():
