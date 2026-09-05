@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import math
+
 from schemas.feature_graph import FeatureGraph
 
 
@@ -25,11 +27,17 @@ def validate(feature_graph: FeatureGraph, backend: dict, tolerance_mm: float = 0
         # Upstream's axial_length divides a semicylindrical area by a full
         # circumference, so its value is half the physical cut depth.
         axial = all(abs(2*float(face.get("axial_length_mm", -999))-base.depth) <= tolerance_mm for face in arcs)
-        ownership = slot_op.get("through") is True and any(f.get("name") == "ThroughSlot_L40_W20" for f in tree)
+        tree_feature = next((f for f in tree if f.get("name") == "ThroughSlot_L40_W20"), None)
+        ownership = slot_op.get("through") is True and bool(tree_feature) and tree_feature.get("type") in {"ICE", "Cut", "CutExtrude"}
         planar = geometry.get("slot_planar_side_candidates", [])
         transverse = 1 if slot.major_axis == "X" else 0
         plane_positions = sorted({round(float(face.get("origin_mm", [0,0])[transverse]), 6) for face in planar})
         plane_spacing = plane_positions[-1]-plane_positions[0] if len(plane_positions) >= 2 else -1
+        measured_center = ([sum(point[index] for point in centres[:2])/2 for index in (0,1)] if len(centres) >= 2 else None)
+        expected_center = [slot.center_x_mm, slot.center_y_mm]
+        center_error = math.dist(measured_center, expected_center) if measured_center else None
+        planar_midpoint = (sum(plane_positions)/2 if len(plane_positions) == 2 else None)
+        expected_transverse = slot.center_y_mm if slot.major_axis == "X" else slot.center_x_mm
         checks += [
             {"id": "slot_two_cylindrical_end_walls", "passed": len(arcs) == 2, "actual": len(arcs)},
             {"id": "slot_equal_radius_R10", "passed": len(arcs) == 2 and all(abs(a.get("diameter_mm", 0)/2-slot.radius_mm) <= tolerance_mm for a in arcs)},
@@ -39,6 +47,10 @@ def validate(feature_graph: FeatureGraph, backend: dict, tolerance_mm: float = 0
             {"id": "slot_axis_and_axial_extent", "passed": len(arcs) == 2 and axial},
             {"id": "slot_two_planar_side_walls", "passed": len(plane_positions) == 2 and abs(plane_spacing-slot.width_mm) <= tolerance_mm,
              "actual_positions_mm": plane_positions, "spacing_mm": plane_spacing},
+            {"id": "slot_brep_center", "passed": center_error is not None and center_error <= tolerance_mm,
+             "expected_center_mm": expected_center, "measured_center_mm": measured_center, "center_error_mm": center_error},
+            {"id": "slot_planar_midpoint", "passed": planar_midpoint is not None and abs(planar_midpoint-expected_transverse) <= tolerance_mm,
+             "expected_mm": expected_transverse, "measured_mm": planar_midpoint},
             {"id": "slot_through_multi_evidence", "passed": ownership and axial,
              "evidence": {"creation_through": slot_op.get("through"), "feature_tree": ownership, "brep_axial_extent": axial}},
         ]

@@ -84,14 +84,26 @@ def analyze_slot_contract(graph) -> dict:
     left_width = abs(left_pairs[0].offset_2-left_pairs[0].offset_1)
     if abs(top_width-overall) > TOLERANCE_MM or abs(left_width-width) > TOLERANCE_MM:
         return {"status": "FAIL", "error_code": "INPUT_INCONSISTENT", "contradictions": ["cross-view slot width conflict"]}
+    top_center_x = (top_pairs[0].offset_1+top_pairs[0].offset_2)/2
+    side_center_y = (left_pairs[0].offset_1+left_pairs[0].offset_2)/2
+    position_conflicts = []
+    if abs(top_center_x-center_front[0]) > TOLERANCE_MM:
+        position_conflicts.append("front/top slot X position conflict")
+    if abs(side_center_y-center_front[1]) > TOLERANCE_MM:
+        position_conflicts.append("front/side slot Y position conflict")
+    if position_conflicts:
+        return {"status": "FAIL", "error_code": "INPUT_INCONSISTENT", "contradictions": position_conflicts}
+    if (center_front[0]-overall/2 < -TOLERANCE_MM or center_front[0]+overall/2 > w+TOLERANCE_MM
+            or center_front[1]-width/2 < -TOLERANCE_MM or center_front[1]+width/2 > h+TOLERANCE_MM):
+        return {"status": "FAIL", "error_code": "INPUT_INCONSISTENT", "contradictions": ["slot envelope crosses base boundary"]}
     spans_top = all(abs(abs(s.y2-s.y1)-graph.top.vertical_extent) <= TOLERANCE_MM for s in graph.top.hidden_segments)
     spans_left = all(abs(abs(s.x2-s.x1)-graph.left.horizontal_extent) <= TOLERANCE_MM for s in graph.left.hidden_segments)
     through_state = declared.get("through_state")
     if through_state != "THROUGH" or not spans_top or not spans_left:
         return {"status": "AMBIGUOUS", "reason": "blind vs through cannot be resolved", "candidates": ["STRAIGHT_SLOT", "UNKNOWN_SLOT_LIKE_CONTOUR"]}
     internal = front_to_internal(center_front[0], center_front[1], w, h)
-    evidence = ["two_parallel_lines", "two_equal_radius_arcs", "endpoint_continuity", "closed_contour", "tangent_junctions", "width_consistent", "center_consistent", "orthogonal_depth_evidence", "through_state_evidence"]
-    confidence = round(len(evidence) / 9.0, 3)
+    evidence = ["two_parallel_lines", "two_equal_radius_arcs", "endpoint_continuity", "closed_contour", "tangent_junctions", "width_consistent", "center_consistent", "cross_view_position_consistent", "orthogonal_depth_evidence", "through_state_evidence"]
+    confidence = round(len(evidence) / 10.0, 3)
     return {"status": "PASS", "slot": StraightSlot(overall, width, radius, internal[0], internal[1], major_axis, True), "evidence": evidence, "confidence": confidence}
 
 
