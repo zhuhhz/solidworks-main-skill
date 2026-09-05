@@ -22,6 +22,13 @@ from sw_part import extrude_boss, extrude_cut, sketch, sketch_rectangle, sketch_
 from sw_review import collect_geometry_measurements, collect_model_summary, run_review
 from sw_session import SolidWorksSession
 
+from .ownership_probe import (
+    build_owned_geometry_summary,
+    collect_face_ownership,
+    collect_feature_references,
+    collect_feature_tree_provenance,
+)
+
 
 def _select_front_plane(model) -> bool:
     """Locale-compatible counterpart of the upstream CNC helper."""
@@ -85,6 +92,16 @@ def _collect_slot_planar_sidewalls(model, plan) -> list[dict]:
     return rows
 
 
+def _last_top_level_feature(model):
+    """Return the final FeatureManager node by tree traversal, not by name."""
+    feature = get_com_member(model, "FirstFeature")
+    last = None
+    while feature is not None:
+        last = feature
+        feature = get_com_member(feature, "GetNextFeature")
+    return last
+
+
 def execute(plan, output_dir: Path, name: str) -> dict:
     """Backend is intentionally thin: all CAD calls go through the existing Skill."""
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -96,13 +113,17 @@ def execute(plan, output_dir: Path, name: str) -> dict:
     try:
         _close_existing_target_documents(session, (part_path, drawing_path))
         part = session.new_part(); part_title = str(get_com_member(part, "GetTitle"))
+        created_features = {}
         for operation in plan.operations:
+            operation_evidence = None
             if operation.type == "base_extrude":
                 with sketch(part, operation.sketch_plane) as sketch_name:
                     sketch_rectangle(part, 0, 0, mm(operation.profile["width_mm"]), mm(operation.profile["height_mm"]))
                 feature = extrude_boss(part, sketch_name, mm(operation.depth_mm))
                 if feature is None: raise RuntimeError("SKILL_GAP: base_extrude returned None")
                 feature.Name = "BaseBlock"
+                operation_evidence = {"api_success": True, "depth_mm": operation.depth_mm,
+                                      "profile": dict(operation.profile)}
             elif operation.type == "boss_extrude":
                 # Minimal compatibility supplement: the external backend has
                 # plane/sketch/extrude helpers but no one-call stepped-boss API.
@@ -121,6 +142,8 @@ def execute(plan, output_dir: Path, name: str) -> dict:
                 feature = extrude_boss(part, sketch_name, mm(operation.depth_mm))
                 if feature is None: raise RuntimeError("UPSTREAM_GAP: boss_extrude returned None")
                 feature.Name = "TopBoss"
+                operation_evidence = {"api_success": True, "depth_mm": operation.depth_mm,
+                                      "profile": dict(operation.profile)}
             elif operation.type == "cut_extrude_through_circle":
                 plane_name = operation.sketch_plane
                 if plane_name != "Front Plane" and part.FeatureByName(plane_name) is None:
@@ -131,8 +154,10 @@ def execute(plan, output_dir: Path, name: str) -> dict:
                     if plane is None:
                         raise RuntimeError("UPSTREAM_GAP: InsertRefPlane failed for through-hole plane")
                     plane.Name = plane_name
-                evidence = create_through_hole(part, (mm(operation.profile["center_x_mm"]), mm(operation.profile["center_y_mm"])), mm(operation.profile["diameter_mm"]), plane_name=plane_name, name="ThroughHole_D20")
-                result["operations"].append({"operation": operation.type, "evidence": evidence})
+                operation_evidence = create_through_hole(part, (mm(operation.profile["center_x_mm"]), mm(operation.profile["center_y_mm"])), mm(operation.profile["diameter_mm"]), plane_name=plane_name, name="ThroughHole_D20")
+                feature = _last_top_level_feature(part)
+                if feature is None:
+                    raise RuntimeError("SKILL_GAP: through-hole feature provenance unavailable")
             elif operation.type == "cut_extrude_through_slot":
                 profile = operation.profile
                 radius = profile["width_mm"] / 2.0
@@ -176,7 +201,7 @@ def execute(plan, output_dir: Path, name: str) -> dict:
                 if feature is None:
                     raise RuntimeError("UPSTREAM_GAP: slot through-cut returned None")
                 feature.Name = "ThroughSlot_L40_W20"
-                evidence = {"feature_kind": "semicircular_slot", "start_mm": list(start), "end_mm": list(end),
+                operation_evidence = {"feature_kind": "semicircular_slot", "start_mm": list(start), "end_mm": list(end),
                             "width_mm": profile["width_mm"], "depth_mm": None, "through": True,
                             "plane_name": operation.sketch_plane, "feature_names": ["ThroughSlot_L40_W20"],
                             "overall_length_mm": profile["overall_length_mm"], "center_to_center_length_mm": centre_distance,
@@ -184,21 +209,46 @@ def execute(plan, output_dir: Path, name: str) -> dict:
                             "sketch_entities": segment_rows, "profile_entity_contract": 4, "api_success": True,
                             "upstream_gap": "create_semicircular_slot width semantics produce half requested width on SW2024"}
                 result["skill_gaps"].append("UPSTREAM_GAP: corrected create_semicircular_slot width semantics in adapter")
-                result["operations"].append({"operation": operation.type, "evidence": evidence})
             else:
                 raise RuntimeError(f"SKILL_GAP: unsupported plan operation {operation.type}")
+            if not operation.source_feature_id or not operation.operation_id:
+                raise RuntimeError("B005 adapter contract requires operation and source feature IDs")
+            created_features[operation.source_feature_id] = feature
+            result["operations"].append({
+                "operation_id": operation.operation_id,
+                "source_feature_id": operation.source_feature_id,
+                "depends_on_operation_ids": list(operation.depends_on_operation_ids),
+                "operation": operation.type,
+                "evidence": operation_evidence,
+            })
         part.ForceRebuild3(False)
         if not session.save(part, str(part_path)): raise RuntimeError("SLDPRT save failed")
+        feature_references = collect_feature_references(part, created_features)
+        result["feature_identity"] = {
+            "source": "IModelDocExtension.GetPersistReference3",
+            "references": feature_references,
+            "feature_names_excluded_from_identity": True,
+        }
+        result["initial_feature_tree"] = collect_feature_tree_provenance(part, feature_references, plan)
+        result["initial_ownership"] = collect_face_ownership(part, feature_references)
         result["model_summary"] = collect_model_summary(part)
         result["geometry"] = collect_geometry_measurements(part)
         result["geometry"]["slot_planar_side_candidates"] = _collect_slot_planar_sidewalls(part, plan)
+        result["owned_geometry"] = build_owned_geometry_summary(
+            result["initial_ownership"], result["operations"], plan.operations[0].depth_mm,
+        )
         review, review_path = run_review(part, output_dir / "review", basename=name, expected_outputs=[part_path])
         result["review"] = {"path": str(review_path), "evaluation": review["evaluation"]}
         # Reopen is intentionally exercised before drawing generation.
         session.close(title=part_title); part = session.open(str(part_path), read_only=True, silent=True); part_title = str(get_com_member(part, "GetTitle"))
         result["reopened_model_summary"] = collect_model_summary(part)
+        result["reopened_feature_tree"] = collect_feature_tree_provenance(part, feature_references, plan)
+        result["reopened_ownership"] = collect_face_ownership(part, feature_references)
         result["reopened_geometry"] = collect_geometry_measurements(part)
         result["reopened_geometry"]["slot_planar_side_candidates"] = _collect_slot_planar_sidewalls(part, plan)
+        result["reopened_owned_geometry"] = build_owned_geometry_summary(
+            result["reopened_ownership"], result["operations"], plan.operations[0].depth_mm,
+        )
         drawing = session.new_drawing(); drawing_title = str(get_com_member(drawing, "GetTitle"))
         result["drawing_create"] = create_standard_views_with_projection(drawing, str(part_path), projection="third_angle")
         if not session.save(drawing, str(drawing_path)): raise RuntimeError("SLDDRW save failed")
