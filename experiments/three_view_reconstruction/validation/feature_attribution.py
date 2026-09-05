@@ -15,17 +15,24 @@ def validate_ownership_evidence(expected: dict[str, str],
     extra = sorted(set(rows) - set(expected))
     unresolved = [row.entity_id for row in actual
                   if row.feature_id is None or row.strength == "OWNERSHIP_UNRESOLVED"]
+    insufficient_strength = [row.entity_id for row in actual
+                             if row.strength == "BREP_GEOMETRY_CORRELATED"]
     misattributed = [entity_id for entity_id, feature_id in expected.items()
                      if entity_id in rows and rows[entity_id].feature_id is not None
                      and rows[entity_id].feature_id != feature_id]
-    passed = not missing and not extra and not unresolved and not misattributed
+    # B005 B-Rep ownership is deliberately strict: geometry correlation is
+    # useful diagnostic evidence but cannot replace an API-backed owner.
+    passed = (not missing and not extra and not unresolved
+              and not insufficient_strength and not misattributed)
     return {
         "status": "PASS" if passed else "FAIL",
         "missing_entity_ids": missing,
         "extra_entity_ids": extra,
         "unresolved_entity_ids": sorted(unresolved),
+        "insufficient_strength_entity_ids": sorted(insufficient_strength),
         "misattributed_entity_ids": sorted(misattributed),
         "unresolved_count": len(unresolved),
+        "insufficient_strength_count": len(insufficient_strength),
         "misattributed_count": len(misattributed),
         "evidence": [row.to_dict() for row in actual],
     }

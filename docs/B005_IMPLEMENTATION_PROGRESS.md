@@ -71,7 +71,7 @@ For independent disjoint Hole and Slot siblings:
 - strength: `API_EXACT`, `BREP_GEOMETRY_CORRELATED`, or `OWNERSHIP_UNRESOLVED`;
 - optional details.
 
-An unresolved row is structurally forbidden from claiming a feature ID. Resolved rows require one. `validate_ownership_evidence()` rejects missing, extra, unresolved, or swapped owners. Feature names are not inputs to the ownership decision.
+An unresolved row is structurally forbidden from claiming a feature ID. Resolved rows require one. `validate_ownership_evidence()` rejects missing, extra, unresolved, insufficient-strength, or swapped owners. Only `API_EXACT` satisfies the B005 B-Rep ownership gate; `BREP_GEOMETRY_CORRELATED` is retained for diagnostics and drawing-silhouette investigation but cannot claim exact B-Rep ownership. Feature names are not inputs to the ownership decision.
 
 `validate_feature_attribution()` is deliberately outside the existing Level 2A primitive matchers. It combines an existing geometry result with expected/actual feature IDs and fails when geometry is correct but attribution is swapped. It also enforces both unknown and unattributed counts at zero.
 
@@ -86,10 +86,11 @@ python -m pytest -v
 Results:
 
 - implementation baseline: 531 passed, 15 skipped, 2 deselected, 0 failed;
-- B005 contract: 14 passed;
+- B005 contract: 15 passed;
 - B003–B005 focused regression: 45 passed;
 - all unit tests: 68 passed;
-- final complete suite: **545 passed, 15 skipped, 2 deselected, 0 failed**, 26 warnings, 18.89 seconds.
+- complete suite before the final ownership-strength tightening: **545 passed, 15 skipped, 2 deselected, 0 failed**, 26 warnings, 18.89 seconds;
+- final complete suite after the strict `API_EXACT` regression: **546 passed, 15 skipped, 2 deselected, 0 failed**, 26 warnings, 17.03 seconds.
 
 The warnings are the existing ezdxf/NumPy deprecation warnings and are unrelated to B005.
 

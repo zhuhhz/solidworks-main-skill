@@ -170,6 +170,16 @@ def test_unresolved_ownership_is_not_guessed():
     assert result["unresolved_count"] == 1
 
 
+def test_geometry_correlation_does_not_claim_exact_brep_ownership():
+    rows = [OwnershipEvidence(
+        "face_hole_wall", "FACE", "hole_001",
+        "geometry/topology correlation", "BREP_GEOMETRY_CORRELATED",
+    )]
+    result = validate_ownership_evidence({"face_hole_wall": "hole_001"}, rows)
+    assert result["status"] == "FAIL"
+    assert result["insufficient_strength_count"] == 1
+
+
 def test_level2_outer_attribution_rejects_swapped_owner_even_when_geometry_matches():
     matches = [
         {"primitive_id": "top_hole_hidden_1", "expected_feature_id": "hole_001",
