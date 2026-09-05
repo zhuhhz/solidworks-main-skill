@@ -134,7 +134,8 @@ def _unique_exact_position(center, instances):
     return matches[0] if len(matches) == 1 else None
 
 
-def collect_pattern_ownership(model, references: dict[str, str], graph, definition: dict) -> dict:
+def collect_pattern_ownership(model, references: dict[str, str], graph, definition: dict,
+                              *, ownership_domain: str) -> dict:
     """Classify only direct API ownership as API_EXACT.
 
     A pattern-owned face can be linked to a unique occurrence using the native
@@ -175,6 +176,12 @@ def collect_pattern_ownership(model, references: dict[str, str], graph, definiti
                 "owner_feature_id": owner_id, "instance_id": instance_id,
                 "instance_index": instance.instance_index if instance else None,
                 "ownership": strength, "source": source, "geometry": geometry,
+                # Canonical B006 evidence fields. Legacy aliases above remain
+                # for existing drawing attribution consumers.
+                "feature_id": instance_id,
+                "pattern_id": graph.pattern.feature_id,
+                "seed_id": graph.seed.feature_id,
+                "ownership_level": strength,
             })
     ids = [row["instance_id"] for row in rows if row["instance_id"]]
     unresolved = sum(row["ownership"] == "OWNERSHIP_UNRESOLVED" for row in rows)
@@ -189,12 +196,14 @@ def collect_pattern_ownership(model, references: dict[str, str], graph, definiti
         for row in rows)
     strict_api_exact = coverage and api_exact == 4 and unresolved == instance_exact == 0
     return {
+        "ownership_domain": ownership_domain,
         "status": "PASS" if geometry_pass and unresolved == 0 else "FAIL",
         "strict_api_exact_status": "PASS" if strict_api_exact else "FAIL",
         "rows": rows, "instance_coverage": coverage, "geometry_status": "PASS" if geometry_pass else "FAIL",
         "api_exact_count": api_exact, "instance_exact_count": instance_exact,
         "unresolved_count": unresolved,
-        "acceptance_rule": "all four occurrences require API_EXACT for B006 validation",
+        "acceptance_rule": ("PART_FEATURE_PATTERN requires seed API_EXACT and generated "
+                            "occurrences API_EXACT or INSTANCE_EXACT"),
         "name_matching_used": False, "nearest_geometry_used": False, "face_array_order_used": False,
         "pattern_definition_source": definition.get("source"),
     }

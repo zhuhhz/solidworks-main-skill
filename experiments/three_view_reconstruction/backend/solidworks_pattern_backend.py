@@ -96,13 +96,14 @@ def _close_known_active(session, paths):
         pass
 
 
-def execute_pattern(graph, output_dir: Path, name: str) -> dict:
+def execute_pattern(graph, output_dir: Path, name: str, *, ownership_domain: str) -> dict:
     output_dir.mkdir(parents=True, exist_ok=True)
     part_path = output_dir / f"{name}.sldprt"
     drawing_path = output_dir / f"{name}.slddrw"
     session = SolidWorksSession(version=2024, visible=True, wait_seconds=20)
     part_title = drawing_title = None
-    result = {"status": "FAIL", "external_backend_path": str(UPSTREAM_ROOT), "operations": []}
+    result = {"status": "FAIL", "ownership_domain": ownership_domain,
+              "external_backend_path": str(UPSTREAM_ROOT), "operations": []}
     try:
         _close_known_active(session, (part_path, drawing_path))
         part = session.new_part()
@@ -142,7 +143,8 @@ def execute_pattern(graph, output_dir: Path, name: str) -> dict:
         definition = collect_pattern_definition(part, refs["pattern_001"])
         result["initial_pattern_definition"] = definition
         result["initial_feature_tree"] = collect_pattern_feature_tree(part, refs, definition)
-        result["initial_ownership"] = collect_pattern_ownership(part, refs, graph, definition)
+        result["initial_ownership"] = collect_pattern_ownership(
+            part, refs, graph, definition, ownership_domain=ownership_domain)
         result["initial_geometry"] = collect_geometry_measurements(part)
         result["model_summary"] = collect_model_summary(part)
         review, review_path = run_review(part, output_dir / "review", basename=name, expected_outputs=[part_path])
@@ -156,7 +158,8 @@ def execute_pattern(graph, output_dir: Path, name: str) -> dict:
         definition = collect_pattern_definition(part, refs["pattern_001"])
         result["reopened_pattern_definition"] = definition
         result["reopened_feature_tree"] = collect_pattern_feature_tree(part, refs, definition)
-        result["reopened_ownership"] = collect_pattern_ownership(part, refs, graph, definition)
+        result["reopened_ownership"] = collect_pattern_ownership(
+            part, refs, graph, definition, ownership_domain=ownership_domain)
         result["reopened_geometry"] = collect_geometry_measurements(part)
 
         drawing = session.new_drawing()

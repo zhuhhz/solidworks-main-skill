@@ -4,12 +4,57 @@ from __future__ import annotations
 from copy import deepcopy
 from pathlib import Path
 
-from validation.pattern_contract import validate_pattern_graph
+from validation.pattern_contract import (PART_FEATURE_PATTERN, validate_pattern_graph,
+                                         validate_pattern_ownership)
+
+
+def _ownership_gate(graph, ownership: dict, ownership_domain) -> dict:
+    envelope_domain = ownership.get("ownership_domain")
+    if ownership_domain is None or envelope_domain is None:
+        return {"status": "FAIL", "error_code": "OWNERSHIP_DOMAIN_REQUIRED",
+                "reason": "execution and ownership evidence domains must be explicit"}
+    if ownership_domain != PART_FEATURE_PATTERN or envelope_domain != ownership_domain:
+        return {"status": "FAIL", "error_code": "OWNERSHIP_DOMAIN_UNSUPPORTED",
+                "reason": "ownership domain is unsupported or inconsistent"}
+    rows = ownership.get("rows")
+    if not isinstance(rows, list):
+        return {"status": "FAIL", "error_code": "OWNERSHIP_COVERAGE_INVALID",
+                "reason": "occurrence-level ownership rows are required"}
+
+    instances_by_index = {item.instance_index: item.feature_id for item in graph.instances}
+    expected_entities = {}
+    for row in rows:
+        index = row.get("instance_index")
+        entity_id = row.get("entity_id")
+        if type(index) is not int or index not in instances_by_index:
+            return {"status": "FAIL", "error_code": "INSTANCE_INDEX_INVALID",
+                    "reason": "each occurrence needs a valid native instance index"}
+        if not isinstance(entity_id, str) or not entity_id or entity_id in expected_entities:
+            return {"status": "FAIL", "error_code": "OWNERSHIP_COVERAGE_INVALID",
+                    "reason": "entity identities must be nonempty and unique"}
+        expected_entities[entity_id] = instances_by_index[index]
+    return validate_pattern_ownership(
+        graph, expected_entities, rows, ownership_domain=ownership_domain)
+
+
+def _ownership_mapping(ownership: dict):
+    rows = ownership.get("rows")
+    if not isinstance(rows, list):
+        return None
+    return sorted((row.get("instance_index"), row.get("feature_id", row.get("instance_id")), row.get("entity_id"),
+                   row.get("owner_feature_id", row.get("native_owner_feature_id")),
+                   row.get("ownership_level", row.get("ownership", row.get("state"))),
+                   row.get("persistent_reference", row.get("identity_reference")))
+                  for row in rows)
 
 
 def validate_real_backend(graph, backend: dict) -> dict:
     initial_owner = backend.get("initial_ownership", {})
     reopened_owner = backend.get("reopened_ownership", {})
+    ownership_domain = backend.get("ownership_domain")
+    initial_gate = _ownership_gate(graph, initial_owner, ownership_domain)
+    reopened_gate = _ownership_gate(graph, reopened_owner, ownership_domain)
+    reopened_mapping_matches = _ownership_mapping(initial_owner) == _ownership_mapping(reopened_owner)
     checks = {
         "backend": backend.get("status") == "PASS",
         "part_saved": bool(backend.get("part_path")) and Path(backend["part_path"]).is_file(),
@@ -19,15 +64,24 @@ def validate_real_backend(graph, backend: dict) -> dict:
         "reopened_feature_tree": backend.get("reopened_feature_tree", {}).get("status") == "PASS",
         "initial_pattern_definition": backend.get("initial_pattern_definition", {}).get("status") == "PASS",
         "reopened_pattern_definition": backend.get("reopened_pattern_definition", {}).get("status") == "PASS",
-        "initial_instance_coverage": initial_owner.get("status") == "PASS",
-        "reopened_instance_coverage": reopened_owner.get("status") == "PASS",
-        "initial_api_exact": initial_owner.get("strict_api_exact_status") == "PASS",
-        "reopened_api_exact": reopened_owner.get("strict_api_exact_status") == "PASS",
+        "ownership_domain": ownership_domain == PART_FEATURE_PATTERN,
+        "initial_part_pattern_ownership": initial_gate.get("status") == "PASS",
+        "reopened_part_pattern_ownership": reopened_gate.get("status") == "PASS",
+        "reopened_ownership_mapping": reopened_mapping_matches,
     }
     return {
         "status": "PASS" if all(checks.values()) else "FAIL",
         "checks": checks,
-        "ownership_requirement": "all occurrences API_EXACT",
+        "ownership_requirement": "PART_FEATURE_PATTERN: seed API_EXACT; generated API_EXACT or INSTANCE_EXACT",
+        "ownership_error_codes": {
+            "initial": initial_gate.get("error_code"),
+            "reopened": reopened_gate.get("error_code"),
+            "mapping": None if reopened_mapping_matches else "REOPEN_OWNERSHIP_MISMATCH",
+        },
+        "strict_api_exact_status": {
+            "initial": initial_owner.get("strict_api_exact_status"),
+            "reopened": reopened_owner.get("strict_api_exact_status"),
+        },
         "initial_ownership_counts": {
             "API_EXACT": initial_owner.get("api_exact_count"),
             "INSTANCE_EXACT": initial_owner.get("instance_exact_count"),

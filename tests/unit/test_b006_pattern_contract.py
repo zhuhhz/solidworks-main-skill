@@ -1,6 +1,6 @@
 from pathlib import Path
 import sys
-from dataclasses import replace
+from dataclasses import asdict, replace
 import pytest
 
 ROOT = Path(__file__).resolve().parents[2] / "experiments" / "three_view_reconstruction"
@@ -9,6 +9,9 @@ from schemas.feature_graph import BaseBlock
 from schemas.pattern_feature import SeedFeature, PatternFeature, InstanceFeature, PatternFeatureGraph, PatternOwnership
 from validation.pattern_contract import (validate_pattern_graph, build_pattern_operations,
                                          validate_pattern_operations, validate_pattern_ownership)
+
+
+DOMAIN = "PART_FEATURE_PATTERN"
 
 
 def graph():
@@ -90,34 +93,76 @@ def test_identity_and_geometry_mutations_fail(mutation):
     assert validate_pattern_graph(g)["status"] == "FAIL"
 
 
-def ownership(g, state="INSTANCE_EXACT"):
+def ownership(g, generated_state="INSTANCE_EXACT", seed_state="API_EXACT"):
     expected = {f"face_{i}": item.feature_id for i, item in enumerate(g.instances)}
-    rows = [PatternOwnership(entity, "pattern_001", owner, "pattern_001", state,
-                             "synthetic unit fixture, not CAD evidence", entity + "_ref")
-            for entity, owner in expected.items()]
+    rows = []
+    for entity, instance_id in expected.items():
+        instance = next(item for item in g.instances if item.feature_id == instance_id)
+        is_seed = instance.instance_index == 0
+        rows.append(PatternOwnership(
+            entity, "pattern_001", instance_id,
+            "seed_hole_001" if is_seed else "pattern_001",
+            seed_state if is_seed else generated_state,
+            "synthetic unit fixture, not CAD evidence", entity + "_ref",
+            seed_id="seed_hole_001", instance_index=instance.instance_index))
     return expected, rows
 
 
-@pytest.mark.parametrize("state", ["API_EXACT", "INSTANCE_EXACT"])
-def test_exact_ownership_states(state):
-    g = graph(); expected, rows = ownership(g, state)
-    assert validate_pattern_ownership(g, expected, rows)["status"] == "PASS"
+def test_part_pattern_seed_api_and_generated_instance_exact_pass():
+    g = graph(); expected, rows = ownership(g)
+    assert validate_pattern_ownership(g, expected, rows, ownership_domain=DOMAIN)["status"] == "PASS"
+
+
+def test_part_pattern_all_api_exact_passes():
+    g = graph(); expected, rows = ownership(g, generated_state="API_EXACT")
+    assert validate_pattern_ownership(g, expected, rows, ownership_domain=DOMAIN)["status"] == "PASS"
+
+
+def test_part_pattern_missing_pattern_id_fails():
+    g = graph(); expected, rows = ownership(g)
+    malformed = [asdict(row) for row in rows]
+    malformed[1].pop("pattern_id")
+    result = validate_pattern_ownership(g, expected, malformed, ownership_domain=DOMAIN)
+    assert result["error_code"] == "PATTERN_REFERENCE_MISSING"
+
+
+def test_part_pattern_instance_without_seed_lineage_fails():
+    g = graph(); expected, rows = ownership(g)
+    malformed = [asdict(row) for row in rows]
+    malformed[1].pop("seed_id")
+    result = validate_pattern_ownership(g, expected, malformed, ownership_domain=DOMAIN)
+    assert result["error_code"] == "SEED_REFERENCE_MISSING"
+
+
+def test_part_pattern_seed_instance_exact_fails():
+    g = graph(); expected, rows = ownership(g, seed_state="INSTANCE_EXACT")
+    result = validate_pattern_ownership(g, expected, rows, ownership_domain=DOMAIN)
+    assert result["error_code"] == "SEED_API_IDENTITY_REQUIRED"
+
+
+@pytest.mark.parametrize("domain, code", [(None, "OWNERSHIP_DOMAIN_REQUIRED"),
+                                           ("ASSEMBLY_COMPONENT_PATTERN", "OWNERSHIP_DOMAIN_UNSUPPORTED")])
+def test_part_pattern_domain_firewall(domain, code):
+    g = graph(); expected, rows = ownership(g)
+    result = validate_pattern_ownership(g, expected, rows, ownership_domain=domain)
+    assert result["error_code"] == code
 
 
 @pytest.mark.parametrize("state", ["PATTERN_ONLY", "OWNERSHIP_UNRESOLVED"])
 def test_diagnostic_states_cannot_pass(state):
     g = graph(); expected, rows = ownership(g)
-    rows[0] = replace(rows[0], instance_id=None, state=state)
-    assert validate_pattern_ownership(g, expected, rows)["status"] == "FAIL"
+    rows[1] = replace(rows[1], instance_id=None, state=state)
+    assert validate_pattern_ownership(g, expected, rows, ownership_domain=DOMAIN)["status"] == "FAIL"
 
 
 def test_ownership_swap_and_missing_rows_fail():
     g = graph(); expected, rows = ownership(g)
-    assert validate_pattern_ownership(g, expected, rows[:-1])["status"] == "FAIL"
+    assert validate_pattern_ownership(g, expected, rows[:-1], ownership_domain=DOMAIN)["status"] == "FAIL"
     rows[0] = replace(rows[0], instance_id="instance_002")
-    assert validate_pattern_ownership(g, expected, rows)["status"] == "FAIL"
+    assert validate_pattern_ownership(g, expected, rows, ownership_domain=DOMAIN)["status"] == "FAIL"
 
 
 def test_exact_label_without_identity_evidence_rejected():
     with pytest.raises(ValueError):
-        PatternOwnership("face", "pattern_001", "instance_001", "seed_hole_001", "API_EXACT", "fixture")
+        PatternOwnership("face", "pattern_001", "instance_001", "seed_hole_001", "API_EXACT", "fixture",
+                         seed_id="seed_hole_001", instance_index=0)

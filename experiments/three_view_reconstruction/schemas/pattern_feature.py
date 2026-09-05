@@ -73,6 +73,8 @@ class PatternOwnership:
     state: str
     source: str
     identity_reference: str | None = None
+    seed_id: str | None = None
+    instance_index: int | None = None
 
     def __post_init__(self):
         if self.state not in {"API_EXACT", "INSTANCE_EXACT", "PATTERN_ONLY", "OWNERSHIP_UNRESOLVED"}:
@@ -80,7 +82,16 @@ class PatternOwnership:
         if not self.entity_id or not self.pattern_id or not self.source:
             raise ValueError("entity, pattern and evidence source are required")
         if self.state in {"API_EXACT", "INSTANCE_EXACT"}:
-            if not self.instance_id or not self.native_owner_feature_id or not self.identity_reference:
-                raise ValueError("exact ownership requires instance, native owner and identity evidence")
+            if (not self.instance_id or not self.native_owner_feature_id or not self.identity_reference
+                    or not self.seed_id or type(self.instance_index) is not int or self.instance_index < 0):
+                raise ValueError("exact ownership requires instance, seed lineage, index, native owner and identity evidence")
         elif self.instance_id is not None:
             raise ValueError("diagnostic/unresolved evidence cannot claim an instance")
+
+    @property
+    def feature_id(self):
+        return self.instance_id
+
+    @property
+    def ownership_level(self):
+        return self.state

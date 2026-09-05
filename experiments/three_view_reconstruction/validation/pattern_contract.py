@@ -4,6 +4,9 @@ import math
 from schemas.pattern_feature import PatternOperation
 
 
+PART_FEATURE_PATTERN = "PART_FEATURE_PATTERN"
+
+
 def _fail(code, reason):
     return {"status": "FAIL", "error_code": code, "reason": reason}
 
@@ -82,25 +85,78 @@ def validate_pattern_operations(graph, operations):
             "instance_seed_operation": provenance[graph.seed.feature_id]}
 
 
-def validate_pattern_ownership(graph, expected_entities, evidence):
+def _evidence_value(row, name):
+    if isinstance(row, dict):
+        aliases = {
+            "state": ("state", "ownership_level", "ownership"),
+            "instance_id": ("instance_id", "feature_id"),
+            "native_owner_feature_id": ("native_owner_feature_id", "owner_feature_id"),
+            "identity_reference": ("identity_reference", "persistent_reference"),
+        }
+        for key in aliases.get(name, (name,)):
+            if key in row:
+                return row[key]
+        return None
+    return getattr(row, name, None)
+
+
+def validate_pattern_ownership(graph, expected_entities, evidence, *, ownership_domain=None):
     """expected_entities is an independent entity_id -> instance_id oracle.
 
     Exact labels are evidence assertions, not API discovery. This pure gate
     checks completeness and provenance; real correspondence is a later phase.
     """
+    if ownership_domain is None:
+        return _fail("OWNERSHIP_DOMAIN_REQUIRED", "ownership domain must be explicit")
+    if ownership_domain != PART_FEATURE_PATTERN:
+        return _fail("OWNERSHIP_DOMAIN_UNSUPPORTED", "this gate only accepts PART_FEATURE_PATTERN")
+
     result = validate_pattern_graph(graph)
     if result["status"] != "PASS":
         return result
     instance_ids = {item.feature_id for item in graph.instances}
     if set(expected_entities.values()) != instance_ids:
         return _fail("OWNERSHIP_COVERAGE_INVALID", "all four instances need independently expected entities")
-    counts = Counter(item.entity_id for item in evidence)
+    counts = Counter(_evidence_value(item, "entity_id") for item in evidence)
     if set(counts) != set(expected_entities) or any(count != 1 for count in counts.values()):
         return _fail("OWNERSHIP_COVERAGE_INVALID", "missing, extra or duplicate entity evidence")
+    instances = {item.feature_id: item for item in graph.instances}
+    exact_counts = Counter()
     for row in evidence:
-        if row.state not in {"API_EXACT", "INSTANCE_EXACT"}:
-            return _fail("OWNERSHIP_UNRESOLVED", "PATTERN_ONLY is diagnostic and cannot pass")
-        if (row.pattern_id != graph.pattern.feature_id or row.instance_id != expected_entities[row.entity_id]
-                or row.native_owner_feature_id not in {graph.seed.feature_id, graph.pattern.feature_id}):
-            return _fail("OWNERSHIP_MISMATCH", "exact evidence must match expected occurrence and native owner")
-    return {"status": "PASS", "instance_count": len(instance_ids), "unresolved_count": 0}
+        state = _evidence_value(row, "state")
+        if state == "PATTERN_ONLY":
+            return _fail("INSTANCE_IDENTITY_UNPROVEN", "PATTERN_ONLY is diagnostic and cannot pass")
+        if state == "OWNERSHIP_UNRESOLVED":
+            return _fail("OWNERSHIP_UNRESOLVED", "unresolved occurrence ownership cannot pass")
+        if state not in {"API_EXACT", "INSTANCE_EXACT"}:
+            return _fail("OWNERSHIP_UNRESOLVED", "only exact ownership states can pass")
+
+        entity_id = _evidence_value(row, "entity_id")
+        instance_id = _evidence_value(row, "instance_id")
+        instance = instances.get(instance_id)
+        pattern_id = _evidence_value(row, "pattern_id")
+        seed_id = _evidence_value(row, "seed_id")
+        instance_index = _evidence_value(row, "instance_index")
+        if not pattern_id:
+            return _fail("PATTERN_REFERENCE_MISSING", "each occurrence requires explicit pattern lineage")
+        if not seed_id:
+            return _fail("SEED_REFERENCE_MISSING", "each occurrence requires explicit seed lineage")
+        if (pattern_id != graph.pattern.feature_id or seed_id != graph.seed.feature_id
+                or instance_id != expected_entities[entity_id] or instance is None):
+            return _fail("OWNERSHIP_MISMATCH", "exact evidence must match the expected occurrence")
+        if type(instance_index) is not int or instance_index != instance.instance_index:
+            return _fail("INSTANCE_INDEX_INVALID", "instance index must match FeatureGraph identity")
+
+        is_seed_occurrence = instance.instance_index == 0
+        expected_native_owner = graph.seed.feature_id if is_seed_occurrence else graph.pattern.feature_id
+        if _evidence_value(row, "native_owner_feature_id") != expected_native_owner:
+            return _fail("NATIVE_OWNER_MISMATCH", "native owner does not match seed/pattern semantics")
+        if is_seed_occurrence and state != "API_EXACT":
+            return _fail("SEED_API_IDENTITY_REQUIRED", "the seed occurrence must be API_EXACT")
+        if not _evidence_value(row, "identity_reference"):
+            return _fail("ENTITY_REFERENCE_MISSING", "exact ownership requires persistent entity identity")
+        exact_counts[state] += 1
+    return {"status": "PASS", "instance_count": len(instance_ids), "unresolved_count": 0,
+            "api_exact_count": exact_counts["API_EXACT"],
+            "instance_exact_count": exact_counts["INSTANCE_EXACT"],
+            "ownership_domain": ownership_domain}

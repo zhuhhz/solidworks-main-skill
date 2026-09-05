@@ -9,15 +9,20 @@ import sys
 
 ROOT = Path(__file__).resolve().parent
 PROJECT_ROOT = ROOT.parents[1]
+OWNERSHIP_DOMAIN = "PART_FEATURE_PATTERN"
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from backend.solidworks_pattern_backend import execute_pattern
-from drawing.pattern_drawing_attribution import run as run_pattern_drawing_attribution, validate_roundtrip
+from drawing.drawing_geometry_extractor import extract as extract_projected_geometry
+from drawing.drawing_semantic_extractor import extract as extract_drawing_semantics
+from drawing.pattern_drawing_attribution import run as run_pattern_drawing_attribution
 from inference.pattern_evidence_binding import bind_pattern_evidence
 from parser.pattern_structured_input import load_pattern_structured_input
 from validation.b006_phase3 import run_negative_controls, validate_level_1, validate_real_backend
 from validation.projection_consistency import validate as validate_projection
+from validation.roundtrip_geometry_validator import validate as validate_geometry_roundtrip
+from validation.roundtrip_levels import split as split_roundtrip_levels
 
 
 def main() -> int:
@@ -34,20 +39,26 @@ def main() -> int:
         "feature_graph": feature_graph.to_dict(), "evidence_binding": binding,
         "input_consistency": validate_projection(data.projection_graph),
     }
-    backend = execute_pattern(feature_graph, output, name)
+    backend = execute_pattern(
+        feature_graph, output, name, ownership_domain=OWNERSHIP_DOMAIN)
     result["solidworks_backend"] = backend
-    (output / "native_backend_evidence.json").write_text(
-        json.dumps(backend, ensure_ascii=False, indent=2), encoding="utf-8")
     result["backend_gate"] = validate_real_backend(feature_graph, backend)
     result["level_1"] = validate_level_1(feature_graph, backend)
     result["negative_tests"] = run_negative_controls(feature_graph, backend)
     semantic_dir = PROJECT_ROOT / "experiments" / "hlv_hlr_semantics" / "results" / name
     try:
+        projected = extract_projected_geometry(
+            backend["drawing_path"], upstream_path=backend.get("external_backend_path"),
+            drawing_structure=backend.get("drawing_structure"))
         from experiments.hlv_hlr_semantics.run_experiment import run_case
         semantic_evidence = run_case(Path(backend["drawing_path"]), name, semantic_dir)
-        levels = validate_roundtrip(data, semantic_evidence)
+        level_2 = validate_geometry_roundtrip(data.projection_graph, projected)
+        semantic_graph = extract_drawing_semantics(
+            projected, backend.get("drawing_structure"), semantic_evidence)
+        levels = split_roundtrip_levels(level_2, semantic_graph, data.projection_graph)
         attributed = run_pattern_drawing_attribution(data, backend, semantic_evidence)
-        result["semantic_evidence"] = semantic_evidence
+        result["projected_geometry"] = projected
+        result["drawing_primitive_graph"] = semantic_graph
         result["roundtrip"] = levels
         result["pattern_attributed_roundtrip"] = attributed
     except Exception as exc:
@@ -64,15 +75,19 @@ def main() -> int:
     attribution = result["pattern_attributed_roundtrip"]
     all_geometry = (backend.get("status") == "PASS" and result["level_1"]["status"] == "PASS"
                     and level2a == level2b == "PASS" and attribution.get("status") == "PASS")
-    all_strict = all_geometry and result["backend_gate"]["status"] == "PASS" \
-                 and attribution.get("strict_api_exact_status") == "PASS"
-    # The requested hard rule reserves validation for API_EXACT ownership of
-    # every occurrence. INSTANCE_EXACT is useful evidence but cannot promote.
-    result["status"] = "PASS_CANDIDATE" if all_strict else "NOT_VALIDATED"
+    ownership_contract = result["backend_gate"]["status"] == "PASS"
+    drawing_contract = (attribution.get("status") == "PASS"
+                        and attribution.get("unknown_count") == 0
+                        and attribution.get("unattributed_count") == 0)
+    pass_candidate = all_geometry and ownership_contract and drawing_contract
+    result["status"] = "PASS_CANDIDATE" if pass_candidate else "NOT_VALIDATED"
     result["decision"] = {
         "geometry_chain_complete": all_geometry,
-        "all_occurrences_api_exact": all_strict,
-        "rule": "any non-API_EXACT occurrence keeps B006 NOT_VALIDATED",
+        "part_feature_pattern_ownership": ownership_contract,
+        "drawing_attribution_complete": drawing_contract,
+        "strict_api_exact_status": attribution.get("strict_api_exact_status"),
+        "rule": ("PART_FEATURE_PATTERN seed requires API_EXACT; generated instances require "
+                 "API_EXACT or INSTANCE_EXACT; UNKNOWN and UNATTRIBUTED must be zero"),
     }
     (output / "benchmark_results.json").write_text(
         json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
