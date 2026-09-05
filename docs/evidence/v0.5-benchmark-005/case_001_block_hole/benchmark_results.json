@@ -1,0 +1,2726 @@
+{
+  "run_at": "2026-09-05T13:11:59",
+  "case": "case_001_block_hole",
+  "projection_graph": {
+    "projection": "third_angle",
+    "front": {
+      "name": "front",
+      "horizontal_extent": 100.0,
+      "vertical_extent": 60.0,
+      "circles": [
+        {
+          "x": 50,
+          "y": 30,
+          "diameter": 20,
+          "primitive_id": null
+        }
+      ],
+      "hidden_line_pairs": [],
+      "visible_segments": [],
+      "hidden_segments": [],
+      "arcs": [],
+      "centerlines": []
+    },
+    "top": {
+      "name": "top",
+      "horizontal_extent": 100.0,
+      "vertical_extent": 40.0,
+      "circles": [],
+      "hidden_line_pairs": [
+        {
+          "axis": "x",
+          "offset_1": 20,
+          "offset_2": 40,
+          "primitive_id": null
+        }
+      ],
+      "visible_segments": [],
+      "hidden_segments": [],
+      "arcs": [],
+      "centerlines": []
+    },
+    "left": {
+      "name": "left",
+      "horizontal_extent": 40.0,
+      "vertical_extent": 60.0,
+      "circles": [],
+      "hidden_line_pairs": [
+        {
+          "axis": "z",
+          "offset_1": 20,
+          "offset_2": 40,
+          "primitive_id": null
+        }
+      ],
+      "visible_segments": [],
+      "hidden_segments": [],
+      "arcs": [],
+      "centerlines": []
+    },
+    "coordinate_convention": {
+      "input": "mm; drawing lower-left origin",
+      "front": "X/Y",
+      "top": "X/Z",
+      "left": "Z/Y",
+      "internal": "mm; base-block centre origin; +Z is extrude direction"
+    },
+    "feature_evidence": null,
+    "feature_evidence_records": [],
+    "expected_features": null,
+    "center_requirements": [],
+    "reference_integrity": null
+  },
+  "reference_integrity": {
+    "status": "UNASSESSED"
+  },
+  "input_consistency": {
+    "status": "PASS",
+    "tolerance_mm": 0.01,
+    "checks": [
+      {
+        "id": "front.width_equals_top.width",
+        "expected_mm": 100.0,
+        "actual_mm": 100.0,
+        "passed": true
+      },
+      {
+        "id": "front.height_equals_left.height",
+        "expected_mm": 60.0,
+        "actual_mm": 60.0,
+        "passed": true
+      },
+      {
+        "id": "top.depth_equals_left.depth",
+        "expected_mm": 40.0,
+        "actual_mm": 40.0,
+        "passed": true
+      }
+    ],
+    "slot_contract": {
+      "status": "NONE"
+    },
+    "feature_evidence_consistency": null,
+    "error_code": null
+  },
+  "feature_graph": {
+    "base_block": {
+      "width": 100.0,
+      "height": 60.0,
+      "depth": 40.0,
+      "feature_id": "base_001",
+      "source_evidence_ids": [],
+      "dependencies": [],
+      "coordinate_system": "MODEL_CENTERED_XY_MM"
+    },
+    "holes": [
+      {
+        "diameter": 20,
+        "center_x": 0.0,
+        "center_y": 0.0,
+        "axis": "Z",
+        "through": true,
+        "feature_id": "hole_001",
+        "source_evidence_ids": [],
+        "dependencies": [
+          "base_001"
+        ],
+        "coordinate_system": "MODEL_CENTERED_XY_MM"
+      }
+    ],
+    "bosses": [],
+    "slots": [],
+    "hypotheses": [
+      {
+        "feature_type": "through_hole",
+        "confidence": 0.92,
+        "evidence": [
+          "circle_in_front_view",
+          "hidden_lines_in_top_view",
+          "hidden_lines_in_left_view"
+        ],
+        "status": "CONFIRMED"
+      }
+    ],
+    "status": "PASS"
+  },
+  "modeling_plan": {
+    "operations": [
+      {
+        "type": "base_extrude",
+        "sketch_plane": "Front Plane",
+        "profile": {
+          "type": "rectangle",
+          "width_mm": 100.0,
+          "height_mm": 60.0
+        },
+        "depth_mm": 40.0,
+        "direction": null,
+        "operation_id": "op_base_001",
+        "source_feature_id": "base_001",
+        "depends_on_operation_ids": []
+      },
+      {
+        "type": "cut_extrude_through_circle",
+        "sketch_plane": "Front Plane",
+        "profile": {
+          "type": "circle",
+          "diameter_mm": 20,
+          "center_x_mm": 0.0,
+          "center_y_mm": 0.0,
+          "plane_offset_mm": 40.0
+        },
+        "depth_mm": null,
+        "direction": "through_all",
+        "operation_id": "op_hole_001",
+        "source_feature_id": "hole_001",
+        "depends_on_operation_ids": [
+          "op_base_001"
+        ]
+      }
+    ]
+  },
+  "solidworks_backend": {
+    "status": "PASS",
+    "skill_gaps": [],
+    "operations": [
+      {
+        "operation_id": "op_base_001",
+        "source_feature_id": "base_001",
+        "depends_on_operation_ids": [],
+        "operation": "base_extrude",
+        "evidence": {
+          "api_success": true,
+          "depth_mm": 40.0,
+          "profile": {
+            "type": "rectangle",
+            "width_mm": 100.0,
+            "height_mm": 60.0
+          }
+        }
+      },
+      {
+        "operation_id": "op_hole_001",
+        "source_feature_id": "hole_001",
+        "depends_on_operation_ids": [
+          "op_base_001"
+        ],
+        "operation": "cut_extrude_through_circle",
+        "evidence": {
+          "feature_kind": "through",
+          "center_m": [
+            0.0,
+            0.0
+          ],
+          "diameter_m": 0.02,
+          "depth_m": null,
+          "through": true,
+          "plane_name": "Front Plane",
+          "feature_names": [
+            "ThroughHole_D20"
+          ],
+          "counterbore_diameter_m": null,
+          "counterbore_depth_m": null,
+          "countersink_diameter_m": null,
+          "countersink_angle_deg": null,
+          "center_mm": [
+            0.0,
+            0.0
+          ],
+          "diameter_mm": 20.0
+        }
+      }
+    ],
+    "external_backend_path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-automation-skill",
+    "feature_identity": {
+      "source": "IModelDocExtension.GetPersistReference3",
+      "references": {
+        "base_001": "aEIAAAEAAAD//v8AAAAAACAAAAA=",
+        "hole_001": "aEIAAAEAAAD//v8AAAAAACgAAAA="
+      },
+      "feature_names_excluded_from_identity": true
+    },
+    "initial_feature_tree": {
+      "status": "PASS",
+      "identity_source": "persistent reference; diagnostic_name excluded from acceptance",
+      "expected_order": [
+        "base_001",
+        "hole_001"
+      ],
+      "actual_order": [
+        "base_001",
+        "hole_001"
+      ],
+      "type_check": true,
+      "sketch_relation_check": true,
+      "features": [
+        {
+          "tree_index": 18,
+          "feature_id": "base_001",
+          "type": "Extrusion",
+          "type_name_2": "Extrusion",
+          "diagnostic_name": "BaseBlock",
+          "identity_source": "IModelDocExtension.GetPersistReference3",
+          "related_feature_types": [
+            "ProfileFeature",
+            "ProfileFeature",
+            "RefPlane",
+            "OriginProfileFeature"
+          ],
+          "has_profile_feature": true
+        },
+        {
+          "tree_index": 20,
+          "feature_id": "hole_001",
+          "type": "Cut",
+          "type_name_2": "ICE",
+          "diagnostic_name": "ThroughHole_D20",
+          "identity_source": "IModelDocExtension.GetPersistReference3",
+          "related_feature_types": [
+            "ProfileFeature",
+            "ProfileFeature",
+            "RefPlane",
+            "Extrusion",
+            "OriginProfileFeature"
+          ],
+          "has_profile_feature": true
+        }
+      ]
+    },
+    "initial_ownership": {
+      "status": "FAIL",
+      "api": {
+        "face_owner": "IFace2.GetFeature",
+        "feature_identity": "IModelDocExtension.GetPersistReference3",
+        "strength_required": "API_EXACT"
+      },
+      "rows": [
+        {
+          "entity_id": "face:c0638b9be7916005721d",
+          "body_index": 0,
+          "face_index": 0,
+          "persistent_reference": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/nUQAOgBcAEwAbwBjAGEAbABGAGkAbABlAFwARABlAHMAawBUAG8AcABcAHMAdwBcAHMAbwBsAGkAZAB3AG8AcgBrAHMALQBtAGEAaQBuAC0AcwBrAGkAbABsAC0AYgAwADAANQAtAHIAZQBsAGUAYQBzAGUALQBjAGgAZQBjAGsAXABlAHgAcABlAHIAaQBtAGUAbgB0AHMAXAB0AGgAcgBlAGUAXwB2AGkAZQB3AF8AcgBlAGMAbwBuAHMAdAByAHUAYwB0AGkAbwBuAFwAcgBlAHMAdQBsAHQAcwBcAGMAYQBzAGUAXwAwADAAMQBfAGIAbABvAGMAawBfAGgAbwBsAGUAXABjAGEAcwBlAF8AMAAwADEAXwBiAGwAbwBjAGsAXwBoAG8AbABlAC4AUwBMAEQAUABSAFQACYD//v8TYwBhAHMAZQBfADAAMAAxAF8AYgBsAG8AYwBrAF8AaABvAGwAZQACAACfpJtq//7/AP/+/wD//v8AAAAAAAAAAAAAAAAAAAAAAAAA//7/AtiepIsAAAAAAAAAAAAAAAAAAAAAIAAAAKGkm2oEAAAA//8BABQAbW9FbmRGYWNlU3VyZklkUmVwX2MAAAWACAAgAAAAoaSbagAAAAAAAAAAA4AAAAWACAAgAAAAoaSbagEAAAAMgAAABYAIACAAAAChpJtqAQAAAAAAAAADgAAABYAIACAAAAChpJtqAwAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+          "logical_role": "BASE_SURFACE",
+          "expected_feature_id": "base_001",
+          "feature_id": "base_001",
+          "ownership": "API_EXACT",
+          "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+          "owner_type": "Extrusion",
+          "geometry": {
+            "internal": false,
+            "edge_count": 4,
+            "bounding_box_mm": [
+              50.0,
+              -30.0,
+              -40.0,
+              50.0,
+              30.0,
+              0.0
+            ],
+            "surface_type": "PLANE",
+            "normal": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "origin_mm": [
+              50.0,
+              -30.0,
+              -40.0
+            ],
+            "area_mm2": 2400.0
+          }
+        },
+        {
+          "entity_id": "face:810557770679619f239c",
+          "body_index": 0,
+          "face_index": 1,
+          "persistent_reference": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/nUQAOgBcAEwAbwBjAGEAbABGAGkAbABlAFwARABlAHMAawBUAG8AcABcAHMAdwBcAHMAbwBsAGkAZAB3AG8AcgBrAHMALQBtAGEAaQBuAC0AcwBrAGkAbABsAC0AYgAwADAANQAtAHIAZQBsAGUAYQBzAGUALQBjAGgAZQBjAGsAXABlAHgAcABlAHIAaQBtAGUAbgB0AHMAXAB0AGgAcgBlAGUAXwB2AGkAZQB3AF8AcgBlAGMAbwBuAHMAdAByAHUAYwB0AGkAbwBuAFwAcgBlAHMAdQBsAHQAcwBcAGMAYQBzAGUAXwAwADAAMQBfAGIAbABvAGMAawBfAGgAbwBsAGUAXABjAGEAcwBlAF8AMAAwADEAXwBiAGwAbwBjAGsAXwBoAG8AbABlAC4AUwBMAEQAUABSAFQACYD//v8TYwBhAHMAZQBfADAAMAAxAF8AYgBsAG8AYwBrAF8AaABvAGwAZQACAACfpJtq//7/AP/+/wD//v8AAAAAAAAAAAAAAAAAAAAAAAAA//7/AtiepIsAAAAAAAAAAAAAAAAAAAAAIAAAAKGkm2oBAAAA//8BABQAbW9FbmRGYWNlU3VyZklkUmVwX2MAAAWACAAgAAAAoaSbagAAAAAAAAAAA4AAAAWACAAgAAAAoaSbagIAAAAMgAAABYAIACAAAAChpJtqAQAAAAAAAAADgAAABYAIACAAAAChpJtqBAAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+          "logical_role": "BASE_SURFACE",
+          "expected_feature_id": "base_001",
+          "feature_id": "base_001",
+          "ownership": "API_EXACT",
+          "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+          "owner_type": "Extrusion",
+          "geometry": {
+            "internal": false,
+            "edge_count": 4,
+            "bounding_box_mm": [
+              -50.0,
+              -30.0,
+              -40.0,
+              50.0,
+              -30.0,
+              0.0
+            ],
+            "surface_type": "PLANE",
+            "normal": [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            "origin_mm": [
+              -50.0,
+              -30.0,
+              -40.0
+            ],
+            "area_mm2": 4000.0
+          }
+        },
+        {
+          "entity_id": "face:565adb9cfb16e47b7e3f",
+          "body_index": 0,
+          "face_index": 2,
+          "persistent_reference": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/nUQAOgBcAEwAbwBjAGEAbABGAGkAbABlAFwARABlAHMAawBUAG8AcABcAHMAdwBcAHMAbwBsAGkAZAB3AG8AcgBrAHMALQBtAGEAaQBuAC0AcwBrAGkAbABsAC0AYgAwADAANQAtAHIAZQBsAGUAYQBzAGUALQBjAGgAZQBjAGsAXABlAHgAcABlAHIAaQBtAGUAbgB0AHMAXAB0AGgAcgBlAGUAXwB2AGkAZQB3AF8AcgBlAGMAbwBuAHMAdAByAHUAYwB0AGkAbwBuAFwAcgBlAHMAdQBsAHQAcwBcAGMAYQBzAGUAXwAwADAAMQBfAGIAbABvAGMAawBfAGgAbwBsAGUAXABjAGEAcwBlAF8AMAAwADEAXwBiAGwAbwBjAGsAXwBoAG8AbABlAC4AUwBMAEQAUABSAFQACYD//v8TYwBhAHMAZQBfADAAMAAxAF8AYgBsAG8AYwBrAF8AaABvAGwAZQACAACfpJtq//7/AP/+/wD//v8AAAAAAAAAAAAAAAAAAAAAAAAA//7/AtiepIsAAAAAAAAAAAAAAAAAAAAAIAAAAKGkm2oCAAAA//8BABQAbW9FbmRGYWNlU3VyZklkUmVwX2MAAAWACAAgAAAAoaSbagAAAAAAAAAAA4AAAAWACAAgAAAAoaSbagMAAAAMgAAABYAIACAAAAChpJtqAQAAAAAAAAADgAAABYAIACAAAAChpJtqAQAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+          "logical_role": "BASE_SURFACE",
+          "expected_feature_id": "base_001",
+          "feature_id": "base_001",
+          "ownership": "API_EXACT",
+          "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+          "owner_type": "Extrusion",
+          "geometry": {
+            "internal": false,
+            "edge_count": 4,
+            "bounding_box_mm": [
+              -50.0,
+              -30.0,
+              -40.0,
+              -50.0,
+              30.0,
+              0.0
+            ],
+            "surface_type": "PLANE",
+            "normal": [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            "origin_mm": [
+              -50.0,
+              -30.0,
+              -40.0
+            ],
+            "area_mm2": 2400.0
+          }
+        },
+        {
+          "entity_id": "face:00febe47163087d604a5",
+          "body_index": 0,
+          "face_index": 3,
+          "persistent_reference": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/nUQAOgBcAEwAbwBjAGEAbABGAGkAbABlAFwARABlAHMAawBUAG8AcABcAHMAdwBcAHMAbwBsAGkAZAB3AG8AcgBrAHMALQBtAGEAaQBuAC0AcwBrAGkAbABsAC0AYgAwADAANQAtAHIAZQBsAGUAYQBzAGUALQBjAGgAZQBjAGsAXABlAHgAcABlAHIAaQBtAGUAbgB0AHMAXAB0AGgAcgBlAGUAXwB2AGkAZQB3AF8AcgBlAGMAbwBuAHMAdAByAHUAYwB0AGkAbwBuAFwAcgBlAHMAdQBsAHQAcwBcAGMAYQBzAGUAXwAwADAAMQBfAGIAbABvAGMAawBfAGgAbwBsAGUAXABjAGEAcwBlAF8AMAAwADEAXwBiAGwAbwBjAGsAXwBoAG8AbABlAC4AUwBMAEQAUABSAFQACYD//v8TYwBhAHMAZQBfADAAMAAxAF8AYgBsAG8AYwBrAF8AaABvAGwAZQACAACfpJtq//7/AP/+/wD//v8AAAAAAAAAAAAAAAAAAAAAAAAA//7/AtiepIsAAAAAAAAAAAAAAAAAAAAAIAAAAKGkm2oDAAAA//8BABQAbW9FbmRGYWNlU3VyZklkUmVwX2MAAAWACAAgAAAAoaSbagAAAAAAAAAAA4AAAAWACAAgAAAAoaSbagQAAAAMgAAABYAIACAAAAChpJtqAQAAAAAAAAADgAAABYAIACAAAAChpJtqAgAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+          "logical_role": "BASE_SURFACE",
+          "expected_feature_id": "base_001",
+          "feature_id": "base_001",
+          "ownership": "API_EXACT",
+          "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+          "owner_type": "Extrusion",
+          "geometry": {
+            "internal": false,
+            "edge_count": 4,
+            "bounding_box_mm": [
+              -50.0,
+              30.0,
+              -40.0,
+              50.0,
+              30.0,
+              0.0
+            ],
+            "surface_type": "PLANE",
+            "normal": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "origin_mm": [
+              -50.0,
+              30.0,
+              -40.0
+            ],
+            "area_mm2": 4000.0
+          }
+        },
+        {
+          "entity_id": "face:d526011aa3141341bfa8",
+          "body_index": 0,
+          "face_index": 4,
+          "persistent_reference": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/nUQAOgBcAEwAbwBjAGEAbABGAGkAbABlAFwARABlAHMAawBUAG8AcABcAHMAdwBcAHMAbwBsAGkAZAB3AG8AcgBrAHMALQBtAGEAaQBuAC0AcwBrAGkAbABsAC0AYgAwADAANQAtAHIAZQBsAGUAYQBzAGUALQBjAGgAZQBjAGsAXABlAHgAcABlAHIAaQBtAGUAbgB0AHMAXAB0AGgAcgBlAGUAXwB2AGkAZQB3AF8AcgBlAGMAbwBuAHMAdAByAHUAYwB0AGkAbwBuAFwAcgBlAHMAdQBsAHQAcwBcAGMAYQBzAGUAXwAwADAAMQBfAGIAbABvAGMAawBfAGgAbwBsAGUAXABjAGEAcwBlAF8AMAAwADEAXwBiAGwAbwBjAGsAXwBoAG8AbABlAC4AUwBMAEQAUABSAFQACYD//v8TYwBhAHMAZQBfADAAMAAxAF8AYgBsAG8AYwBrAF8AaABvAGwAZQACAACfpJtq//7/AP/+/wD//v8AAAAAAAAAAAAAAAAAAAAAAAAA//7/AtiepIsAAAAAAAAAAAAAAAAAAAAAIAAAAKGkm2oBAAAAAAAAAP//AQAXAG1vRnJvbVNrdEVudFN1cmZJZFJlcF9jAAAFgAgAIAAAAKGkm2oEAAAADIAAAAWACAAgAAAAoaSbagEAAAAMgAAABYAIACAAAAChpJtqAgAAAAyAAAAFgAgAIAAAAKGkm2oDAAAAAAAAAAAAAAAAAGhCAAAAAAAAAAAAAA==",
+          "logical_role": "BASE_SURFACE",
+          "expected_feature_id": "base_001",
+          "feature_id": "base_001",
+          "ownership": "API_EXACT",
+          "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+          "owner_type": "Extrusion",
+          "geometry": {
+            "internal": false,
+            "edge_count": 5,
+            "bounding_box_mm": [
+              -50.0,
+              -30.0,
+              -40.0,
+              50.0,
+              30.0,
+              -40.0
+            ],
+            "surface_type": "PLANE",
+            "normal": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "origin_mm": [
+              0.0,
+              0.0,
+              -40.0
+            ],
+            "area_mm2": 5685.840735
+          }
+        },
+        {
+          "entity_id": "face:4871b2230147841e181e",
+          "body_index": 0,
+          "face_index": 5,
+          "persistent_reference": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/nUQAOgBcAEwAbwBjAGEAbABGAGkAbABlAFwARABlAHMAawBUAG8AcABcAHMAdwBcAHMAbwBsAGkAZAB3AG8AcgBrAHMALQBtAGEAaQBuAC0AcwBrAGkAbABsAC0AYgAwADAANQAtAHIAZQBsAGUAYQBzAGUALQBjAGgAZQBjAGsAXABlAHgAcABlAHIAaQBtAGUAbgB0AHMAXAB0AGgAcgBlAGUAXwB2AGkAZQB3AF8AcgBlAGMAbwBuAHMAdAByAHUAYwB0AGkAbwBuAFwAcgBlAHMAdQBsAHQAcwBcAGMAYQBzAGUAXwAwADAAMQBfAGIAbABvAGMAawBfAGgAbwBsAGUAXABjAGEAcwBlAF8AMAAwADEAXwBiAGwAbwBjAGsAXwBoAG8AbABlAC4AUwBMAEQAUABSAFQACYD//v8TYwBhAHMAZQBfADAAMAAxAF8AYgBsAG8AYwBrAF8AaABvAGwAZQACAACfpJtq//7/AP/+/wD//v8AAAAAAAAAAAAAAAAAAAAAAAAA//7/AtiepIsAAAAAAAAAAAAAAAAAAAAAIAAAAKGkm2oAAAAAAAAAAP//AQAXAG1vRnJvbVNrdEVudFN1cmZJZFJlcF9jAAAFgAgAIAAAAKGkm2oEAAAADIAAAAWACAAgAAAAoaSbagMAAAAMgAAABYAIACAAAAChpJtqAgAAAAyAAAAFgAgAIAAAAKGkm2oBAAAAAAAAAAAAAAAAAGhCAAAAAAAAAAAAAA==",
+          "logical_role": "BASE_SURFACE",
+          "expected_feature_id": "base_001",
+          "feature_id": "base_001",
+          "ownership": "API_EXACT",
+          "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+          "owner_type": "Extrusion",
+          "geometry": {
+            "internal": true,
+            "edge_count": 5,
+            "bounding_box_mm": [
+              -50.0,
+              -30.0,
+              0.0,
+              50.0,
+              30.0,
+              0.0
+            ],
+            "surface_type": "PLANE",
+            "normal": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "origin_mm": [
+              0.0,
+              0.0,
+              -0.0
+            ],
+            "area_mm2": 5685.840735
+          }
+        },
+        {
+          "entity_id": "face:b0dbc32e55803938f199",
+          "body_index": 0,
+          "face_index": 6,
+          "persistent_reference": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAFAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAGwBtb0Zyb21Ta3RFbnQzSW50U3VyZklkUmVwX2MAAP//AQAGAG1vRlJfY///AQANAG1vRXh0T2JqZWN0X2P//wEAEQBtb0NTdHJpbmdIYW5kbGVfY//+/51EADoAXABMAG8AYwBhAGwARgBpAGwAZQBcAEQAZQBzAGsAVABvAHAAXABzAHcAXABzAG8AbABpAGQAdwBvAHIAawBzAC0AbQBhAGkAbgAtAHMAawBpAGwAbAAtAGIAMAAwADUALQByAGUAbABlAGEAcwBlAC0AYwBoAGUAYwBrAFwAZQB4AHAAZQByAGkAbQBlAG4AdABzAFwAdABoAHIAZQBlAF8AdgBpAGUAdwBfAHIAZQBjAG8AbgBzAHQAcgB1AGMAdABpAG8AbgBcAHIAZQBzAHUAbAB0AHMAXABjAGEAcwBlAF8AMAAwADEAXwBiAGwAbwBjAGsAXwBoAG8AbABlAFwAYwBhAHMAZQBfADAAMAAxAF8AYgBsAG8AYwBrAF8AaABvAGwAZQAuAFMATABEAFAAUgBUAAmA//7/E2MAYQBzAGUAXwAwADAAMQBfAGIAbABvAGMAawBfAGgAbwBsAGUAAgAAn6Sbav/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAAAAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAACgAAACjpJtqAQAAAP////8AAAAA//8BABQAbW9FbmRGYWNlU3VyZklkUmVwX2MAAAWACAAgAAAAoaSbagEAAAAAAAAAAAAMgAAABYAIACAAAAChpJtqAAAAAAAAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+          "logical_role": "HOLE_WALL",
+          "expected_feature_id": "hole_001",
+          "feature_id": "hole_001",
+          "ownership": "API_EXACT",
+          "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+          "owner_type": "Cut",
+          "geometry": {
+            "internal": true,
+            "edge_count": 2,
+            "bounding_box_mm": [
+              -10.0,
+              -10.0,
+              -40.0,
+              10.0,
+              10.0,
+              0.0
+            ],
+            "surface_type": "CYLINDER",
+            "origin_mm": [
+              0.0,
+              0.0,
+              -40.0
+            ],
+            "axis": [
+              -0.0,
+              -0.0,
+              1.0
+            ],
+            "radius_mm": 10.0,
+            "diameter_mm": 20.0,
+            "area_mm2": 2513.274123
+          }
+        }
+      ],
+      "required_face_count": 7,
+      "role_counts": {
+        "BASE_SURFACE": 6,
+        "HOLE_WALL": 1
+      },
+      "missing_roles": {
+        "SLOT_END_WALL": {
+          "expected_minimum": 2,
+          "actual": 0
+        },
+        "SLOT_SIDE_WALL": {
+          "expected_minimum": 2,
+          "actual": 0
+        }
+      },
+      "gate": {
+        "status": "PASS",
+        "missing_entity_ids": [],
+        "extra_entity_ids": [],
+        "unresolved_entity_ids": [],
+        "insufficient_strength_entity_ids": [],
+        "misattributed_entity_ids": [],
+        "unresolved_count": 0,
+        "insufficient_strength_count": 0,
+        "misattributed_count": 0,
+        "evidence": [
+          {
+            "entity_id": "face:c0638b9be7916005721d",
+            "entity_kind": "FACE",
+            "feature_id": "base_001",
+            "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+            "strength": "API_EXACT",
+            "details": {
+              "logical_role": "BASE_SURFACE",
+              "owner_type": "Extrusion"
+            }
+          },
+          {
+            "entity_id": "face:810557770679619f239c",
+            "entity_kind": "FACE",
+            "feature_id": "base_001",
+            "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+            "strength": "API_EXACT",
+            "details": {
+              "logical_role": "BASE_SURFACE",
+              "owner_type": "Extrusion"
+            }
+          },
+          {
+            "entity_id": "face:565adb9cfb16e47b7e3f",
+            "entity_kind": "FACE",
+            "feature_id": "base_001",
+            "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+            "strength": "API_EXACT",
+            "details": {
+              "logical_role": "BASE_SURFACE",
+              "owner_type": "Extrusion"
+            }
+          },
+          {
+            "entity_id": "face:00febe47163087d604a5",
+            "entity_kind": "FACE",
+            "feature_id": "base_001",
+            "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+            "strength": "API_EXACT",
+            "details": {
+              "logical_role": "BASE_SURFACE",
+              "owner_type": "Extrusion"
+            }
+          },
+          {
+            "entity_id": "face:d526011aa3141341bfa8",
+            "entity_kind": "FACE",
+            "feature_id": "base_001",
+            "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+            "strength": "API_EXACT",
+            "details": {
+              "logical_role": "BASE_SURFACE",
+              "owner_type": "Extrusion"
+            }
+          },
+          {
+            "entity_id": "face:4871b2230147841e181e",
+            "entity_kind": "FACE",
+            "feature_id": "base_001",
+            "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+            "strength": "API_EXACT",
+            "details": {
+              "logical_role": "BASE_SURFACE",
+              "owner_type": "Extrusion"
+            }
+          },
+          {
+            "entity_id": "face:b0dbc32e55803938f199",
+            "entity_kind": "FACE",
+            "feature_id": "hole_001",
+            "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+            "strength": "API_EXACT",
+            "details": {
+              "logical_role": "HOLE_WALL",
+              "owner_type": "Cut"
+            }
+          }
+        ]
+      }
+    },
+    "model_summary": {
+      "title": "case_001_block_hole.SLDPRT",
+      "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill-b005-release-check\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\case_001_block_hole.SLDPRT",
+      "type": 1,
+      "feature_count": 21,
+      "features": [
+        {
+          "name": "评论",
+          "type": "CommentsFolder"
+        },
+        {
+          "name": "收藏",
+          "type": "FavoriteFolder"
+        },
+        {
+          "name": "历史记录",
+          "type": "HistoryFolder"
+        },
+        {
+          "name": "选择集",
+          "type": "SelectionSetFolder"
+        },
+        {
+          "name": "传感器",
+          "type": "SensorFolder"
+        },
+        {
+          "name": "设计活页夹",
+          "type": "DocsFolder"
+        },
+        {
+          "name": "注解",
+          "type": "DetailCabinet"
+        },
+        {
+          "name": "曲面实体",
+          "type": "SurfaceBodyFolder"
+        },
+        {
+          "name": "实体",
+          "type": "SolidBodyFolder"
+        },
+        {
+          "name": "光源与相机",
+          "type": "EnvFolder"
+        },
+        {
+          "name": "标注",
+          "type": "InkMarkupFolder"
+        },
+        {
+          "name": "方程式",
+          "type": "EqnFolder"
+        },
+        {
+          "name": "材质 <未指定>",
+          "type": "MaterialFolder"
+        },
+        {
+          "name": "前视基准面",
+          "type": "RefPlane"
+        },
+        {
+          "name": "上视基准面",
+          "type": "RefPlane"
+        },
+        {
+          "name": "右视基准面",
+          "type": "RefPlane"
+        },
+        {
+          "name": "原点",
+          "type": "OriginProfileFeature"
+        },
+        {
+          "name": "草图1",
+          "type": "ProfileFeature"
+        },
+        {
+          "name": "BaseBlock",
+          "type": "Extrusion"
+        },
+        {
+          "name": "草图2",
+          "type": "ProfileFeature"
+        },
+        {
+          "name": "ThroughHole_D20",
+          "type": "ICE"
+        }
+      ]
+    },
+    "geometry": {
+      "units": "mm",
+      "measurement_source": "SolidWorks API GetPartBox(True) + B-Rep cylindrical faces",
+      "envelope_mm": {
+        "length": 100.0,
+        "width": 60.0,
+        "height": 40.0,
+        "axis_order": "model_xyz"
+      },
+      "holes": [
+        {
+          "diameter_mm": 20.0,
+          "position_mm": [
+            0.0,
+            0.0,
+            -40.0
+          ],
+          "axis": [
+            -0.0,
+            -0.0,
+            1.0
+          ],
+          "axial_length_mm": 40.0,
+          "through_state": "unknown",
+          "through_evidence": "B-Rep cylinder boundaries cannot distinguish blind from through",
+          "measurement_source": "B-Rep internal cylindrical face"
+        }
+      ],
+      "compound_holes": [],
+      "slot_arc_candidates": [],
+      "cylindrical_faces": [
+        {
+          "diameter_mm": 20.0,
+          "origin_mm": [
+            0.0,
+            0.0,
+            -40.0
+          ],
+          "axis": [
+            -0.0,
+            -0.0,
+            1.0
+          ],
+          "area_mm2": 2513.274123,
+          "axial_length_mm": 40.0,
+          "internal": true,
+          "loop_count": 2,
+          "edge_count": 2,
+          "body_index": 0,
+          "face_index": 6
+        }
+      ],
+      "errors": [],
+      "hole_count": 1,
+      "hole_groups": [
+        {
+          "position_mm": [
+            0.0,
+            0.0,
+            -40.0
+          ],
+          "axis": [
+            -0.0,
+            -0.0,
+            1.0
+          ],
+          "segment_count": 1,
+          "diameters_mm": [
+            20.0
+          ],
+          "feature_kind": "simple",
+          "segments": [
+            {
+              "diameter_mm": 20.0,
+              "position_mm": [
+                0.0,
+                0.0,
+                -40.0
+              ],
+              "axis": [
+                -0.0,
+                -0.0,
+                1.0
+              ],
+              "axial_length_mm": 40.0,
+              "through_state": "unknown",
+              "through_evidence": "B-Rep cylinder boundaries cannot distinguish blind from through",
+              "measurement_source": "B-Rep internal cylindrical face"
+            }
+          ]
+        }
+      ],
+      "slot_planar_side_candidates": []
+    },
+    "owned_geometry": {
+      "holes": [
+        {
+          "feature_id": "hole_001",
+          "diameter_mm": 20.0,
+          "center_mm": [
+            0.0,
+            0.0
+          ],
+          "axis": [
+            -0.0,
+            -0.0,
+            1.0
+          ],
+          "through": true,
+          "axial_extent_mm": 40.0,
+          "entity_ids": [
+            "face:b0dbc32e55803938f199"
+          ]
+        }
+      ],
+      "slots": [],
+      "ownership_status": "FAIL"
+    },
+    "review": {
+      "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill-b005-release-check\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\review\\case_001_block_hole_review_report.json",
+      "evaluation": {
+        "status": "pass",
+        "score": 100,
+        "issues": [],
+        "recommendations": [],
+        "manual_review_required": true,
+        "manual_review_reason": "规则评分只能发现明显失败，最终几何是否符合用户意图仍需查看预览图或截图。"
+      }
+    },
+    "reopened_model_summary": {
+      "title": "case_001_block_hole.SLDPRT",
+      "path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill-b005-release-check\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\case_001_block_hole.SLDPRT",
+      "type": 1,
+      "feature_count": 21,
+      "features": [
+        {
+          "name": "评论",
+          "type": "CommentsFolder"
+        },
+        {
+          "name": "收藏",
+          "type": "FavoriteFolder"
+        },
+        {
+          "name": "历史记录",
+          "type": "HistoryFolder"
+        },
+        {
+          "name": "选择集",
+          "type": "SelectionSetFolder"
+        },
+        {
+          "name": "传感器",
+          "type": "SensorFolder"
+        },
+        {
+          "name": "设计活页夹",
+          "type": "DocsFolder"
+        },
+        {
+          "name": "注解",
+          "type": "DetailCabinet"
+        },
+        {
+          "name": "曲面实体",
+          "type": "SurfaceBodyFolder"
+        },
+        {
+          "name": "实体",
+          "type": "SolidBodyFolder"
+        },
+        {
+          "name": "光源与相机",
+          "type": "EnvFolder"
+        },
+        {
+          "name": "标注",
+          "type": "InkMarkupFolder"
+        },
+        {
+          "name": "方程式",
+          "type": "EqnFolder"
+        },
+        {
+          "name": "材质 <未指定>",
+          "type": "MaterialFolder"
+        },
+        {
+          "name": "前视基准面",
+          "type": "RefPlane"
+        },
+        {
+          "name": "上视基准面",
+          "type": "RefPlane"
+        },
+        {
+          "name": "右视基准面",
+          "type": "RefPlane"
+        },
+        {
+          "name": "原点",
+          "type": "OriginProfileFeature"
+        },
+        {
+          "name": "草图1",
+          "type": "ProfileFeature"
+        },
+        {
+          "name": "BaseBlock",
+          "type": "Extrusion"
+        },
+        {
+          "name": "草图2",
+          "type": "ProfileFeature"
+        },
+        {
+          "name": "ThroughHole_D20",
+          "type": "ICE"
+        }
+      ]
+    },
+    "reopened_feature_tree": {
+      "status": "PASS",
+      "identity_source": "persistent reference; diagnostic_name excluded from acceptance",
+      "expected_order": [
+        "base_001",
+        "hole_001"
+      ],
+      "actual_order": [
+        "base_001",
+        "hole_001"
+      ],
+      "type_check": true,
+      "sketch_relation_check": true,
+      "features": [
+        {
+          "tree_index": 18,
+          "feature_id": "base_001",
+          "type": "Extrusion",
+          "type_name_2": "Extrusion",
+          "diagnostic_name": "BaseBlock",
+          "identity_source": "IModelDocExtension.GetPersistReference3",
+          "related_feature_types": [
+            "ProfileFeature",
+            "ProfileFeature",
+            "RefPlane",
+            "OriginProfileFeature"
+          ],
+          "has_profile_feature": true
+        },
+        {
+          "tree_index": 20,
+          "feature_id": "hole_001",
+          "type": "Cut",
+          "type_name_2": "ICE",
+          "diagnostic_name": "ThroughHole_D20",
+          "identity_source": "IModelDocExtension.GetPersistReference3",
+          "related_feature_types": [
+            "ProfileFeature",
+            "ProfileFeature",
+            "RefPlane",
+            "Extrusion",
+            "OriginProfileFeature"
+          ],
+          "has_profile_feature": true
+        }
+      ]
+    },
+    "reopened_ownership": {
+      "status": "FAIL",
+      "api": {
+        "face_owner": "IFace2.GetFeature",
+        "feature_identity": "IModelDocExtension.GetPersistReference3",
+        "strength_required": "API_EXACT"
+      },
+      "rows": [
+        {
+          "entity_id": "face:c0638b9be7916005721d",
+          "body_index": 0,
+          "face_index": 0,
+          "persistent_reference": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/nUQAOgBcAEwAbwBjAGEAbABGAGkAbABlAFwARABlAHMAawBUAG8AcABcAHMAdwBcAHMAbwBsAGkAZAB3AG8AcgBrAHMALQBtAGEAaQBuAC0AcwBrAGkAbABsAC0AYgAwADAANQAtAHIAZQBsAGUAYQBzAGUALQBjAGgAZQBjAGsAXABlAHgAcABlAHIAaQBtAGUAbgB0AHMAXAB0AGgAcgBlAGUAXwB2AGkAZQB3AF8AcgBlAGMAbwBuAHMAdAByAHUAYwB0AGkAbwBuAFwAcgBlAHMAdQBsAHQAcwBcAGMAYQBzAGUAXwAwADAAMQBfAGIAbABvAGMAawBfAGgAbwBsAGUAXABjAGEAcwBlAF8AMAAwADEAXwBiAGwAbwBjAGsAXwBoAG8AbABlAC4AUwBMAEQAUABSAFQACYD//v8TYwBhAHMAZQBfADAAMAAxAF8AYgBsAG8AYwBrAF8AaABvAGwAZQACAACfpJtq//7/AP/+/wD//v8AAAAAAAAAAAAAAAAAAAAAAAAA//7/AtiepIsAAAAAAAAAAAAAAAAAAAAAIAAAAKGkm2oEAAAA//8BABQAbW9FbmRGYWNlU3VyZklkUmVwX2MAAAWACAAgAAAAoaSbagAAAAAAAAAAA4AAAAWACAAgAAAAoaSbagEAAAAMgAAABYAIACAAAAChpJtqAQAAAAAAAAADgAAABYAIACAAAAChpJtqAwAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+          "logical_role": "BASE_SURFACE",
+          "expected_feature_id": "base_001",
+          "feature_id": "base_001",
+          "ownership": "API_EXACT",
+          "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+          "owner_type": "Extrusion",
+          "geometry": {
+            "internal": false,
+            "edge_count": 4,
+            "bounding_box_mm": [
+              50.0,
+              -30.0,
+              -40.0,
+              50.0,
+              30.0,
+              0.0
+            ],
+            "surface_type": "PLANE",
+            "normal": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "origin_mm": [
+              50.0,
+              -30.0,
+              -40.0
+            ],
+            "area_mm2": 2400.0
+          }
+        },
+        {
+          "entity_id": "face:810557770679619f239c",
+          "body_index": 0,
+          "face_index": 1,
+          "persistent_reference": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/nUQAOgBcAEwAbwBjAGEAbABGAGkAbABlAFwARABlAHMAawBUAG8AcABcAHMAdwBcAHMAbwBsAGkAZAB3AG8AcgBrAHMALQBtAGEAaQBuAC0AcwBrAGkAbABsAC0AYgAwADAANQAtAHIAZQBsAGUAYQBzAGUALQBjAGgAZQBjAGsAXABlAHgAcABlAHIAaQBtAGUAbgB0AHMAXAB0AGgAcgBlAGUAXwB2AGkAZQB3AF8AcgBlAGMAbwBuAHMAdAByAHUAYwB0AGkAbwBuAFwAcgBlAHMAdQBsAHQAcwBcAGMAYQBzAGUAXwAwADAAMQBfAGIAbABvAGMAawBfAGgAbwBsAGUAXABjAGEAcwBlAF8AMAAwADEAXwBiAGwAbwBjAGsAXwBoAG8AbABlAC4AUwBMAEQAUABSAFQACYD//v8TYwBhAHMAZQBfADAAMAAxAF8AYgBsAG8AYwBrAF8AaABvAGwAZQACAACfpJtq//7/AP/+/wD//v8AAAAAAAAAAAAAAAAAAAAAAAAA//7/AtiepIsAAAAAAAAAAAAAAAAAAAAAIAAAAKGkm2oBAAAA//8BABQAbW9FbmRGYWNlU3VyZklkUmVwX2MAAAWACAAgAAAAoaSbagAAAAAAAAAAA4AAAAWACAAgAAAAoaSbagIAAAAMgAAABYAIACAAAAChpJtqAQAAAAAAAAADgAAABYAIACAAAAChpJtqBAAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+          "logical_role": "BASE_SURFACE",
+          "expected_feature_id": "base_001",
+          "feature_id": "base_001",
+          "ownership": "API_EXACT",
+          "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+          "owner_type": "Extrusion",
+          "geometry": {
+            "internal": false,
+            "edge_count": 4,
+            "bounding_box_mm": [
+              -50.0,
+              -30.0,
+              -40.0,
+              50.0,
+              -30.0,
+              0.0
+            ],
+            "surface_type": "PLANE",
+            "normal": [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            "origin_mm": [
+              -50.0,
+              -30.0,
+              -40.0
+            ],
+            "area_mm2": 4000.0
+          }
+        },
+        {
+          "entity_id": "face:565adb9cfb16e47b7e3f",
+          "body_index": 0,
+          "face_index": 2,
+          "persistent_reference": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/nUQAOgBcAEwAbwBjAGEAbABGAGkAbABlAFwARABlAHMAawBUAG8AcABcAHMAdwBcAHMAbwBsAGkAZAB3AG8AcgBrAHMALQBtAGEAaQBuAC0AcwBrAGkAbABsAC0AYgAwADAANQAtAHIAZQBsAGUAYQBzAGUALQBjAGgAZQBjAGsAXABlAHgAcABlAHIAaQBtAGUAbgB0AHMAXAB0AGgAcgBlAGUAXwB2AGkAZQB3AF8AcgBlAGMAbwBuAHMAdAByAHUAYwB0AGkAbwBuAFwAcgBlAHMAdQBsAHQAcwBcAGMAYQBzAGUAXwAwADAAMQBfAGIAbABvAGMAawBfAGgAbwBsAGUAXABjAGEAcwBlAF8AMAAwADEAXwBiAGwAbwBjAGsAXwBoAG8AbABlAC4AUwBMAEQAUABSAFQACYD//v8TYwBhAHMAZQBfADAAMAAxAF8AYgBsAG8AYwBrAF8AaABvAGwAZQACAACfpJtq//7/AP/+/wD//v8AAAAAAAAAAAAAAAAAAAAAAAAA//7/AtiepIsAAAAAAAAAAAAAAAAAAAAAIAAAAKGkm2oCAAAA//8BABQAbW9FbmRGYWNlU3VyZklkUmVwX2MAAAWACAAgAAAAoaSbagAAAAAAAAAAA4AAAAWACAAgAAAAoaSbagMAAAAMgAAABYAIACAAAAChpJtqAQAAAAAAAAADgAAABYAIACAAAAChpJtqAQAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+          "logical_role": "BASE_SURFACE",
+          "expected_feature_id": "base_001",
+          "feature_id": "base_001",
+          "ownership": "API_EXACT",
+          "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+          "owner_type": "Extrusion",
+          "geometry": {
+            "internal": false,
+            "edge_count": 4,
+            "bounding_box_mm": [
+              -50.0,
+              -30.0,
+              -40.0,
+              -50.0,
+              30.0,
+              0.0
+            ],
+            "surface_type": "PLANE",
+            "normal": [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            "origin_mm": [
+              -50.0,
+              -30.0,
+              -40.0
+            ],
+            "area_mm2": 2400.0
+          }
+        },
+        {
+          "entity_id": "face:00febe47163087d604a5",
+          "body_index": 0,
+          "face_index": 3,
+          "persistent_reference": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFwBtb0Zyb21Ta3RFbnRTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/nUQAOgBcAEwAbwBjAGEAbABGAGkAbABlAFwARABlAHMAawBUAG8AcABcAHMAdwBcAHMAbwBsAGkAZAB3AG8AcgBrAHMALQBtAGEAaQBuAC0AcwBrAGkAbABsAC0AYgAwADAANQAtAHIAZQBsAGUAYQBzAGUALQBjAGgAZQBjAGsAXABlAHgAcABlAHIAaQBtAGUAbgB0AHMAXAB0AGgAcgBlAGUAXwB2AGkAZQB3AF8AcgBlAGMAbwBuAHMAdAByAHUAYwB0AGkAbwBuAFwAcgBlAHMAdQBsAHQAcwBcAGMAYQBzAGUAXwAwADAAMQBfAGIAbABvAGMAawBfAGgAbwBsAGUAXABjAGEAcwBlAF8AMAAwADEAXwBiAGwAbwBjAGsAXwBoAG8AbABlAC4AUwBMAEQAUABSAFQACYD//v8TYwBhAHMAZQBfADAAMAAxAF8AYgBsAG8AYwBrAF8AaABvAGwAZQACAACfpJtq//7/AP/+/wD//v8AAAAAAAAAAAAAAAAAAAAAAAAA//7/AtiepIsAAAAAAAAAAAAAAAAAAAAAIAAAAKGkm2oDAAAA//8BABQAbW9FbmRGYWNlU3VyZklkUmVwX2MAAAWACAAgAAAAoaSbagAAAAAAAAAAA4AAAAWACAAgAAAAoaSbagQAAAAMgAAABYAIACAAAAChpJtqAQAAAAAAAAADgAAABYAIACAAAAChpJtqAgAAAAAAAAAAAAAAAABoQgAAAAAAAAAAAAA=",
+          "logical_role": "BASE_SURFACE",
+          "expected_feature_id": "base_001",
+          "feature_id": "base_001",
+          "ownership": "API_EXACT",
+          "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+          "owner_type": "Extrusion",
+          "geometry": {
+            "internal": false,
+            "edge_count": 4,
+            "bounding_box_mm": [
+              -50.0,
+              30.0,
+              -40.0,
+              50.0,
+              30.0,
+              0.0
+            ],
+            "surface_type": "PLANE",
+            "normal": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "origin_mm": [
+              -50.0,
+              30.0,
+              -40.0
+            ],
+            "area_mm2": 4000.0
+          }
+        },
+        {
+          "entity_id": "face:d526011aa3141341bfa8",
+          "body_index": 0,
+          "face_index": 4,
+          "persistent_reference": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/nUQAOgBcAEwAbwBjAGEAbABGAGkAbABlAFwARABlAHMAawBUAG8AcABcAHMAdwBcAHMAbwBsAGkAZAB3AG8AcgBrAHMALQBtAGEAaQBuAC0AcwBrAGkAbABsAC0AYgAwADAANQAtAHIAZQBsAGUAYQBzAGUALQBjAGgAZQBjAGsAXABlAHgAcABlAHIAaQBtAGUAbgB0AHMAXAB0AGgAcgBlAGUAXwB2AGkAZQB3AF8AcgBlAGMAbwBuAHMAdAByAHUAYwB0AGkAbwBuAFwAcgBlAHMAdQBsAHQAcwBcAGMAYQBzAGUAXwAwADAAMQBfAGIAbABvAGMAawBfAGgAbwBsAGUAXABjAGEAcwBlAF8AMAAwADEAXwBiAGwAbwBjAGsAXwBoAG8AbABlAC4AUwBMAEQAUABSAFQACYD//v8TYwBhAHMAZQBfADAAMAAxAF8AYgBsAG8AYwBrAF8AaABvAGwAZQACAACfpJtq//7/AP/+/wD//v8AAAAAAAAAAAAAAAAAAAAAAAAA//7/AtiepIsAAAAAAAAAAAAAAAAAAAAAIAAAAKGkm2oBAAAAAAAAAP//AQAXAG1vRnJvbVNrdEVudFN1cmZJZFJlcF9jAAAFgAgAIAAAAKGkm2oEAAAADIAAAAWACAAgAAAAoaSbagEAAAAMgAAABYAIACAAAAChpJtqAgAAAAyAAAAFgAgAIAAAAKGkm2oDAAAAAAAAAAAAAAAAAGhCAAAAAAAAAAAAAA==",
+          "logical_role": "BASE_SURFACE",
+          "expected_feature_id": "base_001",
+          "feature_id": "base_001",
+          "ownership": "API_EXACT",
+          "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+          "owner_type": "Extrusion",
+          "geometry": {
+            "internal": false,
+            "edge_count": 5,
+            "bounding_box_mm": [
+              -50.0,
+              -30.0,
+              -40.0,
+              50.0,
+              30.0,
+              -40.0
+            ],
+            "surface_type": "PLANE",
+            "normal": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "origin_mm": [
+              0.0,
+              0.0,
+              -40.0
+            ],
+            "area_mm2": 5685.840735
+          }
+        },
+        {
+          "entity_id": "face:4871b2230147841e181e",
+          "body_index": 0,
+          "face_index": 5,
+          "persistent_reference": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAGAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAFABtb0VuZEZhY2VTdXJmSWRSZXBfYwAA//8BAAYAbW9GUl9j//8BAA0AbW9FeHRPYmplY3RfY///AQARAG1vQ1N0cmluZ0hhbmRsZV9j//7/nUQAOgBcAEwAbwBjAGEAbABGAGkAbABlAFwARABlAHMAawBUAG8AcABcAHMAdwBcAHMAbwBsAGkAZAB3AG8AcgBrAHMALQBtAGEAaQBuAC0AcwBrAGkAbABsAC0AYgAwADAANQAtAHIAZQBsAGUAYQBzAGUALQBjAGgAZQBjAGsAXABlAHgAcABlAHIAaQBtAGUAbgB0AHMAXAB0AGgAcgBlAGUAXwB2AGkAZQB3AF8AcgBlAGMAbwBuAHMAdAByAHUAYwB0AGkAbwBuAFwAcgBlAHMAdQBsAHQAcwBcAGMAYQBzAGUAXwAwADAAMQBfAGIAbABvAGMAawBfAGgAbwBsAGUAXABjAGEAcwBlAF8AMAAwADEAXwBiAGwAbwBjAGsAXwBoAG8AbABlAC4AUwBMAEQAUABSAFQACYD//v8TYwBhAHMAZQBfADAAMAAxAF8AYgBsAG8AYwBrAF8AaABvAGwAZQACAACfpJtq//7/AP/+/wD//v8AAAAAAAAAAAAAAAAAAAAAAAAA//7/AtiepIsAAAAAAAAAAAAAAAAAAAAAIAAAAKGkm2oAAAAAAAAAAP//AQAXAG1vRnJvbVNrdEVudFN1cmZJZFJlcF9jAAAFgAgAIAAAAKGkm2oEAAAADIAAAAWACAAgAAAAoaSbagMAAAAMgAAABYAIACAAAAChpJtqAgAAAAyAAAAFgAgAIAAAAKGkm2oBAAAAAAAAAAAAAAAAAGhCAAAAAAAAAAAAAA==",
+          "logical_role": "BASE_SURFACE",
+          "expected_feature_id": "base_001",
+          "feature_id": "base_001",
+          "ownership": "API_EXACT",
+          "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+          "owner_type": "Extrusion",
+          "geometry": {
+            "internal": true,
+            "edge_count": 5,
+            "bounding_box_mm": [
+              -50.0,
+              -30.0,
+              0.0,
+              50.0,
+              30.0,
+              0.0
+            ],
+            "surface_type": "PLANE",
+            "normal": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "origin_mm": [
+              0.0,
+              0.0,
+              -0.0
+            ],
+            "area_mm2": 5685.840735
+          }
+        },
+        {
+          "entity_id": "face:b0dbc32e55803938f199",
+          "body_index": 0,
+          "face_index": 6,
+          "persistent_reference": "aEIAAAMAAAD//v8AAAAAAP//AQALAG1vRmFjZVJlZl9jAQAAAAAAAAAFAAAAAAIAAAAAAAB9w5QlrUmyVH3DlCWtSbJUAAD//wEAGwBtb0Zyb21Ta3RFbnQzSW50U3VyZklkUmVwX2MAAP//AQAGAG1vRlJfY///AQANAG1vRXh0T2JqZWN0X2P//wEAEQBtb0NTdHJpbmdIYW5kbGVfY//+/51EADoAXABMAG8AYwBhAGwARgBpAGwAZQBcAEQAZQBzAGsAVABvAHAAXABzAHcAXABzAG8AbABpAGQAdwBvAHIAawBzAC0AbQBhAGkAbgAtAHMAawBpAGwAbAAtAGIAMAAwADUALQByAGUAbABlAGEAcwBlAC0AYwBoAGUAYwBrAFwAZQB4AHAAZQByAGkAbQBlAG4AdABzAFwAdABoAHIAZQBlAF8AdgBpAGUAdwBfAHIAZQBjAG8AbgBzAHQAcgB1AGMAdABpAG8AbgBcAHIAZQBzAHUAbAB0AHMAXABjAGEAcwBlAF8AMAAwADEAXwBiAGwAbwBjAGsAXwBoAG8AbABlAFwAYwBhAHMAZQBfADAAMAAxAF8AYgBsAG8AYwBrAF8AaABvAGwAZQAuAFMATABEAFAAUgBUAAmA//7/E2MAYQBzAGUAXwAwADAAMQBfAGIAbABvAGMAawBfAGgAbwBsAGUAAgAAn6Sbav/+/wD//v8A//7/AAAAAAAAAAAAAAAAAAAAAAAAAP/+/wLYnqSLAAAAAAAAAAAAAAAAAAAAACgAAACjpJtqAQAAAP////8AAAAA//8BABQAbW9FbmRGYWNlU3VyZklkUmVwX2MAAAWACAAgAAAAoaSbagEAAAAAAAAAAAAMgAAABYAIACAAAAChpJtqAAAAAAAAAAAAAAAAAAAAAAAAaEIAAAAAAAAAAAAA",
+          "logical_role": "HOLE_WALL",
+          "expected_feature_id": "hole_001",
+          "feature_id": "hole_001",
+          "ownership": "API_EXACT",
+          "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+          "owner_type": "Cut",
+          "geometry": {
+            "internal": true,
+            "edge_count": 2,
+            "bounding_box_mm": [
+              -10.0,
+              -10.0,
+              -40.0,
+              10.0,
+              10.0,
+              0.0
+            ],
+            "surface_type": "CYLINDER",
+            "origin_mm": [
+              0.0,
+              0.0,
+              -40.0
+            ],
+            "axis": [
+              -0.0,
+              -0.0,
+              1.0
+            ],
+            "radius_mm": 10.0,
+            "diameter_mm": 20.0,
+            "area_mm2": 2513.274123
+          }
+        }
+      ],
+      "required_face_count": 7,
+      "role_counts": {
+        "BASE_SURFACE": 6,
+        "HOLE_WALL": 1
+      },
+      "missing_roles": {
+        "SLOT_END_WALL": {
+          "expected_minimum": 2,
+          "actual": 0
+        },
+        "SLOT_SIDE_WALL": {
+          "expected_minimum": 2,
+          "actual": 0
+        }
+      },
+      "gate": {
+        "status": "PASS",
+        "missing_entity_ids": [],
+        "extra_entity_ids": [],
+        "unresolved_entity_ids": [],
+        "insufficient_strength_entity_ids": [],
+        "misattributed_entity_ids": [],
+        "unresolved_count": 0,
+        "insufficient_strength_count": 0,
+        "misattributed_count": 0,
+        "evidence": [
+          {
+            "entity_id": "face:c0638b9be7916005721d",
+            "entity_kind": "FACE",
+            "feature_id": "base_001",
+            "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+            "strength": "API_EXACT",
+            "details": {
+              "logical_role": "BASE_SURFACE",
+              "owner_type": "Extrusion"
+            }
+          },
+          {
+            "entity_id": "face:810557770679619f239c",
+            "entity_kind": "FACE",
+            "feature_id": "base_001",
+            "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+            "strength": "API_EXACT",
+            "details": {
+              "logical_role": "BASE_SURFACE",
+              "owner_type": "Extrusion"
+            }
+          },
+          {
+            "entity_id": "face:565adb9cfb16e47b7e3f",
+            "entity_kind": "FACE",
+            "feature_id": "base_001",
+            "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+            "strength": "API_EXACT",
+            "details": {
+              "logical_role": "BASE_SURFACE",
+              "owner_type": "Extrusion"
+            }
+          },
+          {
+            "entity_id": "face:00febe47163087d604a5",
+            "entity_kind": "FACE",
+            "feature_id": "base_001",
+            "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+            "strength": "API_EXACT",
+            "details": {
+              "logical_role": "BASE_SURFACE",
+              "owner_type": "Extrusion"
+            }
+          },
+          {
+            "entity_id": "face:d526011aa3141341bfa8",
+            "entity_kind": "FACE",
+            "feature_id": "base_001",
+            "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+            "strength": "API_EXACT",
+            "details": {
+              "logical_role": "BASE_SURFACE",
+              "owner_type": "Extrusion"
+            }
+          },
+          {
+            "entity_id": "face:4871b2230147841e181e",
+            "entity_kind": "FACE",
+            "feature_id": "base_001",
+            "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+            "strength": "API_EXACT",
+            "details": {
+              "logical_role": "BASE_SURFACE",
+              "owner_type": "Extrusion"
+            }
+          },
+          {
+            "entity_id": "face:b0dbc32e55803938f199",
+            "entity_kind": "FACE",
+            "feature_id": "hole_001",
+            "source": "IFace2.GetFeature+IModelDocExtension.GetPersistReference3",
+            "strength": "API_EXACT",
+            "details": {
+              "logical_role": "HOLE_WALL",
+              "owner_type": "Cut"
+            }
+          }
+        ]
+      }
+    },
+    "reopened_geometry": {
+      "units": "mm",
+      "measurement_source": "SolidWorks API GetPartBox(True) + B-Rep cylindrical faces",
+      "envelope_mm": {
+        "length": 100.0,
+        "width": 60.0,
+        "height": 40.0,
+        "axis_order": "model_xyz"
+      },
+      "holes": [
+        {
+          "diameter_mm": 20.0,
+          "position_mm": [
+            0.0,
+            0.0,
+            -40.0
+          ],
+          "axis": [
+            -0.0,
+            -0.0,
+            1.0
+          ],
+          "axial_length_mm": 40.0,
+          "through_state": "unknown",
+          "through_evidence": "B-Rep cylinder boundaries cannot distinguish blind from through",
+          "measurement_source": "B-Rep internal cylindrical face"
+        }
+      ],
+      "compound_holes": [],
+      "slot_arc_candidates": [],
+      "cylindrical_faces": [
+        {
+          "diameter_mm": 20.0,
+          "origin_mm": [
+            0.0,
+            0.0,
+            -40.0
+          ],
+          "axis": [
+            -0.0,
+            -0.0,
+            1.0
+          ],
+          "area_mm2": 2513.274123,
+          "axial_length_mm": 40.0,
+          "internal": true,
+          "loop_count": 2,
+          "edge_count": 2,
+          "body_index": 0,
+          "face_index": 6
+        }
+      ],
+      "errors": [],
+      "hole_count": 1,
+      "hole_groups": [
+        {
+          "position_mm": [
+            0.0,
+            0.0,
+            -40.0
+          ],
+          "axis": [
+            -0.0,
+            -0.0,
+            1.0
+          ],
+          "segment_count": 1,
+          "diameters_mm": [
+            20.0
+          ],
+          "feature_kind": "simple",
+          "segments": [
+            {
+              "diameter_mm": 20.0,
+              "position_mm": [
+                0.0,
+                0.0,
+                -40.0
+              ],
+              "axis": [
+                -0.0,
+                -0.0,
+                1.0
+              ],
+              "axial_length_mm": 40.0,
+              "through_state": "unknown",
+              "through_evidence": "B-Rep cylinder boundaries cannot distinguish blind from through",
+              "measurement_source": "B-Rep internal cylindrical face"
+            }
+          ]
+        }
+      ],
+      "slot_planar_side_candidates": []
+    },
+    "reopened_owned_geometry": {
+      "holes": [
+        {
+          "feature_id": "hole_001",
+          "diameter_mm": 20.0,
+          "center_mm": [
+            0.0,
+            0.0
+          ],
+          "axis": [
+            -0.0,
+            -0.0,
+            1.0
+          ],
+          "through": true,
+          "axial_extent_mm": 40.0,
+          "entity_ids": [
+            "face:b0dbc32e55803938f199"
+          ]
+        }
+      ],
+      "slots": [],
+      "ownership_status": "FAIL"
+    },
+    "drawing_create": {
+      "status": "pass",
+      "projection": "third_angle",
+      "method": "Create3rdAngleViews2",
+      "created": true,
+      "error_code": null,
+      "manual_review_required": true
+    },
+    "drawing_structure": {
+      "status": "pass",
+      "stage": "review",
+      "sheets": [
+        "图纸1"
+      ],
+      "views": [
+        {
+          "sheet": "图纸1",
+          "name": "工程图视图1",
+          "type": 7,
+          "orientation": "*前视",
+          "semantic_view": "front",
+          "scale": [
+            1.0,
+            2.0
+          ],
+          "box": {
+            "left": 0.033547,
+            "bottom": 0.06704199999999999,
+            "right": 0.092183,
+            "top": 0.105678
+          }
+        },
+        {
+          "sheet": "图纸1",
+          "name": "工程图视图2",
+          "type": 4,
+          "orientation": "",
+          "semantic_view": "top",
+          "scale": [
+            1.0,
+            2.0
+          ],
+          "box": {
+            "left": 0.033547,
+            "bottom": 0.15840199999999993,
+            "right": 0.092183,
+            "top": 0.18703800000000004
+          }
+        },
+        {
+          "sheet": "图纸1",
+          "name": "工程图视图3",
+          "type": 4,
+          "orientation": "",
+          "semantic_view": "right",
+          "scale": [
+            1.0,
+            2.0
+          ],
+          "box": {
+            "left": 0.1463369999999999,
+            "bottom": 0.06704199999999999,
+            "right": 0.17497300000000007,
+            "top": 0.105678
+          }
+        }
+      ],
+      "dimensions": [],
+      "notes": [],
+      "tables": [],
+      "professional_annotations": {
+        "center_marks": [
+          {
+            "kind": "center_mark",
+            "sheet": "图纸1",
+            "view": "工程图视图1",
+            "semantic_view": "front",
+            "text_parts": [],
+            "box": null,
+            "size_m": 0.0025,
+            "show_lines": true,
+            "style": 2
+          }
+        ],
+        "center_lines": [],
+        "hole_callouts": [],
+        "datum_tags": [],
+        "geometric_tolerances": [],
+        "surface_finish_symbols": [],
+        "weld_symbols": []
+      },
+      "template_path": "*.drt",
+      "paper_size": null,
+      "sheet_size": null,
+      "title_block": {
+        "candidate": true,
+        "gbt_candidate": false,
+        "content_verified": false,
+        "fields": {},
+        "box": null
+      },
+      "view_count": 3,
+      "dimension_count": 0,
+      "table_count": 0,
+      "view_outline_count": 3,
+      "dimension_box_count": 0,
+      "native_dimension_box_count": 0,
+      "estimated_dimension_box_count": 0,
+      "low_confidence_dimension_box_count": 0,
+      "manual_review_required": true,
+      "retryable": false,
+      "error_code": null,
+      "checks": [
+        {
+          "id": "drawing-views",
+          "status": "pass",
+          "message": "工程图包含视图"
+        },
+        {
+          "id": "drawing-template",
+          "status": "pass",
+          "message": "已读取图框模板"
+        },
+        {
+          "id": "drawing-a3-sheet",
+          "status": "warning",
+          "message": "当前图幅不是 A3 或无法识别"
+        },
+        {
+          "id": "drawing-gbt-template",
+          "status": "warning",
+          "message": "未发现 GB/T 图框候选证据"
+        },
+        {
+          "id": "drawing-dimensions",
+          "status": "warning",
+          "message": "未读取到尺寸实体"
+        },
+        {
+          "id": "drawing-view-outlines",
+          "status": "pass",
+          "message": "已读取全部视图边界"
+        },
+        {
+          "id": "drawing-dimension-boxes",
+          "status": "warning",
+          "message": "原生边界 0/0，保守估算 0/0；估算不等于原生证据"
+        }
+      ]
+    },
+    "part_path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill-b005-release-check\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\case_001_block_hole.sldprt",
+    "drawing_path": "D:\\LocalFile\\DeskTop\\sw\\solidworks-main-skill-b005-release-check\\experiments\\three_view_reconstruction\\results\\case_001_block_hole\\case_001_block_hole.slddrw"
+  },
+  "reconstruction_qa": {
+    "status": "PASS",
+    "checks": [
+      {
+        "id": "bbox",
+        "passed": true
+      },
+      {
+        "id": "feature_tree_base",
+        "passed": true
+      },
+      {
+        "id": "feature_tree_hole",
+        "passed": true
+      },
+      {
+        "id": "feature_tree_boss",
+        "passed": true
+      },
+      {
+        "id": "hole_geometry",
+        "passed": true
+      }
+    ]
+  },
+  "drawing_qa": {
+    "technical_success": true,
+    "layout": {
+      "status": "PASS",
+      "view_count": 3,
+      "overlaps": []
+    },
+    "dimensions": {
+      "status": "PASS",
+      "required": [],
+      "native_dimensions": [],
+      "missing": []
+    },
+    "engineering_acceptance": "PASS"
+  },
+  "roundtrip": {
+    "level_1_projection": {
+      "status": "PASS",
+      "mode": "structured_projection_invariants_plus_generated_drawing_structure",
+      "limitations": [
+        "Level 1 is structured; Level 2 performs drawing primitive comparison"
+      ],
+      "view_checks": [
+        {
+          "view": "front",
+          "passed": true,
+          "expected_mm": [
+            100.0,
+            60.0
+          ],
+          "generated_mm": [
+            100.0,
+            60.0
+          ]
+        },
+        {
+          "view": "top",
+          "passed": true,
+          "expected_mm": [
+            100.0,
+            40.0
+          ],
+          "generated_mm": [
+            100.0,
+            40.0
+          ]
+        },
+        {
+          "view": "left",
+          "passed": true,
+          "expected_mm": [
+            40.0,
+            60.0
+          ],
+          "generated_mm": [
+            40.0,
+            60.0
+          ]
+        }
+      ],
+      "hole_checks": [
+        {
+          "diameter_mm": 20,
+          "position_mm": [
+            50.0,
+            30.0
+          ],
+          "passed": true
+        }
+      ],
+      "slot_checks": [],
+      "drawing_check": {
+        "id": "regenerated_drawing_has_three_views",
+        "passed": true
+      }
+    },
+    "level_2a_vector_geometry": {
+      "status": "PASS",
+      "scope": "lines/circles/arcs only; semantics excluded",
+      "views": {
+        "front": {
+          "visible_lines": {
+            "status": "PASS",
+            "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
+            "expected": 4,
+            "actual": 4,
+            "expected_support_length_mm": 320.0,
+            "actual_support_length_mm": 320.0,
+            "intersection_length_mm": 320.0,
+            "union_length_mm": 320.0,
+            "support_iou": 1.0,
+            "missing_length_mm": 0.0,
+            "overflow_length_mm": 0.0,
+            "missing_ratio": 0.0,
+            "overflow_ratio": 0.0,
+            "max_gap_mm": 0.0,
+            "segmentation": "EQUIVALENT_OR_UNASSESSED",
+            "information": [
+              "GEOMETRY_EQUIVALENT"
+            ],
+            "thresholds": {
+              "support_iou_min": 0.98,
+              "max_gap_mm": 0.1,
+              "max_overflow_ratio": 0.02,
+              "angle_tolerance_deg": 0.1,
+              "line_distance_tolerance_mm": 0.1
+            },
+            "supports": [
+              {
+                "direction": [
+                  1.0,
+                  0.0
+                ],
+                "normal_offset_mm": 0.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    100.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    100.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 100.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  0.0,
+                  1.0
+                ],
+                "normal_offset_mm": -100.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    60.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    60.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 60.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  1.0,
+                  -0.0
+                ],
+                "normal_offset_mm": 60.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    100.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    100.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 100.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  -0.0,
+                  1.0
+                ],
+                "normal_offset_mm": -0.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    60.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    60.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 60.0,
+                "max_gap_mm": 0.0
+              }
+            ],
+            "invalid_segments": [],
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "hidden_lines": {
+            "status": "NOT_EVALUABLE",
+            "expected": 0,
+            "reason": "SW2024 API response did not expose visibility semantics"
+          },
+          "circles": {
+            "status": "PASS",
+            "expected": 1,
+            "actual": 1,
+            "matched": 1,
+            "missing": 0,
+            "extra": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "pairs": [
+              [
+                0,
+                0
+              ]
+            ]
+          },
+          "arcs": {
+            "status": "PASS",
+            "mode": "CIRCLE_SUPPORT_ANGULAR_INTERVAL_COVERAGE",
+            "expected": 0,
+            "actual": 0,
+            "angular_iou": 1.0,
+            "missing_angular_span_deg": 0.0,
+            "overflow_angular_span_deg": 0.0,
+            "max_endpoint_error_mm": 0.0,
+            "missing_ratio": 0.0,
+            "overflow_ratio": 0.0,
+            "max_gap_deg": 0.0,
+            "segmentation": "EQUIVALENT_OR_UNASSESSED",
+            "information": [
+              "GEOMETRY_EQUIVALENT"
+            ],
+            "thresholds": {
+              "arc_center_tolerance_mm": 0.1,
+              "arc_radius_tolerance_mm": 0.05,
+              "arc_angle_tolerance_deg": 0.25,
+              "arc_endpoint_tolerance_mm": 0.1,
+              "arc_max_gap_deg": 0.25,
+              "arc_max_overflow_ratio": 0.02
+            },
+            "supports": []
+          },
+          "centerlines": {
+            "status": "NOT_EVALUABLE",
+            "expected": 0
+          }
+        },
+        "top": {
+          "visible_lines": {
+            "status": "PASS",
+            "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
+            "expected": 4,
+            "actual": 4,
+            "expected_support_length_mm": 280.0,
+            "actual_support_length_mm": 280.0,
+            "intersection_length_mm": 280.0,
+            "union_length_mm": 280.0,
+            "support_iou": 1.0,
+            "missing_length_mm": 0.0,
+            "overflow_length_mm": 0.0,
+            "missing_ratio": 0.0,
+            "overflow_ratio": 0.0,
+            "max_gap_mm": 0.0,
+            "segmentation": "EQUIVALENT_OR_UNASSESSED",
+            "information": [
+              "GEOMETRY_EQUIVALENT"
+            ],
+            "thresholds": {
+              "support_iou_min": 0.98,
+              "max_gap_mm": 0.1,
+              "max_overflow_ratio": 0.02,
+              "angle_tolerance_deg": 0.1,
+              "line_distance_tolerance_mm": 0.1
+            },
+            "supports": [
+              {
+                "direction": [
+                  1.0,
+                  0.0
+                ],
+                "normal_offset_mm": 40.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    100.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    100.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 100.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  -0.0,
+                  1.0
+                ],
+                "normal_offset_mm": -100.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    40.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    40.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 40.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  1.0,
+                  -0.0
+                ],
+                "normal_offset_mm": 0.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    100.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    100.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 100.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  0.0,
+                  1.0
+                ],
+                "normal_offset_mm": 0.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    40.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    40.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 40.0,
+                "max_gap_mm": 0.0
+              }
+            ],
+            "invalid_segments": [],
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "hidden_lines": {
+            "status": "NOT_EVALUABLE",
+            "expected": 0,
+            "reason": "SW2024 API response did not expose visibility semantics"
+          },
+          "circles": {
+            "status": "PASS",
+            "expected": 0,
+            "actual": 0,
+            "matched": 0,
+            "missing": 0,
+            "extra": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "pairs": []
+          },
+          "arcs": {
+            "status": "PASS",
+            "mode": "CIRCLE_SUPPORT_ANGULAR_INTERVAL_COVERAGE",
+            "expected": 0,
+            "actual": 0,
+            "angular_iou": 1.0,
+            "missing_angular_span_deg": 0.0,
+            "overflow_angular_span_deg": 0.0,
+            "max_endpoint_error_mm": 0.0,
+            "missing_ratio": 0.0,
+            "overflow_ratio": 0.0,
+            "max_gap_deg": 0.0,
+            "segmentation": "EQUIVALENT_OR_UNASSESSED",
+            "information": [
+              "GEOMETRY_EQUIVALENT"
+            ],
+            "thresholds": {
+              "arc_center_tolerance_mm": 0.1,
+              "arc_radius_tolerance_mm": 0.05,
+              "arc_angle_tolerance_deg": 0.25,
+              "arc_endpoint_tolerance_mm": 0.1,
+              "arc_max_gap_deg": 0.25,
+              "arc_max_overflow_ratio": 0.02
+            },
+            "supports": []
+          },
+          "centerlines": {
+            "status": "NOT_EVALUABLE",
+            "expected": 0
+          }
+        },
+        "left": {
+          "visible_lines": {
+            "status": "PASS",
+            "mode": "INFINITE_SUPPORT_LINE_INTERVAL_COVERAGE",
+            "expected": 4,
+            "actual": 4,
+            "expected_support_length_mm": 200.0,
+            "actual_support_length_mm": 200.0,
+            "intersection_length_mm": 200.0,
+            "union_length_mm": 200.0,
+            "support_iou": 1.0,
+            "missing_length_mm": 0.0,
+            "overflow_length_mm": 0.0,
+            "missing_ratio": 0.0,
+            "overflow_ratio": 0.0,
+            "max_gap_mm": 0.0,
+            "segmentation": "EQUIVALENT_OR_UNASSESSED",
+            "information": [
+              "GEOMETRY_EQUIVALENT"
+            ],
+            "thresholds": {
+              "support_iou_min": 0.98,
+              "max_gap_mm": 0.1,
+              "max_overflow_ratio": 0.02,
+              "angle_tolerance_deg": 0.1,
+              "line_distance_tolerance_mm": 0.1
+            },
+            "supports": [
+              {
+                "direction": [
+                  1.0,
+                  -0.0
+                ],
+                "normal_offset_mm": 0.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    40.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    40.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 40.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  0.0,
+                  1.0
+                ],
+                "normal_offset_mm": 0.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    60.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    60.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 60.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  1.0,
+                  0.0
+                ],
+                "normal_offset_mm": 60.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    40.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    40.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 40.0,
+                "max_gap_mm": 0.0
+              },
+              {
+                "direction": [
+                  -0.0,
+                  1.0
+                ],
+                "normal_offset_mm": -40.0,
+                "expected_intervals": [
+                  [
+                    0.0,
+                    60.0
+                  ]
+                ],
+                "actual_intervals": [
+                  [
+                    0.0,
+                    60.0
+                  ]
+                ],
+                "expected_segment_count": 1,
+                "actual_segment_count": 1,
+                "intersection_length_mm": 60.0,
+                "max_gap_mm": 0.0
+              }
+            ],
+            "invalid_segments": [],
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "hidden_lines": {
+            "status": "NOT_EVALUABLE",
+            "expected": 0,
+            "reason": "SW2024 API response did not expose visibility semantics"
+          },
+          "circles": {
+            "status": "PASS",
+            "expected": 0,
+            "actual": 0,
+            "matched": 0,
+            "missing": 0,
+            "extra": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "pairs": []
+          },
+          "arcs": {
+            "status": "PASS",
+            "mode": "CIRCLE_SUPPORT_ANGULAR_INTERVAL_COVERAGE",
+            "expected": 0,
+            "actual": 0,
+            "angular_iou": 1.0,
+            "missing_angular_span_deg": 0.0,
+            "overflow_angular_span_deg": 0.0,
+            "max_endpoint_error_mm": 0.0,
+            "missing_ratio": 0.0,
+            "overflow_ratio": 0.0,
+            "max_gap_deg": 0.0,
+            "segmentation": "EQUIVALENT_OR_UNASSESSED",
+            "information": [
+              "GEOMETRY_EQUIVALENT"
+            ],
+            "thresholds": {
+              "arc_center_tolerance_mm": 0.1,
+              "arc_radius_tolerance_mm": 0.05,
+              "arc_angle_tolerance_deg": 0.25,
+              "arc_endpoint_tolerance_mm": 0.1,
+              "arc_max_gap_deg": 0.25,
+              "arc_max_overflow_ratio": 0.02
+            },
+            "supports": []
+          },
+          "centerlines": {
+            "status": "NOT_EVALUABLE",
+            "expected": 0
+          }
+        }
+      }
+    },
+    "level_2b_drawing_semantics": {
+      "status": "PASS",
+      "scope": "visible/hidden/centerline/centermark semantics",
+      "semantic_provenance": "HLV_MINUS_HLR",
+      "hidden_primitive_count": 4,
+      "unknown_primitive_count": 0,
+      "hidden_geometry_matches": {},
+      "known_center_marks": 1,
+      "expected_center_marks": 0,
+      "expected_center_lines": 0,
+      "actual_center_lines": 0,
+      "reasons": []
+    },
+    "drawing_primitive_graph": {
+      "status": "PASS",
+      "views": [
+        {
+          "name": "工程图视图1",
+          "semantic_view": "front",
+          "orientation": {
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "up": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "right": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "projection_type": "THIRD_ANGLE",
+            "mirror_state": false,
+            "rotation_deg": 0.0,
+            "source_view_name": "*前视",
+            "canonical_role": "FRONT"
+          },
+          "projected_geometry": {
+            "visible": [
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 100.0,
+                  "y1": 60.0,
+                  "x2": 0.0,
+                  "y2": 60.0
+                }
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 0.0,
+                  "y1": 60.0,
+                  "x2": 0.0,
+                  "y2": 0.0
+                }
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 0.0,
+                  "y1": 0.0,
+                  "x2": 100.0,
+                  "y2": 0.0
+                }
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 100.0,
+                  "y1": 0.0,
+                  "x2": 100.0,
+                  "y2": 60.0
+                }
+              },
+              {
+                "geometry_type": "CIRCLE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x": 50.0,
+                  "y": 30.0,
+                  "diameter": 19.99999999999998
+                }
+              }
+            ],
+            "hidden": [],
+            "unknown": []
+          },
+          "annotations": {
+            "center_marks": [
+              {
+                "geometry_type": "ANNOTATION",
+                "semantic": "CENTERMARK",
+                "source": "DrawingAnnotation",
+                "confidence": 1.0,
+                "view": "工程图视图1",
+                "semantic_view": "front",
+                "geometry": {
+                  "size_m": 0.0025,
+                  "show_lines": true
+                }
+              }
+            ],
+            "center_lines": [],
+            "dimensions": [],
+            "callouts": []
+          }
+        },
+        {
+          "name": "工程图视图2",
+          "semantic_view": "top",
+          "orientation": {
+            "normal": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "right": [
+              1.0,
+              -0.0,
+              0.0
+            ],
+            "projection_type": "THIRD_ANGLE",
+            "mirror_state": false,
+            "rotation_deg": 0.0,
+            "source_view_name": "top",
+            "canonical_role": "TOP",
+            "source": "drawing_structure.semantic_view"
+          },
+          "projected_geometry": {
+            "visible": [
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 100.0,
+                  "y1": 0.0,
+                  "x2": 0.0,
+                  "y2": 0.0
+                }
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 0.0,
+                  "y1": 40.0,
+                  "x2": 0.0,
+                  "y2": 0.0
+                }
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 100.0,
+                  "y1": 40.0,
+                  "x2": 0.0,
+                  "y2": 40.0
+                }
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 100.0,
+                  "y1": 40.0,
+                  "x2": 100.0,
+                  "y2": 0.0
+                }
+              }
+            ],
+            "hidden": [
+              {
+                "geometry_type": "LINE",
+                "semantic": "HIDDEN",
+                "source": "HLV_MINUS_HLR",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 60.0,
+                  "y1": 0.0,
+                  "x2": 60.0,
+                  "y2": 40.0
+                },
+                "support_length_mm": 40.0
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "HIDDEN",
+                "source": "HLV_MINUS_HLR",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 40.0,
+                  "y1": 0.0,
+                  "x2": 40.0,
+                  "y2": 40.0
+                },
+                "support_length_mm": 40.0
+              }
+            ],
+            "unknown": []
+          },
+          "annotations": {
+            "center_marks": [],
+            "center_lines": [],
+            "dimensions": [],
+            "callouts": []
+          }
+        },
+        {
+          "name": "工程图视图3",
+          "semantic_view": "right",
+          "orientation": {
+            "normal": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "up": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "right": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "projection_type": "THIRD_ANGLE",
+            "mirror_state": false,
+            "rotation_deg": 0.0,
+            "source_view_name": "right",
+            "canonical_role": "RIGHT",
+            "source": "drawing_structure.semantic_view"
+          },
+          "projected_geometry": {
+            "visible": [
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 40.0,
+                  "y1": 60.0,
+                  "x2": 0.0,
+                  "y2": 60.0
+                }
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 40.0,
+                  "y1": 0.0,
+                  "x2": 40.0,
+                  "y2": 60.0
+                }
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 40.0,
+                  "y1": 0.0,
+                  "x2": 0.0,
+                  "y2": 0.0
+                }
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "VISIBLE",
+                "source": "HLR_CAPTURE",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 0.0,
+                  "y1": 0.0,
+                  "x2": 0.0,
+                  "y2": 60.0
+                }
+              }
+            ],
+            "hidden": [
+              {
+                "geometry_type": "LINE",
+                "semantic": "HIDDEN",
+                "source": "HLV_MINUS_HLR",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 0.0,
+                  "y1": 20.0,
+                  "x2": 40.0,
+                  "y2": 20.0
+                },
+                "support_length_mm": 40.0
+              },
+              {
+                "geometry_type": "LINE",
+                "semantic": "HIDDEN",
+                "source": "HLV_MINUS_HLR",
+                "confidence": 1.0,
+                "geometry": {
+                  "x1": 0.0,
+                  "y1": 40.0,
+                  "x2": 40.0,
+                  "y2": 40.0
+                },
+                "support_length_mm": 40.0
+              }
+            ],
+            "unknown": []
+          },
+          "annotations": {
+            "center_marks": [],
+            "center_lines": [],
+            "dimensions": [],
+            "callouts": []
+          }
+        }
+      ],
+      "annotations": {
+        "center_marks": [
+          {
+            "geometry_type": "ANNOTATION",
+            "semantic": "CENTERMARK",
+            "source": "DrawingAnnotation",
+            "confidence": 1.0,
+            "view": "工程图视图1",
+            "semantic_view": "front",
+            "geometry": {
+              "size_m": 0.0025,
+              "show_lines": true
+            }
+          }
+        ],
+        "center_lines": [],
+        "dimensions": [],
+        "callouts": []
+      },
+      "semantic_provenance": "HLV_MINUS_HLR",
+      "unknown_projected_primitive_count": 0,
+      "limitations": []
+    }
+  },
+  "roundtrip_qa": {
+    "status": "PASS",
+    "mode": "structured_projection_invariants_plus_generated_drawing_structure",
+    "limitations": [
+      "Level 1 is structured; Level 2 performs drawing primitive comparison"
+    ],
+    "view_checks": [
+      {
+        "view": "front",
+        "passed": true,
+        "expected_mm": [
+          100.0,
+          60.0
+        ],
+        "generated_mm": [
+          100.0,
+          60.0
+        ]
+      },
+      {
+        "view": "top",
+        "passed": true,
+        "expected_mm": [
+          100.0,
+          40.0
+        ],
+        "generated_mm": [
+          100.0,
+          40.0
+        ]
+      },
+      {
+        "view": "left",
+        "passed": true,
+        "expected_mm": [
+          40.0,
+          60.0
+        ],
+        "generated_mm": [
+          40.0,
+          60.0
+        ]
+      }
+    ],
+    "hole_checks": [
+      {
+        "diameter_mm": 20,
+        "position_mm": [
+          50.0,
+          30.0
+        ],
+        "passed": true
+      }
+    ],
+    "slot_checks": [],
+    "drawing_check": {
+      "id": "regenerated_drawing_has_three_views",
+      "passed": true
+    }
+  },
+  "status": "PASS"
+}

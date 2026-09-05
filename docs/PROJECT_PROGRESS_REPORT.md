@@ -1,5 +1,23 @@
 # solidworks-main-skill progress report
 
+## v0.5 B005 Multi Feature Interaction
+
+The B005 merge at `aef209a3139d034f6a1bff0b98ff8e95cd92ab76` passed
+post-merge `python -m pytest -v`: 565 passed, 15 skipped, 2 deselected,
+0 failed. Real SolidWorks 2024 SP04 reruns on that commit passed Backend,
+B-Rep, Level 1, Level 2A, and Level 2B for B001–B005. B005 exact ownership
+passed before and after reopen, with UNKNOWN=0 and UNATTRIBUTED=0.
+
+Scope is limited to **BaseBlock + Offset Through Hole + Offset Straight Slot**:
+100×60×20 mm base, Ø20 through hole at (-25,-10), and disjoint L40×W20 R10
+X-major through slot at (15,8). Evidence binding and operation provenance
+preserve separate Hole and Slot identities through B-Rep and drawing roundtrip.
+Complex parts and intersecting cuts are outside the validated scope.
+
+See `docs/V0.5_BENCHMARK_005_RELEASE.md` and its post-merge evidence snapshots.
+The SW2024 slot-width `UPSTREAM_GAP` remains open; third-party backend source
+and existing matcher tolerances were not changed for this release.
+
 ## Identity and boundary
 
 `solidworks-main-skill` owns engineering reasoning and validation. The
